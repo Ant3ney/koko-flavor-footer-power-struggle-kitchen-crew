@@ -1,71 +1,51 @@
-import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
-import gameDriver from "../../GameLogic/GameDriver";
-import storyLogic from "../../GameLogic/StoryLogic";
-import basic from "../../Styles/basics";
-import testCharacters from "../../GameLogic/PresetsAndTemplates/testCharacters";
+import React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import GameMenuNav from './GameMenu';
+import PressStart from '../PressStart';
+import MainMenu from './StartMenu';
+import Settings from '../Settings';
+import Share from '../Share';
+import Leaderbords from '../Leaderbords';
+import Loading from '../Loading';
 
-function MainMenu(props){
+const Stack = createStackNavigator();
 
-    return(
-        <View style={[basic.centerContainer, basic.bgWhite]}>
-            <Text>This is the main menu</Text>
-            <Button
-             title="Play"
-             onPress={() => {
-                props.navigation.navigate("Loading");
-                fetch('https://coco-game-17308.herokuapp.com/testApi/characters')
-                .then(response => response.json())
-                .then((data) => {
-                     gameDriver.awake(data);
-                     gameDriver.giveNavigator(props.navigation);
+function MainNavMenu(props) {
+	return (
+		<NavigationContainer>
+			<Stack.Navigator
+				screenOptions={{
+					headerShown: false,
+				}}
+			>
+				<Stack.Screen name='Start Menu'>{inProps => <PressStart {...inProps} />}</Stack.Screen>
 
-                     //At this point this is a check to see if this is the users first time playing
-                     /* If true then */
-                     if(storyLogic.checkForUnhandledStory()){
-                        storyLogic.fillChapterQueAndChapter();
-                     }
-                     props.navigation.navigate("Play", {type: 'beginning'});/*Type is always beginning for now*/
-                  });
-             }}
-            />
+				<Stack.Screen name='Main Menu'>
+					{inProps => <MainMenu {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
+				</Stack.Screen>
 
-            <Button
-             title="Login"
-             onPress={() => {
-                
-             }}
-            />
+				<Stack.Screen name='Play'>
+					{inProps => <GameMenuNav {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
+				</Stack.Screen>
 
-            <Button
-             title="Sign up"
-             onPress={() => {
-                
-            }}
-            />
+				<Stack.Screen name='Settings'>
+					{inProps => <Settings {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
+				</Stack.Screen>
 
-            <Button
-             title="Share"
-             onPress={() => {
-                props.navigation.navigate("Share");
-             }}
-            />
+				<Stack.Screen name='Share'>
+					{inProps => <Share {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
+				</Stack.Screen>
 
-            <Button
-             title="Leaderbords"
-             onPress={() => {
-                props.navigation.navigate("Leaderbords");
-             }}
-            />
+				<Stack.Screen name='Leaderbords'>
+					{inProps => <Leaderbords {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
+				</Stack.Screen>
 
-            <Button
-             title="Settings"
-             onPress={() => {
-                props.navigation.navigate("Settings");
-             }}
-            />
-        </View>
-    );
+				<Stack.Screen name='Loading'>{inProps => <Loading />}</Stack.Screen>
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
 
-export default MainMenu;
+export default MainNavMenu;

@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import MainNavMenu from './components/Navs/MainNavMenu';
+import MainNavMenu from './components/Navs/MainMenu';
 import GameLogicFile from './GameLogic/GameLogic';
 import appStyle from './Styles/app';
-
 var gameLogic = GameLogicFile;
 
 export default function App() {
