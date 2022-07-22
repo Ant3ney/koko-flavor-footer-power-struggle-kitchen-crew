@@ -3,6 +3,7 @@ import mStats from './ManageStats/ManageStats';
 import busyness from './Busyness';
 import storyLogic from './StoryLogic';
 import shiftHub from './ShiftHub';
+import Sound from './AudioSystem';
 
 var pFrame = 0;
 var pFrameLong = 0;
@@ -29,6 +30,9 @@ let GameDriver = {
 		mStats.setScenarioPresent(false);
 
 		mStats.init(settings);
+
+		const testSound = new Sound('test');
+		testSound.play();
 	},
 	update: () => {
 		//updates happons about 60 time a seceond.

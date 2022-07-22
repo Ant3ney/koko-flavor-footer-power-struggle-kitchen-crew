@@ -8,6 +8,8 @@ var KickbackConversationTempletes = [
 		var subJect01Obj = mStats.getRandomCharacter(true);
 		var subject01 = subJect01Obj.name.getFirst();
 
+		const shiftCharacters = mStats.getShiftCharacters();
+
 		return {
 			conversation01: [
 				{
