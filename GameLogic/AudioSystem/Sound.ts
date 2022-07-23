@@ -1,13 +1,15 @@
 import { Howl } from 'howler';
 import sounds from './sounds';
+import Settings from './SettingsType';
 
 type Update = {
 	action: string;
 	name?: string;
+	settings?: Settings;
 };
 
 export default class Sound {
-	constructor(name: string) {
+	constructor(name: string, settings?: Settings) {
 		this.load(name);
 	}
 
@@ -15,8 +17,8 @@ export default class Sound {
 	 * It loads a sound file and plays it.
 	 * @param {string} name - The name of the sound to play.
 	 */
-	run(name: string): void {
-		this.load(name);
+	run(name: string, settings?: Settings): void {
+		this.load(name, settings);
 		this.play();
 	}
 
@@ -25,11 +27,14 @@ export default class Sound {
 	 * @param {string} [name] - The name of the sound to play. If not specified, the last sound loaded
 	 * will be played.
 	 */
-	play(name?: string): void {
-		if (name) this.load(name);
+	play(nameOrSetting?: string | Settings, settings?: Settings): void {
+		if (nameOrSetting && typeof nameOrSetting === 'string') this.load(nameOrSetting);
+
+		console.log('decided setting', getDecidedSettingFromNameAndSettings(nameOrSetting, settings));
 
 		this.updates.push({
 			action: 'play',
+			settings: getDecidedSettingFromNameAndSettings(nameOrSetting, settings),
 		});
 		this.update();
 	}
@@ -51,10 +56,11 @@ export default class Sound {
 	 * It loads the name of the audio file.
 	 * @param {string} name - The name of the audio file to load.
 	 */
-	load(name: string): void {
+	load(name: string, settings?: Settings): void {
 		this.updates.push({
 			action: 'load',
 			name,
+			settings,
 		});
 		this.update();
 	}
@@ -70,13 +76,13 @@ export default class Sound {
 		for (let i = 0; i < this.updates.length; i += 0) {
 			switch (this.updates[i].action) {
 				case 'play':
-					await this.corePlay();
+					await this.corePlay(this.updates[i].settings);
 					break;
 				case 'pause':
 					await this.corePause();
 					break;
 				case 'load':
-					await this.coreLoad(this.updates[i].name);
+					await this.coreLoad(this.updates[i].name, this.updates[i].settings);
 					break;
 				default:
 					console.error(`Unknown action: ${this.updates[i].action}`);
@@ -86,15 +92,17 @@ export default class Sound {
 		}
 		this.updateing = false;
 	}
-	async corePlay(): Promise<void> {
+	async corePlay(settings?: Settings): Promise<void> {
 		if (!this.howler) return unavalibleHowlerError();
 		this.howler.play();
+		console.log('loop', settings?.loop, settings);
+		this.howler.loop(settings?.loop);
 	}
 	corePause() {
 		if (!this.howler) return unavalibleHowlerError();
 		this.howler.pause();
 	}
-	coreLoad(name: string | undefined): void {
+	coreLoad(name: string | undefined, settings?: Settings): void {
 		if (!name) return nameNotPassedintoUpdateError();
 		const soundFile = sounds[name];
 		if (this.howler) this.corePause();
@@ -103,6 +111,15 @@ export default class Sound {
 			src: [soundFile],
 		});
 	}
+}
+
+function getDecidedSettingFromNameAndSettings(
+	nameOrSetting: string | Settings | undefined,
+	settings: Settings | undefined
+): Settings | undefined {
+	if (nameOrSetting && typeof nameOrSetting !== 'string') {
+		return nameOrSetting;
+	} else return settings;
 }
 
 function nameNotPassedintoUpdateError() {

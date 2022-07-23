@@ -32,7 +32,7 @@ let GameDriver = {
 		mStats.init(settings);
 
 		const testSound = new Sound('test');
-		testSound.play();
+		testSound.play({ loop: true });
 	},
 	update: () => {
 		//updates happons about 60 time a seceond.
