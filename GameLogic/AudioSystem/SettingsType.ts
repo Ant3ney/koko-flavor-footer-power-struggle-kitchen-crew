@@ -1,5 +1,10 @@
 type Settings = {
-	loop: boolean;
+	loop?: boolean;
+	fade?: {
+		from: number;
+		to: number;
+		duration: number;
+	};
 };
 
 export default Settings;

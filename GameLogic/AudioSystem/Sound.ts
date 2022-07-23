@@ -6,11 +6,16 @@ type Update = {
 	action: string;
 	name?: string;
 	settings?: Settings;
+	fade?: {
+		from: number;
+		to: number;
+		duration: number;
+	};
 };
 
 export default class Sound {
 	constructor(name: string, settings?: Settings) {
-		this.load(name);
+		this.load(name, settings);
 	}
 
 	/**
@@ -28,9 +33,8 @@ export default class Sound {
 	 * will be played.
 	 */
 	play(nameOrSetting?: string | Settings, settings?: Settings): void {
+		this.pause();
 		if (nameOrSetting && typeof nameOrSetting === 'string') this.load(nameOrSetting);
-
-		console.log('decided setting', getDecidedSettingFromNameAndSettings(nameOrSetting, settings));
 
 		this.updates.push({
 			action: 'play',
@@ -65,6 +69,34 @@ export default class Sound {
 		this.update();
 	}
 
+	transitionTo(name: string) {
+		this.updates.push({
+			action: 'fade',
+			fade: {
+				from: 1,
+				to: 0,
+				duration: 1500,
+			},
+		});
+		this.load(name);
+		this.updates.push({
+			action: 'play',
+			settings: {
+				fade: {
+					from: 0,
+					to: 1,
+					duration: 10500,
+				},
+			},
+		});
+
+		this.update();
+	}
+	stop() {
+		this.updates = [];
+		this.corePause();
+	}
+
 	//Private properties and methods.
 	howler: any = null;
 	updates: Update[] = [];
@@ -84,6 +116,19 @@ export default class Sound {
 				case 'load':
 					await this.coreLoad(this.updates[i].name, this.updates[i].settings);
 					break;
+				case 'fade':
+					if (!this.updates[i]?.fade?.from) return updateObjectForFadeActionIsNotDefinedError();
+					console.log('started waiting for fade');
+					await this.coreFade(
+						//@ts-ignore
+						this.updates[i].fade.from,
+						//@ts-ignore
+						this.updates[i].fade.to,
+						//@ts-ignore
+						this.updates[i].fade.duration
+					);
+					console.log('finished waiting for fade');
+					break;
 				default:
 					console.error(`Unknown action: ${this.updates[i].action}`);
 					break;
@@ -94,9 +139,11 @@ export default class Sound {
 	}
 	async corePlay(settings?: Settings): Promise<void> {
 		if (!this.howler) return unavalibleHowlerError();
+		if (settings?.loop) this.howler.loop(settings?.loop);
+
+		console.log('coreplay settings', settings);
 		this.howler.play();
-		console.log('loop', settings?.loop, settings);
-		this.howler.loop(settings?.loop);
+		if (settings?.fade) this.howler.fade(settings.fade.from, settings.fade.to, settings.fade.duration);
 	}
 	corePause() {
 		if (!this.howler) return unavalibleHowlerError();
@@ -111,6 +158,18 @@ export default class Sound {
 			src: [soundFile],
 		});
 	}
+	async coreFade(from: number, to: number, duration: number) {
+		if (!this.howler) return unavalibleHowlerError();
+		return new Promise<void>(res => {
+			console.log('closer start');
+
+			this.howler.fade(from, to, duration);
+			this.howler.on('fade', function () {
+				console.log('closer end');
+				res();
+			});
+		});
+	}
 }
 
 function getDecidedSettingFromNameAndSettings(
@@ -120,6 +179,10 @@ function getDecidedSettingFromNameAndSettings(
 	if (nameOrSetting && typeof nameOrSetting !== 'string') {
 		return nameOrSetting;
 	} else return settings;
+}
+
+function updateObjectForFadeActionIsNotDefinedError() {
+	console.error('Update object for fade action is not defined.');
 }
 
 function nameNotPassedintoUpdateError() {

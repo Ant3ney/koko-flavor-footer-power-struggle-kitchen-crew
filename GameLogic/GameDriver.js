@@ -33,6 +33,21 @@ let GameDriver = {
 
 		const testSound = new Sound('test');
 		testSound.play({ loop: true });
+		setTimeout(() => {
+			testSound.pause('test2');
+		}, 3000);
+		setTimeout(() => {
+			testSound.play();
+		}, 3500);
+		setTimeout(() => {
+			testSound.play('test');
+		}, 5500);
+		setTimeout(() => {
+			testSound.play('test2');
+		}, 7500);
+		setTimeout(() => {
+			testSound.transitionTo('powerFest');
+		}, 10500);
 	},
 	update: () => {
 		//updates happons about 60 time a seceond.
