@@ -5,6 +5,7 @@ type Settings = {
 		to: number;
 		duration: number;
 	};
+	volume?: number;
 };
 
 export default Settings;

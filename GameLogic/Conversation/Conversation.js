@@ -3,6 +3,7 @@ import beginningTemplete from '../PresetsAndTemplates/ConversationEventTempletes
 import storyLogic from '../StoryLogic';
 import storyTempletes from '../PresetsAndTemplates/StoryTempletes';
 import KickbackConversationTempletes from '../PresetsAndTemplates/KickbackConversationTempletes';
+import { music, click } from '../AudioSystem';
 
 const FIRST_CONVERSATION_PROPERTY = 'conversation01';
 
@@ -31,6 +32,7 @@ let conversation = {
 				console.log('conversation.array', conversation.array);
 				break;
 			case 'beginning':
+				music.pause();
 				conversation.array.push(beginningTemplete);
 				break;
 			case 'win':
@@ -53,10 +55,12 @@ let conversation = {
 		conversation.updatePlayer(currentConversation[diIndex]);
 		player.setDialog(currentConversation[diIndex]);
 		function dialogChange() {
+			click();
 			diIndex++;
 			conversation.updatePlayer(currentConversation[diIndex]);
 		}
 		function finish() {
+			click();
 			conIndex++;
 			diIndex = 0;
 			console.log('Finish report', conIndex, conversationArray.length);

@@ -1,12 +1,13 @@
 import characters from '../ManageStats/Characters';
 import mStats from '../ManageStats/ManageStats';
 import Dialog from '../Conversation/Dialog';
+import { music } from '../AudioSystem';
 let staticConversation = {};
 
 var storyTempletes = [
 	(dialogChanged, exit) => {
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
-
+		music.play('triumph', { volume: 0.15, loop: true });
 		return {
 			conversation01: [
 				{
@@ -18,7 +19,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -33,7 +33,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -48,7 +47,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -63,8 +61,8 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index = 0;
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								music.pause();
+								exit();
 							},
 						},
 					],
@@ -76,6 +74,7 @@ var storyTempletes = [
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
 		var ranual = mStats.getCharacterWithName('Raniel San Diego');
 		var kasey = mStats.getCharacterWithName('Kasey Takahashi');
+		music.play('triumph', { volume: 0.15, loop: true });
 
 		return {
 			conversation01: [
@@ -88,7 +87,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -100,7 +98,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -115,7 +112,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -130,7 +126,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -142,7 +137,6 @@ var storyTempletes = [
 						{
 							title: 'Ranual. Get lit with us!',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -163,7 +157,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -178,7 +171,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -190,7 +182,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -205,7 +196,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -220,7 +210,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -235,7 +224,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								exit();
 							},
 						},
 					],

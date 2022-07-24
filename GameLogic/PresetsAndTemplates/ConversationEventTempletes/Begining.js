@@ -1,6 +1,7 @@
 import mStats from '../../ManageStats/ManageStats';
 import Dialog from '../../Conversation/Dialog';
 import characters from '../../ManageStats/Characters';
+import { music } from '../../AudioSystem';
 let staticConversation = {};
 
 var beginingTemplete = (dialogChanged, exit) => {
@@ -41,6 +42,7 @@ var beginingTemplete = (dialogChanged, exit) => {
 					{
 						title: 'next',
 						onPress: () => {
+							music.play('eventfulShift', { loop: true });
 							dialogChanged();
 						},
 					},
@@ -205,6 +207,7 @@ var beginingTemplete = (dialogChanged, exit) => {
 						title: 'next',
 						onPress: () => {
 							staticConversation.index = 0;
+							music.pause();
 							exit();
 						},
 					},

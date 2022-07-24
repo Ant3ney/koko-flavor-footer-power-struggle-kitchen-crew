@@ -141,8 +141,8 @@ export default class Sound {
 		if (!this.howler) return unavalibleHowlerError();
 		if (settings?.loop) this.howler.loop(settings?.loop);
 
-		console.log('coreplay settings', settings);
 		this.howler.play();
+		if (settings?.volume || settings?.volume === 0) this.howler.volume(settings?.volume);
 		if (settings?.fade) this.howler.fade(settings.fade.from, settings.fade.to, settings.fade.duration);
 	}
 	corePause() {
