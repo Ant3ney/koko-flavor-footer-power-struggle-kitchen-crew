@@ -172,6 +172,7 @@ var storyTempletes = [
 							title: 'next',
 							onPress: () => {
 								dialogChanged();
+								music.musicTransitionTo('cheese');
 							},
 						},
 					],
@@ -224,6 +225,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.pause();
 								exit();
 							},
 						},

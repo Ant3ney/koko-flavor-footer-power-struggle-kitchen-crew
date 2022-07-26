@@ -5,6 +5,7 @@ import eventfulShift from './eventfulShift.mp3';
 import mainTheme from './mainTheme.mp3';
 import click01 from './click01.mp3';
 import triumph from './triumph.mp3';
+import cheese from './cheese.mp3';
 
 const sounds: any = {
 	test: testAudio,
@@ -14,6 +15,7 @@ const sounds: any = {
 	mainTheme,
 	click01,
 	triumph,
+	cheese,
 };
 
 export default sounds;

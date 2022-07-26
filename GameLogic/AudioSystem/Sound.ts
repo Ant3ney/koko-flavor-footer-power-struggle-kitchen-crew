@@ -69,13 +69,26 @@ export default class Sound {
 		this.update();
 	}
 
-	transitionTo(name: string) {
+	transitionTo(name: string, settings?: Settings) {
+		let transition = settings?.transition
+			? settings.transition
+			: {
+					from: 1,
+					to: 0,
+					duration: 1500,
+					postFrom: 0,
+					postTo: 1,
+					postDuration: 1500,
+			  };
+
+		console.log('transitioning toString', name);
+
 		this.updates.push({
 			action: 'fade',
 			fade: {
-				from: 1,
-				to: 0,
-				duration: 1500,
+				from: transition.from,
+				to: transition.to,
+				duration: transition.duration,
 			},
 		});
 		this.load(name);
@@ -83,15 +96,34 @@ export default class Sound {
 			action: 'play',
 			settings: {
 				fade: {
-					from: 0,
-					to: 1,
-					duration: 10500,
+					from: transition.postFrom,
+					to: transition.postTo,
+					duration: transition.postDuration,
 				},
+				loop: settings?.loop,
 			},
 		});
 
 		this.update();
 	}
+
+	musicTransitionTo(name: string, settings?: Settings) {
+		this.transitionTo(
+			name,
+			settings || {
+				transition: {
+					from: 0.15,
+					to: 0,
+					duration: 1500,
+					postFrom: 0,
+					postTo: 0.15,
+					postDuration: 1500,
+				},
+				loop: true,
+			}
+		);
+	}
+
 	stop() {
 		this.updates = [];
 		this.corePause();
@@ -179,6 +211,12 @@ function getDecidedSettingFromNameAndSettings(
 	if (nameOrSetting && typeof nameOrSetting !== 'string') {
 		return nameOrSetting;
 	} else return settings;
+}
+
+function transitionPropertyNotApplyedToTransitionSettingError() {
+	throw new Error(
+		'The transition property is not applyed to the transition setting. Please use the transition setting instead.'
+	);
 }
 
 function updateObjectForFadeActionIsNotDefinedError() {

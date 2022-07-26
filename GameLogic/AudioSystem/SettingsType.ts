@@ -6,6 +6,14 @@ type Settings = {
 		duration: number;
 	};
 	volume?: number;
+	transition?: {
+		to: number;
+		from: number;
+		duration: number;
+		postFrom: number;
+		postTo: number;
+		postDuration: number;
+	};
 };
 
 export default Settings;
