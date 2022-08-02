@@ -63,10 +63,10 @@ let conversation = {
 			click();
 			conIndex++;
 			diIndex = 0;
-			console.log('Finish report', conIndex, conversationArray.length);
 			if (conIndex >= conversationArray.length) {
 				conversation.navigation.navigate('Next Shift Select');
 			} else {
+				console.log('changed to another element');
 				currentConversation = conversationArray[conIndex](dialogChange, finish)[FIRST_CONVERSATION_PROPERTY];
 				conversation.updatePlayer(currentConversation[diIndex]);
 			}
@@ -79,6 +79,7 @@ let conversation = {
 	updateCalled: setPlayer => {},
 	updatePlayer: dialog => {
 		player.setDialog(dialog);
+		player.playVoice();
 		conversation.setPlayer(player);
 	},
 	checkIfSafeToPlayConversation: () => {

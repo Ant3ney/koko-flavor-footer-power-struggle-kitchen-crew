@@ -7,6 +7,7 @@ let staticConversation = {};
 var beginingTemplete = (dialogChanged, exit) => {
 	var subJect01Obj = mStats.getRandomCharacter();
 	var johnTheMan = new characters();
+	johnTheMan.characterInit({ name: {}, gender: 'm' }, {});
 	var narrator = new characters();
 	mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
 	mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
@@ -178,25 +179,19 @@ var beginingTemplete = (dialogChanged, exit) => {
 				responses: [
 					{
 						title: 'next',
-						onPress: () => {
-							staticConversation.index++;
-							dialogChanged();
-						},
+						onPress: dialogChanged,
 					},
 				],
 			},
 			{
 				dialog: new Dialog(
 					johnAlvas,
-					'And one more thing before you go and start your first day as a cook. Choose an easy shift for your first day. You wont gain much power if your skill is cant match the difficulty'
+					'Wait! Before you go and start your first day as a cook, Choose an easy shift. You wont gain much power if your skill is cant match the difficulty'
 				),
 				responses: [
 					{
 						title: 'next',
-						onPress: () => {
-							staticConversation.index++;
-							dialogChanged();
-						},
+						onPress: dialogChanged,
 					},
 				],
 			},
@@ -206,8 +201,8 @@ var beginingTemplete = (dialogChanged, exit) => {
 					{
 						title: 'next',
 						onPress: () => {
-							staticConversation.index = 0;
 							music.pause();
+							johnAlvas.voice.pause();
 							exit();
 						},
 					},

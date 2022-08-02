@@ -265,6 +265,7 @@ var storyTempletes = [
 			[mark, philip],
 			[christian, raniel, vicky, mark, philip, brad, kasey]
 		);
+		music.play('triumph', { volume: 0.15, loop: true });
 		var rando = mStats.getRandomeCharacterWhosNot([
 			powerfull,
 			christian,
@@ -285,7 +286,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -297,7 +297,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -309,7 +308,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
+								music.musicTransitionTo('bicker');
 								dialogChanged();
 							},
 						},
@@ -321,19 +320,17 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'O vicky your here already, what a suprise!'),
+					dialog: new Dialog(christian, 'Vicky! Your here already, what a suprise!'),
 					responses: [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -345,7 +342,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -360,7 +356,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -375,7 +370,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -387,7 +381,8 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
+								music.musicTransitionTo('party');
+
 								dialogChanged();
 							},
 						},
@@ -402,7 +397,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -414,7 +408,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -429,7 +422,6 @@ var storyTempletes = [
 						{
 							title: 'Ok',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -441,7 +433,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -453,7 +444,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -465,7 +455,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -477,7 +466,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -492,7 +480,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -504,7 +491,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -521,7 +507,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -536,7 +521,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -553,7 +537,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -570,7 +553,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -582,7 +564,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -605,7 +586,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -617,7 +597,8 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
+								music.musicTransitionTo('cheese');
+
 								dialogChanged();
 							},
 						},
@@ -629,7 +610,6 @@ var storyTempletes = [
 						{
 							title: 'Huh. Are you talking to me?',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -641,7 +621,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -653,7 +632,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -668,14 +646,12 @@ var storyTempletes = [
 						{
 							title: "Yes I'm...",
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
 						{
 							title: "No I'm...",
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -690,7 +666,6 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -702,8 +677,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.index = 0;
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								exit();
 							},
 						},
 					],
@@ -721,6 +695,7 @@ var storyTempletes = [
 		var mark = mStats.getCharacterWithName('Mark Noda');
 		mStats.setCharacterName(narrator, { first: 'Narrator', last: '' });
 
+		music.play('triumph', { volume: 0.15, loop: true });
 		return {
 			conversation01: [
 				{
@@ -729,7 +704,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -744,7 +718,6 @@ var storyTempletes = [
 						{
 							title: 'Thats what Kasey said',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -759,8 +732,8 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
+								music.musicTransitionTo('bicker');
 							},
 						},
 					],
@@ -774,7 +747,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -789,7 +761,7 @@ var storyTempletes = [
 						{
 							title: 'Ok',
 							onPress: () => {
-								staticConversation.index++;
+								music.musicTransitionTo('triumph');
 								dialogChanged();
 							},
 						},
@@ -801,7 +773,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -816,7 +787,6 @@ var storyTempletes = [
 						{
 							title: 'Ok',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -828,7 +798,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -840,7 +809,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -852,7 +820,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -867,7 +834,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -879,7 +845,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -891,7 +856,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -906,7 +870,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -921,7 +884,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -936,7 +898,6 @@ var storyTempletes = [
 						{
 							title: 'Ummm Rump Shimp Ima...',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -960,7 +921,6 @@ var storyTempletes = [
 						{
 							title: 'Yes',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -973,7 +933,7 @@ var storyTempletes = [
 							title: 'Next',
 							onPress: () => {
 								console.log('Here just fine.');
-								staticConversation.index++;
+
 								dialogChanged();
 							},
 						},
@@ -988,7 +948,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1003,7 +962,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1018,7 +976,6 @@ var storyTempletes = [
 						{
 							title: 'Ummm...',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1033,7 +990,6 @@ var storyTempletes = [
 						{
 							title: 'Ummm.',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1048,7 +1004,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1060,7 +1015,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1072,7 +1026,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1087,7 +1040,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1099,7 +1051,6 @@ var storyTempletes = [
 						{
 							title: 'Thanks Taka',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
@@ -1111,7 +1062,6 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},

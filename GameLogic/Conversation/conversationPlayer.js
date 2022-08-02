@@ -19,6 +19,10 @@ let player = {
 	getResponses: () => {
 		return player.responses;
 	},
+	playVoice: () => {
+		if (!player?.dialogObj?.playVoice) return;
+		player.dialogObj.playVoice();
+	},
 };
 
 function getConversationNameFromDialog(dialog) {

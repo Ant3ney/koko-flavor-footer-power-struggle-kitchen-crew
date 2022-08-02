@@ -6,6 +6,14 @@ import mainTheme from './mainTheme.mp3';
 import click01 from './click01.mp3';
 import triumph from './triumph.mp3';
 import cheese from './cheese.mp3';
+import bicker from './bicker.mp3';
+import maleApeShort from './maleApeShort.mp3';
+import maleApeMedium from './maleApeMedium.mp3';
+import maleApeLong from './maleApeLong.mp3';
+import femaleApeShort from './femaleApeShort.mp3';
+import femaleApeMedium from './femaleApeMedium.mp3';
+import femaleApeLong from './femaleApeLong.mp3';
+import party from './party.mp3';
 
 const sounds: any = {
 	test: testAudio,
@@ -16,6 +24,14 @@ const sounds: any = {
 	click01,
 	triumph,
 	cheese,
+	bicker,
+	maleApeShort,
+	maleApeMedium,
+	maleApeLong,
+	femaleApeShort,
+	femaleApeMedium,
+	femaleApeLong,
+	party,
 };
 
 export default sounds;
