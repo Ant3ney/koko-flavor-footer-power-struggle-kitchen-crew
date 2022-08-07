@@ -3,13 +3,28 @@ import mStats from '../ManageStats/ManageStats';
 import Dialog from '../Conversation/Dialog';
 import { music } from '../AudioSystem';
 let staticConversation = {};
+const FIRST_CONVERSATION_PROPERTY = 'conversation01';
 
 var storyTempletes = [
 	(dialogChanged, exit) => {
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
-		music.play('triumph', { volume: 0.15, loop: true });
+		var narrator = new characters();
+		//TODO: make it so that characters take a character object for initing itself
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		return {
 			conversation01: [
+				{
+					dialog: new Dialog(narrator, 'Some time lator'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+								music.play('triumph', { volume: 0.15, loop: true });
+							},
+						},
+					],
+				},
 				{
 					dialog: new Dialog(
 						christian,
@@ -71,13 +86,26 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
+		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
 		var ranual = mStats.getCharacterWithName('Raniel San Diego');
 		var kasey = mStats.getCharacterWithName('Kasey Takahashi');
-		music.play('triumph', { volume: 0.15, loop: true });
 
 		return {
 			conversation01: [
+				{
+					dialog: new Dialog(narrator, 'Some time lator'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+								music.play('triumph', { volume: 0.15, loop: true });
+							},
+						},
+					],
+				},
 				{
 					dialog: new Dialog(
 						christian,
@@ -143,10 +171,7 @@ var storyTempletes = [
 						{
 							title: 'Take it easy Ranual.',
 							onPress: () => {
-								staticConversation.index = 0;
-								staticConversation.currentConversation =
-									staticConversation.currentTemplete.youDoYouOption;
-								dialogChanged();
+								dialogChanged({ newConversationProperty: 'youDoYouOption', newConIndex: 0 });
 							},
 						},
 					],
@@ -239,10 +264,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								staticConversation.currentConversation =
-									staticConversation.currentTemplete.conversation01;
-								staticConversation.index = 6;
-								dialogChanged();
+								dialogChanged({ newConversationProperty: FIRST_CONVERSATION_PROPERTY, newConIndex: 6 });
 							},
 						},
 					],
@@ -265,7 +287,6 @@ var storyTempletes = [
 			[mark, philip],
 			[christian, raniel, vicky, mark, philip, brad, kasey]
 		);
-		music.play('triumph', { volume: 0.15, loop: true });
 		var rando = mStats.getRandomeCharacterWhosNot([
 			powerfull,
 			christian,
@@ -286,6 +307,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.play('triumph', { volume: 0.15, loop: true });
 								dialogChanged();
 							},
 						},
@@ -677,6 +699,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.pause();
 								exit();
 							},
 						},
@@ -692,10 +715,9 @@ var storyTempletes = [
 		var david = mStats.getCharacterWithName('David H');
 		var carlose = mStats.getCharacterWithName('CarloseTest Unfinished');
 		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		var mark = mStats.getCharacterWithName('Mark Noda');
-		mStats.setCharacterName(narrator, { first: 'Narrator', last: '' });
 
-		music.play('triumph', { volume: 0.15, loop: true });
 		return {
 			conversation01: [
 				{
@@ -704,6 +726,7 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
+								music.play('triumph', { volume: 0.15, loop: true });
 								dialogChanged();
 							},
 						},
@@ -799,6 +822,7 @@ var storyTempletes = [
 							title: 'Next',
 							onPress: () => {
 								dialogChanged();
+								music.musicTransitionTo('taka');
 							},
 						},
 					],
@@ -912,10 +936,7 @@ var storyTempletes = [
 						{
 							title: 'No',
 							onPress: () => {
-								staticConversation.index = 0;
-								staticConversation.currentConversation =
-									staticConversation.currentTemplete.noPowerConverSation;
-								dialogChanged();
+								dialogChanged({ newConversationProperty: 'noPowerConverSation', newConIndex: 0 });
 							},
 						},
 						{
@@ -927,13 +948,12 @@ var storyTempletes = [
 					],
 				},
 				{
+					//17th item
 					dialog: new Dialog(taka, "Thats what I wanted to hear mang! Stick with me and you'll go places."),
 					responses: [
 						{
 							title: 'Next',
 							onPress: () => {
-								console.log('Here just fine.');
-
 								dialogChanged();
 							},
 						},
@@ -1073,8 +1093,8 @@ var storyTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index = 0;
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								music.pause();
+								exit();
 							},
 						},
 					],
@@ -1089,35 +1109,375 @@ var storyTempletes = [
 					responses: [
 						{
 							title: 'No',
-							onPress: () => {},
+							onPress: () => {
+								dialogChanged({ newConversationProperty: 'noPowerConverSation', newConIndex: 0 });
+							},
 						},
 						{
 							title: 'Yes',
 							onPress: () => {
-								staticConversation.index = 17;
-								staticConversation.currentConversation =
-									staticConversation.currentTemplete.conversation01;
+								dialogChanged({
+									newConversationProperty: FIRST_CONVERSATION_PROPERTY,
+									newConIndex: 17,
+								});
+							},
+						},
+					],
+				},
+			],
+		};
+	},
+	(dialogChanged, exit) => {
+		var christian = mStats.getCharacterWithName('Christian Chewbacca');
+		let raniel = mStats.getCharacterWithName('Raniel San Diego');
+		var vicky = mStats.getCharacterWithName('Vicky Dang');
+		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
+		let steavenFNU = new characters();
+		mStats.setCharacterName(steavenFNU, { first: 'Steaven', last: 'FNU' });
+		let stefanieFNU = new characters();
+		mStats.setCharacterName(stefanieFNU, { first: 'Stefanie', last: 'FNU' });
+
+		return {
+			conversation01: [
+				{
+					dialog: new Dialog(narrator, 'Some time lator'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
 								dialogChanged();
 							},
 						},
 					],
 				},
-			],
-		};
-	},
-	(dialogChanged, exit) => {
-		var subJect01Obj = mStats.getRandomCharacter();
-		var subject01 = subJect01Obj.name.getFirst();
-
-		return {
-			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'This is the fith element'),
+					dialog: new Dialog(steavenFNU, "What's the status of John the Man?"),
 					responses: [
 						{
-							title: 'Yes',
+							title: 'next',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						stefanieFNU,
+						'He is quiet. He spends his time playing Grand Theft Auto RP. He still looks completely unaware.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(steavenFNU, "Great. We wouldn't want him finding out our little secret."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						stefanieFNU,
+						'I still think we should send someone overthere to break his kneecaps so that can never come back here again.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						steavenFNU,
+						"Easy now sister. Look, we want him content with where he's at and not asking questions. A happy John is a harmless John."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						stefanieFNU,
+						'Fine! But I’m going to fire anyone who inquires about John the Man.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						steavenFNU,
+						'Good idea. Better safe than sorry. I think I might just accidentally spill hot oil on them.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'Some time lator'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.play('triumph', { volume: 0.15, loop: true });
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, '6110 Clark Ave what!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, "That's not what he told us!"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						raniel,
+						"Well maybe if we hadn't cut the line Taka would have given us the correct lead."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						raniel,
+						' I mean Taka told us to walk up to My Tran and tell him Ye Ae Ima Sah Ka. It just seems fishy to me. And also I have been deconstructing the...'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.musicTransitionTo('bicker');
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Raniel!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, '...'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'You have been riding my tail these past couple weeks and honestly at this point I’m done. I’ll get all the power myself. I don’t need you anymore.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						vicky,
+						' Common on Christian, we are all on the same side here. You know what, I’ll share my newest lead. Kasy told me that the group chats are a...'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'Quiet! Don’t patronize me with your casual talk of power gaining. Who even invited you to our power team anyway!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, '...'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						vicky,
+						'You know what, I’ll become the more powerful employee in the gravy house all by myself! And when I do, don’t ask me for help!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'And you!'),
+					responses: [
+						{
+							title: 'Me?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						"Yes you. I think Taka served you a load of lies. It makes sense, you're growing rapidly in power and he probably wants to set you up with a power ambush."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'If I were you, I would tell My Tran Ye Ae Ima Sah Ka. It sounds like the sensible thing to do to me.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						raniel,
+						'Don’t listen to him! He’s just mad about his inadequacies as a power gainer!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'Christian picks up a glass bottle off the ground.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Raaaaniaaaaaal! You fucking dead!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, 'Go to that address you found. I’ll keep Christian distracted.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.pause();
+								exit();
 							},
 						},
 					],
@@ -1126,18 +1486,504 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		var subJect01Obj = mStats.getRandomCharacter();
-		var subject01 = subJect01Obj.name.getFirst();
+		let mysteriousMan = new characters();
+		mStats.setCharacterName(mysteriousMan, { first: 'Mysterious', last: 'Man' });
+		var johnTheMan = new characters();
+		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
+		let sleepyhead = new characters();
+		mStats.setCharacterName(sleepyhead, { first: 'Sleepy-Head2969', last: '' });
 
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'This is the sixth element'),
+					dialog: new Dialog(
+						narrator,
+						'You make your way over to 6110 Clark Ave, Brentwood Ca # 2b. You knock on the scaly door.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousMan,
+						'Who’s out there, and how many of you are there! You can’t come in all at once.'
+					),
+					responses: [
+						{
+							title: 'It’s me.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: "It's me and an army of Orcs from Mordor!",
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousMan, '...'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousMan,
+						"I’m going to kill you! I have a fully loaded spas-12 and I'll kill you! And yes, I may go to jail but I don’t give a damn!"
+					),
+					responses: [
+						{
+							title: "Woah, woah hold what's going on!",
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousMan, 'Hello, what. Is someone at the door?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousMan, "Hold up Sleepyhead. There's someone at my door."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousMan, 'Yeah I have friends IRL! Unlike you!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'The mystery man opens the door.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousMan, 'The name is John Kim, what can I do for you?'),
+					responses: [
+						{
+							title: 'Your, your j, j, John the Manager!',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						narrator,
+						'The mystery man immediately obtains a thousand yard stare. His facial expression becomes more intense and he begins to tremble.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Well.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						"That is a name I haven't heard in a very long time. What brings you here?"
+					),
+					responses: [
+						{
+							title: 'I want to become the most powerful person in all of Gravyhouse! I was told you could help.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'I can’t help you.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'John the Manager shuts the door on you.'),
+					responses: [
+						{
+							title: 'What. Are you kidding me! I guess you really are as insane as they all say you are.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, "You're right! I am insane."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'John the Manager opens the door again.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Just look at how I live. There is no doubt that I am really insane.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Every morning I wake up at 6:00 pm and smoke half a pound of weed.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'I then spend the next 18 hours playing GTA RP while subsisting on bourbon and potato chips.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'And finally, At night, I’m haunted by the dreams.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Dreams about the customers. Coming in to eat.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'ALL AT THE SAME TIME!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'WHY DO THEY ALWAYS COME AT THE SAME!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'If I’m not the definition of  insanity, I don’t know what is.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						narrator,
+						"At this point John's online friend Sleepyhead, who was overhearing the conversation, interjects."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(sleepyhead, "No dumbass! Haven't you played Far Cry 3?"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						sleepyhead,
+						'Insanity is doing the same thing over and over again and expecting different results.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(sleepyhead, "You're not insane."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(sleepyhead, 'Your just a fucking stupid dumbass degenerate cretin!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Wait what!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(sleepyhead, 'Your just  fucking stupid dumbass…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'No, what did you say before that?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(sleepyhead, "You're not insane!"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'You mean I have been sane the entire time I have been gone from Gravyhouse?'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(sleepyhead, 'Yes you stupid fucking soyboy beta bitch cuck…'),
+					responses: [
+						{
+							title: 'Ok we get it!',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Look pal. I don’t know if I can help you become the most powerful person or whatever. But I am willing to cause some serious disruption. With your help of course. Are you down?'
+					),
 					responses: [
 						{
 							title: 'Yes',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Awesome! I knew you were something special pal. Even though I shut the door on you earlier.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Now if I remember this correctly, my contract states that I may get my old job back as the manager if I can prove to everyone that I’m not insane.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Hey! When does the festival of power take place?'),
+					responses: [
+						{
+							title: 'Umm, next Monday.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Perfect! Everyone will be there and they finally realize just how sane I always was. Thank you. I owe you one.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								exit();
 							},
 						},
 					],

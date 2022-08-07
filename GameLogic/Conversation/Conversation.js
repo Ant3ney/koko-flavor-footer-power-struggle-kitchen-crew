@@ -21,7 +21,6 @@ let conversation = {
 				//The story case handles kickback conversations and the story conversation
 				//TODO: push kickback conversations into conversation array befor story
 				storyLogic.fillChapterQueAndChapter();
-				console.log('Is in normal');
 				let chaptersToPlay = storyLogic.getChapterQue();
 				conversation.array.push(KickbackConversationTempletes[0]);
 				for (let i = 0; i < chaptersToPlay.length; i++) {
@@ -54,9 +53,13 @@ let conversation = {
 		let currentConversation = conversationArray[conIndex](dialogChange, finish)[FIRST_CONVERSATION_PROPERTY];
 		conversation.updatePlayer(currentConversation[diIndex]);
 		player.setDialog(currentConversation[diIndex]);
-		function dialogChange() {
+		function dialogChange(changedBranch) {
+			if (changedBranch) {
+				const { newConversationProperty, newConIndex } = changedBranch;
+				currentConversation = conversationArray[conIndex](dialogChange, finish)[newConversationProperty];
+				diIndex = newConIndex || 0;
+			} else diIndex++;
 			click();
-			diIndex++;
 			conversation.updatePlayer(currentConversation[diIndex]);
 		}
 		function finish() {
