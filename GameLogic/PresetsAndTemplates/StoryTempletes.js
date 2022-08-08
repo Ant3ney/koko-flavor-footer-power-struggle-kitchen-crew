@@ -1146,6 +1146,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.play('conspiracy');
 								dialogChanged();
 							},
 						},
@@ -1244,12 +1245,12 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Meanwhile'),
 					responses: [
 						{
 							title: 'next',
 							onPress: () => {
-								music.play('triumph', { volume: 0.15, loop: true });
+								music.musicTransitionTo('triumph');
 								dialogChanged();
 							},
 						},
