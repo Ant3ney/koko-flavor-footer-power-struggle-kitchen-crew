@@ -115,7 +115,7 @@ let GameDriver = {
 		let result = {
 			reply: false,
 		};
-		if (Math.round(Math.random() * 20) <= 4) {
+		if (Math.round(Math.random() * 10) <= 1) {
 			result.reply = true;
 			mStats.setScenarioPresent(true);
 		}

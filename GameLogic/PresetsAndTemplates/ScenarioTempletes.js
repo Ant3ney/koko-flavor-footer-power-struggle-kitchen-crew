@@ -2,6 +2,27 @@ import mStats from '../ManageStats/ManageStats';
 import StaticScenario from '../Scenario/StaticScenario';
 import characters from './testCharacters';
 
+const difficulty = 'dyslexic';
+export function getMaxTimeMultiplyer() {
+	let multiplyer = 1;
+	switch (difficulty) {
+		case 'dyslexic':
+			multiplyer = 4;
+			break;
+
+		case 'typicallexic':
+			multiplyer = 2;
+			break;
+		case 'eulexic':
+			break;
+		default:
+			console.error(`Canot assign a difficult multiplyer of difficult ${difficulty}`);
+			break;
+	}
+
+	return multiplyer;
+}
+
 var scenariosTempletes = [
 	() => {
 		var subjectObj = mStats.getRandomServer(true);

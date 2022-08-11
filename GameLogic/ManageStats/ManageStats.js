@@ -35,7 +35,7 @@ var ManageStats = {
 
 		//Initing player
 		ManageStats.player = new Player();
-		ManageStats.setPPower(9002); //default is 10
+		ManageStats.setPPower(10); //default is 10
 		ManageStats.setPName('Anthony', 'Cavuoti');
 		ManageStats.setPGender('m');
 		ManageStats.setPEffectivness(1);

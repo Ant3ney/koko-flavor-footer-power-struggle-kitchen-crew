@@ -1146,7 +1146,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								music.play('conspiracy');
+								music.play('conspiracy', { volume: 0.15, loop: true });
 								dialogChanged();
 							},
 						},
