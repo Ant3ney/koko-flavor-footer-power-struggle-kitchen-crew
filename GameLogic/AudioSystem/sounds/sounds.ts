@@ -16,6 +16,7 @@ import femaleApeLong from './femaleApeLong.mp3';
 import party from './party.mp3';
 import taka from './taka.mp3';
 import conspiracy from './conspiracy.mp3';
+import hardTimes from './hardTimes.mp3';
 
 const sounds: any = {
 	test: testAudio,
@@ -36,6 +37,7 @@ const sounds: any = {
 	party,
 	taka,
 	conspiracy,
+	hardTimes,
 };
 
 export default sounds;

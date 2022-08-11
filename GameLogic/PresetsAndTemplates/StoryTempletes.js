@@ -1507,6 +1507,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.play('hardTimes', { volume: 0.15, loop: true });
 								dialogChanged();
 							},
 						},
