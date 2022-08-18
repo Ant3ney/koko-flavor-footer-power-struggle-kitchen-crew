@@ -4,6 +4,7 @@ import Dialog from '../Conversation/Dialog';
 import { music } from '../AudioSystem';
 let staticConversation = {};
 const FIRST_CONVERSATION_PROPERTY = 'conversation01';
+const PLAY_MUSIC_SETTINGS = { volume: 0.15, loop: true };
 
 var storyTempletes = [
 	(dialogChanged, exit) => {
@@ -1985,6 +1986,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.pause();
 								exit();
 							},
 						},
@@ -1994,18 +1996,629 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		var subJect01Obj = mStats.getRandomCharacter();
-		var subject01 = subJect01Obj.name.getFirst();
+		//Current Story
+		var christian = mStats.getCharacterWithName('Christian Chewbacca');
+		var melanie = mStats.getCharacterWithName('Melanie M');
+		var mark = mStats.getCharacterWithName('Mark Noda');
+		var xander = mStats.getCharacterWithName('Xander X');
+		var raniel = mStats.getCharacterWithName('Raniel San Diego');
+		var vicky = mStats.getCharacterWithName('Vicky Dang');
+		var rando = Math.floor(Math.random()) % 2 === 0 ? mark : xander;
+		var johnTheMan = new characters();
+		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
+		var croud = new characters();
+		mStats.setCharacterName(croud, { first: 'Corud', last: '' });
+		var mysteriousVoice = new characters();
+		mStats.setCharacterName(mysteriousVoice, { first: 'Mysterious', last: 'Voice' });
 
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'This is the seventh element'),
+					//00
+					dialog: new Dialog(narrator, 'Some time lator'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.play('powerFest', { volume: 0.15, loop: true });
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//01
+					dialog: new Dialog(narrator, 'At the festival of power'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//02
+					dialog: new Dialog(melanie, 'Is this your first time at the festival of power?'),
 					responses: [
 						{
 							title: 'Yes',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//03
+					dialog: new Dialog(melanie, "Wow. Me too. Isn't this great?"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//04
+					dialog: new Dialog(melanie, 'Hey, do you want to go with me to the hall of powerful employees?'),
+					responses: [
+						{
+							title: 'Yes',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'no',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//05
+					dialog: new Dialog(melanie, "Great! Let's go."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//06
+					dialog: new Dialog(rando, 'Hey dude. How have you been gaining power these days?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//07
+					dialog: new Dialog(
+						raniel,
+						"Well you know, I just try to run an effective shift. I figure that's the most honest way to gain power."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//08
+					dialog: new Dialog(raniel, "O what! You're here!"),
+					responses: [
+						{
+							title: 'I sure am.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'Can it Raneal!',
+							onPress: () => {
+								dialogChanged({
+									newConversationProperty: 'scoldedByMelanie',
+									newConIndex: 0,
+								});
+							},
+						},
+					],
+				},
+				{
+					//09
+					dialog: new Dialog(melanie, 'Hey Raniel, how has your power quest been going?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, 'It’s actually been going…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Terrible!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'You missed out on so much power Raniel! I mean just look at me. I’m overflowing with power. Upper Management really hooked me up.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						raniel,
+						'Well, good for you Christian. I’m happy you finally gained the power you…'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						vicky,
+						'Heey! You and your crew didn’t dry off the forks last night. I’m gonna have to call you out in the employee group chat.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'Just who I wanted to see. The froud who conned her way up the power hierarchy.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						vicky,
+						'I see you still as bitter as ever. Honestly if anyone is the froud around here it’s you. No one knows how you get your power. At least people know I got mine from the group chats.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						"I got my power through fair means that helped Gravyhous prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'I don’t think you realize the hypocrisy of your words.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(melanie, 'You guys take this power struggle thing too seriously.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						' I haven’t been taking it seriously enough. I should devote my efforts to making sure Vicky stays powerless and useless.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						vicky,
+						"So you're initiating war. Ok I have the group chat open right now. You're about to be exposed!"
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'I’m about to get uppermangment to rip you a new one. Just you…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousVoice, 'Ladies and Gentlemen of CoCo. It’s been too long.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						narrator,
+						'The participants in powerfest all become quiet and stare at the man on the stage with the microphone.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						'I here to dispel a little rumor going on about me saying that I am completely and utterly insane.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						'Hold on, where are my manors? The name is John. John the Manager!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(croud, 'Gasp!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'That rumor is complete rubbish. And this document in my hand proves it.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Right here is the transcript to a court case I was apart of. I was facing two months in jail for threatening an officer. I was just playing Grand Theft Auto!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Anyway, I plead insanity in court and to my relief, the court dismissed my ple, saying “It’s hard to tell but John Kim is not actually insane”.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'That document, and a little bit of loaded motivation from my friends, is how I am legally allowed to reprise my old position at CoCo.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'Christian is on the phone in private.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						"Look I’m not kidding! He's right here on stage! No one thinks he's crazy!"
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Are you sure? I think we need to do something.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Ok then. I wait until this is over.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'And that is how I will make Gravy House great again!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(croud, 'Explosively applauds John the Manager.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, "Thank you, thank you. You won't regret this."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Hey dude. How are you?'),
+					responses: [
+						{
+							title: 'Hi Christian, I’m doing fine.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'Hey sorry man. I got so caught up in that argument with Vicky that I didn’t get a chance to catch up.'
+					),
+					responses: [
+						{
+							title: 'It’s no problem.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						'Hey, if you don’t mind me asking, what did you find at 6110 Clark Ave, Brentwood Ca # 2b?'
+					),
+					responses: [
+						{
+							title: 'I found John the Manager.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'OH jeez.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, "Ok well it's been good catching up with you man."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'Christian retreats off the side and makes another call.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Steven, Sefanie, we got him.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.pause();
+								exit();
+							},
+						},
+					],
+				},
+			],
+			scoldedByMelanie: [
+				{
+					dialog: new Dialog(melanie, 'Common, don’t be that way.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged(
+									dialogChanged({
+										newConversationProperty: FIRST_CONVERSATION_PROPERTY,
+										newConIndex: 9,
+									})
+								);
 							},
 						},
 					],
@@ -2014,18 +2627,365 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		var subJect01Obj = mStats.getRandomCharacter();
-		var subject01 = subJect01Obj.name.getFirst();
+		//create variables for the following characters
+		// Cedric, narrator, Stefanie, Steaven, Mysterious Voice, Hirokitron
+
+		let cedric = new characters();
+		mStats.setCharacterName(cedric, { first: 'Cedric', last: '' });
+		let narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'Narrator', last: '' });
+		let steven = new characters();
+		mStats.setCharacterName(steven, { first: 'Steven', last: '' });
+		let stefanie = new characters();
+		mStats.setCharacterName(stefanie, { first: 'Stefanie', last: '' });
+		let mysteriousVoice = new characters();
+		mStats.setCharacterName(mysteriousVoice, { first: 'Mysterious', last: 'Voice' });
+		let hirokitron = new characters();
+		mStats.setCharacterName(hirokitron, { first: 'Hirokitron', last: '' });
 
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'This is the eith element'),
+					// 00
+					dialog: new Dialog(narrator, 'Some time lator'),
 					responses: [
 						{
-							title: 'Yes',
+							title: 'next',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					// 01
+					dialog: new Dialog(cedric, 'Steven and Sefanie want to talk to you in the company office.'),
+					responses: [
+						{
+							title: 'Ok',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					// 02
+					dialog: new Dialog(narrator, 'You make your way to the company office'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.play('conspiracy', PLAY_MUSIC_SETTINGS);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					// 03
+					dialog: new Dialog(
+						steven,
+						"You have really been making a name for yourself here. You're the new employee yet your very powerful, I’m impressed."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					// 04
+					dialog: new Dialog(stefanie, 'But it looks like you have flown a little too close to the sun.'),
+					responses: [
+						{
+							title: 'What do you mean?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					// 05
+					dialog: new Dialog(steven, 'Have you ever spoken to a man named “John the Man”?'),
+					responses: [
+						{
+							title: 'no',
+							onPress: () => {
+								dialogChanged({
+									newConversationProperty: 'noLiesBranch',
+									newConIndex: 0,
+								});
+							},
+						},
+						{
+							title: 'yes',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//06
+					dialog: new Dialog(stefanie, 'Bingo! Steven said it with me. Your fire…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(steven, 'Hold on! Stop!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						stefanie,
+						"What's going on! I thought we agreed to fire anyone who even mentioned John the Manager."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						steven,
+						'Yes, if that person was your average loser but this person is just too powerful to fire on the spot. We need to handle him like how we did John the manager.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(stefanie, 'Sure but look how much good that did us he still…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(steven, 'Wait. Not here. Somewhere we can’t be heard.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						steven,
+						'Hey, wait here will you. Me and Stefanie need to talk about your future here at Gravyhouse.'
+					),
+					responses: [
+						{
+							title: 'Ok.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'Piss off!',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'You sit there for five minutes but then decide to wander off.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'ou approach a closed door and hear talking'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						steven,
+						'Look, I know it may seem hopeless but if we fire him right now there will be a complete civil war. And worst of all, John the manager will profit the most from it.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						'We will not fire him! We will turn him insane like how we had John the Manager.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(stefanie, 'You can’t do this! We must fire him!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						'Know your place Stefanie or else you will suffer the same fate.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						"It's a flawless system we got. We have sleeper agents all over this city."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						"They are all craving Gravy House but won't go there until our commissioned radio host utters the activativation code."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousVoice, 'Rump Shimp Ima Chump.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						mysteriousVoice,
+						'When the sleeper agents hear this they will all rush to Gravyhouse at the same time, rendering the manager and anyone too powerful completely insane!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+			],
+			noLiesBranch: [
+				{
+					dialog: new Dialog(stefanie, 'Enough with the lies!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						steven,
+						'I’ll ask you again. Have you ever spoken to a man named John the Manager'
+					),
+					responses: [
+						{
+							title: 'no',
+							onPress: () => {
+								dialogChanged({
+									newConversationProperty: 'noLiesBranch',
+									newConIndex: 0,
+								});
+							},
+						},
+						{
+							title: 'yes',
+							onPress: () => {
+								dialogChanged({
+									newConversationProperty: FIRST_CONVERSATION_PROPERTY,
+									newConIndex: 6,
+								});
 							},
 						},
 					],
