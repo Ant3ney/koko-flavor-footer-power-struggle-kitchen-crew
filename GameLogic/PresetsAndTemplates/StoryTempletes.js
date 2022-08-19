@@ -2835,7 +2835,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(narrator, 'ou approach a closed door and hear talking'),
+					dialog: new Dialog(narrator, 'You approach a closed door and hear talking'),
 					responses: [
 						{
 							title: 'next',
@@ -2942,6 +2942,118 @@ var storyTempletes = [
 						mysteriousVoice,
 						'When the sleeper agents hear this they will all rush to Gravyhouse at the same time, rendering the manager and anyone too powerful completely insane!'
 					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(stefanie, "You're right, this will work, I should have never doubted you."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousVoice, 'I’m glad you have come to your senses.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousVoice, 'Wait a minute.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousVoice, 'The door!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						narrator,
+						' Immediately 10 armed security gerd rush out from nearby rooms and restrain you. They bring you through the door.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.play('hirokitron', PLAY_MUSIC_SETTINGS);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						narrator,
+						'You see Sefanie, Steaven and a large computer monitor at the center of the back wall.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						narrator,
+						'But the mysterious voice is actually a cyberman man on the large screen.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						stefanie,
+						'But the mysterious voice is actually a cyberman man on the large screen.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(mysteriousVoice, 'He heard all of it!'),
 					responses: [
 						{
 							title: 'next',

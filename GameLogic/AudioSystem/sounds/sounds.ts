@@ -17,6 +17,7 @@ import party from './party.mp3';
 import taka from './taka.mp3';
 import conspiracy from './conspiracy.mp3';
 import hardTimes from './hardTimes.mp3';
+import hirokitron from './hirokitron.mp3';
 
 const sounds: any = {
 	test: testAudio,
@@ -38,6 +39,7 @@ const sounds: any = {
 	taka,
 	conspiracy,
 	hardTimes,
+	hirokitron,
 };
 
 export default sounds;
