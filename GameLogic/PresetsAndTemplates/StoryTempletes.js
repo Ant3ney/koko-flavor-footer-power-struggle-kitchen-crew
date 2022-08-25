@@ -2743,6 +2743,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//07
 					dialog: new Dialog(steven, 'Hold on! Stop!'),
 					responses: [
 						{
@@ -2754,6 +2755,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//08
 					dialog: new Dialog(
 						stefanie,
 						"What's going on! I thought we agreed to fire anyone who even mentioned John the Manager."
@@ -2768,6 +2770,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//09
 					dialog: new Dialog(
 						steven,
 						'Yes, if that person was your average loser but this person is just too powerful to fire on the spot. We need to handle him like how we did John the manager.'
@@ -2782,6 +2785,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//10
 					dialog: new Dialog(stefanie, 'Sure but look how much good that did us he still…'),
 					responses: [
 						{
@@ -2793,6 +2797,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//11
 					dialog: new Dialog(steven, 'Wait. Not here. Somewhere we can’t be heard.'),
 					responses: [
 						{
@@ -2804,6 +2809,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//12
 					dialog: new Dialog(
 						steven,
 						'Hey, wait here will you. Me and Stefanie need to talk about your future here at Gravyhouse.'
@@ -2824,6 +2830,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//13
 					dialog: new Dialog(narrator, 'You sit there for five minutes but then decide to wander off.'),
 					responses: [
 						{
@@ -2835,6 +2842,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//14
 					dialog: new Dialog(narrator, 'You approach a closed door and hear talking'),
 					responses: [
 						{
@@ -2846,6 +2854,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//15
 					dialog: new Dialog(
 						steven,
 						'Look, I know it may seem hopeless but if we fire him right now there will be a complete civil war. And worst of all, John the manager will profit the most from it.'
@@ -2860,6 +2869,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//16
 					dialog: new Dialog(
 						mysteriousVoice,
 						'We will not fire him! We will turn him insane like how we had John the Manager.'
@@ -2874,6 +2884,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//17
 					dialog: new Dialog(stefanie, 'You can’t do this! We must fire him!'),
 					responses: [
 						{
@@ -2885,6 +2896,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//18
 					dialog: new Dialog(
 						mysteriousVoice,
 						'Know your place Stefanie or else you will suffer the same fate.'
@@ -2899,6 +2911,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//19
 					dialog: new Dialog(
 						mysteriousVoice,
 						"It's a flawless system we got. We have sleeper agents all over this city."
@@ -2913,6 +2926,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//20
 					dialog: new Dialog(
 						mysteriousVoice,
 						"They are all craving Gravy House but won't go there until our commissioned radio host utters the activativation code."
@@ -2927,6 +2941,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//21
 					dialog: new Dialog(mysteriousVoice, 'Rump Shimp Ima Chump.'),
 					responses: [
 						{
@@ -2938,6 +2953,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//22
 					dialog: new Dialog(
 						mysteriousVoice,
 						'When the sleeper agents hear this they will all rush to Gravyhouse at the same time, rendering the manager and anyone too powerful completely insane!'
@@ -2952,6 +2968,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//23
 					dialog: new Dialog(stefanie, "You're right, this will work, I should have never doubted you."),
 					responses: [
 						{
@@ -2963,6 +2980,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//24
 					dialog: new Dialog(mysteriousVoice, 'I’m glad you have come to your senses.'),
 					responses: [
 						{
@@ -2974,6 +2992,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//25
 					dialog: new Dialog(mysteriousVoice, 'Wait a minute.'),
 					responses: [
 						{
@@ -2985,6 +3004,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//26
 					dialog: new Dialog(mysteriousVoice, 'The door!'),
 					responses: [
 						{
@@ -2996,6 +3016,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//27
 					dialog: new Dialog(
 						narrator,
 						' Immediately 10 armed security gerd rush out from nearby rooms and restrain you. They bring you through the door.'
@@ -3011,6 +3032,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//28
 					dialog: new Dialog(
 						narrator,
 						'You see Sefanie, Steaven and a large computer monitor at the center of the back wall.'
@@ -3025,6 +3047,7 @@ var storyTempletes = [
 					],
 				},
 				{
+					//29
 					dialog: new Dialog(
 						narrator,
 						'But the mysterious voice is actually a cyberman man on the large screen.'
@@ -3039,9 +3062,58 @@ var storyTempletes = [
 					],
 				},
 				{
+					//30
+					dialog: new Dialog(stefanie, 'How much have you heard!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//31
+					dialog: new Dialog(mysteriousVoice, 'He heard all of it!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//32
+					dialog: new Dialog(steven, 'Ok, now I think we should fire him.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//33
+					dialog: new Dialog(mysteriousVoice, 'No!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//33
 					dialog: new Dialog(
-						stefanie,
-						'But the mysterious voice is actually a cyberman man on the large screen.'
+						mysteriousVoice,
+						'Hello sir, its good to finaly meet you. I have heard a lot about you. My name is Herokitron.'
 					),
 					responses: [
 						{
@@ -3053,12 +3125,240 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(mysteriousVoice, 'He heard all of it!'),
+					//34
+					dialog: new Dialog(stefanie, 'What are you doing?'),
 					responses: [
 						{
 							title: 'next',
 							onPress: () => {
 								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//35
+					dialog: new Dialog(hirokitron, "It's fine Stefanie. I know what I'm doing."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//36
+					dialog: new Dialog(hirokitron, 'Years ago I worked alongside John the manager.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//37
+					dialog: new Dialog(
+						hirokitron,
+						'I remember him being impressed with my ability to remember the orders, and create them with no flaws.'
+					),
+					responses: [
+						{
+							title: 'So why did you snap?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'Boring!',
+							onPress: () => {
+								dialogChanged('insolenceBranch', 0);
+							},
+						},
+					],
+				},
+				{
+					//38
+					dialog: new Dialog(
+						hirokitron,
+						'John the Manager was skilled, fast, and reliable. At least thats how everyone else saw him. I, on the other hand, was not fooled!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					//39
+					dialog: new Dialog(
+						hirokitron,
+						'I was able to tell that he was completely insane on the inside and I hated him for it.'
+					),
+					responses: [
+						{
+							title: "That doesn't sound rational.",
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'Boring!',
+							onPress: () => {
+								dialogChanged('youWillPayBranch', 0);
+							},
+						},
+					],
+				},
+				{
+					//40
+					dialog: new Dialog(
+						hirokitron,
+						'I too thought I was irrational at the time and took an experimental AI therapy treatment operation.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'I too thought I was irrational and so took an experimental AI therapy treatment operation.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'The next I remember is seeing myself happy without a care for John the Manager.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						' I saw myself walk out the door. It was at this moment I realized the situation I was in.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'I became an AI.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'I am a replica of the physical Heroki who works alongside you in Gravyhouse except I had something he didn’t. I had a hatred for John the Manager!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'From here I existed on the internet, I created a network of spleaper agents, all ready to order Gravyhouse at the same time and render John theme Manager insane.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(steven, 'Can we fire him now? He knows too much!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'He knows our plan like how a prisoner knows his execution is coming. Either way, knowing about the coming danger does not protect one from the coming storm.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'You and John the Manager will be swallowed but by a tsunami of insanity and drown. Mark my words.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'You will drown!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								exit();
 							},
 						},
 					],
@@ -3098,6 +3398,38 @@ var storyTempletes = [
 									newConversationProperty: FIRST_CONVERSATION_PROPERTY,
 									newConIndex: 6,
 								});
+							},
+						},
+					],
+				},
+			],
+			insolenceBranch: [
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'I see the insolence of John the Manager has infected you. A shame. It’s another reason he must be erased!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged(FIRST_CONVERSATION_PROPERTY, 38);
+							},
+						},
+					],
+				},
+			],
+			youWillPayBranch: [
+				{
+					dialog: new Dialog(
+						hirokitron,
+						"You won’t be so smug for long! You're going to pay for your actions!"
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged(FIRST_CONVERSATION_PROPERTY, 39);
 							},
 						},
 					],
