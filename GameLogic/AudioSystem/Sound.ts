@@ -1,6 +1,8 @@
 import { Howl } from 'howler';
 import sounds from './sounds';
 import Settings from './SettingsType';
+import { brand } from 'expo-device';
+import { Audio } from 'expo-av';
 
 type Update = {
 	action: string;
@@ -12,6 +14,8 @@ type Update = {
 		duration: number;
 	};
 };
+
+type Player = 'howler' | 'expo';
 
 export default class Sound {
 	constructor(name: string, settings?: Settings) {
@@ -81,8 +85,6 @@ export default class Sound {
 					postDuration: 1500,
 			  };
 
-		console.log('transitioning toString', name);
-
 		this.updates.push({
 			action: 'fade',
 			fade: {
@@ -131,8 +133,11 @@ export default class Sound {
 
 	//Private properties and methods.
 	howler: any = null;
+	expoAudio: any = null;
 	updates: Update[] = [];
 	updateing: boolean = false;
+	env: string = determineEnvironment();
+	player: Player = getPlayerFromENV(this.env);
 	async update(): Promise<void> {
 		if (this.updateing) return;
 		this.updateing = true;
@@ -150,7 +155,6 @@ export default class Sound {
 					break;
 				case 'fade':
 					if (!this.updates[i]?.fade?.from) return updateObjectForFadeActionIsNotDefinedError();
-					console.log('started waiting for fade');
 					await this.coreFade(
 						//@ts-ignore
 						this.updates[i].fade.from,
@@ -159,7 +163,6 @@ export default class Sound {
 						//@ts-ignore
 						this.updates[i].fade.duration
 					);
-					console.log('finished waiting for fade');
 					break;
 				default:
 					console.error(`Unknown action: ${this.updates[i].action}`);
@@ -170,37 +173,85 @@ export default class Sound {
 		this.updateing = false;
 	}
 	async corePlay(settings?: Settings): Promise<void> {
+		await this[`${this.player}Play`](settings);
+	}
+	async howlerPlay(settings?: Settings) {
+		console.log('playing howler');
 		if (!this.howler) return unavalibleHowlerError();
 		if (settings?.loop) this.howler.loop(settings?.loop);
-
 		this.howler.play();
 		if (settings?.volume || settings?.volume === 0) this.howler.volume(settings?.volume);
 		if (settings?.fade) this.howler.fade(settings.fade.from, settings.fade.to, settings.fade.duration);
 	}
-	corePause() {
+	async expoPlay(settings?: Settings) {
+		console.log('playing expo');
+		await this.expoAudio.playAsync();
+	}
+	async corePause() {
+		await this[`${this.player}Pause`]();
+	}
+	async howlerPause() {
 		if (!this.howler) return unavalibleHowlerError();
 		this.howler.pause();
 	}
-	coreLoad(name: string | undefined, settings?: Settings): void {
+	async expoPause() {
+		await this.expoAudio.pauseAsync();
+	}
+	async coreLoad(name: string | undefined, settings?: Settings): Promise<void> {
 		if (!name) return nameNotPassedintoUpdateError();
 		const soundFile = sounds[name];
-		if (this.howler) this.corePause();
 		if (!soundFile) return unavalibleSoundFileError(name);
+
+		await this[`${this.player}Load`](name);
+	}
+	howlerLoad(name: string) {
+		console.log('loaded howler');
+		const soundFile = sounds[name];
+		if (this.howler) this.corePause();
 		this.howler = new Howl({
 			src: [soundFile],
 		});
 	}
+	async expoLoad(name: string) {
+		console.log('loaded expo');
+		if (this.expoAudio) await this.expoAudio.pauseAsync();
+		const soundFile = sounds[name];
+		const expoSound = await Audio.Sound.createAsync(soundFile);
+		this.expoAudio = expoSound.sound;
+		console.log('this.expoAudio:', this.expoAudio);
+	}
 	async coreFade(from: number, to: number, duration: number) {
+		await this[`${this.player}Fade`](from, to, duration);
+	}
+	async howlerFade(from: number, to: number, duration: number) {
 		if (!this.howler) return unavalibleHowlerError();
 		return new Promise<void>(res => {
-			console.log('closer start');
-
 			this.howler.fade(from, to, duration);
 			this.howler.on('fade', function () {
-				console.log('closer end');
 				res();
 			});
 		});
+	}
+	async expoFade(from: number, to: number, duration: number) {}
+}
+
+function determineEnvironment(): string {
+	switch (brand) {
+		case null:
+			return 'html';
+		default:
+			return 'native';
+	}
+}
+
+function getPlayerFromENV(env: string): Player {
+	switch (env) {
+		case 'html':
+			return 'howler';
+		case 'native':
+			return 'expo';
+		default:
+			return 'expo';
 	}
 }
 
@@ -211,12 +262,6 @@ function getDecidedSettingFromNameAndSettings(
 	if (nameOrSetting && typeof nameOrSetting !== 'string') {
 		return nameOrSetting;
 	} else return settings;
-}
-
-function transitionPropertyNotApplyedToTransitionSettingError() {
-	throw new Error(
-		'The transition property is not applyed to the transition setting. Please use the transition setting instead.'
-	);
 }
 
 function updateObjectForFadeActionIsNotDefinedError() {

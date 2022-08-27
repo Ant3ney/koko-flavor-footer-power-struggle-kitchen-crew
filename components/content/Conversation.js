@@ -11,7 +11,6 @@ function Conversation(props) {
 	const [updater, updateTo] = useState(false);
 
 	useEffect(() => {
-		console.log('prosp', props);
 		conversation.awake({
 			navigation: props.navigation,
 			type: props.type,

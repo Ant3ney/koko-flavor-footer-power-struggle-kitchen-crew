@@ -14,7 +14,6 @@ let conversation = {
 		conversation.array = [];
 		conversation.navigation = settings.navigation;
 		conversation.setPlayer = settings.setPlayer;
-		console.log('type:', type);
 
 		switch (type) {
 			case 'normal':
@@ -28,7 +27,6 @@ let conversation = {
 					conversation.array.push(storyTempletes[templateIndex]);
 				}
 				storyLogic.clearChapterQue();
-				console.log('conversation.array', conversation.array);
 				break;
 			case 'beginning':
 				music.pause();

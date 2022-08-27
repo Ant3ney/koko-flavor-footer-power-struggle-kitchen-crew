@@ -12,7 +12,6 @@ import util from '../../Utilities';
 const Stack = createStackNavigator();
 
 function GameMenuNav(props) {
-	console.log('GameMenuNav props:', props);
 	let type = util.getConversationTypeFromProps(props);
 
 	const ProxyConversation = proxyProps => {

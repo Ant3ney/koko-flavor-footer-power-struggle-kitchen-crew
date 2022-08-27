@@ -2249,7 +2249,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"I got my power through fair means that helped Gravyhous prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable."
+						"I got my power through fair means that helped Gravyhouse prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable."
 					),
 					responses: [
 						{

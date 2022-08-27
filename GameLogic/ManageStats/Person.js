@@ -52,17 +52,14 @@ function Person() {
 
 	this.playVoiceShort = () => {
 		this.voice.pause();
-		console.log('prefix:', this.constructVoicePrefix());
 		this.voice.play(`${this.constructVoicePrefix()}Short`);
 	};
 	this.playVoiceMedium = () => {
 		this.voice.pause();
-		console.log('prefix:', this.constructVoicePrefix());
 		this.voice.play(`${this.constructVoicePrefix()}Medium`);
 	};
 	this.playVoiceLong = () => {
 		this.voice.pause();
-		console.log('prefix:', this.constructVoicePrefix());
 		this.voice.play(`${this.constructVoicePrefix()}Long`);
 	};
 
