@@ -43,7 +43,7 @@ var beginingTemplete = (dialogChanged, exit) => {
 					{
 						title: 'next',
 						onPress: () => {
-							music.play('eventfulShift', { loop: true });
+							music.play('eventfulShift', { loop: true, volume: 0.15 });
 							dialogChanged();
 						},
 					},

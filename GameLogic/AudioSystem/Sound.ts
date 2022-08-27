@@ -109,21 +109,18 @@ export default class Sound {
 		this.update();
 	}
 
-	musicTransitionTo(name: string, settings?: Settings) {
-		this.transitionTo(
-			name,
-			settings || {
-				transition: {
-					from: 0.15,
-					to: 0,
-					duration: 1500,
-					postFrom: 0,
-					postTo: 0.15,
-					postDuration: 1500,
-				},
-				loop: true,
-			}
-		);
+	musicTransitionTo(name: string) {
+		this.transitionTo(name, {
+			transition: {
+				from: 0.15,
+				to: 0,
+				duration: 1500,
+				postFrom: 0,
+				postTo: 0.15,
+				postDuration: 1500,
+			},
+			loop: true,
+		});
 	}
 
 	stop() {
@@ -176,7 +173,6 @@ export default class Sound {
 		await this[`${this.player}Play`](settings);
 	}
 	async howlerPlay(settings?: Settings) {
-		console.log('playing howler');
 		if (!this.howler) return unavalibleHowlerError();
 		if (settings?.loop) this.howler.loop(settings?.loop);
 		this.howler.play();
@@ -184,8 +180,15 @@ export default class Sound {
 		if (settings?.fade) this.howler.fade(settings.fade.from, settings.fade.to, settings.fade.duration);
 	}
 	async expoPlay(settings?: Settings) {
-		console.log('playing expo');
-		await this.expoAudio.playAsync();
+		if (!this.expoAudio) return unavalibleExpoAudioError();
+		console.log('settings: ', this.expoAudio);
+		const volume =
+			settings?.volume || settings?.volume === 0 ? settings.volume : settings?.fade?.to ? settings.fade.to : 1;
+		await this.expoAudio.setStatusAsync({
+			shouldPlay: true,
+			isLooping: settings?.loop,
+			volume,
+		});
 	}
 	async corePause() {
 		await this[`${this.player}Pause`]();
@@ -195,6 +198,7 @@ export default class Sound {
 		this.howler.pause();
 	}
 	async expoPause() {
+		if (!this.expoAudio) return unavalibleExpoAudioError();
 		await this.expoAudio.pauseAsync();
 	}
 	async coreLoad(name: string | undefined, settings?: Settings): Promise<void> {
@@ -205,7 +209,6 @@ export default class Sound {
 		await this[`${this.player}Load`](name);
 	}
 	howlerLoad(name: string) {
-		console.log('loaded howler');
 		const soundFile = sounds[name];
 		if (this.howler) this.corePause();
 		this.howler = new Howl({
@@ -213,12 +216,10 @@ export default class Sound {
 		});
 	}
 	async expoLoad(name: string) {
-		console.log('loaded expo');
 		if (this.expoAudio) await this.expoAudio.pauseAsync();
 		const soundFile = sounds[name];
 		const expoSound = await Audio.Sound.createAsync(soundFile);
 		this.expoAudio = expoSound.sound;
-		console.log('this.expoAudio:', this.expoAudio);
 	}
 	async coreFade(from: number, to: number, duration: number) {
 		await this[`${this.player}Fade`](from, to, duration);
@@ -232,7 +233,11 @@ export default class Sound {
 			});
 		});
 	}
-	async expoFade(from: number, to: number, duration: number) {}
+	async expoFade(from: number, to: number, duration: number) {
+		if (!this.expoAudio) return unavalibleExpoAudioError();
+		console.log('transition to audio level:', to);
+		await this.expoAudio.setVolumeAsync(to);
+	}
 }
 
 function determineEnvironment(): string {
@@ -262,6 +267,10 @@ function getDecidedSettingFromNameAndSettings(
 	if (nameOrSetting && typeof nameOrSetting !== 'string') {
 		return nameOrSetting;
 	} else return settings;
+}
+
+function unavalibleExpoAudioError() {
+	console.error('Expo audio is not defined or is not avalible.');
 }
 
 function updateObjectForFadeActionIsNotDefinedError() {

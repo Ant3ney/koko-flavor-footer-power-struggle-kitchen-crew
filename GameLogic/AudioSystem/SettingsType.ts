@@ -14,6 +14,7 @@ type Settings = {
 		postTo: number;
 		postDuration: number;
 	};
+	duck?: boolean;
 };
 
 export default Settings;
