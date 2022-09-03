@@ -19,6 +19,7 @@ import conspiracy from './conspiracy.mp3';
 import hardTimes from './hardTimes.mp3';
 import hirokitron from './hirokitron.mp3';
 import goodNews from './goodNews.mp3';
+import insanity from './insanity.mp3';
 
 const sounds: any = {
 	test: testAudio,
@@ -42,6 +43,7 @@ const sounds: any = {
 	hardTimes,
 	hirokitron,
 	goodNews,
+	insanity,
 };
 
 export default sounds;
