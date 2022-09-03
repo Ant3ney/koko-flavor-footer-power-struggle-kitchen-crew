@@ -1884,6 +1884,7 @@ var storyTempletes = [
 							title: 'next',
 							onPress: () => {
 								dialogChanged();
+								music.musicTransitionTo('mainTheme');
 							},
 						},
 					],
