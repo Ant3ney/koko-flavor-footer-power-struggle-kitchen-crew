@@ -3177,7 +3177,7 @@ var storyTempletes = [
 						{
 							title: 'Boring!',
 							onPress: () => {
-								dialogChanged('insolenceBranch', 0);
+								dialogChanged({ newConversationProperty: 'insolenceBranch', newConIndex: 0 });
 							},
 						},
 					],
@@ -3213,7 +3213,7 @@ var storyTempletes = [
 						{
 							title: 'Boring!',
 							onPress: () => {
-								dialogChanged('youWillPayBranch', 0);
+								dialogChanged({ newConversationProperty: 'youWillPayBranch', newConIndex: 0 });
 							},
 						},
 					],
@@ -3414,7 +3414,10 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								dialogChanged(FIRST_CONVERSATION_PROPERTY, 38);
+								dialogChanged({
+									newConversationProperty: FIRST_CONVERSATION_PROPERTY,
+									newConIndex: 38,
+								});
 							},
 						},
 					],
@@ -3430,7 +3433,10 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
-								dialogChanged(FIRST_CONVERSATION_PROPERTY, 39);
+								dialogChanged({
+									newConversationProperty: FIRST_CONVERSATION_PROPERTY,
+									newConIndex: 39,
+								});
 							},
 						},
 					],
@@ -3476,7 +3482,9 @@ var storyTempletes = [
 					responses: [
 						{
 							title: "Well it's because…",
-							onPress: () => {},
+							onPress: () => {
+								dialogChanged();
+							},
 						},
 					],
 				},
@@ -3614,6 +3622,7 @@ var storyTempletes = [
 						{
 							title: 'Are you ok?',
 							onPress: () => {
+								music.musicTransitionTo('mainTheme');
 								dialogChanged();
 							},
 						},
