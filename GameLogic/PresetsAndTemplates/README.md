@@ -16,7 +16,7 @@
 						{
 							title: 'next',
 							onPress: () => {
-                                music.play('triumph', { volume: 0.15, loop: true });
+                                music.play('triumph', PLAY_MUSIC_SETTINGS);
 								dialogChanged();
 							},
 						},
@@ -56,11 +56,17 @@
 	},
 ```
 
+make sure to have definded PLAY_MUSIC_SETTINGS
+
+```typescript
+const PLAY_MUSIC_SETTINGS = { volume: 0.15, loop: true };
+```
+
 ## Changing dialog
 
 Below is an example of how to change the dialog branch for a conversation
 
-```javascript
+```typescript
 (dialogChanged, exit) => {
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
 
@@ -108,4 +114,13 @@ Below is an example of how to change the dialog branch for a conversation
 			]
 		};
 	},
+```
+
+## Special Characters
+
+Some characters are either in development or have to made up on the spot. Below is a special character implimentation of John the Manager
+
+```typescript
+var johnTheMan = new characters();
+mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
 ```

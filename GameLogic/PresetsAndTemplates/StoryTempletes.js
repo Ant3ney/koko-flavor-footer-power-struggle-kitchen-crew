@@ -3439,18 +3439,255 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		var subJect01Obj = mStats.getRandomCharacter();
-		var subject01 = subJect01Obj.name.getFirst();
+		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
+		var johnTheMan = new characters();
+		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		var tiffany = new characters();
+		mStats.setCharacterName(tiffany, { first: 'Tiffany', last: 'T' });
 
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'This is the ninth element'),
+					dialog: new Dialog(narrator, 'Some time lator'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.play('insanity', PLAY_MUSIC_SETTINGS);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Why!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Why do they all come in at the same time!'),
+					responses: [
+						{
+							title: "Well it's because…",
+							onPress: () => {},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Can someone please tell me! If I were to just know why. If I knew why maybe I…'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Maybe I could fight off this insanity!'),
+					responses: [
+						{
+							title: "It's because…",
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'For the love of God why!'),
+					responses: [
+						{
+							title: 'Because!..',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'WHY!'),
+					responses: [
+						{
+							title: 'An artificial intelligence named Herokitron commands an army of sleeper agents trained to eat here when the radio host says the activation phrase “rump shimp ima chump”',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, '…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Ahhhh hahahahahaha! I think you might be going a little insane yourself. I mean “rump pimp ima dump”? You may want to get that checked out.'
+					),
+					responses: [
+						{
+							title: '…',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, '…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Wait!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						"Are you serious about this? You have a fiery look your eyes make when you're serious."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'You mean to tell me that the answer to my life long question has to do with an AI kucko with an eternal venda against me?'
+					),
 					responses: [
 						{
 							title: 'Yes',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								dialogChanged();
+							},
+						},
+						{
+							title: 'More or less.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'O my god.'),
+					responses: [
+						{
+							title: 'Are you ok?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'This is amazing!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Finally! I have my answer. Why do they all arrive at the same time!?!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'It’s because an Angry AI-kucko has an eternal vendetta against me!!!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(tiffany, 'O dear I think John is becoming insane again.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Well you know what this means right.'),
+					responses: [
+						{
+							title: 'What does this mean?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'We have to kill the Herokitron!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.pause();
+								exit();
 							},
 						},
 					],
@@ -3459,18 +3696,484 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		var subJect01Obj = mStats.getRandomCharacter();
-		var subject01 = subJect01Obj.name.getFirst();
-
+		var johnTheMan = new characters();
+		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		var narrator = new characters();
+		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
+		let hirokitron = new characters();
+		mStats.setCharacterName(hirokitron, { first: 'Hirokitron', last: '' });
+		var raniel = mStats.getCharacterWithName('Raniel San Diego');
+		var vicky = mStats.getCharacterWithName('Vicky Dang');
+		var christian = mStats.getCharacterWithName('Christian Chewbacca');
+		var newEmploye = new characters();
+		mStats.setCharacterName(newEmploye, { first: 'New Employe', last: 'Quin' });
+		var carlose = mStats.getCharacterWithName('CarloseTest Unfinished');
+		var johnAlvas = mStats.getCharacterWithName('John Alvas');
+		var brad = mStats.getCharacterWithName('Brad Yanagi');
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'This is the tennth element'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
-							title: 'Yes',
+							title: 'next',
 							onPress: () => {
-								staticConversation.endConversationProcedure(dialogChanged, exit);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(brad, 'Woah woah woah, back up. You need me to do what?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'We need you to help us kill the evil AI overlord owner of Gravyhouse because he commanded sleeper agents to all come in when the radio man says “rum chimp ima trump” and he also has a blistering…'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(brad, "Ok I've heard enough!"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'So will you help us?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, 'We can really use your help.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						brad,
+						"Fine. But it's not because I believe your ridiculous story. I want to test out a new AI killing algorithm."
+					),
+					responses: [
+						{
+							title: 'How does it work?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						brad,
+						"Ok so basically, you plug this usb drive into the computer where the AI is housed while it's disconnected from the internet."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						brad,
+						'After five minutes the AI’s secret kill switch should be found and activated.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						brad,
+						'Then you have to connect my algorithm to the internet. It will send the kill switch to its backup servers and prevent it from coming back.'
+					),
+					responses: [
+						{
+							title: 'Wow!',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'Ok then.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(brad, 'Easy enough right?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'If that is what has to be done to avenge my sanity. So be it!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Wait, how are we going to disconnect the restaurant from the internet?'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'I will take care of that.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'And so will I.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, 'You guys don’t hate each other anymore?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'This is more a momentary truce.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Great! We need all the soldiers we can get!'),
+					responses: [
+						{
+							title: 'I’m glad everything worked out',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+						{
+							title: 'You don’t have to do this for us.',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						christian,
+						"It's no problem man. I still owe you for selling you out to Stefanie and Stevan."
+					),
+					responses: [
+						{
+							title: 'You did what!',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'You sold our friend out!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, "Let's stay focused here. My sanity is dwindling!"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Ranieal!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, 'Yes.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'You will play the invaluable role of covering for us all while we slay the evil cybernetic AI Hirokitron.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, 'Well, I don’t think this is necessarily all that impo…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						"Now that everything is planned, let's put it into action at 10:30."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, '10:30'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'Goodbye Ranieal, we will come back when Herokitron is dead.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Goodbye Raniel.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Goodbye.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						carlose,
+						'Speed it up Raneil! I know there is only one of you but we still need these orders made on time.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(carlose, 'Wait. Why are you the only one working?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						carlose,
+						"Ranieal, What's going on here? Where is John the manager and Christian."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, "Umm well that's a good question…"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(carlose, 'And where did Vicky go!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(raniel, "They're visiting upermanagment!"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(carlose, "They're doing what?"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						raniel,
+						"They're crunching the numbers, pressing the books, and weighing their options."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
 							},
 						},
 					],
