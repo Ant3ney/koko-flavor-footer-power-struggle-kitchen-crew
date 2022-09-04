@@ -3718,6 +3718,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								music.play('eventfulShift', PLAY_MUSIC_SETTINGS);
 								dialogChanged();
 							},
 						},
@@ -3875,6 +3876,7 @@ var storyTempletes = [
 							title: 'next',
 							onPress: () => {
 								dialogChanged();
+								music.musicTransitionTo('triumph');
 							},
 						},
 					],
@@ -4033,6 +4035,7 @@ var storyTempletes = [
 							title: 'next',
 							onPress: () => {
 								dialogChanged();
+								music.play('eventfulShift');
 							},
 						},
 					],
@@ -4174,6 +4177,714 @@ var storyTempletes = [
 							title: 'next',
 							onPress: () => {
 								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(carlose, 'O. Well if uppermanagment needs them then so be it.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'Meanwhile…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'I have the chain clippers. Let go and commit a felony!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, "Don’t say that outloud! And what we're doing is called vandalism."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'When did you graduate law school?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'Last year on June 10.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Yeah and just yesterday I landed on Mars.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, "Here's the internet cables."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(christian, 'Wait. Do I cut the Red cable or the Green one?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'I’m calling John the Manager.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'It’s the red wire.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Cut the red wire!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'Ok we’ll cut the red wire! Geez!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'My sanity is draining Damit!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'Meanwhile…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Hey you!'),
+					responses: [
+						{
+							title: 'Me?',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						"Yes you. They told me the internet is cut so let's confront Heroki-tron."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'On 3 we barge in through the uppermangiment office. 3, 2…, 1! Barge!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Your days are up Heroki-Tron. You will no longer make all those customers arrive at the same time.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.musicTransitionTo('hirokitron');
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'Welcome John. I half expected you to have something to do with the…'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'You will no longer exact your vengeance on me in the form of sabotage.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Ahem. I half expected you had something to do with the…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'When my sanity returns to me. I will surely make sure that…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Excuse me! Let me make my speech first!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Why should we! Why should I not just shut you down right now.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'Don’t be insane John. You can’t possibly kill me. I am a backup in servers all over the world. I have wealth, assets and the ability to rain down rengence all over the world.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'Well don’t ask me how this thing works. All I know is that this USB contains all the files we need to kill you!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'Ah hahaha! After this, your peers will consider you so instant, they will send you to a company mandated institution.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Well dude. Here goes nothing!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Plug in the USB.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.pause();
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Nooooo! Ahhhhh!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'You installed an AI killing algorithm. I’m dieing.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'At last. We have kille…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Ooooonoooo! Im dieing!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Ahem. At last. We have…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Owwww the pain!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, "Aren't you supposed to be dead?"),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.play('hirokitron', PLAY_MUSIC_SETTINGS);
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Do I sound dead to you?!'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						"Your big plan failed! I mean yes it has an ai killing algorithm but I'm not going to run it. This thing wouldn't pass on the worst of my virus scans."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'No…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, "Wait, that's weird, it passed the Mcafee security scan check."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						'Ok, I’ll try this AI killing program on the best of my security softwares.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, "That's weird. it passed those checks as well."),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'When the backup internet comes online your backups will trust the AI killing algorithm.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, 'Noo.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'You will die.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						hirokitron,
+						' No. I can’t lose to you. I had such plans for this world. I wish to ruin lives. Nooooo……'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(hirokitron, '…'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.musicTransitionTo('mainTheme');
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'We did it. We have brought back sanity to Gravyhouse! We won.'),
+					responses: [
+						{
+							title: "That's amazing!",
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						'I will also gain all the power that herokitron had. I will be unstoppable!'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'I will give it all to you. You deserve this power more than I do.'),
+					responses: [
+						{
+							title: '…',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnTheMan,
+						"You were the one who brought me back here to begin with. I would never of gotten this power to begin with if it wasn't for you."
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'And plus, I prefer sanity over power. It’s more my cup of tea.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnAlvas,
+						'And that my friend was the story of how the most powerful employee came to be.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnAlvas,
+						'He found out that the most effective way to power was through helping others.'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(johnTheMan, 'Any questions?'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						newEmploye,
+						'Umm yeah. How do I become the most powerful employee of Gravyhouse'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(
+						johnAlvas,
+						'Well I’ll tell you. In order to become the most powerful employee of ココ you must…'
+					),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(narrator, 'ココFlavor footer. Power struggle. Kitchen crew.'),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								music.pause();
+								exit();
 							},
 						},
 					],
