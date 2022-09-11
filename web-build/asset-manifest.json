@@ -1,0 +1,43 @@
+{
+  "files": {
+    "app.js": "/static/js/app.679065ab.chunk.js",
+    "app.js.map": "/static/js/app.679065ab.chunk.js.map",
+    "runtime~app.js": "/static/js/runtime~app.27401809.js",
+    "runtime~app.js.map": "/static/js/runtime~app.27401809.js.map",
+    "static/js/2.7be27711.chunk.js": "/static/js/2.7be27711.chunk.js",
+    "static/js/2.7be27711.chunk.js.map": "/static/js/2.7be27711.chunk.js.map",
+    "favicon-16.png": "/favicon-16.png",
+    "favicon-32.png": "/favicon-32.png",
+    "favicon.ico": "/favicon.ico",
+    "index.html": "/index.html",
+    "manifest.json": "/manifest.json",
+    "serve.json": "/serve.json",
+    "static/js/2.7be27711.chunk.js.LICENSE.txt": "/static/js/2.7be27711.chunk.js.LICENSE.txt",
+    "static/media/cheese.mp3": "/static/media/cheese.ebddc367.mp3",
+    "static/media/click01.mp3": "/static/media/click01.4df2c58a.mp3",
+    "static/media/conspiracy.mp3": "/static/media/conspiracy.6b0c253e.mp3",
+    "static/media/eventfulShift.mp3": "/static/media/eventfulShift.6ea80ad1.mp3",
+    "static/media/femaleApeLong.mp3": "/static/media/femaleApeLong.f0a1c79d.mp3",
+    "static/media/femaleApeMedium.mp3": "/static/media/femaleApeMedium.50a70924.mp3",
+    "static/media/femaleApeShort.mp3": "/static/media/femaleApeShort.83c34e50.mp3",
+    "static/media/goodNews.mp3": "/static/media/goodNews.57122d7b.mp3",
+    "static/media/hardTimes.mp3": "/static/media/hardTimes.94eceaad.mp3",
+    "static/media/hirokitron.mp3": "/static/media/hirokitron.89c992e3.mp3",
+    "static/media/insanity.mp3": "/static/media/insanity.444920c0.mp3",
+    "static/media/mainTheme.mp3": "/static/media/mainTheme.0ba99e05.mp3",
+    "static/media/maleApeLong.mp3": "/static/media/maleApeLong.3a939fbc.mp3",
+    "static/media/maleApeMedium.mp3": "/static/media/maleApeMedium.ec2139b1.mp3",
+    "static/media/maleApeShort.mp3": "/static/media/maleApeShort.cc128fcf.mp3",
+    "static/media/party.mp3": "/static/media/party.2127c146.mp3",
+    "static/media/powerFest.mp3": "/static/media/powerFest.d80ccc73.mp3",
+    "static/media/taka.mp3": "/static/media/taka.2b6d5b0b.mp3",
+    "static/media/test.mp3": "/static/media/test.1b77473f.mp3",
+    "static/media/test2.mp3": "/static/media/test2.e3dd3cad.mp3",
+    "static/media/triumph.mp3": "/static/media/triumph.477c3aa7.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.27401809.js",
+    "static/js/2.7be27711.chunk.js",
+    "static/js/app.679065ab.chunk.js"
+  ]
+}

@@ -6,7 +6,7 @@ import mainTheme from './mainTheme.mp3';
 import click01 from './click01.mp3';
 import triumph from './triumph.mp3';
 import cheese from './cheese.mp3';
-import bicker from './cheese.mp3';
+import bicker from './bicker.mp3';
 import maleApeShort from './maleApeShort.mp3';
 import maleApeMedium from './maleApeMedium.mp3';
 import maleApeLong from './maleApeLong.mp3';
