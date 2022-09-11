@@ -26,8 +26,10 @@ var ManageStats = {
 	extraSetDataWork: [],
 	extraDayChangeWork: [],
 
-	//Plays on awake
+	//Set data from save source
 	awake: (data, gmeDvr) => {
+		console.log('test player', data.testPlayer);
+
 		//This code here is test code to test story logic
 		GetStats.call(ManageStats);
 		SetStats.call(ManageStats);
@@ -35,18 +37,7 @@ var ManageStats = {
 
 		//Initing player
 		ManageStats.player = new Player();
-		ManageStats.setPPower(9000); //default is 10
-		ManageStats.setPName('Anthony', 'Cavuoti');
-		ManageStats.setPGender('m');
-		ManageStats.setPEffectivness(1);
-		ManageStats.setPSkill(3);
-		ManageStats.setPSkillPoints(1);
-		ManageStats.setPEnergy(10);
-		ManageStats.setPSanity(30);
-		ManageStats.setPHappyness(1);
-		ManageStats.setPCleanliness(10);
-		ManageStats.setPRespectability(5);
-		ManageStats.setPAnger(0);
+		ManageStats.initilizePlayer(data);
 
 		ManageStats.characters = [];
 		ManageStats.extraDayChangeWork = [];
@@ -167,6 +158,22 @@ var ManageStats = {
 
 		return false;
 	},
+	initilizePlayer: data => {
+		const player = data.testPlayer || {};
+		ManageStats.setPPower(player.power); //Setting player power here
+		ManageStats.setPName(player.name.firstname, player.name.lastName);
+		ManageStats.setPGender(player.gender);
+		ManageStats.setPEffectivness(player.effectivness);
+		ManageStats.setPSkill(player.skill);
+		ManageStats.setPSkillPoints(player.skillPoints);
+		ManageStats.setPEnergy(player.energy);
+		ManageStats.setPSanity(player.sanity);
+		ManageStats.setPHappyness(player.happyness);
+		ManageStats.setPCleanliness(player.cleanliness);
+		ManageStats.setPRespectability(player.respectability);
+		ManageStats.setPAnger(player.anger);
+	},
+	initilizeSavedCharacter: () => {},
 };
 
 export default ManageStats;

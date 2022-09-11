@@ -17,8 +17,7 @@ let conversation = {
 
 		switch (type) {
 			case 'normal':
-				//The story case handles kickback conversations and the story conversation
-				//TODO: push kickback conversations into conversation array befor story
+				//The normal case handles kickback conversations and the story conversations
 				storyLogic.fillChapterQueAndChapter();
 				let chaptersToPlay = storyLogic.getChapterQue();
 				conversation.array.push(KickbackConversationTempletes[0]);
@@ -65,6 +64,7 @@ let conversation = {
 			conIndex++;
 			diIndex = 0;
 			if (conIndex >= conversationArray.length) {
+				//Save data point
 				conversation.navigation.navigate('Next Shift Select');
 			} else {
 				console.log('changed to another element');

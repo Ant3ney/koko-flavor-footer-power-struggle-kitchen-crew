@@ -6,6 +6,7 @@ import storyLogic from '../../GameLogic/StoryLogic';
 import basic from '../../Styles/basics';
 import testCharacters from '../../GameLogic/PresetsAndTemplates/testCharacters';
 import { click } from '../../GameLogic/AudioSystem';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MainMenu(props) {
 	useEffect(() => {
@@ -20,9 +21,26 @@ function MainMenu(props) {
 				onPress={() => {
 					click();
 					props.navigation.navigate('Loading');
+
+					//Check to se if local data is avalible.
+					//TODO: factor out loading data code into sperate file
+					const userJSON = window.local;
+					//If not use server data.
+					//In production check server data first.
+
 					fetch('https://coco-game-17308.herokuapp.com/testApi/characters')
 						.then(response => response.json())
-						.then(data => {
+						.then(async data => {
+							//While the local storage solution is in development. local storage code will happeon here.
+							const JSONUser = await AsyncStorage.getItem('user');
+
+							//Yes. there is a discrepency between the name for data and user.
+							//TODO: Change all ocurences of data from fetches to user
+							const user = JSONUser ? JSON.parse(JSONUser) : {};
+
+							console.log('Found local storage user:', user);
+							if (user.testPlayer) data.testPlayer = user.testPlayer;
+
 							gameDriver.awake(data);
 							gameDriver.giveNavigator(props.navigation);
 

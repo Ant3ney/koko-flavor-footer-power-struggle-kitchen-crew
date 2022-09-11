@@ -1,16 +1,19 @@
 import mStats from './ManageStats/ManageStats';
+//This file should be seen as tools that are used in facilitator functions
 
 var chapter; //capter is the index that is used for story element conversation
 var chapterQue = [];
+let initialChapter = 0;
 
 var storyLogic = {
 	init: data => {
 		chapter = data.initialChapter;
-		console.log('sotryLogic chapter:', chapter);
+		storyLogic.initialChapter = chapter;
 	},
 	getChapter: () => {
 		return chapter;
 	},
+	getUnfinishedChapterQue: () => {},
 	getChapterQue: () => {
 		return chapterQue;
 	},
