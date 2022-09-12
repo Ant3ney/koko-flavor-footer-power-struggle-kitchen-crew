@@ -8,7 +8,6 @@ let initialChapter = 0;
 var storyLogic = {
 	init: data => {
 		chapter = data.initialChapter;
-		storyLogic.initialChapter = chapter;
 	},
 	getChapter: () => {
 		return chapter;
