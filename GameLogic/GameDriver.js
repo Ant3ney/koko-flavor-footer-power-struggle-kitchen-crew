@@ -3,7 +3,7 @@ import mStats from './ManageStats/ManageStats';
 import busyness from './Busyness';
 import storyLogic from './StoryLogic';
 import shiftHub from './ShiftHub';
-import Sound from './AudioSystem';
+import { saveUser } from './SaveSystem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 var pFrame = 0;
@@ -147,7 +147,9 @@ let GameDriver = {
 				hasLost: determinePlayerLost(),
 			});
 		});
-		GameDriver.saveData();
+		//TODO: Test out saveUser():
+		saveUser();
+		/* GameDriver.saveData(); */
 		GameDriver.collectGarbage();
 	},
 	saveData: async () => {
