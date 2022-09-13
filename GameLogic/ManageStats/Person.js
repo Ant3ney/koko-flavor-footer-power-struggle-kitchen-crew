@@ -3,7 +3,7 @@ import Sound from '../AudioSystem/Sound';
 function Person() {
 	//only in this constructor can the varibles be edited without the use of healper functions
 
-	this.personInit = (name, age, gender, wealth, personality) => {
+	this.personInit = (name, age, gender, wealth, personality, deniedPhrase, catchPhrase) => {
 		//In future, test out and see witch varibles can be private declaring them thisfunction.varible name. Maby a namelike this.private.name for something.
 
 		this.name.firstname = name.firstName || 'nothing';
@@ -13,6 +13,8 @@ function Person() {
 		this.gender = gender || 'nothing';
 		this.wealth = wealth || 'nothing';
 		this.personality = personality || 'nothing';
+		this.deniedPhrase = deniedPhrase || 'nothing';
+		this.catchPhrase = catchPhrase || 'nothing';
 		//TODO make it so that the voice is based on personality
 		this.voice = new Sound('maleApeShort');
 	};
@@ -86,6 +88,18 @@ function Person() {
 	};
 	this.getPersonality = () => {
 		return this.personality;
+	};
+	this.getDeniedPhrase = () => {
+		return this.deniedPhrase;
+	};
+	this.setDeniedPhrase = deniedPhrase => {
+		this.deniedPhrase = deniedPhrase;
+	};
+	this.getCatchPhrase = () => {
+		return this.catchPhrase;
+	};
+	this.setCatchPhrase = catchPhrase => {
+		this.catchPhrase = catchPhrase;
 	};
 }
 
