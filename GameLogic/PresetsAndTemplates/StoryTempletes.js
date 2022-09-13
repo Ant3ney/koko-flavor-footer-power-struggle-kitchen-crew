@@ -217,7 +217,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Heck yeah and where going to leave that party as the most powerful employees of Gravyhouse.'
+						'Heck yeah and where going to leave that party as the most powerful employees of ココ.'
 					),
 					responses: [
 						{
@@ -497,7 +497,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						powerfull,
-						"Look at me! I'm the most powerfull employee in all of Gravyhouse! All of you power-typical-worms, bow befor me for I outpower you all by massive margins"
+						"Look at me! I'm the most powerfull employee in all of ココ! All of you power-typical-worms, bow befor me for I outpower you all by massive margins"
 					),
 					responses: [
 						{
@@ -1646,7 +1646,7 @@ var storyTempletes = [
 					),
 					responses: [
 						{
-							title: 'I want to become the most powerful person in all of Gravyhouse! I was told you could help.',
+							title: 'I want to become the most powerful person in all of ココ! I was told you could help.',
 							onPress: () => {
 								dialogChanged();
 							},
@@ -1903,7 +1903,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'You mean I have been sane the entire time I have been gone from Gravyhouse?'
+						'You mean I have been sane the entire time I have been gone from ココ?'
 					),
 					responses: [
 						{
@@ -2250,7 +2250,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"I got my power through fair means that helped Gravyhouse prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable."
+						"I got my power through fair means that helped ココ prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable."
 					),
 					responses: [
 						{
@@ -2813,7 +2813,7 @@ var storyTempletes = [
 					//12
 					dialog: new Dialog(
 						steven,
-						'Hey, wait here will you. Me and Stefanie need to talk about your future here at Gravyhouse.'
+						'Hey, wait here will you. Me and Stefanie need to talk about your future here at ココ.'
 					),
 					responses: [
 						{
@@ -2957,7 +2957,7 @@ var storyTempletes = [
 					//22
 					dialog: new Dialog(
 						mysteriousVoice,
-						'When the sleeper agents hear this they will all rush to Gravyhouse at the same time, rendering the manager and anyone too powerful completely insane!'
+						'When the sleeper agents hear this they will all rush to ココ at the same time, rendering the manager and anyone too powerful completely insane!'
 					),
 					responses: [
 						{
@@ -3289,7 +3289,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						hirokitron,
-						'I am a replica of the physical Heroki who works alongside you in Gravyhouse except I had something he didn’t. I had a hatred for John the Manager!'
+						'I am a replica of the physical Heroki who works alongside you in ココ except I had something he didn’t. I had a hatred for John the Manager!'
 					),
 					responses: [
 						{
@@ -3303,7 +3303,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						hirokitron,
-						'From here I existed on the internet, I created a network of spleaper agents, all ready to order Gravyhouse at the same time and render John theme Manager insane.'
+						'From here I existed on the internet, I created a network of spleaper agents, all ready to order ココ at the same time and render John theme Manager insane.'
 					),
 					responses: [
 						{
@@ -3747,7 +3747,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'We need you to help us kill the evil AI overlord owner of Gravyhouse because he commanded sleeper agents to all come in when the radio man says “rum chimp ima trump” and he also has a blistering…'
+						'We need you to help us kill the evil AI overlord owner of ココ because he commanded sleeper agents to all come in when the radio man says “rum chimp ima trump” and he also has a blistering…'
 					),
 					responses: [
 						{
@@ -4759,7 +4759,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, 'We did it. We have brought back sanity to Gravyhouse! We won.'),
+					dialog: new Dialog(johnTheMan, 'We did it. We have brought back sanity to ココ! We won.'),
 					responses: [
 						{
 							title: "That's amazing!",
@@ -4859,10 +4859,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(
-						newEmploye,
-						'Umm yeah. How do I become the most powerful employee of Gravyhouse'
-					),
+					dialog: new Dialog(newEmploye, 'Umm yeah. How do I become the most powerful employee of ココ'),
 					responses: [
 						{
 							title: 'next',

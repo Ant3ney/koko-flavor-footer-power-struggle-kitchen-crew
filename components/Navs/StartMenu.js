@@ -4,7 +4,6 @@ import gameDriver from '../../GameLogic/GameDriver';
 import { music } from '../../GameLogic/AudioSystem';
 import storyLogic from '../../GameLogic/StoryLogic';
 import basic from '../../Styles/basics';
-import testCharacters from '../../GameLogic/PresetsAndTemplates/testCharacters';
 import { click } from '../../GameLogic/AudioSystem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -15,7 +14,7 @@ function MainMenu(props) {
 
 	return (
 		<View style={[basic.centerContainer, basic.bgWhite]}>
-			<Text>Gravyhouse. Flavor Fodder</Text>
+			<Text>ココ Flavor Fodder</Text>
 			<Button
 				title='Play'
 				onPress={() => {

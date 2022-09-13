@@ -1,1 +1,3 @@
-export { default as saveUser } from './UserType';
+export { default as saveUser } from './saveUser';
+
+export { User } from './UserType';

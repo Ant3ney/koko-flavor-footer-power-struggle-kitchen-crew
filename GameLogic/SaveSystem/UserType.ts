@@ -1,4 +1,4 @@
-type User = {
+export type User = {
 	testCharacters: any;
 	testPlayer: any;
 	shifStructure: any;
@@ -6,4 +6,3 @@ type User = {
 	initialChapter: 0;
 	currentDay: 'monday';
 };
-export default User;

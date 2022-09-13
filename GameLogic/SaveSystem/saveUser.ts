@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import mStats from '../ManageStats/ManageStats';
-import User from './UserType';
+import { User } from './UserType';
 
 async function saveUser() {
 	//For now, data will just be saved to local storage
@@ -24,3 +24,5 @@ async function saveUser() {
 	const JSONUserTest = await AsyncStorage.getItem('user');
 	console.log('JSONUserTest: ', JSONUserTest);
 }
+
+export default saveUser;
