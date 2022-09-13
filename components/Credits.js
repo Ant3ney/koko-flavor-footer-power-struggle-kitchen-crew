@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import basic from '../Styles/basics';
+import { useNavigation } from '@react-navigation/native';
 
-function Leaderbords(props) {
+export default function Credits(props) {
 	const navigation = useNavigation();
-
 	return (
 		<View style={[basic.centerContainer, basic.bgWhite]}>
 			<Button
@@ -15,9 +14,11 @@ function Leaderbords(props) {
 					navigation.goBack();
 				}}
 			/>
-			<Text>This is the leaderbords view</Text>
+			<Text>Credits</Text>
+			<Text>Voice Actor: delaneygilmour</Text>
+			<Text>Voice Actor: thegreattoddman</Text>
+			<Text>Voice Actor: cessinistas</Text>
+			<Text>Voice Actor: huskycommander</Text>
 		</View>
 	);
 }
-
-export default Leaderbords;

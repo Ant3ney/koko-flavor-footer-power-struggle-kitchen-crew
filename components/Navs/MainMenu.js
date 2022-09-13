@@ -9,6 +9,7 @@ import Settings from '../Settings';
 import Share from '../Share';
 import Leaderbords from '../Leaderbords';
 import Loading from '../Loading';
+import Credits from '../Credits';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,9 @@ function MainNavMenu(props) {
 
 				<Stack.Screen name='Leaderbords'>
 					{inProps => <Leaderbords {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
+				</Stack.Screen>
+				<Stack.Screen name='Credits'>
+					{inProps => <Credits {...inProps} styleProp={props.styleProp} gameLogic={props.gameLogic} />}
 				</Stack.Screen>
 
 				<Stack.Screen name='Loading'>{inProps => <Loading />}</Stack.Screen>

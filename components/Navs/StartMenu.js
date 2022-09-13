@@ -84,6 +84,14 @@ function MainMenu(props) {
 			/>
 
 			<Button
+				title='Credits'
+				onPress={() => {
+					click();
+					props.navigation.navigate('Credits');
+				}}
+			/>
+
+			<Button
 				title='Settings'
 				onPress={() => {
 					click();
