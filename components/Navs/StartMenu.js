@@ -39,6 +39,8 @@ function MainMenu(props) {
 
 							console.log('Found local storage user:', user);
 							if (user.testPlayer) data.testPlayer = user.testPlayer;
+							if (user.testCharacters) data.testCharacters = user.testCharacters;
+							if (user.shifStructure) data.shifStructure = user.shifStructure;
 
 							gameDriver.awake(data);
 							gameDriver.giveNavigator(props.navigation);

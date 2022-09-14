@@ -3,8 +3,10 @@ import mStats from '../ManageStats/ManageStats';
 import { User } from './UserType';
 import { localStorage } from '../../utilities';
 
+/* Yes. saveUser will also save all other characters. This is because the stats of 
+other characters are part of the users progression. */
 async function saveUser() {
-	//#region Formating characters
+	//#region Getting and Formating characters
 	//@ts-ignore;
 	console.log('mstats.getCharacters()', mStats.getCharacters());
 	//@ts-ignore;
@@ -39,29 +41,42 @@ async function saveUser() {
 				anger: character.getAnger(),
 			},
 		};
-		console.log('formatedCharacter', formatedCharacter);
+		formatedCharacters.push(formatedCharacter);
 	}
+
 	//#endregion
-	//For now, data will just be saved to local storage
-	const JSONUser = await AsyncStorage.getItem('user');
-	const user: User = JSONUser
-		? JSON.parse(JSONUser)
-		: {
-				testCharacters: null,
-				testPlayer: null,
-				shifStructure: null,
-				availableDays: null,
-				initialChapter: 0,
-				currentDay: 'monday',
-		  };
+
+	//#region Saving character schedual
+	//@ts-ignore
+	const characterSchedual = mStats.getCharacterSchedule();
+	//#endregion
+
+	//#region Getting player data
 	//@ts-ignore;
 	const player = mStats.getPlayer();
-	const playerBuffer = { ...player, voice: null };
-	user.testPlayer = playerBuffer;
+	const formatedPlayer = {
+		power: player.getPower(),
+		name: {
+			firstname: player.name.getFirst(),
+		},
+		gender: player.getGender(),
+	};
+	console.log('saving the following player', formatedPlayer);
+	//#endregion
+
+	//#region Creating and saving user obect to local storage.
+	const user: User = {
+		testCharacters: formatedCharacters,
+		testPlayer: formatedPlayer,
+		shifStructure: characterSchedual,
+		availableDays: null,
+		initialChapter: 0,
+		currentDay: 'monday',
+	};
 	const userJSON = JSON.stringify(user);
 	await AsyncStorage.setItem('user', userJSON);
-	const JSONUserTest = await AsyncStorage.getItem('user');
-	console.log('JSONUserTest: ', JSONUserTest);
+	console.log('user before JSON and saving', user);
+	//#endregion
 }
 
 export default saveUser;
