@@ -7,7 +7,7 @@ import Conversation from '../content/Conversation';
 import Loading from '../Loading';
 import Win from '../content/Win';
 import Lose from '../content/Lose';
-import util from '../../Utilities';
+import util from '../../utilities';
 
 const Stack = createStackNavigator();
 

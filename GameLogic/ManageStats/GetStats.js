@@ -1,4 +1,4 @@
-import util from '../../Utilities';
+import util from '../../utilities';
 import characters from '../PresetsAndTemplates/testCharacters';
 
 function GetStats() {

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import mStats from '../ManageStats/ManageStats';
 import { User } from './UserType';
+import { localStorage } from '../../utilities';
 
 async function saveUser() {
 	//#region Formating characters

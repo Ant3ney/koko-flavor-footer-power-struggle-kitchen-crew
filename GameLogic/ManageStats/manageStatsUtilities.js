@@ -1,15 +1,15 @@
-import util from "../../Utilities";
+import util from '../../utilities';
 //Change name when apropieate
 
 var mStatsUtil = {
-    //Handle in node js server
-    setUpShiftShifts: (data, characters, characterSchedule, mStats) => {
-        characterSchedule.mondayDay = []; 
+	//Handle in node js server
+	setUpShiftShifts: (data, characters, characterSchedule, mStats) => {
+		characterSchedule.mondayDay = [];
 
-        //In future asign shifts more deliberately
-        var ranIndex = util.getRandomIndexFromArray(characters);
-        //mStats.
-    }
-}
+		//In future asign shifts more deliberately
+		var ranIndex = util.getRandomIndexFromArray(characters);
+		//mStats.
+	},
+};
 
 export default mStatsUtil;

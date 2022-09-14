@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, Button } from 'react-native';
 import basic from '../../Styles/basics';
 import gamelogic from '../../GameLogic/GameLogic';
-import util from '../../Utilities';
+import util from '../../utilities';
 
 let conversation = gamelogic.conversation;
 

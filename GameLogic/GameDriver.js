@@ -4,7 +4,6 @@ import busyness from './Busyness';
 import storyLogic from './StoryLogic';
 import shiftHub from './ShiftHub';
 import { saveUser } from './SaveSystem';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 var pFrame = 0;
 var pFrameLong = 0;
@@ -151,18 +150,6 @@ let GameDriver = {
 		saveUser();
 		/* GameDriver.saveData(); */
 		GameDriver.collectGarbage();
-	},
-	saveData: async () => {
-		//For now, data will just be saved to local storage
-		const JSONUser = AsyncStorage.getItem('user');
-		const user = JSONUser ? JSONUser : {};
-		const player = mStats.getPlayer();
-		const playerBuffer = { ...player, voice: null };
-		user.testPlayer = playerBuffer;
-		const userJSON = JSON.stringify(user);
-		await AsyncStorage.setItem('user', userJSON);
-		const JSONUserTest = await AsyncStorage.getItem('user');
-		console.log('JSONUserTest: ', JSONUserTest);
 	},
 	collectGarbage: () => {
 		levelEnded = true;

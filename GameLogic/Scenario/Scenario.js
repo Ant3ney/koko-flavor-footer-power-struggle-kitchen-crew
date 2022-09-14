@@ -1,6 +1,6 @@
 import gameDriver from '../GameDriver';
 import mStats from '../ManageStats/ManageStats';
-import util from '../../Utilities';
+import util from '../../utilities';
 import StaticScenario from './StaticScenario';
 import scenariosTempletes from '../PresetsAndTemplates/ScenarioTempletes';
 import { getMaxTimeMultiplyer } from '../PresetsAndTemplates/ScenarioTempletes';
