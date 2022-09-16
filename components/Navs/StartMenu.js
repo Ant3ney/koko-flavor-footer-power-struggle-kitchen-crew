@@ -6,6 +6,7 @@ import storyLogic from '../../GameLogic/StoryLogic';
 import basic from '../../Styles/basics';
 import { click } from '../../GameLogic/AudioSystem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorage } from '../../utilities';
 
 function MainMenu(props) {
 	useEffect(() => {
@@ -31,16 +32,18 @@ function MainMenu(props) {
 						.then(response => response.json())
 						.then(async data => {
 							//While the local storage solution is in development. local storage code will happeon here.
-							const JSONUser = await AsyncStorage.getItem('user');
 
 							//Yes. there is a discrepency between the name for data and user.
 							//TODO: Change all ocurences of data from fetches to user
-							const user = JSONUser ? JSON.parse(JSONUser) : {};
+							const user = await localStorage.getObject('user');
 
 							console.log('Found local storage user:', user);
 							if (user.testPlayer) data.testPlayer = user.testPlayer;
 							if (user.testCharacters) data.testCharacters = user.testCharacters;
-							if (user.shifStructure) data.shifStructure = user.shifStructure;
+							if (user.shiftStructure) data.shiftStructure = user.shiftStructure;
+							if (user.availableDays) data.availableDays = user.availableDays;
+							if (user.initialChapter) data.initialChapter = user.initialChapter;
+							if (user.currentDay) data.currentDay = user.currentDay;
 
 							gameDriver.awake(data);
 							gameDriver.giveNavigator(props.navigation);

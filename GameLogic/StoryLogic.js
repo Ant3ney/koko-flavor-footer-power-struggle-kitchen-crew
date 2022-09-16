@@ -1,7 +1,7 @@
 import mStats from './ManageStats/ManageStats';
 //This file should be seen as tools that are used in facilitator functions
 
-var chapter; //capter is the index that is used for story element conversation
+export var chapter; //capter is the index that is used for story element conversation
 var chapterQue = [];
 let initialChapter = 0;
 

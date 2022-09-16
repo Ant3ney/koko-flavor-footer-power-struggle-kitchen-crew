@@ -64,6 +64,7 @@ var ManageStats = {
 
 		//Initing shift characters
 		ManageStats.shiftCharacters = [];
+		console.log('ManageStats.characterSchedule in question');
 		ManageStats.shiftCharacters = ManageStats.characterSchedule[settings.dayName][settings.difficulty.lighting];
 
 		//reseting data that should reset each shift

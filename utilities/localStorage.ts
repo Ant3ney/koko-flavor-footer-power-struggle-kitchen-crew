@@ -14,8 +14,10 @@ const localStorage = {
 	set: async (key: string, value: object | string) => {
 		if (!AsyncStorage?.setItem) return;
 		//@ts-ignore
-		let valueBuffer: string = typeof value !== 'string' ? value : JSON.stringify(value);
+		let valueBuffer: string = typeof value === 'string' ? value : JSON.stringify(value);
 		await AsyncStorage.setItem(key, valueBuffer);
+		const test = await AsyncStorage.getItem(key);
+		console.log('just saved:', test);
 	},
 };
 

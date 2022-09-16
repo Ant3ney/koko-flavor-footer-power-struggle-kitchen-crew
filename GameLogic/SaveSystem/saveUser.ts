@@ -1,14 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import mStats from '../ManageStats/ManageStats';
 import { User } from './UserType';
+import serializeCharacter from './serializeCharacter';
 import { localStorage } from '../../utilities';
+import shiftHub from '../ShiftHub';
+import { chapter } from '../StoryLogic';
 
 /* Yes. saveUser will also save all other characters. This is because the stats of 
 other characters are part of the users progression. */
 async function saveUser() {
 	//#region Getting and Formating characters
-	//@ts-ignore;
-	console.log('mstats.getCharacters()', mStats.getCharacters());
 	//@ts-ignore;
 	const characters = mStats.getCharacters();
 	const formatedCharacters: any[] = [];
@@ -43,12 +44,26 @@ async function saveUser() {
 		};
 		formatedCharacters.push(formatedCharacter);
 	}
-
 	//#endregion
 
 	//#region Saving character schedual
 	//@ts-ignore
 	const characterSchedual = mStats.getCharacterSchedule();
+	const formatedCharacterSchedual: any = {};
+	for (let day in characterSchedual) {
+		const currentDay: any = characterSchedual[day];
+		formatedCharacterSchedual[day] = {};
+		for (let time in currentDay) {
+			const currentTime: any = currentDay[time];
+			formatedCharacterSchedual[day][time] = [];
+			for (let i = 0; i < currentTime.length; i++) {
+				const character = currentTime[i];
+				const formatedCharacter = serializeCharacter(character);
+
+				formatedCharacterSchedual[day][time].push(formatedCharacter);
+			}
+		}
+	}
 	//#endregion
 
 	//#region Getting player data
@@ -60,21 +75,30 @@ async function saveUser() {
 			firstname: player.name.getFirst(),
 		},
 		gender: player.getGender(),
+		effectivness: player.getEffectivness(),
+		skill: player.getSkill(),
+		skillPoints: player.getSkillPoints(),
+		energy: player.getEnergy(),
+		sanity: player.getSanity(),
+		happyness: player.getHappyness(),
+		cleanliness: player.getCleanliness(),
+		respectability: player.getRespectability(),
+		anger: player.getAnger(),
 	};
-	console.log('saving the following player', formatedPlayer);
 	//#endregion
 
 	//#region Creating and saving user obect to local storage.
 	const user: User = {
 		testCharacters: formatedCharacters,
 		testPlayer: formatedPlayer,
-		shifStructure: characterSchedual,
-		availableDays: null,
-		initialChapter: 0,
-		currentDay: 'monday',
+		shiftStructure: formatedCharacterSchedual,
+		availableDays: shiftHub.availableDays,
+		initialChapter: chapter,
+		//@ts-ignore
+		currentDay: mStats.getCurrentDay(),
 	};
 	const userJSON = JSON.stringify(user);
-	await AsyncStorage.setItem('user', userJSON);
+	await localStorage.set('user', userJSON);
 	console.log('user before JSON and saving', user);
 	//#endregion
 }
