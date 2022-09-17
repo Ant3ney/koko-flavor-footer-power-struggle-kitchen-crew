@@ -3,7 +3,9 @@ import mStats from './ManageStats/ManageStats';
 var dayIndex = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 var shiftHub = {
-	init: availableDays => {
+	init: data => {
+		const { availableDays, currentDay } = data;
+		mStats.setCurrentDay(currentDay);
 		shiftHub.availableDays = availableDays;
 	},
 	availableDays: {

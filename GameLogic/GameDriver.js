@@ -21,7 +21,7 @@ let GameDriver = {
 		//Game Drriver is the back bone of GameLogic so it should bee the awake hook for gameLogic
 		mStats.awake(data, GameDriver);
 		storyLogic.init(data);
-		shiftHub.init(data.availableDays);
+		shiftHub.init(data);
 	},
 	start: settings => {
 		//Handle all game init functions here
