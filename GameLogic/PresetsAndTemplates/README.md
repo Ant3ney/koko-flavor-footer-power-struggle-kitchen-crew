@@ -56,7 +56,7 @@
 	},
 ```
 
-make sure to have definded PLAY_MUSIC_SETTINGS
+Make sure to have definded PLAY_MUSIC_SETTINGS
 
 ```typescript
 const PLAY_MUSIC_SETTINGS = { volume: 0.15, loop: true };
