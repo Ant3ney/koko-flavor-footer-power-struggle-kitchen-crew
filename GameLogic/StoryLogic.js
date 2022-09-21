@@ -3,7 +3,6 @@ import mStats from './ManageStats/ManageStats';
 
 export var chapter; //capter is the index that is used for story element conversation
 var chapterQue = [];
-let initialChapter = 0;
 
 var storyLogic = {
 	init: data => {
