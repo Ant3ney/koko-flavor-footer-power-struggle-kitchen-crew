@@ -21,6 +21,9 @@ import hirokitron from './hirokitron.mp3';
 import goodNews from './goodNews.mp3';
 import insanity from './insanity.mp3';
 
+//TODO import sounds as categories of objects in another files exports
+//Then use sored operator to make them avalible as properties in sound object.
+
 const sounds: any = {
 	test: testAudio,
 	test2: testAudio2,
