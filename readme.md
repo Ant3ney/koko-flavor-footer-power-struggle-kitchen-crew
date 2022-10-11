@@ -9,3 +9,5 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 -   Make sure you have the expo cli installed already
 -   Run npm install in repo directory
 -   Run expo start
+
+## Music Update Comming Soon.
