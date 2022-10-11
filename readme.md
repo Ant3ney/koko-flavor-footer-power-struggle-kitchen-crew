@@ -10,4 +10,4 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 -   Run npm install in repo directory
 -   Run expo start
 
-## Music Update Comming Soon.
+## Music Update Coming Soon.
