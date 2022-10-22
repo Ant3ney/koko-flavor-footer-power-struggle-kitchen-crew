@@ -12,7 +12,7 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 
 ## Music Update Coming Soon.
 
-## TODOS
+### TODOS
 
 1. Implement character dialog audio
 2. Add code to load in audio before start menu is displayed.
