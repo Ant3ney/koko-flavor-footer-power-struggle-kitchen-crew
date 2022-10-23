@@ -20,9 +20,17 @@ import hardTimes from './hardTimes.mp3';
 import hirokitron from './hirokitron.mp3';
 import goodNews from './goodNews.mp3';
 import insanity from './insanity.mp3';
+import voicesModule from './voices';
 
 //TODO import sounds as categories of objects in another files exports
-//Then use sored operator to make them avalible as properties in sound object.
+//Then use spread operator to make them available as properties in sound object.
+
+const voices: any = voicesModule;
+console.log('voicesModule:', voicesModule);
+let voice: string;
+for (voice in voices) {
+	console.log('voice:', voices[voice]);
+}
 
 const sounds: any = {
 	test: testAudio,
@@ -47,6 +55,7 @@ const sounds: any = {
 	hirokitron,
 	goodNews,
 	insanity,
+	...voices,
 };
 
 export default sounds;

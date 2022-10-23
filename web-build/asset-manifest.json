@@ -1,18 +1,18 @@
 {
   "files": {
-    "app.js": "/static/js/app.f715702d.chunk.js",
-    "app.js.map": "/static/js/app.f715702d.chunk.js.map",
+    "app.js": "/static/js/app.335a34d0.chunk.js",
+    "app.js.map": "/static/js/app.335a34d0.chunk.js.map",
     "runtime~app.js": "/static/js/runtime~app.27401809.js",
     "runtime~app.js.map": "/static/js/runtime~app.27401809.js.map",
-    "static/js/2.df2fa40c.chunk.js": "/static/js/2.df2fa40c.chunk.js",
-    "static/js/2.df2fa40c.chunk.js.map": "/static/js/2.df2fa40c.chunk.js.map",
+    "static/js/2.d3498e1d.chunk.js": "/static/js/2.d3498e1d.chunk.js",
+    "static/js/2.d3498e1d.chunk.js.map": "/static/js/2.d3498e1d.chunk.js.map",
     "favicon-16.png": "/favicon-16.png",
     "favicon-32.png": "/favicon-32.png",
     "favicon.ico": "/favicon.ico",
     "index.html": "/index.html",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
-    "static/js/2.df2fa40c.chunk.js.LICENSE.txt": "/static/js/2.df2fa40c.chunk.js.LICENSE.txt",
+    "static/js/2.d3498e1d.chunk.js.LICENSE.txt": "/static/js/2.d3498e1d.chunk.js.LICENSE.txt",
     "static/media/bicker.mp3": "/static/media/bicker.5ba19bee.mp3",
     "static/media/cheese.mp3": "/static/media/cheese.ebddc367.mp3",
     "static/media/click01.mp3": "/static/media/click01.4df2c58a.mp3",
@@ -38,7 +38,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.27401809.js",
-    "static/js/2.df2fa40c.chunk.js",
-    "static/js/app.f715702d.chunk.js"
+    "static/js/2.d3498e1d.chunk.js",
+    "static/js/app.335a34d0.chunk.js"
   ]
 }
