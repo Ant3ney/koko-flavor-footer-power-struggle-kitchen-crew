@@ -14,6 +14,8 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 
 ### TODOS
 
-1. Implement character dialog audio
+1. Implement character dialog audio.
+   a. Get an even number of voice acting audio files.
+   b. Create script to check if all files are there.
 2. Add code to load in audio before start menu is displayed.
 3. Make small QA tweaks where possible.
