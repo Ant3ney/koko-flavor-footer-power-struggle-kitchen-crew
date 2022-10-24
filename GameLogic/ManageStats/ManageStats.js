@@ -159,8 +159,8 @@ var ManageStats = {
 
 		return false;
 	},
-	initilizePlayer: data => {
-		const player = data.testPlayer || {};
+	initilizePlayer: (data = {}) => {
+		const player = data.testPlayer || { name: {} };
 		ManageStats.setPPower(player.power); //Setting player power here
 		ManageStats.setPName(player.name.firstname, player.name.lastName);
 		ManageStats.setPGender(player.gender);

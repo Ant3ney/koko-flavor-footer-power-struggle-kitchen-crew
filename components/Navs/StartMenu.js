@@ -18,7 +18,7 @@ function MainMenu(props) {
 			<Text>ココ Flavor Fodder</Text>
 			<Button
 				title='Play'
-				onPress={() => {
+				onPress={async () => {
 					click();
 					props.navigation.navigate('Loading');
 
@@ -28,33 +28,42 @@ function MainMenu(props) {
 					//If not use server data.
 					//In production check server data first.
 
-					fetch('https://coco-game-17308.herokuapp.com/testApi/characters')
-						.then(response => response.json())
-						.then(async data => {
-							//While the local storage solution is in development. local storage code will happeon here.
+					//While the local storage solution is in development. local storage code will happeon here.
 
-							//Yes. there is a discrepancy between the name for data and user.
-							//TODO: Change all occurrences of data from fetches to user
-							const user = await localStorage.getObject('user');
+					//Yes. there is a discrepancy between the name for data and user.
+					//TODO: Change all occurrences of data from fetches to user
 
-							console.log('Found local storage user:', user);
-							if (user.testPlayer) data.testPlayer = user.testPlayer;
-							if (user.testCharacters) data.testCharacters = user.testCharacters;
-							if (user.shiftStructure) data.shiftStructure = user.shiftStructure;
-							if (user.availableDays) data.availableDays = user.availableDays;
-							if (user.initialChapter) data.initialChapter = user.initialChapter;
-							if (user.currentDay) data.currentDay = user.currentDay;
+					let user = await fetchUser();
+					let data = null;
 
-							gameDriver.awake(data);
-							gameDriver.giveNavigator(props.navigation);
+					try {
+						user = (await localStorage.getObject('user')) || user;
+					} catch {
+						return;
+					}
 
-							//At this point this is a check to see if this is the users first time playing
-							/* If true then */
-							if (storyLogic.checkForUnhandledStory()) {
-								storyLogic.fillChapterQueAndChapter();
-							}
-							props.navigation.navigate('Play', { type: 'beginning' });
-						});
+					console.log('Found local storage user the bad one:', user);
+					if (!user) return;
+
+					if (!user) user = {};
+					if (!data) data = {};
+
+					if (user?.testPlayer) data.testPlayer = user.testPlayer;
+					if (user?.testCharacters) data.testCharacters = user.testCharacters;
+					if (user?.shiftStructure) data.shiftStructure = user.shiftStructure;
+					if (user?.availableDays) data.availableDays = user.availableDays;
+					if (user?.initialChapter) data.initialChapter = user.initialChapter;
+					if (user?.currentDay) data.currentDay = user.currentDay;
+
+					gameDriver.awake(data);
+					gameDriver.giveNavigator(props.navigation);
+
+					//At this point this is a check to see if this is the users first time playing
+					/* If true then */
+					if (storyLogic.checkForUnhandledStory()) {
+						storyLogic.fillChapterQueAndChapter();
+					}
+					props.navigation.navigate('Play', { type: 'beginning' });
 				}}
 			/>
 
@@ -105,6 +114,18 @@ function MainMenu(props) {
 			/>
 		</View>
 	);
+}
+
+async function fetchUser() {
+	return new Promise((res, rej) => {
+		fetch('https://coco-game-17308.herokuapp.com/testApi/characters')
+			.then(response => response.json())
+			.then(async data => {
+				res(data);
+			})
+			.catch(console.error);
+		console.log();
+	});
 }
 
 export default MainMenu;
