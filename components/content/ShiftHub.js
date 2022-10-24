@@ -8,6 +8,7 @@ import mStats from '../../GameLogic/ManageStats/ManageStats';
 import ScheduleScreen from './Schedule/Screen';
 import { useIsFocused } from '@react-navigation/native';
 import { click } from '../../GameLogic/AudioSystem';
+import { music } from '../../GameLogic/AudioSystem';
 
 var focusSchedule = null;
 
@@ -15,6 +16,10 @@ function ShiftHub(props) {
 	const [currentDay, setCurrentDay] = useState(mStats.getCurrentDay());
 	const [schedule, setSchedual] = useState(false);
 	const isFocused = useIsFocused();
+
+	useEffect(() => {
+		music.pause();
+	}, []);
 
 	useEffect(() => {
 		if (mStats.determinLoseCondition()) {

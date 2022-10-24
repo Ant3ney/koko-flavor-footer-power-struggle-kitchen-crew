@@ -7,6 +7,7 @@ import basic from '../../../Styles/basics';
 import { click } from '../../../GameLogic/AudioSystem';
 import { localStorage } from '../../../utilities';
 import getPopulatedUser from './getPopulatedUser';
+import initializeGameLogic from './initializeGameLogic';
 
 function MainMenu(props) {
 	useEffect(() => {
@@ -21,20 +22,11 @@ function MainMenu(props) {
 				onPress={async () => {
 					click();
 					props.navigation.navigate('Loading');
-					//In production check server data first.
-
-					//TODO: Change all occurrences of data from fetches to user
-					const { user, data } = await getPopulatedUser();
-
-					gameDriver.awake(data);
-					gameDriver.giveNavigator(props.navigation);
-
-					//At this point this is a check to see if this is the users first time playing
-					/* If true then */
-					if (storyLogic.checkForUnhandledStory()) {
-						storyLogic.fillChapterQueAndChapter();
-					}
-					props.navigation.navigate('Play', { type: 'beginning' });
+					const initDeps = { user: await getPopulatedUser(), props };
+					const receipt = initializeGameLogic(initDeps);
+					props.navigation.navigate('Play', {
+						type: receipt.interoperateUserForBeginning() ? 'beginning' : null,
+					});
 				}}
 			/>
 
@@ -85,18 +77,6 @@ function MainMenu(props) {
 			/>
 		</View>
 	);
-}
-
-async function fetchUser() {
-	return new Promise((res, rej) => {
-		fetch('https://coco-game-17308.herokuapp.com/testApi/characters')
-			.then(response => response.json())
-			.then(async data => {
-				res(data);
-			})
-			.catch(console.error);
-		console.log();
-	});
 }
 
 export default MainMenu;
