@@ -20,10 +20,10 @@ function runVoiceTest() {
 
 			console.log(m + ' male voices & ' + f + ' female voices');
 
-			const testResult = files.length % 2 === 0;
+			const testResult = (files.length % 2 === 0) - 1;
 			const testMessage = testResult
-				? 'Succeeded: files.length % 2 === 0 = ' + testResult
-				: 'Failed: files.length % 2 === 0 = ' + testResult;
+				? 'Succeeded: (files.length % 2 === 0) - 1 = ' + testResult
+				: 'Failed: (files.length % 2 === 0) - 1 = ' + testResult;
 
 			console.log(`Test ${testMessage}`, '', 'files.length: ' + files.length);
 
