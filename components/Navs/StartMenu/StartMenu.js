@@ -6,6 +6,7 @@ import storyLogic from '../../../GameLogic/StoryLogic';
 import basic from '../../../Styles/basics';
 import { click } from '../../../GameLogic/AudioSystem';
 import { localStorage } from '../../../utilities';
+import getPopulatedUser from './getPopulatedUser';
 
 function MainMenu(props) {
 	useEffect(() => {
@@ -20,40 +21,10 @@ function MainMenu(props) {
 				onPress={async () => {
 					click();
 					props.navigation.navigate('Loading');
-
-					//Check to se if local data is avalible.
-					//TODO: factor out loading data code into sperate file
-					const userJSON = window.local;
-					//If not use server data.
 					//In production check server data first.
 
-					//While the local storage solution is in development. local storage code will happeon here.
-
-					//Yes. there is a discrepancy between the name for data and user.
 					//TODO: Change all occurrences of data from fetches to user
-
-					let user = await fetchUser();
-					let data = null;
-
-					try {
-						user = (await localStorage.getObject('user')) || user;
-					} catch {
-						return;
-					}
-
-					console.log('Found local storage user the bad one:', user);
-
-					if (!user) return;
-
-					if (!user) user = {};
-					if (!data) data = {};
-
-					if (user?.testPlayer) data.testPlayer = user.testPlayer;
-					if (user?.testCharacters) data.testCharacters = user.testCharacters;
-					if (user?.shiftStructure) data.shiftStructure = user.shiftStructure;
-					if (user?.availableDays) data.availableDays = user.availableDays;
-					if (user?.initialChapter) data.initialChapter = user.initialChapter;
-					if (user?.currentDay) data.currentDay = user.currentDay;
+					const { user, data } = await getPopulatedUser();
 
 					gameDriver.awake(data);
 					gameDriver.giveNavigator(props.navigation);

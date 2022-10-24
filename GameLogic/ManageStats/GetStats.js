@@ -384,7 +384,7 @@ function GetStats() {
 		var fullName;
 		var mStatsCharacter;
 
-		//Create Day Characters refrence array
+		//Create Day Characters reference array
 		var characterDataAry = shiftStructure[day]['day'];
 		characterDataAry.forEach(character => {
 			characterName = character.person.name;
