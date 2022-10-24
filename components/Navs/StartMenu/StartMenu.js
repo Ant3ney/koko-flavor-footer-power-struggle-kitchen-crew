@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
-import gameDriver from '../../../GameLogic/GameDriver';
 import { music } from '../../../GameLogic/AudioSystem';
-import storyLogic from '../../../GameLogic/StoryLogic';
 import basic from '../../../Styles/basics';
 import { click } from '../../../GameLogic/AudioSystem';
-import { localStorage } from '../../../utilities';
 import getPopulatedUser from './getPopulatedUser';
 import initializeGameLogic from './initializeGameLogic';
 
 function MainMenu(props) {
 	useEffect(() => {
-		music.play('mainTheme', { loop: true, volume: 0.15 });
+		music.play('mainTheme', {
+			loop: true,
+			volume: 0.15,
+			onLoad: () => {
+				alert('Main theme loaded');
+			},
+		});
 	}, []);
 
 	return (

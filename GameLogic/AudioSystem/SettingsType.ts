@@ -15,6 +15,7 @@ type Settings = {
 		postDuration: number;
 	};
 	duck?: boolean;
+	onLoad?: Function;
 };
 
 export default Settings;

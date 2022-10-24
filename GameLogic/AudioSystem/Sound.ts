@@ -206,14 +206,15 @@ export default class Sound {
 		const soundFile = sounds[name];
 		if (!soundFile) return unavalibleSoundFileError(name);
 
-		await this[`${this.player}Load`](name);
+		await this[`${this.player}Load`](name, settings);
 	}
-	howlerLoad(name: string) {
+	howlerLoad(name: string, settings?: Settings) {
 		const soundFile = sounds[name];
 		if (this.howler) this.corePause();
 		this.howler = new Howl({
 			src: [soundFile],
 		});
+		if (settings?.onLoad) this.howler.once('load', settings.onLoad);
 	}
 	async expoLoad(name: string) {
 		if (this.expoAudio) await this.expoAudio.pauseAsync();
