@@ -133,15 +133,15 @@ import maleFriendlyHappyShort from "./maleFriendlyHappyShort.mp3";
 import maleFriendlyNeutralLong from "./maleFriendlyNeutralLong.mp3";
 import maleFriendlyNeutralMedium from "./maleFriendlyNeutralMedium.mp3";
 import maleFriendlyNeutralShort from "./maleFriendlyNeutralShort.mp3";
-import maleOrganisedAngryLong from "./maleOrganisedAngryLong.mp3";
-import maleOrganisedAngryMedium from "./maleOrganisedAngryMedium.mp3";
-import maleOrganisedAngryShort from "./maleOrganisedAngryShort.mp3";
-import maleOrganisedHappyLong from "./maleOrganisedHappyLong.mp3";
-import maleOrganisedHappyMedium from "./maleOrganisedHappyMedium.mp3";
-import maleOrganisedHappyShort from "./maleOrganisedHappyShort.mp3";
-import maleOrganisedNeutralLong from "./maleOrganisedNeutralLong.mp3";
-import maleOrganisedNeutralMedium from "./maleOrganisedNeutralMedium.mp3";
-import maleOrganisedNeutralShort from "./maleOrganisedNeutralShort.mp3";
+import maleOrganizedAngryLong from "./maleOrganizedAngryLong.mp3";
+import maleOrganizedAngryMedium from "./maleOrganizedAngryMedium.mp3";
+import maleOrganizedAngryShort from "./maleOrganizedAngryShort.mp3";
+import maleOrganizedHappyLong from "./maleOrganizedHappyLong.mp3";
+import maleOrganizedHappyMedium from "./maleOrganizedHappyMedium.mp3";
+import maleOrganizedHappyShort from "./maleOrganizedHappyShort.mp3";
+import maleOrganizedNeutralLong from "./maleOrganizedNeutralLong.mp3";
+import maleOrganizedNeutralMedium from "./maleOrganizedNeutralMedium.mp3";
+import maleOrganizedNeutralShort from "./maleOrganizedNeutralShort.mp3";
 import maleOutgoingAngryLong from "./maleOutgoingAngryLong.mp3";
 import maleOutgoingAngryMedium from "./maleOutgoingAngryMedium.mp3";
 import maleOutgoingAngryShort from "./maleOutgoingAngryShort.mp3";
@@ -297,15 +297,15 @@ export default {
     maleFriendlyNeutralLong,
     maleFriendlyNeutralMedium,
     maleFriendlyNeutralShort,
-    maleOrganisedAngryLong,
-    maleOrganisedAngryMedium,
-    maleOrganisedAngryShort,
-    maleOrganisedHappyLong,
-    maleOrganisedHappyMedium,
-    maleOrganisedHappyShort,
-    maleOrganisedNeutralLong,
-    maleOrganisedNeutralMedium,
-    maleOrganisedNeutralShort,
+    maleOrganizedAngryLong,
+    maleOrganizedAngryMedium,
+    maleOrganizedAngryShort,
+    maleOrganizedHappyLong,
+    maleOrganizedHappyMedium,
+    maleOrganizedHappyShort,
+    maleOrganizedNeutralLong,
+    maleOrganizedNeutralMedium,
+    maleOrganizedNeutralShort,
     maleOutgoingAngryLong,
     maleOutgoingAngryMedium,
     maleOutgoingAngryShort,

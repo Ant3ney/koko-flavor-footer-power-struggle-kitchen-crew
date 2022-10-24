@@ -7,7 +7,7 @@ let staticConversation = {};
 var beginingTemplete = (dialogChanged, exit) => {
 	var subJect01Obj = mStats.getRandomCharacter();
 	var johnTheMan = new characters();
-	johnTheMan.characterInit({ name: {}, gender: 'm' }, {});
+	johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'consistent' }, {});
 	var narrator = new characters();
 	mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
 	mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
@@ -16,7 +16,7 @@ var beginingTemplete = (dialogChanged, exit) => {
 	return {
 		conversation01: [
 			{
-				dialog: new Dialog(johnTheMan, 'Why?!!?'),
+				dialog: new Dialog(johnTheMan, 'Why?!!?', { emotion: 'Angry' }),
 				responses: [
 					{
 						title: 'next',

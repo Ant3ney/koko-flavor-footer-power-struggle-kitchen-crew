@@ -33,8 +33,8 @@ function MainMenu(props) {
 						.then(async data => {
 							//While the local storage solution is in development. local storage code will happeon here.
 
-							//Yes. there is a discrepency between the name for data and user.
-							//TODO: Change all ocurences of data from fetches to user
+							//Yes. there is a discrepancy between the name for data and user.
+							//TODO: Change all occurrences of data from fetches to user
 							const user = await localStorage.getObject('user');
 
 							console.log('Found local storage user:', user);

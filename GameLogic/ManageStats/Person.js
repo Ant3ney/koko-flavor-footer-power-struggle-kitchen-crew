@@ -45,24 +45,19 @@ function Person() {
 
 	this.voice = new Sound('maleApeShort');
 
-	this.constructVoicePrefix = () => {
+	this.constructVoicePrefix = emotion => {
 		//replace with this.personality when personality sounds are added
-		let personality = 'ape';
-		personality = `${personality.slice(0, 1).toUpperCase()}${personality.slice(1, personality.length)}`;
+
 		return `${this.gender === 'f' ? 'female' : 'male'}${personality}`;
 	};
 
-	this.playVoiceShort = () => {
+	this.playVoice = (emotion = 'Neutral', length = 'Short') => {
+		const personality = this.personality
+			? `${this.personality.slice(0, 1).toUpperCase()}${this.personality.slice(1, this.personality.length)}`
+			: 'Consistent';
+		const gender = this.gender === 'f' ? 'female' : 'male';
 		this.voice.pause();
-		this.voice.play(`${this.constructVoicePrefix()}Short`);
-	};
-	this.playVoiceMedium = () => {
-		this.voice.pause();
-		this.voice.play(`${this.constructVoicePrefix()}Medium`);
-	};
-	this.playVoiceLong = () => {
-		this.voice.pause();
-		this.voice.play(`${this.constructVoicePrefix()}Long`);
+		this.voice.play(`${gender}${personality}${emotion}${length}`);
 	};
 
 	this.setAge = age => {

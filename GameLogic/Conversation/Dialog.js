@@ -1,11 +1,7 @@
-function Dialog(character, dialog) {
+function Dialog(character, dialog, settings) {
 	this.character = character;
 	this.dialog = dialog;
-	this.voice = {
-		isShort: dialog.length < 20,
-		isMedium: dialog.length < 150,
-		isLong: dialog.length >= 150,
-	};
+	this.settings = settings;
 
 	this.setCharacter = character => {
 		this.character = character;
@@ -17,14 +13,19 @@ function Dialog(character, dialog) {
 		this.dialog = dialog;
 	};
 	this.playVoice = () => {
-		const { isShort, isMedium } = this.voice;
-		if (isShort) this.character.playVoiceShort();
-		else if (isMedium) this.character.playVoiceMedium();
-		else this.character.playVoiceLong();
+		const voiceLength = getVoiceLength(dialog);
+		const { emotion } = settings || {};
+		this.character.playVoice(emotion, voiceLength);
 	};
 	this.getDialog = () => {
 		return this.dialog;
 	};
+}
+
+function getVoiceLength(dialog) {
+	if (dialog.length < 100) return 'Short';
+	else if (dialog.length < 200) return 'Medium';
+	else if (dialog.length >= 200) return 'Long';
 }
 
 export default Dialog;
