@@ -43,6 +43,7 @@ function MainMenu(props) {
 					}
 
 					console.log('Found local storage user the bad one:', user);
+
 					if (!user) return;
 
 					if (!user) user = {};
