@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
-import gameDriver from '../../GameLogic/GameDriver';
-import { music } from '../../GameLogic/AudioSystem';
-import storyLogic from '../../GameLogic/StoryLogic';
-import basic from '../../Styles/basics';
-import { click } from '../../GameLogic/AudioSystem';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { localStorage } from '../../utilities';
+import gameDriver from '../../../GameLogic/GameDriver';
+import { music } from '../../../GameLogic/AudioSystem';
+import storyLogic from '../../../GameLogic/StoryLogic';
+import basic from '../../../Styles/basics';
+import { click } from '../../../GameLogic/AudioSystem';
+import { localStorage } from '../../../utilities';
 
 function MainMenu(props) {
 	useEffect(() => {
