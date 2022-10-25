@@ -26,6 +26,7 @@ export default async function getPopulatedUser() {
 async function fetchUser() {
 	return tempOfflineBackendUser;
 	/* 
+		BackEnd Offline
 		The below code is commented out because the backend server went out (Exceeded free plan quota). 
 		For now we will just get the initial data from local static files 
 	*/
