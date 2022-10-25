@@ -24,3 +24,10 @@ visit https://koko-flavor-fodder.netlify.app to play current build
    a. Migrate backend code to front end.
 4. Add code to load in audio before start menu is displayed.
 5. Make small QA tweaks where possible.
+   In chapter 03 of the story, a lot of dialog is missing.
+   Extend credits to include all voice actors.
+
+# Development
+
+All occurrences of BackEnd Offline will be followed by commented out code that fetches data from back end.
+When new backend solution presents itself. Re-implement fetch code.
