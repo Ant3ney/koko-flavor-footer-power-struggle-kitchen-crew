@@ -1,6 +1,6 @@
-## ココ Flavor Fodder. Power struggle. Kitchen crew.
+# ココ Flavor Fodder. Power struggle. Kitchen crew.
 
-### To Play
+## To Play
 
 visit https://koko-flavor-fodder.netlify.app to play current build
 
