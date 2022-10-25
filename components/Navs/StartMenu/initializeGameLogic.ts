@@ -14,7 +14,7 @@ const initializeGameLogic = (initDeps: any) => {
 
 	return {
 		interoperateUserForBeginning: () =>
-			user && user.currentDay === 'monday' && user.initialChapter === 0 && user.power === 50,
+			user?.testPlayer && user.currentDay === 'monday' && user.initialChapter === 0 && user.testPlayer === 50,
 	};
 };
 

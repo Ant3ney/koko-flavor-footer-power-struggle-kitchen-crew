@@ -1,4 +1,5 @@
 import { localStorage } from '../../../utilities';
+import tempOfflineBackendUser from '../../tempOfflineBackend';
 
 type User = {
 	testPlayer?: any;
@@ -23,7 +24,12 @@ export default async function getPopulatedUser() {
 }
 
 async function fetchUser() {
-	return new Promise((res, rej) => {
+	return tempOfflineBackendUser;
+	/* 
+		The below code is commented out because the backend server went out (Exceeded free plan quota). 
+		For now we will just get the initial data from local static files 
+	*/
+	/* return new Promise((res, rej) => {
 		fetch('https://coco-game-17308.herokuapp.com/testApi/characters')
 			.then(response => response.json())
 			.then(async data => {
@@ -31,5 +37,5 @@ async function fetchUser() {
 			})
 			.catch(console.error);
 		console.log();
-	});
+	}); */
 }

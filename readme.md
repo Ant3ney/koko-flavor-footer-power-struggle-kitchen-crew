@@ -21,5 +21,6 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 2. Clean up StartMenu Component. X
 3. Fix CORS bug on backend.
    The issue came from the fact that Heroku shut down the back end.
+   a. Migrate backend code to front end.
 4. Add code to load in audio before start menu is displayed.
 5. Make small QA tweaks where possible.
