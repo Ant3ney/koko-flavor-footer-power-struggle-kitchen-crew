@@ -19,10 +19,9 @@ visit https://koko-flavor-fodder.netlify.app to play current build
    b. Create script to check if all files are there. X
    c. Create a js script that creates a js file that imports all the voice Audio Files in the current directory and exports those files as a js object. X
 2. Clean up StartMenu Component. X
-3. Fix CORS bug on backend.
-   The issue came from the fact that Heroku shut down the back end.
-   a. Migrate backend code to front end.
+3. Make game-server independent. X
 4. Add code to load in audio before start menu is displayed.
+   Create test for async code that check for an API that fires once when audio starts loading and once when it has finished loading.
 5. Make small QA tweaks where possible.
    In chapter 03 of the story, a lot of dialog is missing.
    Extend credits to include all voice actors.
