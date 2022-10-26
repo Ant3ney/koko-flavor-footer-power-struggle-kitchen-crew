@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const directoryPath = path.join(__dirname, '../GameLogic/AudioSystem/sounds/voices');
+const directoryPath = path.join(__dirname, '../../GameLogic/AudioSystem/sounds/voices');
 
 function runVoiceTest() {
 	console.log('Running Custom Build Test');

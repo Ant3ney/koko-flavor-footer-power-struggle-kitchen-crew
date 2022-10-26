@@ -214,7 +214,13 @@ export default class Sound {
 		this.howler = new Howl({
 			src: [soundFile],
 		});
-		if (settings?.onLoad) this.howler.once('load', settings.onLoad);
+		if (settings?.onLoad)
+			this.howler.once('load', () => {
+				if (settings?.onLoad) settings.onLoad();
+			});
+		this.howler.load({
+			src: [soundFile],
+		});
 	}
 	async expoLoad(name: string) {
 		if (this.expoAudio) await this.expoAudio.pauseAsync();

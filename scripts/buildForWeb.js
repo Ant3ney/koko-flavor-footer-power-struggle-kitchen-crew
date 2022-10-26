@@ -1,5 +1,5 @@
 const { exec } = require('child_process');
-const voiceFilesTest = require('./testVoiceFiles');
+const voiceFilesTest = require('./tests/testVoiceFiles');
 
 voiceFilesTest()
 	.then(() => {

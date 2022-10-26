@@ -21,7 +21,7 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 2. Clean up StartMenu Component. X
 3. Make game-server independent. X
 4. Add code to load in audio before start menu is displayed.
-   Create test for async code that check for an API that fires once when audio starts loading and once when it has finished loading.
+   Create test for async code that check for an API that fires once when audio starts loading and once when it has finished loading. Consider using enzyme for react native.
 5. Make small QA tweaks where possible.
    In chapter 03 of the story, a lot of dialog is missing.
    Extend credits to include all voice actors.
