@@ -12,6 +12,7 @@ function PressStart(props) {
 				title='Start'
 				onPress={async () => {
 					click();
+					props.navigation.navigate('Loading');
 					await loadAllAudio();
 					props.navigation.navigate('Main Menu');
 				}}
