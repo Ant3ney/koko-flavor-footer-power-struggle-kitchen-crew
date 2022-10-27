@@ -15,10 +15,19 @@ export default function Credits(props) {
 				}}
 			/>
 			<Text>Credits</Text>
-			<Text>Voice Actor: delaneygilmour</Text>
-			<Text>Voice Actor: thegreattoddman</Text>
-			<Text>Voice Actor: cessinistas</Text>
-			<Text>Voice Actor: huskycommander</Text>
+			<Text>Game Director: Anthony Cavuoti</Text>
+			<Text>Voice Actor: delaneygilmour from fiverr</Text>
+			<Text>Voice Actor: thegreattoddman from fiverr</Text>
+			<Text>Voice Actor: cessinistas from fiverr</Text>
+			<Text>Voice Actor: huskycommander from fiverr</Text>
+			<Text>Voice Actor: Jannik Baur</Text>
+			<Text>Voice Actor: Victor</Text>
+			<Text>Voice Actor: Taylor Sanchez</Text>
+			<Text>Voice Actor: Nathan</Text>
+			<Text>Voice Actor: Dante Ayala</Text>
+			<Text>Music: Joseph and the Amazing Technicolor Dreamcoat</Text>
+			<Text>Music transposition: Anthony Cavuoti</Text>
+			<Text>Scenario Consultant: Brad Yanagi</Text>
 		</View>
 	);
 }
