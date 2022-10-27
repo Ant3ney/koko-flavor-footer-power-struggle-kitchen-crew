@@ -33,35 +33,35 @@ function MainMenu(props) {
 				}}
 			/>
 
-			<Button
+			{/* <Button
 				title='Login'
 				onPress={() => {
 					click();
 				}}
-			/>
+			/> */}
 
-			<Button
+			{/* <Button
 				title='Sign up'
 				onPress={() => {
 					click();
 				}}
-			/>
+			/> */}
 
-			<Button
+			{/* <Button
 				title='Share'
 				onPress={() => {
 					click();
 					props.navigation.navigate('Share');
 				}}
-			/>
+			/> */}
 
-			<Button
+			{/* <Button
 				title='Leaderbords'
 				onPress={() => {
 					click();
 					props.navigation.navigate('Leaderbords');
 				}}
-			/>
+			/> */}
 
 			<Button
 				title='Credits'
@@ -71,13 +71,13 @@ function MainMenu(props) {
 				}}
 			/>
 
-			<Button
+			{/* <Button
 				title='Settings'
 				onPress={() => {
 					click();
 					props.navigation.navigate('Settings');
 				}}
-			/>
+			/> */}
 		</View>
 	);
 }
