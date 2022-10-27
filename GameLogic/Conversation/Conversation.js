@@ -34,6 +34,7 @@ let conversation = {
 			case 'win':
 				break;
 			case 'lose':
+				conversation.array.push(beginningTemplete);
 				break;
 		}
 
@@ -63,6 +64,9 @@ let conversation = {
 			click();
 			conIndex++;
 			diIndex = 0;
+			if (type === 'lose') {
+				//TODO, run reset data function here
+			}
 			if (conIndex >= conversationArray.length) {
 				//Save data point
 				conversation.navigation.navigate('Next Shift Select');

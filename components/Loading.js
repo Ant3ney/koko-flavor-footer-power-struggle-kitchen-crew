@@ -13,15 +13,9 @@ function Loading() {
 
 function Dots() {
 	const dots = useRef(0);
-	const [dotsCatchUp, setDotsCatchUp] = useState(dots.current);
 
 	useEffect(() => {
-		console.log('Dots updated', dots.current);
-	}, [dots.current]);
-
-	useEffect(() => {
-		setInterval(() => {
-			console.log('Interval', dots.current);
+		const intervalVID = setInterval(() => {
 			if (dots.current === 3) dots.current = 0;
 			dots.current = dots.current + 1;
 			const dotsEle = document.querySelector('#dots');
@@ -33,6 +27,9 @@ function Dots() {
 				return dotString;
 			})();
 		}, 500);
+		return () => {
+			clearInterval(intervalVID);
+		};
 	}, []);
 
 	return <div id='dots'></div>;

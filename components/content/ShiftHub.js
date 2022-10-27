@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native';
-import basic from '../../Styles/basics';
-import presets from '../../GameLogic/PresetsAndTemplates/ShiftPresets';
-import shiftHubStyle from '../../Styles/shiftHub';
-import shiftHubLogic from '../../GameLogic/ShiftHub';
-import mStats from '../../GameLogic/ManageStats/ManageStats';
-import ScheduleScreen from './Schedule/Screen';
 import { useIsFocused } from '@react-navigation/native';
-import { click } from '../../GameLogic/AudioSystem';
-import { music } from '../../GameLogic/AudioSystem';
+import React, { useEffect, useState } from 'react';
+import { Button, Text, View } from 'react-native';
+import { click, music } from '../../GameLogic/AudioSystem';
+import mStats from '../../GameLogic/ManageStats/ManageStats';
+import presets from '../../GameLogic/PresetsAndTemplates/ShiftPresets';
+import shiftHubLogic from '../../GameLogic/ShiftHub';
+import basic from '../../Styles/basics';
+import shiftHubStyle from '../../Styles/shiftHub';
+import ScheduleScreen from './Schedule/Screen';
+import { characters, assembleSchedule } from '../tempOfflineBackend';
+import { saveUser } from '../../GameLogic/SaveSystem';
 
 var focusSchedule = null;
 
@@ -324,9 +325,9 @@ function ShiftHub(props) {
 				<View>
 					<Button
 						title='Next Week'
-						onPress={() => {
+						onPress={async () => {
 							click();
-							//Be very aware that this code is scafolting and is very subject to change
+							//Be very aware that this code is scaffolding and is very subject to change
 
 							//Alow character to progress on any free day in the week
 							shiftHubLogic.manageDaysUpTo(presets('sunday').day, {
@@ -337,17 +338,17 @@ function ShiftHub(props) {
 							props.navigation.navigate('Loading Local');
 							mStats.setPSanity(30);
 
-							fetch('https://coco-game-17308.herokuapp.com/testApi/schedule')
-								.then(response => response.json())
-								.then(structure => {
-									mStats.setSchedualFromShiftStructure(structure);
-									//Player may have lost by pressing next week
-									if (mStats.determinLoseCondition()) {
-										handleLose(props);
-									} else {
-										props.navigation.navigate('Next Shift Select');
-									}
-								});
+							const structure = await fetchSchedule();
+
+							mStats.setSchedualFromShiftStructure(structure);
+							//Player may have lost by pressing next week
+							if (mStats.determinLoseCondition()) {
+								handleLose(props);
+							} else {
+								props.navigation.navigate('Next Shift Select');
+							}
+
+							await saveUser();
 						}}
 					/>
 					<Button
@@ -369,6 +370,21 @@ function ShiftHub(props) {
 function handleLose(props) {
 	props.gameLogic.staticConversation.procLose(true);
 	props.navigation.navigate('Conversation');
+}
+
+function fetchSchedule() {
+	return assembleSchedule(characters);
+	/* 
+		BackEnd Offline
+		The below code is commented out because the backend server went out (Exceeded free plan quota). 
+		For now we will just get the initial data from local static files 
+	*/
+	/* return newPromise((res, rej) => {
+		fetch('https://coco-game-17308.herokuapp.com/testApi/schedule')
+			.then(response => response.json())
+			.then(res)
+			.catch(rej);
+	}); */
 }
 
 export default ShiftHub;
