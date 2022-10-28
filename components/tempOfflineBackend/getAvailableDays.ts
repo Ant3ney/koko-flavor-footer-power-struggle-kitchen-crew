@@ -30,6 +30,7 @@ var availableDays = {
 };
 
 export default () => {
+	//Ensures that an object with all days available will be returned when called.
 	return (() => {
 		const newAvailableDays: any = {};
 		for (let day in availableDays) {

@@ -23,7 +23,7 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 4. Add code to load in audio before start menu is displayed.
    Create test for async code that check for an API that fires once when audio starts loading and once when it has finished loading. Consider using enzyme for react native.X
 5. Make small QA tweaks where possible.
-   a. Fix lose event.
+   a. Fix lose event. X
    b. In chapter 03 of the story, a lot of dialog is missing.
    Extend credits to include all voice actors.
 
