@@ -29,5 +29,5 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 
 # Development
 
-All occurrences of BackEnd Offline will be followed by commented out code that fetches data from back end.
+All occurrences of will be followed by commented out code that fetches data from back end.
 When new backend solution presents itself. Re-implement fetch code.

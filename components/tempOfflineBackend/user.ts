@@ -1,14 +1,14 @@
 import characters from './characters';
 import assemblySchedule from './assemblySchedule';
-import availableDays from './availableDays';
+import getAvailableDays from './getAvailableDays';
 import player from './player';
 
-function initializeUser() {
+export function initializeUser() {
 	return {
 		testCharacters: characters,
 		testPlayer: player,
 		shiftStructure: assemblySchedule(characters),
-		availableDays,
+		availableDays: getAvailableDays(),
 		initialChapter: 0, //Default is 0
 		currentDay: 'monday',
 	};

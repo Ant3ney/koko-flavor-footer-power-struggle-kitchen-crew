@@ -50,8 +50,6 @@ class Kitchen extends PureComponent {
 				this.props.gameLogic.staticConversation.procWin(true);
 				this.props.navigation.navigate('Conversation', { type: 'win' });
 			} else if (gameDetails.hasLost === true) {
-				this.props.gameLogic.staticConversation.procLose(true);
-				//TODO: pass a paramiter into the navigate function saying the player lost
 				this.props.navigation.navigate('Conversation', { type: 'lose' });
 			} else {
 				this.props.navigation.navigate('Level Report');

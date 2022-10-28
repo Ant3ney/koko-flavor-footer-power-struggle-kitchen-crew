@@ -58,6 +58,7 @@ function GameMenuNav(props) {
 			<Stack.Screen name='Conversation'>
 				{proxyProps => {
 					let type = util.getConversationTypeFromProps(proxyProps);
+					console.log('type here:', type);
 					return (
 						<Conversation
 							styleProp={props.styleProp}
@@ -72,6 +73,7 @@ function GameMenuNav(props) {
 			<Stack.Screen name='Begin Conversation'>
 				{proxyProps => {
 					let type = util.getConversationTypeFromProps(proxyProps);
+					console.log('Running beginning conversation with type: ', type);
 					return (
 						<Conversation
 							styleProp={props.styleProp}

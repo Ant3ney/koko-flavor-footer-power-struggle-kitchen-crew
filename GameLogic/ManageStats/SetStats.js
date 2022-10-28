@@ -1,5 +1,6 @@
-import characters from '../PresetsAndTemplates/testCharacters';
 import storyLogic from '../StoryLogic';
+import { localStorage } from '../../utilities';
+import { initializeUser } from '../../components/tempOfflineBackend';
 
 //Private global vars
 var previousEffectivnessChange = 0;
@@ -472,21 +473,37 @@ function SetStats() {
 		this.alreadyWon = false;
 		this.setStatsListener();
 
-		fetch('https://coco-game-17308.herokuapp.com/testApi/resetData')
-			.then(response => response.json())
-			.then(data => {
-				gameDriver.awake(data);
+		localStorage.set('user', null);
 
-				//At this point this is a check to see if this is the users first time playing
-				if (storyLogic.checkForUnhandledStory()) {
-					console.log('Initing story');
-				}
-				navigation.navigate('Conversation', { type: 'beginning' });
-			});
+		const resetUser = fetchResetUserData();
+		console.log('reseting user with', resetUser);
+
+		gameDriver.awake(resetUser);
+
+		if (storyLogic.checkForUnhandledStory()) {
+			console.log('Initing story');
+		}
+
+		navigation.navigate('Begin Conversation', { type: 'beginning' });
 	};
 	this.setAlreadyWon = won => {
 		this.alreadyWon = won;
 	};
+}
+
+function fetchResetUserData() {
+	return initializeUser();
+	/* 
+		BackEnd Offline
+		The below code is commented out because the backend server went out (Exceeded free plan quota). 
+		For now we will just get the initial data from local static files 
+	*/
+	/* fetch('https://coco-game-17308.herokuapp.com/testApi/resetData')
+	.then(response => response.json())
+	.then(data => {
+		gameDriver.awake(data);
+		
+	}); */
 }
 
 export default SetStats;

@@ -18,18 +18,26 @@ function ShiftHub(props) {
 	const [schedule, setSchedual] = useState(false);
 	const isFocused = useIsFocused();
 
+	const [isLoading, setIsLoading] = useState(false);
+
 	useEffect(() => {
 		music.pause();
+
+		if (mStats.determinLoseCondition()) handleLose(props, setIsLoading);
 	}, []);
 
 	useEffect(() => {
-		if (mStats.determinLoseCondition()) {
-			handleLose(props);
-		}
 		mStats.onDayChange(() => {
 			setCurrentDay(mStats.getCurrentDay());
 		}, 'current day');
 	}, [isFocused]);
+
+	if (isLoading)
+		return (
+			<View>
+				<Text>Loading...</Text>
+			</View>
+		);
 
 	return (
 		<View style={{ ...shiftHubStyle.container, ...basic.gridContainer }}>
@@ -51,6 +59,8 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('monday').day);
 							shiftHubLogic.manageDaysUpTo(presets('monday').day);
+							if (mStats.determinLoseCondition())
+								props.navigation.navigate('Begin Conversation', { type: 'lose' });
 							props.navigation.navigate('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('monday')}
@@ -367,9 +377,12 @@ function ShiftHub(props) {
 	}
 }
 
-function handleLose(props) {
-	props.gameLogic.staticConversation.procLose(true);
-	props.navigation.navigate('Conversation');
+function handleLose(props, setLoading) {
+	setLoading(true);
+	setTimeout(() => {
+		props.navigation.navigate('Conversation', { type: 'lose' });
+		setLoading(false);
+	}, 3000);
 }
 
 function fetchSchedule() {

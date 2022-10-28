@@ -4,6 +4,9 @@ import storyLogic from '../StoryLogic';
 import storyTempletes from '../PresetsAndTemplates/StoryTempletes';
 import KickbackConversationTempletes from '../PresetsAndTemplates/KickbackConversationTempletes';
 import { music, click } from '../AudioSystem';
+import mStats from '../ManageStats/ManageStats';
+import loseTemplete from '../PresetsAndTemplates/ConversationEventTempletes/Lose';
+import gameDriver from '../GameDriver';
 
 const FIRST_CONVERSATION_PROPERTY = 'conversation01';
 
@@ -34,7 +37,7 @@ let conversation = {
 			case 'win':
 				break;
 			case 'lose':
-				conversation.array.push(beginningTemplete);
+				conversation.array.push(loseTemplete);
 				break;
 		}
 
@@ -64,8 +67,10 @@ let conversation = {
 			click();
 			conIndex++;
 			diIndex = 0;
-			if (type === 'lose') {
+			if (conversation.type === 'lose') {
 				//TODO, run reset data function here
+				mStats.resetData(gameDriver);
+				return;
 			}
 			if (conIndex >= conversationArray.length) {
 				//Save data point

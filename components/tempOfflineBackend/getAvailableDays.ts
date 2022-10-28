@@ -29,4 +29,15 @@ var availableDays = {
 	},
 };
 
-export default availableDays;
+export default () => {
+	return (() => {
+		const newAvailableDays: any = {};
+		for (let day in availableDays) {
+			newAvailableDays[day] = {
+				day: true,
+				night: true,
+			};
+		}
+		return newAvailableDays;
+	})();
+};
