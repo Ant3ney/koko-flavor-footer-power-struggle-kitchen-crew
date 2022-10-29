@@ -5,6 +5,9 @@ import { music } from '../AudioSystem';
 let staticConversation = {};
 const FIRST_CONVERSATION_PROPERTY = 'conversation01';
 const PLAY_MUSIC_SETTINGS = { volume: 0.15, loop: true };
+const a = { emotion: 'Angry' };
+const h = { emotion: 'Happy' };
+const n = { emotion: 'Neutral' };
 
 var storyTempletes = [
 	(dialogChanged, exit) => {
@@ -15,7 +18,7 @@ var storyTempletes = [
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',
@@ -29,7 +32,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"Well I'll be damned! I didn't think expect you to survive here past the first day! You really are something pal."
+						"Well I'll be damned! I didn't think expect you to survive here past the first day! You really are something pal.",
+						h
 					),
 					responses: [
 						{
@@ -43,7 +47,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Make sure to hustle out there man. In order to improvee your station effectiveness.'
+						'Make sure to hustle out there man. In order to improve your station effectiveness.',
+						n
 					),
 					responses: [
 						{
@@ -57,7 +62,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'But yo. Listen to this. Theres a lot of power opportunities in employee parties! I mean you can go from rags to riches at the right party.'
+						'But yo. Listen to this. Theres a lot of power opportunities in employee parties! I mean you can go from rags to riches at the right party.',
+						h
 					),
 					responses: [
 						{
@@ -71,7 +77,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"Anyway I'll let you know about any party opportunities I come across. We are in this togather!"
+						"Anyway I'll let you know about any party opportunities I come across. We are in this togather!",
+						h
 					),
 					responses: [
 						{
@@ -96,7 +103,7 @@ var storyTempletes = [
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',
@@ -110,7 +117,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"Hey my man, you have to meet my friend Ranual! He got us invited to Tiffany's party!"
+						"Hey my man, you have to meet my friend Ranual! He got us invited to Tiffany's party!",
+						h
 					),
 					responses: [
 						{
@@ -122,7 +130,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(ranual, "Hi what's up. I think this party will definitely be lit."),
+					dialog: new Dialog(ranual, "Hi what's up. I think this party will definitely be lit.", n),
 					responses: [
 						{
 							title: 'next',
@@ -135,7 +143,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Raniel look. This is our opportunity to gain large amounts of power so wee need you to be ready for this party!'
+						'Raniel look. This is our opportunity to gain large amounts of power so we need you to be ready for this party!',
+						a
 					),
 					responses: [
 						{
@@ -149,7 +158,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						ranual,
-						"Hey I'm ready but I have to go easy on the drinking. Honastly, we should all go easy on the drinking."
+						"Hey I'm ready but I have to go easy on the drinking. Honastly, we should all go easy on the drinking.",
+						n
 					),
 					responses: [
 						{
@@ -161,7 +171,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'Dude. Tell this man he needs to 100% lit with us!'),
+					dialog: new Dialog(christian, 'Dude. Tell this man he needs to 100% lit with us!', a),
 					responses: [
 						{
 							title: 'Ranual. Get lit with us!',
@@ -178,7 +188,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'Yeah! What your problem Raniel! GELIT!'),
+					dialog: new Dialog(christian, 'Yeah! What your problem Raniel! GELIT!', a),
 					responses: [
 						{
 							title: 'next',
@@ -191,7 +201,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						ranual,
-						"Look, Im trying to be responsable here. It's not safe to drink too much."
+						"Look, Im trying to be responsable here. It's not safe to drink too much.",
+						n
 					),
 					responses: [
 						{
@@ -204,7 +215,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(kasey, "Hey losers! Are you guys talking about Tiffany's party?"),
+					dialog: new Dialog(kasey, "Hey losers! Are you guys talking about Tiffany's party?", n),
 					responses: [
 						{
 							title: 'next',
@@ -217,7 +228,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Heck yeah and where going to leave that party as the most powerful employees of ココ.'
+						'Heck yeah and where going to leave that party as the most powerful employees of ココ.',
+						h
 					),
 					responses: [
 						{
@@ -231,7 +243,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						kasey,
-						'Are you guys really so stupid as to think yoy can gain power power from parties. Did no one ever tell you that power is obtained through running an effective station?'
+						'Are you guys really so stupid as to think yoy can gain power power from parties. Did no one ever tell you that power is obtained through running an effective station?',
+						h
 					),
 					responses: [
 						{
@@ -245,7 +258,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'And who told you that! John the man? I think you where served up a load of bs because parties are the lifeblood of power.'
+						'And who told you that! John the man? I think you where served up a load of bs because parties are the lifeblood of power.',
+						a
 					),
 					responses: [
 						{
@@ -260,7 +274,7 @@ var storyTempletes = [
 			],
 			youDoYouOption: [
 				{
-					dialog: new Dialog(christian, "Dude! Don't encurage his to get lit!"),
+					dialog: new Dialog(christian, "Dude! Don't encurage his to get lit!", a),
 					responses: [
 						{
 							title: 'next',
@@ -303,7 +317,7 @@ var storyTempletes = [
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',
@@ -326,7 +340,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'No! tell her to...'),
+					dialog: new Dialog(christian, 'No! tell her to...', a),
 					responses: [
 						{
 							title: 'next',
@@ -338,7 +352,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(vicky, 'Tell me to what!?!'),
+					dialog: new Dialog(vicky, 'Tell me to what!?!', a),
 					responses: [
 						{
 							title: 'next',
@@ -387,7 +401,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						vicky,
-						"I'm going to that party! But yeah it did sound a little low key for me."
+						"I'm going to that party! But yeah it did sound a little low key for me.",
+						a
 					),
 					responses: [
 						{
@@ -414,7 +429,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						raniel,
-						'Wow! Look at all the powerfull people here. Look, its Cedric, hes an up coming powerstar! O and is that...'
+						"Wow! Look at all the powerfully people here. Look, its Cedric, he's an up coming power-star! O and is that...",
+						h
 					),
 					responses: [
 						{
@@ -426,7 +442,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'Dude shut up Raniel! You sound like a powerless jerkoff!'),
+					dialog: new Dialog(christian, 'Dude shut up Raniel! You sound like a powerless jerkoff!', a),
 					responses: [
 						{
 							title: 'next',
@@ -451,7 +467,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, "Fine! I'll just carry us all. I don't care."),
+					dialog: new Dialog(christian, "Fine! I'll just carry us all. I don't care.", a),
 					responses: [
 						{
 							title: 'next',
@@ -497,7 +513,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						powerfull,
-						"Look at me! I'm the most powerfull employee in all of ココ! All of you power-typical-worms, bow befor me for I outpower you all by massive margins"
+						"Look at me! I'm the most powerfull employee in all of ココ! All of you power-typical-worms, bow befor me for I outpower you all by massive margins",
+						a
 					),
 					responses: [
 						{
@@ -509,7 +526,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(asker, 'Wow. Can you tell us how much power you have'),
+					dialog: new Dialog(asker, 'Wow. Can you tell us how much power you have', h),
 					responses: [
 						{
 							title: 'next',
@@ -524,7 +541,8 @@ var storyTempletes = [
 						powerfull,
 						'Sure thing power-commoner. I have ' +
 							powerfull.getPower() +
-							' power! Am I not compleately and utterly magnificent!'
+							' power! Am I not compleately and utterly magnificent!',
+						h
 					),
 					responses: [
 						{
@@ -538,7 +556,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						raniel,
-						'Hey there, great and powerful one. Do you mind sparing a little power my way. By the way you are great!'
+						'Hey there, great and powerful one. Do you mind sparing a little power my way. By the way you are great!',
+						h
 					),
 					responses: [
 						{
@@ -554,7 +573,8 @@ var storyTempletes = [
 						powerfull,
 						'What! I hear the sounds of a insect buzzing in my ear. You there, Raniel! How dare you ask the magnificent, splendid, superb, and superior ' +
 							powerfull.name.get() +
-							' for power!'
+							' for power!',
+						a
 					),
 					responses: [
 						{
@@ -568,7 +588,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						raniel,
-						'Ummm noooe! I didnt ask you power. It must have been ' +
+						"Ummm noooe! I didn't ask you power. It must have been " +
 							rando.name.getFirst() +
 							'. I was just here talking to Brad. We were talking about power. O wait! Shower! We were talking about shower. Yeah shower not power.'
 					),
@@ -582,7 +602,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(brad, "O hey Raniel, I didn't see you there. How are you?"),
+					dialog: new Dialog(brad, "O hey Raniel, I didn't see you there. How are you?", h),
 					responses: [
 						{
 							title: 'next',
@@ -601,9 +621,10 @@ var storyTempletes = [
 							mStats.getGenderPronounOfCharacter(rando, true) +
 							' thinks ' +
 							mStats.getGenderPronounOfCharacter(rando, true) +
-							' can ask the magnificent, splendid, superb, suprem, supperior ' +
+							' can ask the magnificent, splendid, superb, supreme, superior ' +
 							powerfull.name.get() +
-							' for power! Ahhhhhhh FUCKING KIIIIL!!!'
+							' for power! Ahhhhhhh FUCKING KIIIIL!!!',
+						a
 					),
 					responses: [
 						{
@@ -683,7 +704,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						kasey,
-						"Great! Ok listen. Next chance you get talk to Talka. Make sure to mention code Rump Shimp Ima Chump. He'll understand what that means trust me."
+						"Great! Ok listen. Next chance you get talk to Talka. Make sure to mention code Rump Shimp Ima Chump. He'll understand what that means trust me.",
+						h
 					),
 					responses: [
 						{
@@ -736,7 +758,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Rump Shimp Ima Chump you say. If we say this to Taka we will become powerfull.'
+						'"Rump Shimp Ima Chump" you say. If we say this to Taka we will become powerfull.'
 					),
 					responses: [
 						{
@@ -765,7 +787,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"There you go again! Raniel, are you alergic to power or something? Common we are going to speak the secret code to Taka togather. You'll thank me when you're powerfull."
+						"There you go again! Raniel, are you allergic to power or something? Common we are going to speak the secret code to Taka togather. You'll thank me when you're powerfull.",
+						a
 					),
 					responses: [
 						{
@@ -805,7 +828,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"See! What did I tell you Raniel. Power city here we come. Dude go in there and speak the code to Taka. He'll give you the next lead."
+						"See! What did I tell you Raniel. Power city here we come. Dude go in there and speak the code to Taka. He'll give you the next lead.",
+						h
 					),
 					responses: [
 						{
@@ -817,7 +841,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(david, 'Thank you so much Mr. Taka mang. You helped my out so much!'),
+					dialog: new Dialog(david, 'Thank you so much Mr. Taka mang. You helped my out so much!', h),
 					responses: [
 						{
 							title: 'Next',
@@ -829,7 +853,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(taka, 'No problem my mang!'),
+					dialog: new Dialog(taka, 'No problem my mang!', h),
 					responses: [
 						{
 							title: 'Next',
@@ -840,7 +864,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(taka, 'Next!'),
+					dialog: new Dialog(taka, 'Next!', h),
 					responses: [
 						{
 							title: 'Next',
@@ -853,7 +877,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						taka,
-						'O heeeellll no! Is that realy you! The new person! You have realy made a name for yourself here.'
+						'O heeeellll no! Is that realy you! The new person! You have realy made a name for yourself here.',
+						h
 					),
 					responses: [
 						{
@@ -903,7 +928,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						taka,
-						"O and look at this. Its the oficial Gravy house League of Ledgends team. And as you may have already noticed, I'm the leader."
+						"O and look at this. Its the oficial Gravy house League of Ledgends team. And as you may have already noticed, I'm the leader.",
+						h
 					),
 					responses: [
 						{
@@ -931,7 +957,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						taka,
-						"Woah woah woah! Don't say such things! Have some respect for yourself mang! Look, I think your looking for power in all the wrong places. Do you want to know the truth about gaining power?"
+						"Woah woah woah! Don't say such things! Have some respect for yourself mang! Look, I think your looking for power in all the wrong places. Do you want to know the truth about gaining power?",
+						a
 					),
 					responses: [
 						{
@@ -950,7 +977,11 @@ var storyTempletes = [
 				},
 				{
 					//17th item
-					dialog: new Dialog(taka, "Thats what I wanted to hear mang! Stick with me and you'll go places."),
+					dialog: new Dialog(
+						taka,
+						"Thats what I wanted to hear mang! Stick with me and you'll go places.",
+						h
+					),
 					responses: [
 						{
 							title: 'Next',
@@ -1005,7 +1036,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						taka,
-						"Your right! A tsnumi! But these power tsnumis don't just apear out of the blue. No, they require a little something. What do you think that is mang?"
+						"Your right! A tsnumi! But these power tsnumis don't just apear out of the blue. No, they require a little something. What do you think that is mang?",
+						h
 					),
 					responses: [
 						{
@@ -1019,7 +1051,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						taka,
-						'Right again! Mang, your on a roll! Disruption! You need to be at the forfont of intensive disruption. Now how do create disruption you ask.'
+						'Right again! Mang, your on a roll! Disruption! You need to be at the forfont of intensive disruption. Now how do create disruption you ask.',
+						h
 					),
 					responses: [
 						{
@@ -1067,7 +1100,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(mark, 'No fair! why dose he get extra time!'),
+					dialog: new Dialog(mark, 'No fair! why dose he get extra time!', a),
 					responses: [
 						{
 							title: 'Thanks Taka',
@@ -1078,7 +1111,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(taka, 'No problem. The pleasure is all mine.'),
+					dialog: new Dialog(taka, 'No problem. The pleasure is all mine.', h),
 					responses: [
 						{
 							title: 'Next',
@@ -1135,14 +1168,16 @@ var storyTempletes = [
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		let steavenFNU = new characters();
+		steavenFNU.characterInit({ name: {}, gender: 'm', personality: 'easyGoing' });
 		mStats.setCharacterName(steavenFNU, { first: 'Steaven', last: 'FNU' });
 		let stefanieFNU = new characters();
+		stefanieFNU.characterInit({ name: {}, gender: 'f', personality: 'Challenging' });
 		mStats.setCharacterName(stefanieFNU, { first: 'Stefanie', last: 'FNU' });
 
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',
@@ -1192,7 +1227,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						stefanieFNU,
-						'I still think we should send someone overthere to break his kneecaps so that can never come back here again.'
+						'I still think we should send someone overthere to break his kneecaps so that can never come back here again!',
+						a
 					),
 					responses: [
 						{
@@ -1220,7 +1256,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						stefanieFNU,
-						'Fine! But I’m going to fire anyone who inquires about John the Man.'
+						'Fine! But I’m going to fire anyone who inquires about John the Man!',
+						a
 					),
 					responses: [
 						{
@@ -1234,7 +1271,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						steavenFNU,
-						'Good idea. Better safe than sorry. I think I might just accidentally spill hot oil on them.'
+						"Good idea. Better safe than sorry. I wouldn't be suprised if someone accidentally spill hot oil on them.",
+						h
 					),
 					responses: [
 						{
@@ -1258,7 +1296,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, '6110 Clark Ave what!'),
+					dialog: new Dialog(christian, '6110 Clark Ave what!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1269,7 +1307,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, "That's not what he told us!"),
+					dialog: new Dialog(christian, "That's not what he told us!", a),
 					responses: [
 						{
 							title: 'next',
@@ -1296,7 +1334,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						raniel,
-						' I mean Taka told us to walk up to My Tran and tell him Ye Ae Ima Sah Ka. It just seems fishy to me. And also I have been deconstructing the...'
+						'I mean Taka told us to walk up to My Tran and tell him Ye Ae Ima Sah Ka. It just seems fishy to me. And also I have been deconstructing the...'
 					),
 					responses: [
 						{
@@ -1309,7 +1347,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'Raniel!'),
+					dialog: new Dialog(christian, 'Raniel!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1333,7 +1371,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'You have been riding my tail these past couple weeks and honestly at this point I’m done. I’ll get all the power myself. I don’t need you anymore.'
+						'You have been riding my tail these past couple weeks and honestly at this point I’m done. I’ll get all the power myself. I don’t need you anymore.',
+						a
 					),
 					responses: [
 						{
@@ -1361,7 +1400,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Quiet! Don’t patronize me with your casual talk of power gaining. Who even invited you to our power team anyway!'
+						'Quiet! Don’t patronize me with your casual talk of power gaining. Who even invited you to our power team anyway!',
+						a
 					),
 					responses: [
 						{
@@ -1386,7 +1426,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						vicky,
-						'You know what, I’ll become the more powerful employee in the gravy house all by myself! And when I do, don’t ask me for help!'
+						'You know what, I’ll become the more powerful employee in the gravy house all by myself! And when I do, don’t ask me for help!',
+						a
 					),
 					responses: [
 						{
@@ -1398,7 +1439,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'And you!'),
+					dialog: new Dialog(christian, 'And you!', a),
 					responses: [
 						{
 							title: 'Me?',
@@ -1439,7 +1480,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						raniel,
-						'Don’t listen to him! He’s just mad about his inadequacies as a power gainer!'
+						'Don’t listen to him! He’s just mad about his inadequacies as a power gainer!',
+						a
 					),
 					responses: [
 						{
@@ -1462,7 +1504,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'Raaaaniaaaaaal! You fucking dead!'),
+					dialog: new Dialog(christian, 'Raaaaniaaaaaal! You fucking dead!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1473,7 +1515,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(raniel, 'Go to that address you found. I’ll keep Christian distracted.'),
+					dialog: new Dialog(raniel, 'Go to that address you found. I’ll keep Christian distracted.', a),
 					responses: [
 						{
 							title: 'next',
@@ -1489,12 +1531,15 @@ var storyTempletes = [
 	},
 	(dialogChanged, exit) => {
 		let mysteriousMan = new characters();
+		mysteriousMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(mysteriousMan, { first: 'Mysterious', last: 'Man' });
 		var johnTheMan = new characters();
+		johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		let sleepyhead = new characters();
+		sleepyhead.characterInit({ name: {}, gender: 'm', personality: 'easyGoing' }, {});
 		mStats.setCharacterName(sleepyhead, { first: 'Sleepy-Head2969', last: '' });
 
 		return {
@@ -1517,7 +1562,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						mysteriousMan,
-						'Who’s out there, and how many of you are there! You can’t come in all at once.'
+						'Who’s out there, and how many of you are there! You can’t come in all at once.',
+						a
 					),
 					responses: [
 						{
@@ -1548,7 +1594,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						mysteriousMan,
-						"I’m going to kill you! I have a fully loaded spas-12 and I'll kill you! And yes, I may go to jail but I don’t give a damn!"
+						"I’m going to kill you! I have a fully loaded spas-12 and I'll kill you! And yes, I may go to jail but I don’t give a damn!",
+						a
 					),
 					responses: [
 						{
@@ -1582,7 +1629,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(mysteriousMan, 'Yeah I have friends IRL! Unlike you!'),
+					dialog: new Dialog(mysteriousMan, 'Yeah I have friends IRL! Unlike you!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1604,7 +1651,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(mysteriousMan, 'The name is John Kim, what can I do for you?'),
+					dialog: new Dialog(mysteriousMan, 'The name is John Kim, what can I do for you?', h),
 					responses: [
 						{
 							title: 'Your, your j, j, John the Manager!',
@@ -1676,7 +1723,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, "You're right! I am insane."),
+					dialog: new Dialog(johnTheMan, "You're right! I am insane.", a),
 					responses: [
 						{
 							title: 'next',
@@ -1762,7 +1809,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, 'ALL AT THE SAME TIME!'),
+					dialog: new Dialog(johnTheMan, 'ALL AT THE SAME TIME!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1773,7 +1820,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, 'WHY DO THEY ALWAYS COME AT THE SAME!'),
+					dialog: new Dialog(johnTheMan, 'WHY DO THEY ALWAYS COME AT THE SAME!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1809,7 +1856,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(sleepyhead, "No dumbass! Haven't you played Far Cry 3?"),
+					dialog: new Dialog(sleepyhead, "No dumbass! Haven't you played Far Cry 3?", a),
 					responses: [
 						{
 							title: 'next',
@@ -1845,7 +1892,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(sleepyhead, 'Your just a fucking stupid dumbass degenerate cretin!'),
+					dialog: new Dialog(sleepyhead, 'Your just a fucking stupid dumbass degenerate cretin!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1856,7 +1903,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, 'Wait what!'),
+					dialog: new Dialog(johnTheMan, 'Wait what!', a),
 					responses: [
 						{
 							title: 'next',
@@ -1867,7 +1914,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(sleepyhead, 'Your just  fucking stupid dumbass…'),
+					dialog: new Dialog(sleepyhead, 'Your just  fucking stupid dumbass…', a),
 					responses: [
 						{
 							title: 'next',
@@ -1890,7 +1937,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(sleepyhead, "You're not insane!"),
+					dialog: new Dialog(sleepyhead, "You're not insane!", a),
 					responses: [
 						{
 							title: 'next',
@@ -1903,7 +1950,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'You mean I have been sane the entire time I have been gone from ココ?'
+						'You mean I have been sane the entire time I have been gone from ココ?',
+						h
 					),
 					responses: [
 						{
@@ -1915,7 +1963,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(sleepyhead, 'Yes you stupid fucking soyboy beta bitch cuck…'),
+					dialog: new Dialog(sleepyhead, 'Yes you stupid fucking soyboy beta bitch cuck…', a),
 					responses: [
 						{
 							title: 'Ok we get it!',
@@ -1928,7 +1976,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'Look pal. I don’t know if I can help you become the most powerful person or whatever. But I am willing to cause some serious disruption. With your help of course. Are you down?'
+						'Look pal. I don’t know if I can help you become the most powerful person or whatever. But I am willing to cause some serious disruption. With your help of course. Are you down?',
+						h
 					),
 					responses: [
 						{
@@ -1942,7 +1991,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'Awesome! I knew you were something special pal. Even though I shut the door on you earlier.'
+						'Awesome! I knew you were something special pal. Even though I shut the door on you earlier.',
+						h
 					),
 					responses: [
 						{
@@ -1968,7 +2018,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, 'Hey! When does the festival of power take place?'),
+					dialog: new Dialog(johnTheMan, 'Hey! When does the festival of power take place?', h),
 					responses: [
 						{
 							title: 'Umm, next Monday.',
@@ -1981,7 +2031,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'Perfect! Everyone will be there and they finally realize just how sane I always was. Thank you. I owe you one.'
+						'Perfect! Everyone will be there and they finally realize just how sane I always was. Thank you. I owe you one.',
+						h
 					),
 					responses: [
 						{
@@ -2006,19 +2057,22 @@ var storyTempletes = [
 		var vicky = mStats.getCharacterWithName('Vicky Dang');
 		var rando = Math.floor(Math.random()) % 2 === 0 ? mark : xander;
 		var johnTheMan = new characters();
+		johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		var croud = new characters();
+		croud.characterInit({ name: {}, gender: 'm', personality: 'confident' }, {});
 		mStats.setCharacterName(croud, { first: 'Corud', last: '' });
 		var mysteriousVoice = new characters();
 		mStats.setCharacterName(mysteriousVoice, { first: 'Mysterious', last: 'Voice' });
+		mysteriousVoice.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 
 		return {
 			conversation01: [
 				{
 					//00
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',
@@ -2043,7 +2097,7 @@ var storyTempletes = [
 				},
 				{
 					//02
-					dialog: new Dialog(melanie, 'Is this your first time at the festival of power?'),
+					dialog: new Dialog(melanie, 'Is this your first time at the festival of power?', h),
 					responses: [
 						{
 							title: 'Yes',
@@ -2055,7 +2109,7 @@ var storyTempletes = [
 				},
 				{
 					//03
-					dialog: new Dialog(melanie, "Wow. Me too. Isn't this great?"),
+					dialog: new Dialog(melanie, "Wow. Me too. Isn't this great?", h),
 					responses: [
 						{
 							title: 'next',
@@ -2067,7 +2121,7 @@ var storyTempletes = [
 				},
 				{
 					//04
-					dialog: new Dialog(melanie, 'Hey, do you want to go with me to the hall of powerful employees?'),
+					dialog: new Dialog(melanie, 'Hey, do you want to go with me to the hall of powerful employees?', h),
 					responses: [
 						{
 							title: 'Yes',
@@ -2085,7 +2139,7 @@ var storyTempletes = [
 				},
 				{
 					//05
-					dialog: new Dialog(melanie, "Great! Let's go."),
+					dialog: new Dialog(melanie, "Great! Let's go.", h),
 					responses: [
 						{
 							title: 'next',
@@ -2124,7 +2178,7 @@ var storyTempletes = [
 				},
 				{
 					//08
-					dialog: new Dialog(raniel, "O what! You're here!"),
+					dialog: new Dialog(raniel, "O what! You're here!", h),
 					responses: [
 						{
 							title: 'I sure am.',
@@ -2156,7 +2210,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(raniel, 'It’s actually been going…'),
+					dialog: new Dialog(raniel, 'It’s actually been going…', h),
 					responses: [
 						{
 							title: 'next',
@@ -2167,7 +2221,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'Terrible!'),
+					dialog: new Dialog(christian, 'Terrible!', a),
 					responses: [
 						{
 							title: 'next',
@@ -2180,7 +2234,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'You missed out on so much power Raniel! I mean just look at me. I’m overflowing with power. Upper Management really hooked me up.'
+						'You missed out on so much power Raniel! I mean just look at me. I’m overflowing with power. Upper Management really hooked me up.',
+						h
 					),
 					responses: [
 						{
@@ -2208,7 +2263,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						vicky,
-						'Heey! You and your crew didn’t dry off the forks last night. I’m gonna have to call you out in the employee group chat.'
+						'Heey! You and your crew didn’t dry off the forks last night. I’m gonna have to call you out in the employee group chat.',
+						a
 					),
 					responses: [
 						{
@@ -2250,7 +2306,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"I got my power through fair means that helped ココ prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable."
+						"I got my power through fair means that helped ココ prosper and grow. All you do is put others down and make them want to quit. Honestly, that's despicable.",
+						a
 					),
 					responses: [
 						{
@@ -2286,7 +2343,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						' I haven’t been taking it seriously enough. I should devote my efforts to making sure Vicky stays powerless and useless.'
+						' I haven’t been taking it seriously enough! I should devote my efforts to making sure Vicky stays powerless and useless!',
+						a
 					),
 					responses: [
 						{
@@ -2300,7 +2358,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						vicky,
-						"So you're initiating war. Ok I have the group chat open right now. You're about to be exposed!"
+						"So you're initiating war. Ok I have the group chat open right now. You're about to be exposed!",
+						a
 					),
 					responses: [
 						{
@@ -2312,7 +2371,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(christian, 'I’m about to get uppermangment to rip you a new one. Just you…'),
+					dialog: new Dialog(christian, 'I’m about to get uppermangment to rip you a new one! Just you…', a),
 					responses: [
 						{
 							title: 'next',
@@ -2323,7 +2382,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(mysteriousVoice, 'Ladies and Gentlemen of CoCo. It’s been too long.'),
+					dialog: new Dialog(mysteriousVoice, 'Ladies and Gentlemen of CoCo. It’s been too long.', h),
 					responses: [
 						{
 							title: 'next',
@@ -2364,7 +2423,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						mysteriousVoice,
-						'Hold on, where are my manors? The name is John. John the Manager!'
+						'Hold on, where are my manors? The name is John. John the Manager!',
+						h
 					),
 					responses: [
 						{
@@ -2417,7 +2477,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						johnTheMan,
-						'Anyway, I plead insanity in court and to my relief, the court dismissed my ple, saying “It’s hard to tell but John Kim is not actually insane”.'
+						'Anyway, I plead insanity in court and to my initial dismay, the court dismissed my ple, saying “It’s hard to tell but John Kim is not actually insane”.'
 					),
 					responses: [
 						{
@@ -2456,7 +2516,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"Look I’m not kidding! He's right here on stage! No one thinks he's crazy!"
+						"Look I’m not kidding! He's right here on stage! No one thinks he's crazy!",
+						a
 					),
 					responses: [
 						{
@@ -2490,7 +2551,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, 'And that is how I will make Gravy House great again!'),
+					dialog: new Dialog(johnTheMan, 'And that is how I will make Gravy House great again!', h),
 					responses: [
 						{
 							title: 'next',
@@ -2501,7 +2562,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(croud, 'Explosively applauds John the Manager.'),
+					dialog: new Dialog(croud, 'Explosively applauds John the Manager.', h),
 					responses: [
 						{
 							title: 'next',
@@ -2512,7 +2573,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(johnTheMan, "Thank you, thank you. You won't regret this."),
+					dialog: new Dialog(johnTheMan, "Thank you, thank you. You won't regret this.", h),
 					responses: [
 						{
 							title: 'next',
@@ -2536,7 +2597,8 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						'Hey sorry man. I got so caught up in that argument with Vicky that I didn’t get a chance to catch up.'
+						'Hey sorry man. I got so caught up in that argument with Vicky that I didn’t get a chance to catch up.',
+						h
 					),
 					responses: [
 						{
@@ -2609,7 +2671,7 @@ var storyTempletes = [
 			],
 			scoldedByMelanie: [
 				{
-					dialog: new Dialog(melanie, 'Common, don’t be that way.'),
+					dialog: new Dialog(melanie, 'Common, don’t be that way.', a),
 					responses: [
 						{
 							title: 'next',
@@ -2648,7 +2710,7 @@ var storyTempletes = [
 			conversation01: [
 				{
 					// 00
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',
@@ -3455,7 +3517,7 @@ var storyTempletes = [
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(narrator, 'Some time lator'),
+					dialog: new Dialog(narrator, 'Some time later'),
 					responses: [
 						{
 							title: 'next',

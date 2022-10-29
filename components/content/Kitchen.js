@@ -36,8 +36,8 @@ class Kitchen extends PureComponent {
 
 	//Mounting / unmounting
 	componentDidMount() {
-		//THis is a component that heppeons once at the start of Kitchen being renderd
-		//These event liseners need to have proper garbage collection implemented
+		//THis is a component that happens once at the start of Kitchen being rendered
+		//These event listeners need to have proper garbage collection implemented
 		AppState.addEventListener('change', this._handleAppStateChange);
 		this.gameDriver.on('tic', () => {
 			if (this.gameDriver.scenarioCheck().reply) {
