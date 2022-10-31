@@ -1,4 +1,4 @@
-import gameDriver from '../GameDriver';
+import gameDriver from '../GameDriver/GameDriver';
 import mStats from '../ManageStats/ManageStats';
 import util from '../../utilities';
 import StaticScenario from './StaticScenario';

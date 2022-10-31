@@ -20,6 +20,7 @@ import hardTimes from './hardTimes.mp3';
 import hirokitron from './hirokitron.mp3';
 import goodNews from './goodNews.mp3';
 import insanity from './insanity.mp3';
+import eventfulShift02 from './eventfulShift02.mp3';
 import voices from './voices';
 
 //TODO import sounds as categories of objects in another files exports
@@ -48,6 +49,7 @@ const sounds: any = {
 	hirokitron,
 	goodNews,
 	insanity,
+	eventfulShift02,
 	...voices,
 };
 

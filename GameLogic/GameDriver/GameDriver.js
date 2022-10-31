@@ -1,9 +1,10 @@
 //Global Vars
-import mStats from './ManageStats/ManageStats';
-import busyness from './Busyness';
-import storyLogic from './StoryLogic';
-import shiftHub from './ShiftHub';
-import { saveUser } from './SaveSystem';
+import mStats from '../ManageStats/ManageStats';
+import busyness from '../Busyness';
+import storyLogic from '../StoryLogic';
+import shiftHub from '../ShiftHub';
+import { saveUser } from '../SaveSystem';
+import { gameplayMusic } from '../AudioSystem';
 
 var pFrame = 0;
 var pFrameLong = 0;
@@ -24,12 +25,15 @@ let GameDriver = {
 		shiftHub.init(data);
 	},
 	start: settings => {
-		//Handle all game init functions here
-		console.log('Start happeoned');
 		levelEnded = false;
 		mStats.setScenarioPresent(false);
-
 		mStats.init(settings);
+		console.log('gameDriver settings', settings);
+		gameplayMusic.start({
+			day: settings.dayName,
+			lighting: settings.difficulty.lighting,
+			sanity: mStats.getPSanity(),
+		});
 	},
 	update: () => {
 		//updates happons about 60 time a seceond.

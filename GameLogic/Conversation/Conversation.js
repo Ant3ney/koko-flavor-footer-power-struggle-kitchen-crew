@@ -6,7 +6,7 @@ import KickbackConversationTempletes from '../PresetsAndTemplates/KickbackConver
 import { music, click } from '../AudioSystem';
 import mStats from '../ManageStats/ManageStats';
 import loseTemplete from '../PresetsAndTemplates/ConversationEventTempletes/Lose';
-import gameDriver from '../GameDriver';
+import gameDriver from '../GameDriver/GameDriver';
 
 const FIRST_CONVERSATION_PROPERTY = 'conversation01';
 

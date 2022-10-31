@@ -1,5 +1,5 @@
 import storyLogic from '../../../GameLogic/StoryLogic';
-import gameDriverModule from '../../../GameLogic/GameDriver';
+import gameDriverModule from '../../../GameLogic/GameDriver/GameDriver';
 
 const initializeGameLogic = (initDeps: any) => {
 	const gameDriver = gameDriverModule as any;
