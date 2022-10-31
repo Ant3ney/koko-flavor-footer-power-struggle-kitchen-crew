@@ -3,7 +3,7 @@ const player = {
 		firstname: 'Anthony',
 		lastname: 'Cavuoti',
 	},
-	power: 1550, //default is 50
+	power: 9500, //default is 50
 	gender: 'm',
 	effectivness: 1,
 	skill: 3,
