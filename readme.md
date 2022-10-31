@@ -28,6 +28,7 @@ visit https://koko-flavor-fodder.netlify.app to play current build
    Extend credits to include all voice actors. X
    c. Add emotions to dialog.
    d. Hide upgrade menu
+   e. Time dose not progress when you play two shifts in one session.
 6. Create Monday Morning and Nostalgic Morning Music.
 7. Implement music to gameplay.
 8. Create media for Music Update.

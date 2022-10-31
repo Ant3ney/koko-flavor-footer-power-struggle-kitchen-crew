@@ -28,11 +28,11 @@ let GameDriver = {
 		levelEnded = false;
 		mStats.setScenarioPresent(false);
 		mStats.init(settings);
-		console.log('gameDriver settings', settings);
 		gameplayMusic.start({
 			day: settings.dayName,
 			lighting: settings.difficulty.lighting,
 			sanity: mStats.getPSanity(),
+			currentShift: mStats.getShiftCharacters(),
 		});
 	},
 	update: () => {
