@@ -13,6 +13,7 @@ const FIRST_CONVERSATION_PROPERTY = 'conversation01';
 let conversation = {
 	awake: settings => {
 		let type = settings.type || 'normal';
+		console.log('conversation type:', type, '\nSettings:', settings);
 		conversation.type = type;
 		conversation.array = [];
 		conversation.navigation = settings.navigation;
@@ -68,13 +69,12 @@ let conversation = {
 			conIndex++;
 			diIndex = 0;
 			if (conversation.type === 'lose') {
-				//TODO, run reset data function here
 				mStats.resetData(gameDriver);
 				return;
 			}
 			if (conIndex >= conversationArray.length) {
-				//Save data point
-				conversation.navigation.navigate('Next Shift Select');
+				//TODO Save user data here
+				conversation.navigation.push('Next Shift Select');
 			} else {
 				console.log('changed to another element');
 				currentConversation = conversationArray[conIndex](dialogChange, finish)[FIRST_CONVERSATION_PROPERTY];

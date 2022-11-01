@@ -468,7 +468,7 @@ function SetStats() {
 			navigation = this.getNavigator();
 		}
 
-		navigation.navigate('Loading Local');
+		navigation.push('Loading Local');
 
 		this.alreadyWon = false;
 		this.setStatsListener();
@@ -484,7 +484,7 @@ function SetStats() {
 			console.log('Initing story');
 		}
 
-		navigation.navigate('Begin Conversation', { type: 'beginning' });
+		navigation.navigate('Force Beginning');
 	};
 	this.setAlreadyWon = won => {
 		this.alreadyWon = won;

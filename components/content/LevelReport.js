@@ -40,7 +40,7 @@ function LevelReport(props) {
 			<Button
 				title='Next'
 				onPress={() => {
-					props.navigation.navigate('Conversation', { type: 'normal' });
+					props.navigation.navigate('Conversation 3', { type: 'normal' });
 				}}
 			/>
 		</View>

@@ -62,6 +62,8 @@ let GameDriver = {
 		mStats.getEnvironment().ticTime();
 		busyness.manageBusyness();
 
+		//TODO Have player effectiveness get assigned here
+
 		mStats.setPPower(
 			mStats.getPPower() + Math.round(0.12 * mStats.getPEffectivness() * busyness.getBusynessReward(mStats))
 		);
@@ -150,9 +152,7 @@ let GameDriver = {
 				hasLost: determinePlayerLost(),
 			});
 		});
-		//TODO: Test out saveUser():
 		saveUser();
-		/* GameDriver.saveData(); */
 		GameDriver.collectGarbage();
 	},
 	collectGarbage: () => {

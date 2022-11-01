@@ -21,6 +21,7 @@ function ShiftHub(props) {
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
+		console.log('Pausing music');
 		music.pause();
 
 		if (mStats.determinLoseCondition()) handleLose(props, setIsLoading);
@@ -59,8 +60,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('monday').day);
 							shiftHubLogic.manageDaysUpTo(presets('monday').day);
-							if (mStats.determinLoseCondition())
-								props.navigation.navigate('Begin Conversation', { type: 'lose' });
+
 							props.navigation.navigate('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('monday')}
@@ -79,7 +79,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('monday').night);
 							shiftHubLogic.manageDaysUpTo(presets('monday').night);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('monday')}
 					/>
@@ -100,7 +100,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('tuesday').day);
 							shiftHubLogic.manageDaysUpTo(presets('tuesday').day);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('tuesday')}
 					/>
@@ -118,7 +118,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('tuesday').night);
 							shiftHubLogic.manageDaysUpTo(presets('tuesday').night);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('tuesday')}
 					/>
@@ -141,7 +141,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('wednesday').day);
 							shiftHubLogic.manageDaysUpTo(presets('wednesday').day);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('wednesday')}
 					/>
@@ -159,7 +159,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('wednesday').night);
 							shiftHubLogic.manageDaysUpTo(presets('wednesday').night);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('wednesday')}
 					/>
@@ -180,7 +180,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('thursday').day);
 							shiftHubLogic.manageDaysUpTo(presets('thursday').day);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('thursday')}
 					/>
@@ -198,7 +198,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('thursday').night);
 							shiftHubLogic.manageDaysUpTo(presets('thursday').night);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('thursday')}
 					/>
@@ -221,7 +221,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('friday').day);
 							shiftHubLogic.manageDaysUpTo(presets('friday').day);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('friday')}
 					/>
@@ -239,7 +239,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('friday').night);
 							shiftHubLogic.manageDaysUpTo(presets('friday').night);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('friday')}
 					/>
@@ -260,7 +260,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('saturday').day);
 							shiftHubLogic.manageDaysUpTo(presets('saturday').day);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('saturday')}
 					/>
@@ -301,7 +301,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('sunday').day);
 							shiftHubLogic.manageDaysUpTo(presets('sunday').day);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('sunday')}
 					/>
@@ -319,7 +319,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('sunday').night);
 							shiftHubLogic.manageDaysUpTo(presets('sunday').night);
-							props.navigation.navigate('Shift');
+							props.navigation.push('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('sunday')}
 					/>
@@ -345,7 +345,7 @@ function ShiftHub(props) {
 								resetButton: true,
 							});
 							shiftHubLogic.freeUpAllDays();
-							props.navigation.navigate('Loading Local');
+							props.navigation.push('Loading Local');
 							mStats.setPSanity(30);
 
 							const structure = await fetchSchedule();
@@ -355,7 +355,7 @@ function ShiftHub(props) {
 							if (mStats.determinLoseCondition()) {
 								handleLose(props);
 							} else {
-								props.navigation.navigate('Next Shift Select');
+								props.navigation.push('Next Shift Select');
 							}
 
 							await saveUser();

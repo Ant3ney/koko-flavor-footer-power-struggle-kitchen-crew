@@ -3,7 +3,7 @@ const player = {
 		firstname: 'Anthony',
 		lastname: 'Cavuoti',
 	},
-	power: 9500, //default is 50
+	power: 50, //default is 50. For testing story use 9500
 	gender: 'm',
 	effectivness: 1,
 	skill: 3,

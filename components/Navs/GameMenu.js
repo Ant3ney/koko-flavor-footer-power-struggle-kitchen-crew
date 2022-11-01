@@ -70,6 +70,48 @@ function GameMenuNav(props) {
 				}}
 			</Stack.Screen>
 			{/* This is required due to how navigation stacks work */}
+			<Stack.Screen name='Conversation 2'>
+				{proxyProps => {
+					let type = util.getConversationTypeFromProps(proxyProps);
+					console.log('Running beginning conversation with type: ', type);
+					return (
+						<Conversation
+							styleProp={props.styleProp}
+							navigation={props.navigation}
+							gameLogic={props.gameLogic}
+							type={type}
+						/>
+					);
+				}}
+			</Stack.Screen>
+			<Stack.Screen name='Conversation 3'>
+				{proxyProps => {
+					let type = util.getConversationTypeFromProps(proxyProps);
+					console.log('Running beginning conversation with type: ', type);
+					return (
+						<Conversation
+							styleProp={props.styleProp}
+							navigation={props.navigation}
+							gameLogic={props.gameLogic}
+							type={type}
+						/>
+					);
+				}}
+			</Stack.Screen>
+			<Stack.Screen name='Force Beginning'>
+				{proxyProps => {
+					let type = 'beginning';
+					return (
+						<Conversation
+							styleProp={props.styleProp}
+							navigation={props.navigation}
+							gameLogic={props.gameLogic}
+							type={type}
+						/>
+					);
+				}}
+			</Stack.Screen>
+			{/* This is required due to how navigation stacks work */}
 			<Stack.Screen name='Begin Conversation'>
 				{proxyProps => {
 					let type = util.getConversationTypeFromProps(proxyProps);

@@ -40,20 +40,19 @@ class Kitchen extends PureComponent {
 		//These event listeners need to have proper garbage collection implemented
 		AppState.addEventListener('change', this._handleAppStateChange);
 		this.gameDriver.on('tic', () => {
+			console.log('Component tic');
 			if (this.gameDriver.scenarioCheck().reply) {
 				this.setScenerio(true);
 			}
 		});
+		this.mStats.setInForground(true);
 
 		this.gameDriver.on('end level', gameDetails => {
 			if (gameDetails.hasWon === true) {
 				this.props.gameLogic.staticConversation.procWin(true);
 				this.props.navigation.navigate('Conversation', { type: 'win' });
-			} else if (gameDetails.hasLost === true) {
-				this.props.navigation.navigate('Conversation', { type: 'lose' });
-			} else {
-				this.props.navigation.navigate('Level Report');
-			}
+			} else if (gameDetails.hasLost === true) this.props.navigation.navigate('Conversation 2', { type: 'lose' });
+			else this.props.navigation.navigate('Level Report');
 		});
 	}
 
