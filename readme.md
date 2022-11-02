@@ -41,9 +41,9 @@ When new backend solution presents itself. Re-implement fetch code.
 
 ## Navigation based bugs
 
-This app uses @reactnavigation to handle what views to display to the user. This system comes with many caviouts and will be the cause of many bugs. Firstly, when you navigate to a new nav, it dose not destry the old nav you where just on. This means that if you navigate back to you original nav after navigating to your new nav, the original nav's component will not call the initialization functions. To solve the bugs that arise from this atrribute of navs I have decided to make it so there are no duplicate nav stack screens. Competent may be duplicated but not nav stack screens.
+This app uses @reactnavigation to handle what views to display to the user. This system comes with many caviouts and will be the cause of many bugs. Firstly, when you navigate to a new nav, it dose not destroy the old nav you where just on. This means that if you navigate back to you original nav after navigating to your new nav, the original nav's component will not call the initialization functions. To solve the bugs that arise from this atrribute of navs I have decided to make it so there are no duplicate nav stack screens. Competent may be duplicated but not nav stack screens.
 
 ## Bug bounties
 
-1. Sometimes, gameplay dose not work until user exits the tab and comes back. X
-   Solution. Navigated to different views not but calling a navigation.navigate but instead created a reset action that also changeless the current navigation route. Then had the navigation code dispatch this action.
+1. Sometimes, gameplay dose not work until user exits the tab and comes back.
+   Solution. Navigated to different views not but calling a navigation.navigate but instead created a reset action that also changeless the current navigation route. Then had the navigation code dispatch this action. X

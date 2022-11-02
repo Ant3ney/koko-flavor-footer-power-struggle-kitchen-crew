@@ -54,7 +54,7 @@ let GameDriver = {
 		});
 	},
 	tic: () => {
-		//tic happons about one a seceond while game is playing
+		//tic happens about once a second while game is playing
 		pFrameLong++;
 		console.log('Tic');
 
@@ -131,6 +131,8 @@ let GameDriver = {
 		return result;
 	},
 	endLevel: () => {
+		gameplayMusic.end();
+
 		var reward = 2;
 		if (mStats.getPEffectivnessGain() >= 100) {
 			reward = 4;
