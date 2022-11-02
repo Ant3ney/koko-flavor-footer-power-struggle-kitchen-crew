@@ -13,6 +13,7 @@ interface GameplayMusic extends Partial<GameContext> {
 	tic: Function;
 	end: Function;
 	curriedIsDay: Function;
+	playing?: string | null;
 }
 
 const gameplayMusic: GameplayMusic = {
@@ -22,24 +23,28 @@ const gameplayMusic: GameplayMusic = {
 		const kaseyIsHere = doseShiftHaveName('Kasey Takahashi');
 		const vickyIsHere = doseShiftHaveName('Vicky Dang');
 
-		if (checkIfPlayerIsInsane()) music.play('insanity', PLAY_MUSIC_SETTINGS);
+		if (checkIfPlayerIsInsane()) playInsanityMusic();
 		else if (kaseyIsHere && vickyIsHere) music.play('cheese', PLAY_MUSIC_SETTINGS);
 		else if (takaIsHere) music.play('taka', PLAY_MUSIC_SETTINGS);
 		else if (kaseyIsHere || vickyIsHere) music.play('cheese', PLAY_MUSIC_SETTINGS);
 		else playMusicFromTimeAndDay();
-
-		console.log({ gameplayMusic, takaIsHere, kaseyIsHere, vickyIsHere });
 	},
-	tic: () => {},
-	end: () => {},
+	tic: (sanity: number) => {
+		if (checkIfPlayerIsInsane(sanity)) playInsanityMusic();
+	},
+	end: () => {
+		music.pause();
+		gameplayMusic.playing = null;
+	},
 	curriedIsDay: (): boolean => {
 		return isDay(gameplayMusic.lighting);
 	},
 };
 
-function checkIfPlayerIsInsane() {
-	if (!gameplayMusic?.sanity) return false;
-	return gameplayMusic.sanity < 0;
+function checkIfPlayerIsInsane(sanity?: number) {
+	if (sanity && typeof sanity !== 'number') return sanity < 0;
+	else if (gameplayMusic?.sanity || gameplayMusic?.sanity === 0) return gameplayMusic.sanity < 0;
+	return false;
 }
 
 function playMusicFromTimeAndDay() {
@@ -109,7 +114,15 @@ function playNonMondayMorningMusic() {
 function playRandomMusicFrom(musicArray: any) {
 	const randomMusicIndex: number = utils.getRandomIndexFromArray(musicArray);
 	const musicToPlay: string = musicArray[randomMusicIndex];
+	gameplayMusic.playing = musicToPlay;
 	music.play(musicToPlay, PLAY_MUSIC_SETTINGS);
+}
+
+function playInsanityMusic() {
+	if (gameplayMusic.playing === 'insanity') return;
+	if (!gameplayMusic.playing) music.play('insanity', PLAY_MUSIC_SETTINGS);
+	else music.musicTransitionTo('insanity');
+	gameplayMusic.playing = 'insanity';
 }
 
 function doseShiftHaveName(name: string): boolean {

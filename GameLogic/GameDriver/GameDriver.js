@@ -72,6 +72,8 @@ let GameDriver = {
 			GameDriver.longTic();
 		}
 
+		gameplayMusic.tic(mStats.getPSanity());
+
 		moreTicWork.forEach(work => {
 			work();
 		});
