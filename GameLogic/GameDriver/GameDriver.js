@@ -1,4 +1,3 @@
-//Global Vars
 import mStats from '../ManageStats/ManageStats';
 import busyness from '../Busyness';
 import storyLogic from '../StoryLogic';
@@ -19,7 +18,7 @@ var leftGameplay = false;
 let GameDriver = {
 	awake: data => {
 		//This function is to be called after async data has been fetched
-		//Game Drriver is the back bone of GameLogic so it should bee the awake hook for gameLogic
+		//Game Driver is the back bone of GameLogic so it should bee the awake hook for gameLogic
 		mStats.awake(data, GameDriver);
 		storyLogic.init(data);
 		shiftHub.init(data);
@@ -63,6 +62,7 @@ let GameDriver = {
 		busyness.manageBusyness();
 
 		//TODO Have player effectiveness get assigned here
+		//As of now it gets assigned in some nested function in the code below.
 
 		mStats.setPPower(
 			mStats.getPPower() + Math.round(0.12 * mStats.getPEffectivness() * busyness.getBusynessReward(mStats))

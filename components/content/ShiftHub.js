@@ -344,20 +344,20 @@ function ShiftHub(props) {
 								resetButton: true,
 							});
 							shiftHubLogic.freeUpAllDays();
-							props.navigation.push('Loading Local');
+							props.navigation.navigate('Loading Local');
 							mStats.setPSanity(30);
 
 							const structure = await fetchSchedule();
 
 							mStats.setSchedualFromShiftStructure(structure);
+							await saveUser();
+
 							//Player may have lost by pressing next week
 							if (mStats.determinLoseCondition()) {
 								handleLose(props);
 							} else {
-								props.navigation.push('Next Shift Select');
+								props.simpleNav('Next Shift Select');
 							}
-
-							await saveUser();
 						}}
 					/>
 					<Button
