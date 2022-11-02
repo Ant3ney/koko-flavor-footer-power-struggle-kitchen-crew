@@ -60,8 +60,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('monday').day);
 							shiftHubLogic.manageDaysUpTo(presets('monday').day);
-
-							props.navigation.navigate('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('monday')}
 					/>
@@ -79,7 +78,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('monday').night);
 							shiftHubLogic.manageDaysUpTo(presets('monday').night);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('monday')}
 					/>
@@ -100,7 +99,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('tuesday').day);
 							shiftHubLogic.manageDaysUpTo(presets('tuesday').day);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('tuesday')}
 					/>
@@ -118,7 +117,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('tuesday').night);
 							shiftHubLogic.manageDaysUpTo(presets('tuesday').night);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('tuesday')}
 					/>
@@ -141,7 +140,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('wednesday').day);
 							shiftHubLogic.manageDaysUpTo(presets('wednesday').day);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('wednesday')}
 					/>
@@ -159,7 +158,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('wednesday').night);
 							shiftHubLogic.manageDaysUpTo(presets('wednesday').night);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('wednesday')}
 					/>
@@ -180,7 +179,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('thursday').day);
 							shiftHubLogic.manageDaysUpTo(presets('thursday').day);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('thursday')}
 					/>
@@ -198,7 +197,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('thursday').night);
 							shiftHubLogic.manageDaysUpTo(presets('thursday').night);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('thursday')}
 					/>
@@ -221,7 +220,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('friday').day);
 							shiftHubLogic.manageDaysUpTo(presets('friday').day);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('friday')}
 					/>
@@ -239,7 +238,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('friday').night);
 							shiftHubLogic.manageDaysUpTo(presets('friday').night);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('friday')}
 					/>
@@ -260,7 +259,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('saturday').day);
 							shiftHubLogic.manageDaysUpTo(presets('saturday').day);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('saturday')}
 					/>
@@ -301,7 +300,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('sunday').day);
 							shiftHubLogic.manageDaysUpTo(presets('sunday').day);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('sunday')}
 					/>
@@ -319,7 +318,7 @@ function ShiftHub(props) {
 							click();
 							props.gameLogic.GameDriver.start(presets('sunday').night);
 							shiftHubLogic.manageDaysUpTo(presets('sunday').night);
-							props.navigation.push('Shift');
+							props.simpleNav('Shift');
 						}}
 						disabled={shiftHubLogic.getDisabledOf('sunday')}
 					/>

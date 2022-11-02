@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { CommonActions } from '@react-navigation/native';
 import Content from '../content/Content';
 import LevelReport from '../content/LevelReport';
 import ShiftHub from '../content/ShiftHub';
@@ -39,20 +40,33 @@ function GameMenuNav(props) {
 				<Stack.Screen name='Begin Story'>{ProxyConversation}</Stack.Screen>
 			) : (
 				<Stack.Screen name='Initial Shift Select'>
-					{inProps => <ShiftHub navigation={props.navigation} gameLogic={props.gameLogic} />}
+					{inProps => (
+						<ShiftHub navigation={props.navigation} simpleNav={simpleNav} gameLogic={props.gameLogic} />
+					)}
 				</Stack.Screen>
 			)}
 
 			<Stack.Screen name='Next Shift Select'>
-				{inProps => <ShiftHub navigation={props.navigation} gameLogic={props.gameLogic} />}
+				{inProps => (
+					<ShiftHub navigation={props.navigation} simpleNav={simpleNav} gameLogic={props.gameLogic} />
+				)}
 			</Stack.Screen>
 
 			<Stack.Screen name='Shift'>
-				{inProps => <Content {...inProps} navigation={props.navigation} gameLogic={props.gameLogic} />}
+				{inProps => (
+					<Content
+						{...inProps}
+						navigation={props.navigation}
+						simpleNav={simpleNav}
+						gameLogic={props.gameLogic}
+					/>
+				)}
 			</Stack.Screen>
 
 			<Stack.Screen name='Level Report'>
-				{inProps => <LevelReport navigation={props.navigation} gameLogic={props.gameLogic} />}
+				{inProps => (
+					<LevelReport navigation={props.navigation} simpleNav={simpleNav} gameLogic={props.gameLogic} />
+				)}
 			</Stack.Screen>
 
 			<Stack.Screen name='Conversation'>
@@ -63,6 +77,7 @@ function GameMenuNav(props) {
 						<Conversation
 							styleProp={props.styleProp}
 							navigation={props.navigation}
+							simpleNav={simpleNav}
 							gameLogic={props.gameLogic}
 							type={type}
 						/>
@@ -78,6 +93,7 @@ function GameMenuNav(props) {
 						<Conversation
 							styleProp={props.styleProp}
 							navigation={props.navigation}
+							simpleNav={simpleNav}
 							gameLogic={props.gameLogic}
 							type={type}
 						/>
@@ -92,6 +108,7 @@ function GameMenuNav(props) {
 						<Conversation
 							styleProp={props.styleProp}
 							navigation={props.navigation}
+							simpleNav={simpleNav}
 							gameLogic={props.gameLogic}
 							type={type}
 						/>
@@ -105,6 +122,7 @@ function GameMenuNav(props) {
 						<Conversation
 							styleProp={props.styleProp}
 							navigation={props.navigation}
+							simpleNav={simpleNav}
 							gameLogic={props.gameLogic}
 							type={type}
 						/>
@@ -120,6 +138,7 @@ function GameMenuNav(props) {
 						<Conversation
 							styleProp={props.styleProp}
 							navigation={props.navigation}
+							simpleNav={simpleNav}
 							gameLogic={props.gameLogic}
 							type={type}
 						/>
@@ -130,26 +149,22 @@ function GameMenuNav(props) {
 			<Stack.Screen name='Loading Local'>{inProps => <Loading />}</Stack.Screen>
 
 			<Stack.Screen name='Win screen'>
-				{inProps => <Win navigation={props.navigation} gameLogic={props.gameLogic} />}
+				{inProps => <Win navigation={props.navigation} gameLogic={props.gameLogic} simpleNav={simpleNav} />}
 			</Stack.Screen>
 
 			<Stack.Screen name='Lose screen'>
-				{inProps => <Lose navigation={props.navigation} gameLogic={props.gameLogic} />}
+				{inProps => <Lose navigation={props.navigation} gameLogic={props.gameLogic} simpleNav={simpleNav} />}
 			</Stack.Screen>
 		</Stack.Navigator>
 	);
 
-	/* function ProxyConversation(proxyProps) {
-		let type = util.getConversationTypeFromProps(proxyProps);
-		return (
-			<Conversation
-				styleProp={props.styleProp}
-				navigation={proxyProps.navigation}
-				gameLogic={props.gameLogic}
-				type={type}
-			/>
-		);
-	} */
+	function simpleNav(to, params) {
+		const resetAction = CommonActions.reset({
+			index: 1,
+			routes: [{ name: to, params: params || null }],
+		});
+		props.navigation.dispatch(resetAction);
+	}
 }
 
 export default GameMenuNav;

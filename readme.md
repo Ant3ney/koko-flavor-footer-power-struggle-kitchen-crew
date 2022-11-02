@@ -45,4 +45,5 @@ This app uses @reactnavigation to handle what views to display to the user. This
 
 ## Bug bounties
 
-1. Sometimes, gameplay dose not work until user exits the tab and comes back.
+1. Sometimes, gameplay dose not work until user exits the tab and comes back. X
+   Solution. Navigated to different views not but calling a navigation.navigate but instead created a reset action that also changeless the current navigation route. Then had the navigation code dispatch this action.

@@ -28,16 +28,14 @@ class Kitchen extends PureComponent {
 	//helper functions
 	setScenerio = scenario => {
 		this.setState({ scenarioPresent: scenario }); //This state will influence a turinaty operator witch will then render or not render a component
-		this.mStats.setScenarioPresent(scenario); //This mStats function will basicly stop the gameplay loop ticing
+		this.mStats.setScenarioPresent(scenario); //This mStats function will basicity stop the gameplay loop ticking
 	};
 	setUpgrade = upgrade => {
 		this.setState({ upgradeMenu: upgrade }); //This state will influence a turinaty operator witch will then render or not render a component
 	};
 
-	//Mounting / unmounting
 	componentDidMount() {
-		//THis is a component that happens once at the start of Kitchen being rendered
-		//These event listeners need to have proper garbage collection implemented
+		console.log('Kitchen has loaded');
 		AppState.addEventListener('change', this._handleAppStateChange);
 		this.gameDriver.on('tic', () => {
 			console.log('Component tic');
