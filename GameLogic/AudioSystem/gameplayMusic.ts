@@ -1,6 +1,8 @@
 import music from './music';
 import utils from '../../utilities';
 const PLAY_MUSIC_SETTINGS = { volume: 0.15, loop: true };
+const LOG_TIC_REPORT = false;
+
 type GameContext = {
 	day: string;
 	lighting: string;
@@ -19,18 +21,14 @@ interface GameplayMusic extends Partial<GameContext> {
 const gameplayMusic: GameplayMusic = {
 	start: (gameContext: GameContext) => {
 		addFirstToSecond(gameplayMusic, gameContext);
-		const takaIsHere = doseShiftHaveName('Taka Okuno');
-		const kaseyIsHere = doseShiftHaveName('Kasey Takahashi');
-		const vickyIsHere = doseShiftHaveName('Vicky Dang');
-
-		if (checkIfPlayerIsInsane()) playInsanityMusic();
-		else if (kaseyIsHere && vickyIsHere) music.play('cheese', PLAY_MUSIC_SETTINGS);
-		else if (takaIsHere) music.play('taka', PLAY_MUSIC_SETTINGS);
-		else if (kaseyIsHere || vickyIsHere) music.play('cheese', PLAY_MUSIC_SETTINGS);
-		else playMusicFromTimeAndDay();
+		calculateAndPlayMusic();
 	},
 	tic: (sanity: number) => {
-		if (checkIfPlayerIsInsane(sanity)) playInsanityMusic();
+		gameplayMusic.sanity = sanity;
+		handleTicReport(sanity);
+
+		if (checkIfPlayerIsInsane(sanity)) handleInsanityMusic();
+		else if (gameplayMusic.playing === 'insanity') calculateAndPlayMusic(sanity);
 	},
 	end: () => {
 		music.pause();
@@ -41,8 +39,26 @@ const gameplayMusic: GameplayMusic = {
 	},
 };
 
+/**
+ * If the player is insane, play insanity music, otherwise if Kasey and Vicky are here, play cheese
+ * music, otherwise if Taka is here, play Taka music, otherwise if Kasey or Vicky is here, play cheese
+ * music, otherwise play music based on the time and day.
+ * @param {number} [sanity] - number - The sanity of the player.
+ */
+function calculateAndPlayMusic(sanity?: number) {
+	const takaIsHere = doseShiftHaveName('Taka Okuno');
+	const kaseyIsHere = doseShiftHaveName('Kasey Takahashi');
+	const vickyIsHere = doseShiftHaveName('Vicky Dang');
+
+	if (checkIfPlayerIsInsane(sanity)) handleInsanityMusic();
+	else if (kaseyIsHere && vickyIsHere) playCheeseMusic();
+	else if (takaIsHere) playTaka();
+	else if (kaseyIsHere || vickyIsHere) music.play('cheese', PLAY_MUSIC_SETTINGS);
+	else playMusicFromTimeAndDay();
+}
+
 function checkIfPlayerIsInsane(sanity?: number) {
-	if (sanity && typeof sanity !== 'number') return sanity < 0;
+	if (typeof sanity === 'number') return sanity < 0;
 	else if (gameplayMusic?.sanity || gameplayMusic?.sanity === 0) return gameplayMusic.sanity < 0;
 	return false;
 }
@@ -111,6 +127,18 @@ function playNonMondayMorningMusic() {
 	playRandomMusicFrom(nonMondayMorningMusic);
 }
 
+function playCheeseMusic() {
+	if (gameplayMusic.playing === 'insanity') music.musicTransitionTo('cheese');
+	else music.play('cheese', PLAY_MUSIC_SETTINGS);
+	gameplayMusic.playing = 'cheese';
+}
+
+function playTaka() {
+	if (gameplayMusic.playing === 'insanity') music.musicTransitionTo('taka');
+	else music.play('taka', PLAY_MUSIC_SETTINGS);
+	gameplayMusic.playing = 'taka';
+}
+
 function playRandomMusicFrom(musicArray: any) {
 	const randomMusicIndex: number = utils.getRandomIndexFromArray(musicArray);
 	const musicToPlay: string = musicArray[randomMusicIndex];
@@ -118,7 +146,7 @@ function playRandomMusicFrom(musicArray: any) {
 	music.play(musicToPlay, PLAY_MUSIC_SETTINGS);
 }
 
-function playInsanityMusic() {
+function handleInsanityMusic() {
 	if (gameplayMusic.playing === 'insanity') return;
 	if (!gameplayMusic.playing) music.play('insanity', PLAY_MUSIC_SETTINGS);
 	else music.musicTransitionTo('insanity');
@@ -134,6 +162,21 @@ function doseShiftHaveName(name: string): boolean {
 		if (character.name.get() === name) return true;
 	}
 	return false;
+}
+
+function handleTicReport(sanity: number) {
+	if (LOG_TIC_REPORT)
+		console.log(
+			'gameplayMusic Tic report:',
+			'sanity:',
+			sanity,
+			'checkIfPlayerIsInsane(sanity):',
+			checkIfPlayerIsInsane(sanity),
+			"gameplayMusic.playing === 'insanity':",
+			gameplayMusic.playing === 'insanity',
+			'gameplayMusic.playing:',
+			gameplayMusic.playing
+		);
 }
 
 //TODO when morning music is finished, add them in here in correct place.

@@ -38,7 +38,6 @@ class Kitchen extends PureComponent {
 		console.log('Kitchen has loaded');
 		AppState.addEventListener('change', this._handleAppStateChange);
 		this.gameDriver.on('tic', () => {
-			console.log('Component tic');
 			if (this.gameDriver.scenarioCheck().reply) {
 				this.setScenerio(true);
 			}

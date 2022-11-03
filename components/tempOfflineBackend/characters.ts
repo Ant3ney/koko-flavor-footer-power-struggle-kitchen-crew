@@ -352,7 +352,7 @@ var characters = [
 			age: 22,
 			gender: 'f',
 			wealth: 4,
-			personlaity: 'easyGoing',
+			personality: 'easyGoing',
 			deniedPhrase: 'Ow ok then',
 			catchPhrase: 'Yeah Im doing fine how are you',
 		},
