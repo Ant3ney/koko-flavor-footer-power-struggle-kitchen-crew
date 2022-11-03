@@ -24,7 +24,7 @@ export function getMaxTimeMultiplyer() {
 }
 
 var scenariosTempletes = [
-	/* () => {
+	() => {
 		var subjectObj = mStats.getRandomServer(true);
 		var subject = subjectObj.name.getFirst();
 		var playerRespect = mStats.getPRespectability();
@@ -329,7 +329,7 @@ var scenariosTempletes = [
 				StaticScenario.handleOnTimeOut();
 			},
 		};
-	}, */
+	},
 	() => {
 		var subjectObj = mStats.getRandomCharacter(true);
 		var subject = subjectObj.name.getFirst();
@@ -375,7 +375,7 @@ var scenariosTempletes = [
 			},
 		};
 	},
-	/* () => {
+	() => {
 		var subject01Obj = mStats.getRandomServer(true);
 		var subject02Obj = mStats.getRandomCook(true);
 		var subjects01sRespectability = mStats.getCRespectability(subject01Obj);
@@ -463,7 +463,7 @@ var scenariosTempletes = [
 				StaticScenario.handleOnTimeOut();
 			},
 		};
-	}, */
+	},
 	() => {
 		var subjectObj = mStats.getRandomCharacter(true);
 		var subject = subjectObj.name.getFirst();
@@ -506,7 +506,7 @@ var scenariosTempletes = [
 			},
 		};
 	},
-	/* () => {
+	() => {
 		var playerRespectability = mStats.getPRespectability();
 		return {
 			prompt: 'Carlose the manager sees your face and asks you to shave',
@@ -596,7 +596,7 @@ var scenariosTempletes = [
 				StaticScenario.handleOnTimeOut();
 			},
 		};
-	}, */
+	},
 ];
 
 export default scenariosTempletes;
