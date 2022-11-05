@@ -41,16 +41,12 @@ function UpperHud(props) {
 
 			<View style={basic.gridRow}>
 				<Text style={basic.gridSCol2}>Power: {power} / 10,000</Text>
-				<Text style={basic.gridSCol2}>Effectivness: {effectivness} / 50</Text>
+				<Text style={basic.gridSCol2}>Effectiveness: {effectivness} / 50</Text>
 			</View>
 
 			<View style={basic.gridRow}>
 				<Text style={basic.gridSCol2}>Skill: {mStats.getPlayer() ? mStats.getPSkill() : 0} / 20</Text>
-				<Text style={basic.gridSCol2}>SkillPoints: {skillPoints}</Text>
-			</View>
-
-			<View style={basic.gridRow}>
-				<Text style={basic.gridSCol2}>Energy: {energy}</Text>
+				{/* <Text style={basic.gridSCol2}>SkillPoints: {skillPoints}</Text> */}
 				<Text style={basic.gridSCol2}>
 					Time:{' '}
 					{Math.floor(time / 100) +
@@ -61,14 +57,19 @@ function UpperHud(props) {
 						(Math.floor(time / 100) === 11 ? 'am' : 'pm')}
 				</Text>
 			</View>
-			<View style={basic.gridRow}>
-				<Text style={basic.gridSCol2}>Station: {station}</Text>
-				<Text style={basic.gridSCol2}>busyness: {busyness}</Text>
-			</View>
 
 			<View style={basic.gridRow}>
+				<Text style={basic.gridSCol2}>Energy: {energy}</Text>
+				<Text style={basic.gridSCol2}>Busyness: {busyness}</Text>
+			</View>
+			<View style={basic.gridRow}>
+				{/* <Text style={basic.gridSCol2}>Station: {station}</Text> */}
 				<Text style={basic.gridSCol2}>Sanity: {sanity}</Text>
 			</View>
+
+			{/* <View style={basic.gridRow}>
+				
+			</View> */}
 		</View>
 	);
 

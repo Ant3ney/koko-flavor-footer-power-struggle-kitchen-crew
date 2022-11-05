@@ -346,6 +346,21 @@ var characters = [
 	{
 		person: {
 			name: {
+				firstName: 'Keith',
+				lastName: 'Garver',
+			},
+			age: 22,
+			gender: 'm',
+			wealth: 4,
+			personality: 'outgoing',
+			deniedPhrase: 'Dude. Just no!',
+			catchPhrase: 'O hey there!',
+		},
+		character: defaultCharacterServer,
+	},
+	{
+		person: {
+			name: {
 				firstName: 'Tyler',
 				lastName: 'M',
 			},

@@ -6,6 +6,7 @@ import kitchenStyles from '../../Styles/kitchen';
 import Upgrade from './Upgrade';
 import StatScreen from '../../components/content/Schedule/Screen';
 import StationOptions from './StationOptions';
+import { click } from '../../GameLogic/AudioSystem';
 
 class Kitchen extends PureComponent {
 	constructor(props) {
@@ -91,12 +92,18 @@ class Kitchen extends PureComponent {
 					}}
 				></GameLoop>
 				<Text>
-					Cronut semiotics raw denim, coloring book +1 williamsburg chartreuse before they sold out. Etsy
-					cardigan gochujang master cleanse. Blog food truck PBR&B williamsburg helvetica. Tilde wayfarers
-					freegan retro meggings, mlkshk hexagon polaroid street art vape single-origin coffee keytar unicorn.
-					Biodiesel food truck tofu chicharrones gluten-free, ethical etsy locavore polaroid. Ramps poke
-					tumblr, venmo hoodie kitsch chia four loko brooklyn copper mug. Sartorial cray hashtag migas venmo
-					chicharrones godard cred thundercats biodiesel.
+					How to play. Hustle to increase station effectiveness. Make decisions when scenarios arise. Power
+					determines you progression in the story. Having too low power will cause you to lose. Effectiveness
+					determines how much power you get per each ten minutes. Skill determines how much effectiveness you
+					gain or lose when the busyness rises or falls. When the time is 5:00 or 10:00 the shift will end
+					depending on weather you playing a day or night shift. Energy determines how many times you can
+					press the hustle button. Busyness will give or remove effectiveness based on your skill level and
+					the busyness level that came before the current value. Sanity will reduce you station effectiveness
+					every 100 game minutes if it is less then 0. Next hour will allow you to skip 10 game minutes into
+					the future. Shift will allow you to see who is currently in the shift with you. For other NPCs, only
+					there power and sanity have an effect. At the end of each shift, NPCs will either gain or lose power
+					based on weather there sanity level is positive. If an NPC gains 10,000 power, you will lose the
+					game. To win the game you must obtain 10,000 power.
 				</Text>
 				{this.state.showStationOptions ? (
 					<StationOptions gameLogic={this.props.gameLogic} exit={this.exitStationOptions} />
@@ -104,8 +111,9 @@ class Kitchen extends PureComponent {
 					<View />
 				)}
 				<Button
-					title='Hussle'
+					title='Hustle'
 					onPress={() => {
+						click();
 						if (this.mStats.getPEnergy() > 0) {
 							this.mStats.setPEnergy(this.mStats.getPEnergy() - 1);
 							this.mStats.setPEffectivness(this.mStats.getPEffectivness() + 10);
@@ -116,24 +124,26 @@ class Kitchen extends PureComponent {
 				<Button
 					title='Next hour'
 					onPress={() => {
+						click();
 						this.mStats.incrementHour();
 					}}
 				/>
-				<Button
+				{/* <Button
 					title='Switch'
 					onPress={() => {
 						this.setState({ showStationOptions: true });
 					}}
-				/>
-				<Button
+				/> */}
+				{/* <Button
 					title='Upgrade'
 					onPress={() => {
 						this.setUpgrade(true);
 					}}
-				/>
+				/> */}
 				<Button
 					title='Shift'
 					onPress={() => {
+						click();
 						this.setState({ showStatMenu: true });
 					}}
 				/>

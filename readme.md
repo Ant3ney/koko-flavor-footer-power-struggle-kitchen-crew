@@ -49,4 +49,4 @@ This app uses @reactnavigation to handle what views to display to the user. This
 1. Sometimes, gameplay dose not work until user exits the tab and comes back.
    Solution. Navigated to different views not but calling a navigation.navigate but instead created a reset action that also changeless the current navigation route. Then had the navigation code dispatch this action. X
 
-2. Tyler Personality is not getting recognized by the game logic files.
+2. Tyler Personality is not getting recognized by the game logic files. X

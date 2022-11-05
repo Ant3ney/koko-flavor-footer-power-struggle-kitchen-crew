@@ -1,6 +1,6 @@
 import mStats from '../ManageStats/ManageStats';
 import StaticScenario from '../Scenario/StaticScenario';
-import characters from './testCharacters';
+import { click } from '../AudioSystem';
 
 const difficulty = 'dyslexic';
 export function getMaxTimeMultiplyer() {
@@ -38,6 +38,7 @@ var scenariosTempletes = [
 				{
 					title: 'Yes it is.',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject +
 							' brings the food to pantry and before ' +
@@ -54,6 +55,7 @@ var scenariosTempletes = [
 				{
 					title: 'No it Isn’t', //its in order / sure / Naww / Shrooms? Yee
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'The shift carys on as normal for you are correct\n+20Power\n+10Station effectivness';
 						//aply consiquence
@@ -92,6 +94,7 @@ var scenariosTempletes = [
 				{
 					title: 'Yell at and blame ' + subject01,
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject01 +
 							'and the crew around you with stare with a blank look that quikly turns into discontent. ' +
@@ -110,6 +113,7 @@ var scenariosTempletes = [
 				{
 					title: 'Blame ' + subject02,
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject02 +
 							' is visibly upseat. Right before ' +
@@ -131,6 +135,7 @@ var scenariosTempletes = [
 				{
 					title: 'Take full responsiblity',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject01 +
 							'tells you its his fault and that he should have been more carefull. The kitchen crew then sees you as a responsible leader\n-20 Station Effectivness\n+10 Respectability\n+10 Power';
@@ -145,6 +150,7 @@ var scenariosTempletes = [
 				{
 					title: 'Get a manager',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'Carlose the manager comes in sees the empty rice warmers and is visable shook. He stops all new orders and looks at the kitchen crew with a vngefull look, He tells each kitchen employee, "Can I talk to you outside please".\n-100 Over all shift power';
 						//aply consiquence
@@ -182,6 +188,7 @@ var scenariosTempletes = [
 				{
 					title: 'Take a 20 minute break',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'You enjoy a superb and refreshing 20 minute break. When you come back Carlose the manager is waiting for you. He lectures you about work edicate and with a disapointed tone of voice.\nEnergy Refilled\n-20 Power';
 						//aply consiquence
@@ -193,6 +200,7 @@ var scenariosTempletes = [
 				{
 					title: 'Pass the opertunity',
 					onPress: () => {
+						click();
 						StaticScenario.prompt = subject + ' calls you a pleb';
 						//aply consiquence
 						StaticScenario.handleOnPress();
@@ -227,6 +235,7 @@ var scenariosTempletes = [
 				{
 					title: 'You make the order',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'Time has passed and the order is finaly made.\n+50 Power\n-5 Station Efectivness';
 						//aply consiquence
@@ -239,6 +248,7 @@ var scenariosTempletes = [
 				{
 					title: 'You say no',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject +
 							' is puzzeld by your response and ' +
@@ -256,6 +266,7 @@ var scenariosTempletes = [
 				{
 					title: 'You say, "Im done with your ASAP orders ' + subject + '!"',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject +
 							"'s demeaner gets less friendly, " +
@@ -298,6 +309,7 @@ var scenariosTempletes = [
 				{
 					title: 'You pick it up off the ground and used it',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'You used the squid from the floor and quickly continue making orders\n+15 station effectivness\n-50 cleanliness';
 
@@ -310,6 +322,7 @@ var scenariosTempletes = [
 				{
 					title: 'Fry a new batch',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'You use a fresh batch of squid and wait for that to fry\n+5 cleanliness\n-20 station effectivness';
 
@@ -339,6 +352,7 @@ var scenariosTempletes = [
 				{
 					title: 'Give her your real name and the managers phone number',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'The unruly Karen walks and tries to get you in trouble with the manager with no effect although you are shooken up from the unconfertable event\n-2 Sanity\n+2 Anger';
 
@@ -351,6 +365,7 @@ var scenariosTempletes = [
 				{
 					title: 'Say your name is Alex Jin',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'The unruly Karen walks and tries to get Alex Gin in trouble with the manager with no effect. You feel good about giving the Karen the runaround\n+10 Sanity';
 
@@ -389,6 +404,7 @@ var scenariosTempletes = [
 				{
 					title: 'Make ' + subject01 + "'s order",
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'You make there order and on ' +
 							subject01 +
@@ -409,6 +425,7 @@ var scenariosTempletes = [
 				{
 					title: 'Deny there order',
 					onPress: () => {
+						click();
 						StaticScenario.prompt = subject01 + ' is upseat but is understanding\n+10 respectablity';
 
 						//aply consiquence
@@ -419,6 +436,7 @@ var scenariosTempletes = [
 				{
 					title: 'Report order to manager',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'Carlose the manager gives ' + subject01 + ' a slap on the wrist and continues on';
 
@@ -427,6 +445,7 @@ var scenariosTempletes = [
 					},
 					title: 'Make ' + subject02 + ' make the order',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject02 +
 							' makes the order without question and while ' +
@@ -473,6 +492,7 @@ var scenariosTempletes = [
 				{
 					title: 'Say your family is expecting you at home',
 					onPress: () => {
+						click();
 						StaticScenario.prompt = subject + ' looks disapointed but is understanding';
 
 						//aply consiquence
@@ -482,6 +502,7 @@ var scenariosTempletes = [
 				{
 					title: 'You go on the hike',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'A few days later you go on that hike. When you get there a few of ' +
 							subject +
@@ -514,6 +535,7 @@ var scenariosTempletes = [
 				{
 					title: 'Say "Ok, I\'ll shave by next shift"',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							"Carlose is happey you obayed him without question and continues on\n+20 power\n+20 Carlose's sanity";
 
@@ -525,6 +547,7 @@ var scenariosTempletes = [
 				{
 					title: 'Say "STFU! Don\'t tell me what to do"',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							"Carlose's face gets red and his breathing becomes more ireagular. He tells you in a threatening voice that he expects you to be shaved next time he see's you\n-20 power\n-20 Carlos's sanity";
 
@@ -561,6 +584,7 @@ var scenariosTempletes = [
 				{
 					title: 'Leave station and make rice now',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							subject +
 							' sturgles to keep up for a while but is understanding of your decition\n+10 Respectability\n+10 Skill points\n-5 Station effectivness';
@@ -575,6 +599,7 @@ var scenariosTempletes = [
 				{
 					title: 'Stay at station and make rice later',
 					onPress: () => {
+						click();
 						StaticScenario.prompt =
 							'You are able to keep the orders flowing smoothly and make more rice when there is a dip in the busyness\n+20 Station effectivness';
 

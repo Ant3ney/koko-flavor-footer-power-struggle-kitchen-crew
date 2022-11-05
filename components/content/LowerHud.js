@@ -1,10 +1,10 @@
-import React from "react";
-import { View, Text, Button } from "react-native";
+import React from 'react';
+import { View, Text, Button } from 'react-native';
 
-function LowerHud(props){
-    return(
-        <View>
-            <Text>This is the Lower hud</Text>
+function LowerHud(props) {
+	return (
+		<View>
+			{/* <Text>This is the Lower hud</Text>
             <Button 
              title="Settings"
              onPress={() => {
@@ -25,9 +25,9 @@ function LowerHud(props){
                 props.gameLogic.GameDriver.leftGamePlay(true);
                 props.navigation.navigate("Share");
              }}
-            />
-        </View>
-    );
+            /> */}
+		</View>
+	);
 }
 
 export default LowerHud;
