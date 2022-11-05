@@ -9,6 +9,7 @@ let conversationContext = {
 var KickbackConversationTempletes = [
 	(dialogChanged, finish) => {
 		//TODO: Make a more proper streamlined version of this.
+		//Consider creating file that specializes in what conversationContext achieves
 		var subJect01Obj = mStats.getRandomCharacter(true);
 		if (conversationContext.started) subJect01Obj = conversationContext.subJect01Obj;
 		conversationContext.subJect01Obj = subJect01Obj;
