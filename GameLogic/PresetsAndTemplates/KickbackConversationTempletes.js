@@ -1,14 +1,18 @@
 import mStats from '../ManageStats/ManageStats';
 import Dialog from '../Conversation/Dialog';
 let staticConversation = {};
+let conversationContext = {
+	started: false,
+};
 
 //TODO: make it so characters in this kickback conversation are based on your current shift characters
 var KickbackConversationTempletes = [
 	(dialogChanged, finish) => {
+		//TODO: Make a more proper streamlined version of this.
 		var subJect01Obj = mStats.getRandomCharacter(true);
-		var subject01 = subJect01Obj.name.getFirst();
-
-		const shiftCharacters = mStats.getShiftCharacters();
+		if (conversationContext.started) subJect01Obj = conversationContext.subJect01Obj;
+		conversationContext.subJect01Obj = subJect01Obj;
+		conversationContext.started = true;
 
 		return {
 			conversation01: [
@@ -60,6 +64,7 @@ var KickbackConversationTempletes = [
 						{
 							title: 'Next',
 							onPress: () => {
+								conversationContext.started = false;
 								finish();
 							},
 						},
@@ -81,7 +86,12 @@ var KickbackConversationTempletes = [
 						},
 						{
 							title: 'No it was shit!',
-							onPress: () => {},
+							onPress: () => {
+								dialogChanged({
+									newConversationProperty: 'conversation02',
+									newConIndex: 0,
+								});
+							},
 						},
 					],
 				},

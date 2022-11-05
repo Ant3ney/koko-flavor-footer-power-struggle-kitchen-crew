@@ -1163,7 +1163,6 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		//Steaven's Personality
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
 		let raniel = mStats.getCharacterWithName('Raniel San Diego');
 		var vicky = mStats.getCharacterWithName('Vicky Dang');
@@ -2050,7 +2049,6 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		//Current Story
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
 		var melanie = mStats.getCharacterWithName('Melanie M');
 		var mark = mStats.getCharacterWithName('Mark Noda');
@@ -2693,8 +2691,6 @@ var storyTempletes = [
 		};
 	},
 	(dialogChanged, exit) => {
-		//Cedric's Personality
-
 		let cedric = new characters();
 		cedric.characterInit({ name: {}, gender: 'm', personality: 'consistent' }, {});
 		mStats.setCharacterName(cedric, { first: 'Cedric', last: '' });
