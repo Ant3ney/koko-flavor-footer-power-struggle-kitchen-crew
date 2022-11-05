@@ -13,52 +13,49 @@ var KickbackConversationTempletes = [
 		return {
 			conversation01: [
 				{
-					dialog: new Dialog(subJect01Obj, 'Keep onversation on track'),
+					dialog: new Dialog(subJect01Obj, "That was a good shift don't you think"),
 					responses: [
 						{
 							title: 'Yes',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
 						{
 							title: 'No',
 							onPress: () => {
-								staticConversation.index = 0;
-								staticConversation.currentConversation =
-									staticConversation.currentTemplete.conversation02;
-								dialogChanged();
+								dialogChanged({
+									newConversationProperty: 'conversation02',
+									newConIndex: 0,
+								});
 							},
 						},
 					],
 				},
 				{
-					dialog: new Dialog(subJect01Obj, 'Seceond pice of ontrack dialog'),
+					dialog: new Dialog(subJect01Obj, "I'm glad you agree"),
 					responses: [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
 					],
 				},
 				{
-					dialog: new Dialog(subJect01Obj, 'Third pice of ontrack dialog'),
+					dialog: new Dialog(subJect01Obj, 'It looks like your going to become a very powerful employee.'),
 					responses: [
 						{
 							title: 'Next',
 							onPress: () => {
-								staticConversation.index++;
 								dialogChanged();
 							},
 						},
 					],
 				},
 				{
-					dialog: new Dialog(subJect01Obj, 'Fourth pice of ontrack dialog'),
+					dialog: new Dialog(subJect01Obj, 'Anyway, goodbye.'),
 					responses: [
 						{
 							title: 'Next',
@@ -71,23 +68,20 @@ var KickbackConversationTempletes = [
 			],
 			conversation02: [
 				{
-					dialog: new Dialog(subJect01Obj, 'Would you like to return things to normal?'),
+					dialog: new Dialog(subJect01Obj, 'What do you mean! that shift was great!'),
 					responses: [
 						{
-							title: 'Yes',
+							title: 'Your right.',
 							onPress: () => {
-								staticConversation.index = 1;
-								staticConversation.currentConversation =
-									staticConversation.currentTemplete.conversation01;
-								dialogChanged();
+								dialogChanged({
+									newConversationProperty: 'conversation01',
+									newConIndex: 1,
+								});
 							},
 						},
 						{
-							title: 'No',
-							onPress: () => {
-								staticConversation.index++;
-								dialogChanged();
-							},
+							title: 'No it was shit!',
+							onPress: () => {},
 						},
 					],
 				},
