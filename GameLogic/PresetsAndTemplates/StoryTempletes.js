@@ -8,6 +8,9 @@ const PLAY_MUSIC_SETTINGS = { volume: 0.15, loop: true };
 const a = { emotion: 'Angry' };
 const h = { emotion: 'Happy' };
 const n = { emotion: 'Neutral' };
+let conversationContext = {
+	started: false,
+};
 
 var storyTempletes = [
 	(dialogChanged, exit) => {
@@ -298,10 +301,14 @@ var storyTempletes = [
 		var philip = mStats.getCharacterWithName('Philip P');
 		var brad = mStats.getCharacterWithName('Brad Yanagi');
 		var powerfull = mStats.getMostPowerFullCharacter([christian, raniel, vicky, mark, philip, brad, kasey]);
+		if (conversationContext.started) powerfull = conversationContext.powerfull;
+		conversationContext.powerfull = powerfull;
 		var asker = mStats.getEitherCharacterWhosNot(
 			[mark, philip],
 			[christian, raniel, vicky, mark, philip, brad, kasey]
 		);
+		if (conversationContext.started) asker = conversationContext.asker;
+		conversationContext.asker = asker;
 		var rando = mStats.getRandomeCharacterWhosNot([
 			powerfull,
 			christian,
@@ -313,7 +320,9 @@ var storyTempletes = [
 			asker,
 			kasey,
 		]);
-
+		if (conversationContext.started) rando = conversationContext.rando;
+		conversationContext.rando = rando;
+		conversationContext.started = true;
 		return {
 			conversation01: [
 				{
@@ -723,6 +732,7 @@ var storyTempletes = [
 						{
 							title: 'next',
 							onPress: () => {
+								conversationContext.started = false;
 								music.pause();
 								exit();
 							},
