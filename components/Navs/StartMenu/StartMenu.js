@@ -11,9 +11,6 @@ function MainMenu(props) {
 		music.play('mainTheme', {
 			loop: true,
 			volume: 0.15,
-			onLoad: () => {
-				alert('Main theme loaded');
-			},
 		});
 	}, []);
 

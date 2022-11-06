@@ -727,7 +727,7 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(kasey, "Well I'll see you around loser. Happy power hunting."),
+					dialog: new Dialog(kasey, 'Goodby loser. Happy power hunting.'),
 					responses: [
 						{
 							title: 'next',

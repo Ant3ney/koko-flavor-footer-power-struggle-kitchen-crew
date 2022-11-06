@@ -5,7 +5,7 @@ import basic from '../Styles/basics';
 function Loading() {
 	return (
 		<View style={{ ...basic.testContainer, display: 'flex', flexDirection: 'row' }}>
-			<Text>Loading</Text>
+			<div id='loading-text'>Loading</div>
 			<Dots />
 		</View>
 	);
