@@ -26,12 +26,12 @@ visit https://koko-flavor-fodder.netlify.app to play current build
    a. Fix lose event. X
    b. In chapter 03 of the story, a lot of dialog is missing. It turned out, nothing was missing. Ch 03 just ends abruptly. X
    Extend credits to include all voice actors. X
-   c. Add emotions to dialog.
-   d. Hide upgrade menu
+   c. Add emotions to dialog. X
+   d. Hide upgrade menu X
    e. Time dose not progress when you play two shifts in one session. This bug just disappeared. If it ever returns, consider that it may have come from the fact that the kitchen (gameplay) component did not re run because the navigation stack could have kept it awake the entire time the player in not playing gameplay. I ended up changing a few navigation.navigate function calls to navigation.push instead. This seems to reduce the frequency of this kind of error. X
    f. Ensure gameplayMusic works. X
 6. Create Monday Morning and Nostalgic Morning Music.
-7. Implement music to gameplay.
+7. Implement music to gameplay. X
 8. Create media for Music Update.
 9. Post media to social media.
 
