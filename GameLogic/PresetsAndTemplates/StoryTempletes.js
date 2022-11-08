@@ -2809,7 +2809,7 @@ var storyTempletes = [
 				},
 				{
 					//06
-					dialog: new Dialog(stefanie, 'Bingo! Steven said it with me. Your fire…', h),
+					dialog: new Dialog(stefanie, 'Bingo! Steven say it with me. Your fire…', h),
 					responses: [
 						{
 							title: 'next',
@@ -2864,7 +2864,7 @@ var storyTempletes = [
 				},
 				{
 					//10
-					dialog: new Dialog(stefanie, 'Sure but look how much good that did us he still…'),
+					dialog: new Dialog(stefanie, 'Sure but look how much good that did us he still…', a),
 					responses: [
 						{
 							title: 'next',
