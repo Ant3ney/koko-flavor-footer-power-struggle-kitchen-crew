@@ -74,7 +74,7 @@ var KickbackConversationTempletes = [
 			],
 			conversation02: [
 				{
-					dialog: new Dialog(subJect01Obj, 'What do you mean! that shift was great!'),
+					dialog: new Dialog(subJect01Obj, 'What do you mean! that shift was great!', a),
 					responses: [
 						{
 							title: 'Your right.',
