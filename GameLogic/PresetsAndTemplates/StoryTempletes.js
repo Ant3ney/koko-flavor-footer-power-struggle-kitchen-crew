@@ -204,7 +204,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						ranual,
-						"Look, Im trying to be responsable here. It's not safe to drink too much.",
+						"Look, Im trying to be responsible here. It's not safe to drink too much.",
 						n
 					),
 					responses: [
@@ -277,7 +277,7 @@ var storyTempletes = [
 			],
 			youDoYouOption: [
 				{
-					dialog: new Dialog(christian, "Dude! Don't encurage his to get lit!", a),
+					dialog: new Dialog(christian, "Dude! Don't encourage his anti-litness!", a),
 					responses: [
 						{
 							title: 'next',
