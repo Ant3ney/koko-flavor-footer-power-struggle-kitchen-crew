@@ -408,11 +408,18 @@ var storyTempletes = [
 					],
 				},
 				{
-					dialog: new Dialog(
-						vicky,
-						"I'm going to that party! But yeah it did sound a little low key for me.",
-						a
-					),
+					dialog: new Dialog(vicky, "I'm going to that party!", a),
+					responses: [
+						{
+							title: 'next',
+							onPress: () => {
+								dialogChanged();
+							},
+						},
+					],
+				},
+				{
+					dialog: new Dialog(vicky, 'But yeah it did sound a little low key for me.'),
 					responses: [
 						{
 							title: 'next',
