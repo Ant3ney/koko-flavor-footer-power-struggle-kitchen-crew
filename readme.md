@@ -12,7 +12,7 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 
 ## Music Update Coming Soon.
 
-### TODOS
+### TODOS:
 
 1. Implement character dialog audio.
    a. Get an even number of voice acting audio files. X
