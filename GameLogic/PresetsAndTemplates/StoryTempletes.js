@@ -820,7 +820,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						christian,
-						"Wait here until we're done. Raniel is acting particulary flaky today, we better not over crowd him."
+						"Wait here until we're done. Raniel is acting particularly flaky today, we better not over crowd him."
 					),
 					responses: [
 						{
