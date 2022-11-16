@@ -4,6 +4,9 @@ let staticConversation = {};
 let conversationContext = {
 	started: false,
 };
+const a = { emotion: 'Angry' };
+const h = { emotion: 'Happy' };
+const n = { emotion: 'Neutral' };
 
 //TODO: make it so characters in this kickback conversation are based on your current shift characters
 var KickbackConversationTempletes = [
