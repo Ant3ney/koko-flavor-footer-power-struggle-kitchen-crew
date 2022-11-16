@@ -184,6 +184,6 @@ function handleTicReport(sanity: number) {
 const easyNightMusic = ['eventfulShift'];
 const mediumNightMusic = ['eventfulShift'];
 const hardNightMusic = ['eventfulShift', 'eventfulShift02'];
-const nonMondayMorningMusic = ['eventfulShift'];
+const nonMondayMorningMusic = ['nostalgicMorning'];
 
 export default gameplayMusic;

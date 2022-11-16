@@ -22,6 +22,7 @@ import goodNews from './goodNews.mp3';
 import insanity from './insanity.mp3';
 import eventfulShift02 from './eventfulShift02.mp3';
 import voices from './voices';
+import nostalgicMorning from './nostalgicMorning.mp3';
 
 //TODO import sounds as categories of objects in another files exports
 //Then use spread operator to make them available as properties in sound object.
@@ -50,6 +51,7 @@ const sounds: any = {
 	goodNews,
 	insanity,
 	eventfulShift02,
+	nostalgicMorning,
 	...voices,
 };
 
