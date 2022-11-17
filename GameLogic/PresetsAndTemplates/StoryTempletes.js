@@ -161,7 +161,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						ranual,
-						"Hey I'm ready but I have to go easy on the drinking. Honastly, we should all go easy on the drinking.",
+						"Hey I'm ready but I have to go easy on the drinking. Honestly, we should all go easy on the drinking.",
 						n
 					),
 					responses: [
