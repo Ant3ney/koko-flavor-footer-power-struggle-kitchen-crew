@@ -67,7 +67,7 @@ function playMusicFromTimeAndDay() {
 	switch (gameplayMusic?.day) {
 		case 'monday':
 			//TODO play music called monday morning when that song is created.
-			if (gameplayMusic.curriedIsDay()) music.play('eventfulShift');
+			if (gameplayMusic.curriedIsDay()) music.play('mondayMorning');
 			else playEasyNightMusic();
 			break;
 		case 'tuesday':
