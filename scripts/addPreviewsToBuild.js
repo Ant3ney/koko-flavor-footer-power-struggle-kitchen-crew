@@ -34,7 +34,7 @@ module.exports = function addBuildPreviewsToBuild() {
                         property='og:description'
                         content='John the manager gets transferred and all of s sudden there is a huge void in authority in ココ. The employees begin there quest to gain power in ココ.  Dave makes the first move for power but is quickly shot down by his peers, Cedric quietly makes moves along with Vicky. Mean while Keith and Xander are moving full steam ahead towards power. '
                     />
-                    <meta property='og:image' content='logo.png' />
+                    <meta property='og:image' content='https://lh3.googleusercontent.com/a-/AOh14GjL7huw1NoddS-96wyrh-kkqv5gPodIilGs0OI3=k-s48' />
                 `;
 						const newContent = `${workableContent[0]}</title>${previews}${
 							workableContent[1] ? workableContent[1] : ''
