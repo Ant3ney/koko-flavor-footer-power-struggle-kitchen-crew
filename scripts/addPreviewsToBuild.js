@@ -23,7 +23,6 @@ module.exports = function addBuildPreviewsToBuild() {
 							})();
 
 						//Split up the index file content in order to add new url preview images
-						console.log(('type of content:', typeof content));
 						const workableContent =
 							content && content.split && typeof content.split === 'function'
 								? content.split('</title>')
@@ -35,13 +34,13 @@ module.exports = function addBuildPreviewsToBuild() {
                         content='John the manager gets transferred and all of s sudden there is a huge void in authority in ココ. The employees begin there quest to gain power in ココ.  Dave makes the first move for power but is quickly shot down by his peers, Cedric quietly makes moves along with Vicky. Mean while Keith and Xander are moving full steam ahead towards power. '
                     />
                     <meta property='og:image' content='https://serene-williams-bb8bee.netlify.app/images/KoKo/logosmall.jpg' />
+                    <meta property='og:image' content='https://serene-williams-bb8bee.netlify.app/images/KoKo/logosmall.jpg' />
+                    <meta name="discord:image" content="https://cdn.sanity.io/images/2a4pwebi/production/6d3ac4dc8fe0f4f298888ee9097bdff467d7452c-370x282.png">
                 `;
 						const newContent = `${workableContent[0]}</title>${previews}${
 							workableContent[1] ? workableContent[1] : ''
 						}`;
 						const newBuffer = content.replace('</title>', newContent);
-
-						console.log('content:', content.toString(), 'newContent:', newContent);
 
 						fs.unlink(path.join(__dirname, '../web-build/index.html'), err => {
 							if (err) {
