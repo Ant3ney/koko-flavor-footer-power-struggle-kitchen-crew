@@ -33,6 +33,8 @@ visit https://koko-flavor-fodder.netlify.app to play current build
 6. Create Monday Morning and Nostalgic Morning Music. X
 7. Implement music to gameplay. X
 8. Create media for Music Update.
+   a. Get Discord preview.
+   b. Get Whatsapp preview.
 9. Post media to social media.
 
 # Development

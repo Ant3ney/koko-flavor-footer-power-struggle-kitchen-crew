@@ -4,7 +4,17 @@ import { StyleSheet, View } from 'react-native';
 import MainNavMenu from './components/Navs/MainMenu';
 import GameLogicFile from './GameLogic/GameLogic';
 import appStyle from './Styles/app';
+
 var gameLogic = GameLogicFile;
+
+{
+	/* <meta property='og:title' content='ココFlavor Fodder.' />
+	<meta
+		property='og:description'
+		content='John gets transferred and all of s sudden there is a huge void in authority in ココ. The employees begin there quest to gain power in ココ.  Dave makes the first move for power but is quickly shot down by his peers, Cedric quietly makes moves along with Vicky. Mean while Keith and Xander are moving full steam ahead towards power. '
+	/>
+	<meta property='og:image' content={logo} /> */
+}
 
 export default function App() {
 	return (
