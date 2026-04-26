@@ -1,4 +1,4 @@
-import mStatsUtil from '../ManageStats/manageStatsutilities';
+import mStatsUtil from '../ManageStats/manageStatsUtilities';
 
 var settings = {
 	dayEasy: {
