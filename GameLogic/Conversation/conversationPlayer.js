@@ -19,6 +19,9 @@ let player = {
 	getResponses: () => {
 		return player.responses;
 	},
+	getCharacter: () => {
+		return player.dialogObj?.getCharacter ? player.dialogObj.getCharacter() : null;
+	},
 	playVoice: () => {
 		if (!player?.dialogObj?.playVoice) return;
 		player.dialogObj.playVoice();

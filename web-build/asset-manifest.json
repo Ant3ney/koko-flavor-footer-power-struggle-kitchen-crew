@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.ac0fd46e.js",
-    "static/js/526.95783b0b.js": "/static/js/526.95783b0b.js",
+    "main.js": "/static/js/main.ad400c30.js",
+    "static/js/346.cbf5f138.js": "/static/js/346.cbf5f138.js",
     "static/media/nostalgicMorning.mp3": "/static/media/nostalgicMorning.21cf326208e513443fb5.mp3",
     "static/media/hardTimes.mp3": "/static/media/hardTimes.94eceaad419e0ccb655a.mp3",
     "static/media/cheese.mp3": "/static/media/cheese.ebddc367a8dba9c33de9.mp3",
@@ -16,7 +16,16 @@
     "static/media/Bicker.mp3": "/static/media/Bicker.5ba19beef403544b6f1a.mp3",
     "static/media/goodNews.mp3": "/static/media/goodNews.57122d7b7583497689e6.mp3",
     "static/media/hirokitron.mp3": "/static/media/hirokitron.89c992e34333490c6668.mp3",
+    "static/media/Keani.png": "/static/media/Keani.c5713a5dd25f782da586.png",
     "static/media/eventfulShift.mp3": "/static/media/eventfulShift.6ea80ad129969c928c33.mp3",
+    "static/media/Raniel.png": "/static/media/Raniel.597cec553e511d52af09.png",
+    "static/media/John A.png": "/static/media/John A.4ac0114de98ef4758f49.png",
+    "static/media/Anthony.png": "/static/media/Anthony.260743417e6c4d86da5c.png",
+    "static/media/Dave.png": "/static/media/Dave.fbb577fa35bd5ceb8f55.png",
+    "static/media/Xander.png": "/static/media/Xander.0e84e5bfba0ede8fb9c8.png",
+    "static/media/My.png": "/static/media/My.83bb0e50b81f1ebfda62.png",
+    "static/media/Brad.png": "/static/media/Brad.5a859c122cd7536e1c3a.png",
+    "static/media/Vicky.png": "/static/media/Vicky.f4991ba7dd62bc1a447a.png",
     "static/media/eventfulShift02.mp3": "/static/media/eventfulShift02.4056b4f0dac2ee07cd81.mp3",
     "static/media/test2.mp3": "/static/media/test2.e3dd3cad0823ba236eb8.mp3",
     "static/media/maleConsistentNeutralLong.mp3": "/static/media/maleConsistentNeutralLong.17c68b6a64d13aa88a8c.mp3",
@@ -195,11 +204,11 @@
     "favicon-16.png": "/favicon-16.png",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
-    "main.ac0fd46e.js.map": "/static/js/main.ac0fd46e.js.map",
-    "526.95783b0b.js.map": "/static/js/526.95783b0b.js.map"
+    "main.ad400c30.js.map": "/static/js/main.ad400c30.js.map",
+    "346.cbf5f138.js.map": "/static/js/346.cbf5f138.js.map"
   },
   "entrypoints": [
-    "static/js/526.95783b0b.js",
-    "static/js/main.ac0fd46e.js"
+    "static/js/346.cbf5f138.js",
+    "static/js/main.ad400c30.js"
   ]
 }

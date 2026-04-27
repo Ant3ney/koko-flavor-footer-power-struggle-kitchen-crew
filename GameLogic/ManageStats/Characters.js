@@ -31,7 +31,16 @@ function Character() {
 	this.cleanliness = null;
 	this.anger = null;
 	this.characterInit = (person, character) => {
-		this.personInit(person.name, person.age, person.gender, person.wealth, person.personality);
+		this.personInit(
+			person.name,
+			person.age,
+			person.gender,
+			person.wealth,
+			person.personality,
+			person.deniedPhrase,
+			person.catchPhrase,
+			person.avatar
+		);
 		this.power = character.power;
 		this.skill = character.skill;
 		this.skillPoints = character.skillPoints;

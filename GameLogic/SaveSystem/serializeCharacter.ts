@@ -17,6 +17,7 @@ export default function serializeCharacter(character: any, type?: string) {
 					personality: character.getPersonality(),
 					deniedPhrase: character.getDeniedPhrase(),
 					catchPhrase: character.getCatchPhrase(),
+					avatar: character.getAvatar ? character.getAvatar() : null,
 				},
 				character: {
 					power: character.getPower(),
