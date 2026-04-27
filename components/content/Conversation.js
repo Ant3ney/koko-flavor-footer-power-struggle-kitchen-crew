@@ -45,6 +45,7 @@ function Conversation(props) {
 	const sanity = character?.getSanity ? character.getSanity() : null;
 	const job = character?.getJob ? character.getJob() : null;
 	const initials = getInitials(character, speakerName);
+	const outcomeLabel = getOutcomeLabel(props.type);
 
 	useEffect(() => {
 		entrance.setValue(0);
@@ -116,13 +117,13 @@ function Conversation(props) {
 			<View style={styles.pressureHotspot} />
 			<View style={styles.topRail}>
 				<View>
-					<Text style={styles.eyebrow}>POWER DIALOG SYSTEM</Text>
 					<Text style={styles.sceneTitle}>Kitchen Pressure Exchange</Text>
 				</View>
-				<View style={styles.statusPill}>
-					<Text style={styles.statusPillLabel}>MODE</Text>
-					<Text style={styles.statusPillValue}>{props.type || 'normal'}</Text>
-				</View>
+				{outcomeLabel ? (
+					<View style={[styles.statusPill, outcomeLabel === 'YOU LOSE' && styles.statusPillDanger]}>
+						<Text style={styles.statusPillValue}>{outcomeLabel}</Text>
+					</View>
+				) : null}
 			</View>
 
 			<Animated.View style={[styles.stage, panelMotion]}>
@@ -261,6 +262,12 @@ function getInitials(character, speakerName) {
 	return `${firstInitial}${lastInitial}`.toUpperCase();
 }
 
+function getOutcomeLabel(type) {
+	if (type === 'win') return 'YOU WIN';
+	if (type === 'lose') return 'YOU LOSE';
+	return null;
+}
+
 const styles = {
 	screen: {
 		flex: 1,
@@ -299,17 +306,10 @@ const styles = {
 		marginBottom: 18,
 		zIndex: 1,
 	},
-	eyebrow: {
-		color: palette.gold,
-		fontSize: 11,
-		fontWeight: '900',
-		letterSpacing: 0,
-	},
 	sceneTitle: {
 		color: palette.white,
 		fontSize: 28,
 		fontWeight: '900',
-		marginTop: 4,
 	},
 	statusPill: {
 		borderWidth: 1,
@@ -320,10 +320,9 @@ const styles = {
 		minWidth: 118,
 		alignItems: 'flex-end',
 	},
-	statusPillLabel: {
-		color: palette.muted,
-		fontSize: 10,
-		fontWeight: '800',
+	statusPillDanger: {
+		borderColor: palette.red,
+		backgroundColor: '#2A0D0B',
 	},
 	statusPillValue: {
 		color: palette.gold,

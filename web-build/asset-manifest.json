@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.ad400c30.js",
+    "main.js": "/static/js/main.e842513d.js",
     "static/js/346.cbf5f138.js": "/static/js/346.cbf5f138.js",
     "static/media/nostalgicMorning.mp3": "/static/media/nostalgicMorning.21cf326208e513443fb5.mp3",
     "static/media/hardTimes.mp3": "/static/media/hardTimes.94eceaad419e0ccb655a.mp3",
@@ -94,6 +94,7 @@
     "static/media/femaleEasyGoingAngryMedium.mp3": "/static/media/femaleEasyGoingAngryMedium.9bca2356f98f83cb3597.mp3",
     "static/media/femaleEasyGoingNeutralMedium.mp3": "/static/media/femaleEasyGoingNeutralMedium.49839022de3b8d609ee7.mp3",
     "static/media/maleOrganizedAngryMedium.mp3": "/static/media/maleOrganizedAngryMedium.c04faf0d138b15b4cff7.mp3",
+    "static/media/icon.webp": "/static/media/icon.031b061836baec35c69a.webp",
     "static/media/maleOrganizedHappyMedium.mp3": "/static/media/maleOrganizedHappyMedium.17767ba510590a2b227a.mp3",
     "static/media/maleEasyGoingNeutralMedium.mp3": "/static/media/maleEasyGoingNeutralMedium.a2004ee3a380bc666edc.mp3",
     "static/media/maleReservedHappyMedium.mp3": "/static/media/maleReservedHappyMedium.7c48129e50865d234942.mp3",
@@ -204,11 +205,11 @@
     "favicon-16.png": "/favicon-16.png",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
-    "main.ad400c30.js.map": "/static/js/main.ad400c30.js.map",
+    "main.e842513d.js.map": "/static/js/main.e842513d.js.map",
     "346.cbf5f138.js.map": "/static/js/346.cbf5f138.js.map"
   },
   "entrypoints": [
     "static/js/346.cbf5f138.js",
-    "static/js/main.ad400c30.js"
+    "static/js/main.e842513d.js"
   ]
 }
