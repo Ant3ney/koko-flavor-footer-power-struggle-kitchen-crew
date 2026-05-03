@@ -1,29 +1,47 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import basic from '../Styles/basics';
+import { View } from 'react-native';
+import { ActionButton, AppScreen, BodyText, Panel, ScreenHeader, StatCard, ui } from './uiKit';
 
 function Settings(props) {
 	const navigation = useNavigation();
 
 	return (
-		<View style={[basic.centerContainer, basic.bgWhite]}>
-			<Button
-				title='Back'
-				onPress={() => {
-					props.gameLogic.GameDriver.possibleGamePlayReturn(true);
-					navigation.goBack();
-				}}
-			/>
-			<Button
-				title='Main Menu'
-				onPress={() => {
-					props.navigation.navigate('Main Menu');
-				}}
-			/>
-			<Text>This is the settings view</Text>
-		</View>
+		<AppScreen>
+			<ScreenHeader eyebrow='System' title='Settings' subtitle='Controls for leaving and returning to the run.'>
+				<ActionButton
+					title='Back'
+					variant='secondary'
+					compact
+					onPress={() => {
+						props.gameLogic.GameDriver.possibleGamePlayReturn(true);
+						navigation.goBack();
+					}}
+				/>
+			</ScreenHeader>
+			<Panel style={styles.panel}>
+				<View style={styles.stats}>
+					<StatCard label='State' value='Paused' accent={ui.blue} />
+					<StatCard label='Return' value='Ready' accent={ui.green} />
+				</View>
+				<BodyText>
+					The kitchen clock is held while you are here. Return to the shift or leave for the main menu.
+				</BodyText>
+				<ActionButton title='Main Menu' variant='danger' onPress={() => props.navigation.navigate('Main Menu')} />
+			</Panel>
+		</AppScreen>
 	);
 }
+
+const styles = {
+	panel: {
+		gap: 16,
+		maxWidth: 620,
+	},
+	stats: {
+		flexDirection: 'row',
+		gap: 12,
+	},
+};
 
 export default Settings;

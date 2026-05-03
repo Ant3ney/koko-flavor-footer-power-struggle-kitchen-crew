@@ -1,50 +1,91 @@
-import { useLinkProps } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import gameReport from '../../GameLogic/ManageStats/GameReport';
-import basic from '../../Styles/basics';
-import Character from './Schedule/Character';
 import mStats from '../../GameLogic/ManageStats/ManageStats';
+import { ActionButton, AppScreen, BodyText, Eyebrow, Panel, ScreenHeader, StatCard, ui } from '../uiKit';
+import Character from './Schedule/Character';
 
 function LevelReport(props) {
 	const [compiledReport, setCompiledReport] = useState(null);
-	const [strongerCharacters, setStrongerCharacters] = useState(mStats.getCharactersWhoAreStongerThanPlayer());
+	const [strongerCharacters] = useState(mStats.getCharactersWhoAreStongerThanPlayer());
 
 	useEffect(() => {
 		setCompiledReport(gameReport.getCompiled());
 	}, []);
 
 	return (
-		<View style={basic.testContainer}>
-			<Text>Shift recap</Text>
-			<Text>Power gain: {compiledReport ? compiledReport.powerGained : 'error'}</Text>
-			<Text>Sanity change: {compiledReport ? compiledReport.sanityChange : 'error'}</Text>
-			<Text>Last shift effectiveness: {compiledReport ? compiledReport.effectivness : 'error'}</Text>
-			<Text>Shift effectiveness gain: {compiledReport ? compiledReport.effectivnessGain : 'error'}</Text>
-			<Text>Skillpoints used: {compiledReport ? compiledReport.skillPointsUsed : 'error'}</Text>
-			<Text>Skill gained: {compiledReport ? compiledReport.skillGained : 'error'}</Text>
-			<Text>Characters who are more powerfull than you</Text>
-			<ScrollView
-				style={{
-					...basic.bgStandard,
-					...basic.height5,
-					...basic.width100,
-				}}
-			>
-				{!strongerCharacters ? (
-					<Text>Error</Text>
-				) : (
-					strongerCharacters.map((characterInfo, i) => <Character characterInfo={characterInfo} key={i} />)
-				)}
-			</ScrollView>
-			<Button
-				title='Next'
+		<AppScreen scroll>
+			<ScreenHeader
+				eyebrow='Shift Recap'
+				title='Performance Report'
+				subtitle='The system has processed your shift. Review the gains and the people still above you.'
+			/>
+			<View style={styles.grid}>
+				<StatCard label='Power Gain' value={compiledReport ? compiledReport.powerGained : 'error'} accent={ui.red} />
+				<StatCard
+					label='Sanity Change'
+					value={compiledReport ? compiledReport.sanityChange : 'error'}
+					accent={ui.blue}
+				/>
+				<StatCard
+					label='Last Effectiveness'
+					value={compiledReport ? compiledReport.effectivness : 'error'}
+					accent={ui.orange}
+				/>
+				<StatCard
+					label='Effectiveness Gain'
+					value={compiledReport ? compiledReport.effectivnessGain : 'error'}
+					accent={ui.gold}
+				/>
+				<StatCard
+					label='Skillpoints Used'
+					value={compiledReport ? compiledReport.skillPointsUsed : 'error'}
+					accent={ui.green}
+				/>
+				<StatCard label='Skill Gained' value={compiledReport ? compiledReport.skillGained : 'error'} accent={ui.green} />
+			</View>
+
+			<Panel style={styles.threatPanel}>
+				<Eyebrow>Power Threats</Eyebrow>
+				<BodyText>Characters who are more powerful than you.</BodyText>
+				<ScrollView style={styles.threatList}>
+					{!strongerCharacters ? (
+						<BodyText>Error</BodyText>
+					) : (
+						strongerCharacters.map((characterInfo, i) => <Character characterInfo={characterInfo} key={i} />)
+					)}
+				</ScrollView>
+			</Panel>
+
+			<ActionButton
+				title='Continue'
+				style={styles.nextButton}
 				onPress={() => {
 					props.simpleNav('Conversation', { type: 'normal' });
 				}}
 			/>
-		</View>
+		</AppScreen>
 	);
 }
+
+const styles = {
+	grid: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		gap: 12,
+		marginBottom: 16,
+	},
+	threatPanel: {
+		gap: 12,
+	},
+	threatList: {
+		maxHeight: 280,
+	},
+	nextButton: {
+		marginTop: 16,
+		maxWidth: 240,
+		alignSelf: 'flex-end',
+	},
+};
 
 export default LevelReport;

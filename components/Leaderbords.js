@@ -1,22 +1,30 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import basic from '../Styles/basics';
+import { ActionButton, AppScreen, BodyText, Panel, ScreenHeader } from './uiKit';
 
 function Leaderbords(props) {
 	const navigation = useNavigation();
 
 	return (
-		<View style={[basic.centerContainer, basic.bgWhite]}>
-			<Button
-				title='Back'
-				onPress={() => {
-					props.gameLogic.GameDriver.possibleGamePlayReturn(true);
-					navigation.goBack();
-				}}
-			/>
-			<Text>This is the leaderbords view</Text>
-		</View>
+		<AppScreen>
+			<ScreenHeader eyebrow='Rankings' title='Leaderboards' subtitle='Power rankings are reserved for online play.'>
+				<ActionButton
+					title='Back'
+					variant='secondary'
+					compact
+					onPress={() => {
+						props.gameLogic.GameDriver.possibleGamePlayReturn(true);
+						navigation.goBack();
+					}}
+				/>
+			</ScreenHeader>
+			<Panel>
+				<BodyText>
+					Leaderboards will compare power growth, sanity control, and shift efficiency once online services
+					return.
+				</BodyText>
+			</Panel>
+		</AppScreen>
 	);
 }
 

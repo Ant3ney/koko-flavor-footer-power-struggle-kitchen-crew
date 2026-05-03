@@ -1,33 +1,72 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import basic from '../Styles/basics';
 import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
+import { ActionButton, AppScreen, BodyText, Eyebrow, Panel, ScreenHeader, Title } from './uiKit';
+
+const credits = [
+	'Game Director: Anthony Cavuoti',
+	'Voice Actor: delaneygilmour from fiverr',
+	'Voice Actor: thegreattoddman from fiverr',
+	'Voice Actor: cessinistas from fiverr',
+	'Voice Actor: huskycommander from fiverr',
+	'Voice Actor: Jannik Baur',
+	'Voice Actor: Victor',
+	'Voice Actor: Taylor Sanchez',
+	'Voice Actor: Nathan',
+	'Voice Actor: Dante Ayala',
+	'Music: Joseph and the Amazing Technicolor Dreamcoat',
+	'Music transposition: Anthony Cavuoti',
+	'Scenario Consultant: Brad Yanagi',
+];
 
 export default function Credits(props) {
 	const navigation = useNavigation();
+
 	return (
-		<View style={[basic.centerContainer, basic.bgWhite]}>
-			<Button
-				title='Back'
-				onPress={() => {
-					props.gameLogic.GameDriver.possibleGamePlayReturn(true);
-					navigation.goBack();
-				}}
-			/>
-			<Text>Credits</Text>
-			<Text>Game Director: Anthony Cavuoti</Text>
-			<Text>Voice Actor: delaneygilmour from fiverr</Text>
-			<Text>Voice Actor: thegreattoddman from fiverr</Text>
-			<Text>Voice Actor: cessinistas from fiverr</Text>
-			<Text>Voice Actor: huskycommander from fiverr</Text>
-			<Text>Voice Actor: Jannik Baur</Text>
-			<Text>Voice Actor: Victor</Text>
-			<Text>Voice Actor: Taylor Sanchez</Text>
-			<Text>Voice Actor: Nathan</Text>
-			<Text>Voice Actor: Dante Ayala</Text>
-			<Text>Music: Joseph and the Amazing Technicolor Dreamcoat</Text>
-			<Text>Music transposition: Anthony Cavuoti</Text>
-			<Text>Scenario Consultant: Brad Yanagi</Text>
-		</View>
+		<AppScreen scroll>
+			<ScreenHeader
+				eyebrow='Production'
+				title='Credits'
+				subtitle='The voices, music, and scenario support behind the kitchen pressure system.'
+			>
+				<ActionButton
+					title='Back'
+					variant='secondary'
+					compact
+					onPress={() => {
+						props.gameLogic.GameDriver.possibleGamePlayReturn(true);
+						navigation.goBack();
+					}}
+				/>
+			</ScreenHeader>
+			<Panel style={styles.list}>
+				<Eyebrow>Team Roll</Eyebrow>
+				<Title size={26}>Built by a focused crew</Title>
+				<View style={styles.creditGrid}>
+					{credits.map((credit, index) => (
+						<View key={index} style={styles.creditItem}>
+							<BodyText>{credit}</BodyText>
+						</View>
+					))}
+				</View>
+			</Panel>
+		</AppScreen>
 	);
 }
+
+const styles = {
+	list: {
+		gap: 16,
+	},
+	creditGrid: {
+		gap: 10,
+		marginTop: 10,
+	},
+	creditItem: {
+		backgroundColor: '#FFF4DD',
+		borderWidth: 1,
+		borderColor: '#FFDCA4',
+		paddingHorizontal: 14,
+		paddingVertical: 12,
+	},
+};

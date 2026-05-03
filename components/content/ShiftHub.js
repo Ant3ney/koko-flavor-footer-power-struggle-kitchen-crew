@@ -1,24 +1,24 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { click, music } from '../../GameLogic/AudioSystem';
 import mStats from '../../GameLogic/ManageStats/ManageStats';
 import presets from '../../GameLogic/PresetsAndTemplates/ShiftPresets';
 import shiftHubLogic from '../../GameLogic/ShiftHub';
-import basic from '../../Styles/basics';
-import shiftHubStyle from '../../Styles/shiftHub';
-import ScheduleScreen from './Schedule/Screen';
-import { characters, assembleSchedule } from '../tempOfflineBackend';
 import { saveUser } from '../../GameLogic/SaveSystem';
+import { ActionButton, AppScreen, BodyText, Eyebrow, Panel, ScreenHeader, StatCard, ui } from '../uiKit';
+import { characters, assembleSchedule } from '../tempOfflineBackend';
+import ScheduleScreen from './Schedule/Screen';
 
 var focusSchedule = null;
+
+const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 function ShiftHub(props) {
 	const [currentDay, setCurrentDay] = useState(mStats.getCurrentDay());
 	const [schedule, setSchedual] = useState(false);
-	const isFocused = useIsFocused();
-
 	const [isLoading, setIsLoading] = useState(false);
+	const isFocused = useIsFocused();
 
 	useEffect(() => {
 		console.log('Pausing music');
@@ -35,310 +35,56 @@ function ShiftHub(props) {
 
 	if (isLoading)
 		return (
-			<View>
-				<Text>Loading...</Text>
-			</View>
+			<AppScreen>
+				<Panel>
+					<Eyebrow>Processing</Eyebrow>
+					<BodyText>Loading next state...</BodyText>
+				</Panel>
+			</AppScreen>
 		);
 
 	return (
-		<View style={{ ...shiftHubStyle.container, ...basic.gridContainer }}>
+		<AppScreen scroll>
 			{schedule ? (
 				<ScheduleScreen schedule={focusSchedule} exitSchedual={exitSchedual} day={mStats.getCurrentDay()} />
-			) : (
-				<View></View>
-			)}
-			<Text>Select your next shift</Text>
-			<Text>Current Power: {props.gameLogic.manageStats.getPPower()}</Text>
-			<Text>Current Sanity: {props.gameLogic.manageStats.getPSanity()}</Text>
-			<Text>Current Day: {currentDay.toString().slice(0, 1).toUpperCase() + currentDay.toString().slice(1)}</Text>
-			<View style={basic.gridRow}>
-				<View style={basic.gridColGeneric}>
-					<Text>Monday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('monday').day);
-							shiftHubLogic.manageDaysUpTo(presets('monday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('monday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('monday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('monday').night);
-							shiftHubLogic.manageDaysUpTo(presets('monday').night);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('monday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('monday').night);
-							setSchedual(true);
-						}}
-					/>
-				</View>
-				<View style={basic.gridColGeneric}>
-					<Text>Tuesday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('tuesday').day);
-							shiftHubLogic.manageDaysUpTo(presets('tuesday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('tuesday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('tuesday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('tuesday').night);
-							shiftHubLogic.manageDaysUpTo(presets('tuesday').night);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('tuesday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('tuesday').night);
-							setSchedual(true);
-						}}
-					/>
-				</View>
+			) : null}
+
+			<ScreenHeader
+				eyebrow='Shift Command'
+				title='Select Your Next Shift'
+				subtitle='Pick a day, read the crew, and choose the pressure window you want to survive.'
+			/>
+
+			<View style={styles.statRow}>
+				<StatCard label='Current Power' value={props.gameLogic.manageStats.getPPower()} accent={ui.red} large />
+				<StatCard label='Current Sanity' value={props.gameLogic.manageStats.getPSanity()} accent={ui.blue} large />
+				<StatCard label='Current Day' value={capitalize(currentDay)} accent={ui.gold} large />
 			</View>
-			<View style={basic.gridRow}>
-				<View style={basic.gridColGeneric}>
-					<Text>Wednesday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('wednesday').day);
-							shiftHubLogic.manageDaysUpTo(presets('wednesday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('wednesday')}
+
+			<View style={styles.dayGrid}>
+				{days.map(day => (
+					<DayCard
+						key={day}
+						day={day}
+						disabled={shiftHubLogic.getDisabledOf(day)}
+						onStart={shift => startShift(props, day, shift)}
+						onSchedule={shift => showSchedule(day, shift, setSchedual)}
 					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('wednesday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('wednesday').night);
-							shiftHubLogic.manageDaysUpTo(presets('wednesday').night);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('wednesday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('wednesday').night);
-							setSchedual(true);
-						}}
-					/>
-				</View>
-				<View style={basic.gridColGeneric}>
-					<Text>Thursday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('thursday').day);
-							shiftHubLogic.manageDaysUpTo(presets('thursday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('thursday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('thursday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('thursday').night);
-							shiftHubLogic.manageDaysUpTo(presets('thursday').night);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('thursday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('thursday').night);
-							setSchedual(true);
-						}}
-					/>
-				</View>
+				))}
 			</View>
-			<View style={basic.gridRow}>
-				<View style={basic.gridColGeneric}>
-					<Text>Friday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('friday').day);
-							shiftHubLogic.manageDaysUpTo(presets('friday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('friday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('friday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('friday').night);
-							shiftHubLogic.manageDaysUpTo(presets('friday').night);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('friday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('friday').night);
-							setSchedual(true);
-						}}
-					/>
+
+			<Panel style={styles.weekPanel}>
+				<View style={styles.weekCopy}>
+					<Eyebrow>Week Control</Eyebrow>
+					<BodyText>
+						Advance the calendar when every useful shift has been played, or reset data for testing.
+					</BodyText>
 				</View>
-				<View style={basic.gridColGeneric}>
-					<Text>Saturday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('saturday').day);
-							shiftHubLogic.manageDaysUpTo(presets('saturday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('saturday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('saturday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('saturday').night);
-							shiftHubLogic.manageDaysUpTo(presets('saturday').night);
-							props.navigation.navigate('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('saturday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('saturday').night);
-							setSchedual(true);
-						}}
-					/>
-				</View>
-			</View>
-			<View style={basic.gridRow}>
-				<View style={basic.gridColGeneric}>
-					<Text>Sunday</Text>
-					<Button
-						title='Day Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('sunday').day);
-							shiftHubLogic.manageDaysUpTo(presets('sunday').day);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('sunday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('sunday').day);
-							setSchedual(true);
-						}}
-					/>
-					<Button
-						title='Night Shift'
-						onPress={() => {
-							click();
-							props.gameLogic.GameDriver.start(presets('sunday').night);
-							shiftHubLogic.manageDaysUpTo(presets('sunday').night);
-							props.simpleNav('Shift');
-						}}
-						disabled={shiftHubLogic.getDisabledOf('sunday')}
-					/>
-					<Button
-						title='See schedule'
-						onPress={() => {
-							click();
-							focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets('sunday').night);
-							setSchedual(true);
-						}}
-					/>
-				</View>
-				<View>
-					<Button
+				<View style={styles.weekActions}>
+					<ActionButton
 						title='Next Week'
 						onPress={async () => {
 							click();
-							//Be very aware that this code is scaffolding and is very subject to change
-
-							//Alow character to progress on any free day in the week
 							shiftHubLogic.manageDaysUpTo(presets('sunday').day, {
 								aplyWholeDay: true,
 								resetButton: true,
@@ -352,51 +98,183 @@ function ShiftHub(props) {
 							mStats.setSchedualFromShiftStructure(structure);
 							await saveUser();
 
-							//Player may have lost by pressing next week
 							if (mStats.determinLoseCondition()) {
-								handleLose(props);
+								handleLose(props, setIsLoading);
 							} else {
 								props.simpleNav('Next Shift Select');
 							}
 						}}
 					/>
-					<Button
+					<ActionButton
 						title='Reset Data'
+						variant='danger'
 						onPress={() => {
 							click();
 							mStats.resetData(props.gameLogic.GameDriver);
 						}}
 					/>
 				</View>
-			</View>
-		</View>
+			</Panel>
+		</AppScreen>
 	);
+
 	function exitSchedual() {
 		setSchedual(false);
 	}
 }
 
+function DayCard({ day, disabled, onSchedule, onStart }) {
+	return (
+		<Panel style={[styles.dayCard, disabled && styles.dayCardDisabled]}>
+			<View style={styles.dayHeader}>
+				<View>
+					<Text style={styles.dayName}>{capitalize(day)}</Text>
+					<Text style={styles.dayStatus}>{disabled ? 'Locked by calendar' : 'Available'}</Text>
+				</View>
+				<View style={[styles.statusDot, disabled && styles.statusDotDisabled]} />
+			</View>
+
+			<View style={styles.shiftRows}>
+				<ShiftRow
+					label='Day Shift'
+					disabled={disabled}
+					onStart={() => onStart('day')}
+					onSchedule={() => onSchedule('day')}
+				/>
+				<ShiftRow
+					label='Night Shift'
+					disabled={disabled}
+					onStart={() => onStart('night')}
+					onSchedule={() => onSchedule('night')}
+				/>
+			</View>
+		</Panel>
+	);
+}
+
+function ShiftRow({ disabled, label, onSchedule, onStart }) {
+	return (
+		<View style={styles.shiftRow}>
+			<Text style={styles.shiftLabel}>{label}</Text>
+			<View style={styles.shiftActions}>
+				<ActionButton title='Start' compact disabled={disabled} onPress={onStart} />
+				<ActionButton title='Crew' compact variant='secondary' onPress={onSchedule} />
+			</View>
+		</View>
+	);
+}
+
+function startShift(props, day, shift) {
+	click();
+	props.gameLogic.GameDriver.start(presets(day)[shift]);
+	shiftHubLogic.manageDaysUpTo(presets(day)[shift]);
+	if (day === 'saturday' && shift === 'night') props.navigation.navigate('Shift');
+	else props.simpleNav('Shift');
+}
+
+function showSchedule(day, shift, setSchedual) {
+	click();
+	focusSchedule = mStats.getCharacterScheduleViaShiftPreset(presets(day)[shift]);
+	setSchedual(true);
+}
+
 function handleLose(props, setLoading) {
-	setLoading(true);
+	if (setLoading) setLoading(true);
 	setTimeout(() => {
 		props.navigation.navigate('Conversation', { type: 'lose' });
-		setLoading(false);
+		if (setLoading) setLoading(false);
 	}, 3000);
 }
 
 function fetchSchedule() {
 	return assembleSchedule(characters);
-	/* 
-		BackEnd Offline
-		The below code is commented out because the backend server went out (Exceeded free plan quota). 
-		For now we will just get the initial data from local static files 
-	*/
-	/* return newPromise((res, rej) => {
-		fetch('https://coco-game-17308.herokuapp.com/testApi/schedule')
-			.then(response => response.json())
-			.then(res)
-			.catch(rej);
-	}); */
 }
+
+function capitalize(value) {
+	return value.toString().slice(0, 1).toUpperCase() + value.toString().slice(1);
+}
+
+const styles = {
+	statRow: {
+		flexDirection: 'row',
+		gap: 12,
+		marginBottom: 18,
+	},
+	dayGrid: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		gap: 14,
+	},
+	dayCard: {
+		flexBasis: '48%',
+		flexGrow: 1,
+		minWidth: 300,
+		gap: 16,
+	},
+	dayCardDisabled: {
+		opacity: 0.62,
+	},
+	dayHeader: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	dayName: {
+		color: ui.ink,
+		fontSize: 24,
+		fontWeight: '900',
+	},
+	dayStatus: {
+		color: ui.muted,
+		fontSize: 12,
+		fontWeight: '900',
+		textTransform: 'uppercase',
+		marginTop: 4,
+	},
+	statusDot: {
+		width: 14,
+		height: 14,
+		borderRadius: 7,
+		backgroundColor: ui.green,
+	},
+	statusDotDisabled: {
+		backgroundColor: ui.red,
+	},
+	shiftRows: {
+		gap: 10,
+	},
+	shiftRow: {
+		backgroundColor: '#FFF4DD',
+		borderWidth: 1,
+		borderColor: '#FFDCA4',
+		padding: 12,
+		gap: 10,
+	},
+	shiftLabel: {
+		color: ui.brown,
+		fontSize: 14,
+		fontWeight: '900',
+		textTransform: 'uppercase',
+	},
+	shiftActions: {
+		flexDirection: 'row',
+		gap: 8,
+	},
+	weekPanel: {
+		marginTop: 16,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		gap: 16,
+	},
+	weekCopy: {
+		flex: 1,
+		minWidth: 0,
+	},
+	weekActions: {
+		minWidth: 220,
+		gap: 10,
+	},
+};
 
 export default ShiftHub;

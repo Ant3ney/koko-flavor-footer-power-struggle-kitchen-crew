@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
-import basic from '../../Styles/basics';
-import upper from '../../Styles/upperHud';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+import { StatCard, ui } from '../uiKit';
 
 function UpperHud(props) {
-	//Caching
 	var gameDriver = props.gameLogic.GameDriver;
 	var mStats = props.gameLogic.manageStats;
 
 	const [power, setPower] = useState(mStats.getPlayer() ? mStats.getPPower() : 0);
 	const [effectivness, setEffectivness] = useState(mStats.getPlayer() ? mStats.getPEffectivness() : 0);
-	const [skillPoints, setSkillPoints] = useState(mStats.getPlayer() ? mStats.getPSkillPoints() : 0);
 	const [energy, setEnergy] = useState(mStats.getPlayer() ? mStats.getPEnergy() : 0);
 	const [time, setTime] = useState(mStats.getTime());
-	const [station, setStation] = useState(mStats.getPStation());
 	const [busyness, setBusyness] = useState(mStats.getBusyness());
 	const [sanity, setSanity] = useState(mStats.getPSanity());
 
 	useEffect(() => {
-		//manage stats event listener will take charge of this in the future
 		mStats.onDataChange(() => {
-			//Conditions are removed because state canot be compared in event listener due to how state works and closures
 			setPower(mStats.getPPower());
 			setEffectivness(mStats.getPEffectivness());
-			setSkillPoints(mStats.getPSkillPoints());
 			setEnergy(mStats.getPEnergy());
 			setTime(mStats.getTime());
-			setStation(mStats.getPStation());
 			setBusyness(mStats.getBusyness());
 			setSanity(mStats.getPSanity());
 		}, 'upperHud');
@@ -36,46 +28,68 @@ function UpperHud(props) {
 	}, []);
 
 	return (
-		<View style={{ ...basic.gridContainer, ...upper.container }}>
-			<Text style={basic.textAlignCenter}>Status</Text>
-
-			<View style={basic.gridRow}>
-				<Text style={basic.gridSCol2}>Power: {power} / 10,000</Text>
-				<Text style={basic.gridSCol2}>Effectiveness: {effectivness} / 50</Text>
+		<View style={styles.hud}>
+			<View style={styles.hudHeader}>
+				<Text style={styles.kicker}>Shift HUD</Text>
+				<Text style={styles.clock}>{formatTime(time)}</Text>
 			</View>
-
-			<View style={basic.gridRow}>
-				<Text style={basic.gridSCol2}>Skill: {mStats.getPlayer() ? mStats.getPSkill() : 0} / 20</Text>
-				{/* <Text style={basic.gridSCol2}>SkillPoints: {skillPoints}</Text> */}
-				<Text style={basic.gridSCol2}>
-					Time:{' '}
-					{Math.floor(time / 100) +
-						':' +
-						(time % 100 < 10 ? '0' : '') +
-						(time % 100) +
-						' ' +
-						(Math.floor(time / 100) === 11 ? 'am' : 'pm')}
-				</Text>
+			<View style={styles.stats}>
+				<StatCard label='Power' value={`${power} / 10,000`} accent={ui.red} style={styles.powerCard} />
+				<StatCard label='Effectiveness' value={`${effectivness} / 50`} accent={ui.orange} />
+				<StatCard label='Skill' value={`${mStats.getPlayer() ? mStats.getPSkill() : 0} / 20`} accent={ui.gold} />
+				<StatCard label='Energy' value={energy} accent={ui.green} />
+				<StatCard label='Busyness' value={busyness} accent={ui.blue} />
+				<StatCard label='Sanity' value={sanity} accent={sanity < 0 ? ui.red : ui.orange} />
 			</View>
-
-			<View style={basic.gridRow}>
-				<Text style={basic.gridSCol2}>Energy: {energy}</Text>
-				<Text style={basic.gridSCol2}>Busyness: {busyness}</Text>
-			</View>
-			<View style={basic.gridRow}>
-				{/* <Text style={basic.gridSCol2}>Station: {station}</Text> */}
-				<Text style={basic.gridSCol2}>Sanity: {sanity}</Text>
-			</View>
-
-			{/* <View style={basic.gridRow}>
-				
-			</View> */}
 		</View>
 	);
-
-	function getPower() {
-		return power;
-	}
 }
+
+function formatTime(time) {
+	return (
+		Math.floor(time / 100) +
+		':' +
+		(time % 100 < 10 ? '0' : '') +
+		(time % 100) +
+		' ' +
+		(Math.floor(time / 100) === 11 ? 'am' : 'pm')
+	);
+}
+
+const styles = {
+	hud: {
+		width: '100%',
+		maxWidth: 1180,
+		alignSelf: 'center',
+		paddingHorizontal: 24,
+		paddingTop: 22,
+		paddingBottom: 12,
+	},
+	hudHeader: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginBottom: 10,
+	},
+	kicker: {
+		color: ui.orangeDeep,
+		fontSize: 12,
+		fontWeight: '900',
+		textTransform: 'uppercase',
+	},
+	clock: {
+		color: ui.ink,
+		fontSize: 24,
+		fontWeight: '900',
+	},
+	stats: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		gap: 10,
+	},
+	powerCard: {
+		minWidth: 220,
+	},
+};
 
 export default UpperHud;

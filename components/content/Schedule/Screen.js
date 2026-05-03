@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native';
-
-import basic from '../../../Styles/basics';
-import Character from './Character';
-
+import { ScrollView, Text, View } from 'react-native';
 import { click } from '../../../GameLogic/AudioSystem';
+import { ActionButton, Eyebrow, Panel, ui } from '../../uiKit';
+import Character from './Character';
 
 function Screen(props) {
 	const [schedule, setSchedule] = useState([]);
@@ -16,30 +14,70 @@ function Screen(props) {
 	}, []);
 
 	return (
-		<View
-			style={{
-				...basic.makeForground(1),
-				...basic.fullFluidContainer,
-				...basic.bgStandard,
-				...{
-					marginTop: 20,
-					marginBottom: 20,
-				},
-			}}
-		>
-			<Text>{props.day.toString().slice(0, 1).toUpperCase() + props.day.toString().slice(1)}'s schedule</Text>
-			{schedule.map((characterInfo, i) => (
-				<Character characterInfo={characterInfo} key={i} />
-			))}
-			<Button
-				title='Back'
-				onPress={() => {
-					click();
-					props.exitSchedual();
-				}}
-			/>
+		<View style={styles.overlay}>
+			<Panel style={styles.modal}>
+				<View style={styles.header}>
+					<View>
+						<Eyebrow>Crew Schedule</Eyebrow>
+						<Text style={styles.title}>
+							{props.day.toString().slice(0, 1).toUpperCase() + props.day.toString().slice(1)}
+						</Text>
+					</View>
+					<ActionButton
+						title='Back'
+						compact
+						variant='secondary'
+						onPress={() => {
+							click();
+							props.exitSchedual();
+						}}
+					/>
+				</View>
+				<ScrollView style={styles.list}>
+					{schedule.map((characterInfo, i) => (
+						<Character characterInfo={characterInfo} key={i} />
+					))}
+				</ScrollView>
+			</Panel>
 		</View>
 	);
 }
+
+const styles = {
+	overlay: {
+		position: 'absolute',
+		zIndex: 10,
+		elevation: 10,
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		backgroundColor: 'rgba(36, 18, 12, 0.34)',
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: 24,
+	},
+	modal: {
+		width: '100%',
+		maxWidth: 760,
+		maxHeight: '86%',
+		borderColor: ui.orange,
+	},
+	header: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		gap: 12,
+		marginBottom: 14,
+	},
+	title: {
+		color: ui.ink,
+		fontSize: 30,
+		fontWeight: '900',
+	},
+	list: {
+		maxHeight: 560,
+	},
+};
 
 export default Screen;

@@ -1,45 +1,32 @@
-import React from "react";
-import { View, Text, Button } from "react-native";
-import basic from "../../Styles/basics";
+import React from 'react';
+import { View } from 'react-native';
+import { ActionButton, BodyText, Eyebrow, Panel } from '../uiKit';
 
-function StationOptions(props){
-    var mStats = props.gameLogic.manageStats;
-    return(
-        <View
-         style={{
-             ...basic.makeForground(2),
-             ...basic.width100,
-             ...basic.heightAuto,
-             ...basic.bgStandard
-            }}
-        >
-            <Text>Switch to</Text>
-            <Button 
-             title="Sause"
-             onPress={() => {
-                mStats.setPStation("sause");
-             }}
-            />
-            <Button 
-             title="Frier"
-             onPress={() => {
-                mStats.setPStation("frier");
-             }}
-            />
-            <Button 
-             title="Rice"
-             onPress={() => {
-                mStats.setPStation("rice");
-             }}
-            />
-            <Button 
-             title="Cancel"
-             onPress={() => {
-                 props.exit();
-             }}
-            />
-        </View>
-    );
+function StationOptions(props) {
+	var mStats = props.gameLogic.manageStats;
+	return (
+		<Panel style={styles.panel}>
+			<Eyebrow>Switch Station</Eyebrow>
+			<BodyText>Choose the node you want to own next.</BodyText>
+			<View style={styles.actions}>
+				<ActionButton title='Sauce' compact onPress={() => mStats.setPStation('sause')} />
+				<ActionButton title='Frier' compact onPress={() => mStats.setPStation('frier')} />
+				<ActionButton title='Rice' compact onPress={() => mStats.setPStation('rice')} />
+				<ActionButton title='Cancel' compact variant='secondary' onPress={() => props.exit()} />
+			</View>
+		</Panel>
+	);
 }
+
+const styles = {
+	panel: {
+		gap: 12,
+	},
+	actions: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		gap: 8,
+	},
+};
 
 export default StationOptions;
