@@ -89,7 +89,7 @@ class Kitchen extends PureComponent {
 
 				<Panel style={[styles.kitchenPanel, compact && styles.kitchenPanelCompact]}>
 					<View style={[styles.kitchenHeader, compact && styles.kitchenHeaderCompact]}>
-						<View>
+						<View style={[styles.headerTitleBlock, compact && styles.headerTitleBlockCompact]}>
 							<Eyebrow>Kitchen Map</Eyebrow>
 							<Text style={[styles.title, compact && styles.titleCompact]}>Decision Floor</Text>
 						</View>
@@ -113,8 +113,8 @@ class Kitchen extends PureComponent {
 						</View>
 					</View>
 
-					<View style={[styles.kitchenArtFrame, compact && styles.kitchenArtFrameCompact]}>
-						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode={compact ? 'cover' : 'contain'} />
+					<View style={[styles.kitchenArtFrame, !compact && styles.kitchenArtFrameWide, compact && styles.kitchenArtFrameCompact]}>
+						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode='contain' />
 					</View>
 
 					<View style={[styles.stationGrid, compact && styles.stationGridCompact]}>
@@ -240,8 +240,8 @@ const styles = {
 	kitchenPanelCompact: {
 		flex: 1,
 		minHeight: 0,
-		gap: 7,
-		padding: 9,
+		gap: 6,
+		padding: 7,
 		overflow: 'hidden',
 	},
 	kitchenHeader: {
@@ -252,7 +252,16 @@ const styles = {
 		gap: 14,
 	},
 	kitchenHeaderCompact: {
-		gap: 6,
+		flexWrap: 'nowrap',
+		gap: 5,
+		flexShrink: 0,
+	},
+	headerTitleBlock: {
+		minWidth: 0,
+	},
+	headerTitleBlockCompact: {
+		flex: 1,
+		flexShrink: 1,
 	},
 	headerActions: {
 		flexDirection: 'row',
@@ -262,13 +271,15 @@ const styles = {
 		gap: 8,
 	},
 	headerActionsCompact: {
-		flex: 1,
+		flex: 0,
 		minWidth: 0,
-		gap: 5,
+		gap: 4,
+		flexWrap: 'nowrap',
 	},
 	settingsHeaderButton: {
 		minWidth: 0,
-		paddingHorizontal: 7,
+		paddingHorizontal: 6,
+		flexShrink: 0,
 	},
 	title: {
 		color: ui.ink,
@@ -276,7 +287,7 @@ const styles = {
 		fontWeight: '900',
 	},
 	titleCompact: {
-		fontSize: 21,
+		fontSize: 18,
 	},
 	stationBadge: {
 		color: ui.white,
@@ -289,13 +300,16 @@ const styles = {
 		maxWidth: '100%',
 	},
 	stationBadgeCompact: {
-		paddingHorizontal: 9,
-		paddingVertical: 6,
-		fontSize: 10,
+		display: 'none',
+	},
+	kitchenArtFrameCompact: {
+		flex: 1,
+		flexGrow: 1,
+		flexShrink: 1,
+		minHeight: 0,
 	},
 	kitchenArtFrame: {
 		width: '100%',
-		aspectRatio: 1672 / 941,
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,
 		borderColor: '#FFDCA4',
@@ -303,11 +317,8 @@ const styles = {
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	kitchenArtFrameCompact: {
-		flex: 1,
-		flexGrow: 1,
-		flexShrink: 1,
-		minHeight: 0,
+	kitchenArtFrameWide: {
+		aspectRatio: 1672 / 941,
 	},
 	kitchenArt: {
 		width: '100%',
@@ -320,7 +331,8 @@ const styles = {
 	},
 	stationGridCompact: {
 		flexWrap: 'nowrap',
-		gap: 6,
+		gap: 5,
+		flexShrink: 0,
 	},
 	stationNode: {
 		flex: 1,
@@ -335,8 +347,9 @@ const styles = {
 	},
 	stationNodeCompact: {
 		minWidth: 0,
-		minHeight: 48,
-		gap: 4,
+		minHeight: 38,
+		gap: 3,
+		paddingVertical: 4,
 	},
 	stationDot: {
 		width: 34,
@@ -344,9 +357,9 @@ const styles = {
 		borderRadius: 17,
 	},
 	stationDotCompact: {
-		width: 18,
-		height: 18,
-		borderRadius: 9,
+		width: 14,
+		height: 14,
+		borderRadius: 7,
 	},
 	stationName: {
 		color: ui.ink,
@@ -355,7 +368,7 @@ const styles = {
 		textTransform: 'uppercase',
 	},
 	stationNameCompact: {
-		fontSize: 10,
+		fontSize: 9,
 	},
 	instructions: {
 		maxWidth: 780,
@@ -367,13 +380,15 @@ const styles = {
 	},
 	actionsCompact: {
 		flexWrap: 'wrap',
-		gap: 5,
+		gap: 4,
+		flexShrink: 0,
 	},
 	compactAction: {
 		flexBasis: '48%',
 		flexGrow: 1,
 		minWidth: 0,
 		paddingHorizontal: 4,
+		minHeight: 34,
 	},
 };
 

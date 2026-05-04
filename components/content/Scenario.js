@@ -64,13 +64,13 @@ function Scenario(props) {
 					contentContainerStyle={[styles.content, compact && styles.contentCompact]}
 					showsVerticalScrollIndicator
 				>
+					<BodyText style={[styles.prompt, compact && styles.promptCompact]}>{prompt}</BodyText>
+					<CharacterRoster characters={characters} compact={compact} />
 					<Image
 						source={scenarioImage}
 						style={[styles.scenarioImage, compact && styles.scenarioImageCompact]}
 						resizeMode='contain'
 					/>
-					<BodyText style={[styles.prompt, compact && styles.promptCompact]}>{prompt}</BodyText>
-					<CharacterRoster characters={characters} compact={compact} />
 					{chose ? <CharacterChanges changes={characterChanges} /> : null}
 				</ScrollView>
 				<View style={styles.actions}>
@@ -259,7 +259,7 @@ const styles = {
 		paddingRight: 4,
 	},
 	contentCompact: {
-		gap: 8,
+		gap: 7,
 	},
 	scenarioImage: {
 		width: '100%',
@@ -270,12 +270,13 @@ const styles = {
 		borderColor: '#FFDCA4',
 	},
 	scenarioImageCompact: {
-		maxHeight: 170,
+		maxHeight: 120,
 	},
 	characterRoster: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 10,
+		width: '100%',
 	},
 	characterCard: {
 		flexDirection: 'row',
@@ -292,6 +293,7 @@ const styles = {
 	characterCardCompact: {
 		padding: 6,
 		gap: 7,
+		flexBasis: '100%',
 	},
 	avatar: {
 		width: 44,

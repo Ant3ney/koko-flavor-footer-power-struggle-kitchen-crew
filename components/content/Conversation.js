@@ -43,14 +43,13 @@ function Conversation(props) {
 	const speakerName = dialog ? dialog.getName() : 'Subject01';
 	const responses = dialog && dialog.getResponses && dialog.getResponses() ? dialog.getResponses() : [];
 	const aboveFoldMode = responses.length > 0 && responses.length <= 2;
-	// When there are only 1-2 responses we try to keep everything above the fold.
-	// In that mode the avatar should dominate the layout.
+	const tightMobileDialog = compact && aboveFoldMode;
 	const avatarFrameHeight = aboveFoldMode
 		? compact
-			? Math.min(Math.round(width * 1.05), Math.max(260, Math.round(height * 0.44)))
+			? Math.min(Math.round(width * 1.08), Math.max(240, Math.round(height * 0.42)))
 			: Math.min(560, Math.max(340, Math.round(height * 0.52)))
 		: compact
-		? Math.min(Math.round(width * 0.82), Math.max(170, Math.round(height * 0.3)))
+		? Math.min(Math.round(width * 0.96), Math.max(210, Math.round(height * 0.34)))
 		: null;
 	const avatar = getAvatarImage(character);
 	const power = character?.getPower ? character.getPower() : null;
@@ -132,7 +131,7 @@ function Conversation(props) {
 				style={styles.scroll}
 				contentContainerStyle={[styles.scrollContent, compact && styles.scrollContentCompact]}
 			>
-				<View style={[styles.topRail, compact && styles.topRailCompact]}>
+				<View style={[styles.topRail, compact && styles.topRailCompact, tightMobileDialog && styles.topRailTight]}>
 					<View style={styles.sceneTitleWrap}>
 						<Text style={[styles.sceneTitle, compact && styles.sceneTitleCompact]}>Kitchen Pressure Exchange</Text>
 					</View>
@@ -149,8 +148,8 @@ function Conversation(props) {
 					) : null}
 				</View>
 
-				<Animated.View style={[styles.stage, compact && styles.stageCompact, panelMotion]}>
-					<View style={[styles.characterColumn, compact && styles.characterColumnCompact]}>
+				<Animated.View style={[styles.stage, compact && styles.stageCompact, tightMobileDialog && styles.stageTight, panelMotion]}>
+					<View style={[styles.characterColumn, compact && styles.characterColumnCompact, tightMobileDialog && styles.characterColumnTight]}>
 						<View style={[styles.powerBeacon, compact && styles.powerBeaconCompact]}>
 							<Animated.View style={[styles.powerBeaconGlow, pulseMotion]} />
 							<Text style={[styles.powerBeaconLabel, compact && styles.powerBeaconLabelCompact]}>POWER</Text>
@@ -166,15 +165,15 @@ function Conversation(props) {
 								avatarFrameHeight ? { height: avatarFrameHeight } : null,
 							]}
 						>
-							<View style={styles.avatarBackplate} />
+							<View style={[styles.avatarBackplate, compact && styles.avatarBackplateCompact]} />
 							{avatar ? (
 								<Image
 									source={avatar}
-									style={[styles.avatarImage, compact && styles.avatarImageCompact]}
+									style={[styles.avatarImage, compact && styles.avatarImageCompact, tightMobileDialog && styles.avatarImageTight]}
 									resizeMode='contain'
 								/>
 							) : (
-								<View style={[styles.avatarFallback, compact && styles.avatarFallbackCompact]}>
+								<View style={[styles.avatarFallback, compact && styles.avatarFallbackCompact, tightMobileDialog && styles.avatarFallbackTight]}>
 									<Text style={[styles.avatarFallbackText, compact && styles.avatarFallbackTextCompact]}>
 										{initials}
 									</Text>
@@ -192,8 +191,8 @@ function Conversation(props) {
 						</View>
 					</View>
 
-					<View style={[styles.dialogColumn, compact && styles.dialogColumnCompact]}>
-						<View style={[styles.speakerHeader, compact && styles.speakerHeaderCompact]}>
+					<View style={[styles.dialogColumn, compact && styles.dialogColumnCompact, tightMobileDialog && styles.dialogColumnTight]}>
+						<View style={[styles.speakerHeader, compact && styles.speakerHeaderCompact, tightMobileDialog && styles.speakerHeaderTight]}>
 							<View style={styles.speakerCopy}>
 								<Text style={[styles.speakerKicker, compact && styles.speakerKickerCompact]}>ACTIVE CHARACTER</Text>
 								<Text style={[styles.speakerName, compact && styles.speakerNameCompact]}>{speakerName}</Text>
@@ -205,13 +204,13 @@ function Conversation(props) {
 							</View>
 						</View>
 
-						<View style={[styles.dialogBox, compact && styles.dialogBoxCompact]}>
+						<View style={[styles.dialogBox, compact && styles.dialogBoxCompact, tightMobileDialog && styles.dialogBoxTight]}>
 							<View style={styles.dialogAccent} />
 							<Text style={[styles.dialogText, compact && styles.dialogTextCompact]}>{dialogText}</Text>
 						</View>
 
-						<View style={[styles.responsePanel, compact && styles.responsePanelCompact]}>
-							<Text style={[styles.responseHeader, compact && styles.responseHeaderCompact]}>DECISION QUEUE</Text>
+						<View style={[styles.responsePanel, compact && styles.responsePanelCompact, tightMobileDialog && styles.responsePanelTight]}>
+							<Text style={[styles.responseHeader, compact && styles.responseHeaderCompact, tightMobileDialog && styles.responseHeaderTight]}>DECISION QUEUE</Text>
 							{responses.length ? (
 								responses.map((response, i) => (
 									<ResponseButton
@@ -333,8 +332,8 @@ const styles = {
 		boxSizing: 'border-box',
 	},
 	scrollContentCompact: {
-		paddingHorizontal: 6,
-		paddingVertical: 6,
+		paddingHorizontal: 4,
+		paddingVertical: 4,
 		justifyContent: 'flex-start',
 	},
 	pressureField: {
@@ -369,6 +368,9 @@ const styles = {
 	topRailCompact: {
 		gap: 6,
 		marginBottom: 6,
+	},
+	topRailTight: {
+		marginBottom: 4,
 	},
 	sceneTitleWrap: {
 		flex: 1,
@@ -420,7 +422,10 @@ const styles = {
 	stageCompact: {
 		flexWrap: 'wrap',
 		alignItems: 'stretch',
-		gap: 6,
+		gap: 5,
+	},
+	stageTight: {
+		gap: 4,
 	},
 	characterColumn: {
 		width: '100%',
@@ -441,7 +446,10 @@ const styles = {
 		position: 'relative',
 		flexDirection: 'column',
 		gap: 0,
-		padding: 6,
+		padding: 4,
+	},
+	characterColumnTight: {
+		padding: 2,
 	},
 	powerBeacon: {
 		borderWidth: 2,
@@ -453,14 +461,15 @@ const styles = {
 	},
 	powerBeaconCompact: {
 		position: 'absolute',
-		top: 12,
-		left: 12,
+		top: 8,
+		left: 8,
 		zIndex: 2,
 		elevation: 2,
-		width: 74,
+		width: 66,
 		flexShrink: 0,
-		paddingVertical: 4,
-		paddingHorizontal: 6,
+		paddingVertical: 3,
+		paddingHorizontal: 5,
+		backgroundColor: 'rgba(40, 19, 15, 0.86)',
 	},
 	powerBeaconGlow: {
 		position: 'absolute',
@@ -486,8 +495,8 @@ const styles = {
 		lineHeight: 48,
 	},
 	powerBeaconValueCompact: {
-		fontSize: 19,
-		lineHeight: 23,
+		fontSize: 17,
+		lineHeight: 20,
 	},
 	avatarFrame: {
 		height: 220,
@@ -514,6 +523,12 @@ const styles = {
 		backgroundColor: palette.orange,
 		opacity: 0.24,
 	},
+	avatarBackplateCompact: {
+		width: '78%',
+		height: '78%',
+		borderRadius: 999,
+		bottom: '-16%',
+	},
 	avatarImage: {
 		width: '100%',
 		height: '100%',
@@ -525,6 +540,10 @@ const styles = {
 		right: 0,
 		bottom: 0,
 		left: 0,
+	},
+	avatarImageTight: {
+		width: '100%',
+		height: '100%',
 	},
 	avatarFallback: {
 		width: 138,
@@ -541,6 +560,12 @@ const styles = {
 		borderRadius: 0,
 		marginBottom: 0,
 		zIndex: 1,
+		alignSelf: 'stretch',
+		flex: 1,
+	},
+	avatarFallbackTight: {
+		minWidth: '100%',
+		minHeight: '100%',
 	},
 	avatarFallbackText: {
 		color: palette.white,
@@ -564,8 +589,8 @@ const styles = {
 	},
 	bioActionCompact: {
 		position: 'absolute',
-		top: 12,
-		right: 12,
+		top: 8,
+		right: 8,
 		zIndex: 2,
 		elevation: 2,
 		width: 28,
@@ -610,8 +635,11 @@ const styles = {
 	dialogColumnCompact: {
 		width: '100%',
 		minWidth: 0,
-		padding: 7,
+		padding: 6,
 		flexShrink: 1,
+	},
+	dialogColumnTight: {
+		padding: 5,
 	},
 	speakerHeader: {
 		flexDirection: 'row',
@@ -623,7 +651,10 @@ const styles = {
 		paddingBottom: 14,
 	},
 	speakerHeaderCompact: {
-		paddingBottom: 5,
+		paddingBottom: 4,
+	},
+	speakerHeaderTight: {
+		borderBottomWidth: 0,
 	},
 	speakerCopy: {
 		flex: 1,
@@ -677,11 +708,14 @@ const styles = {
 		justifyContent: 'center',
 	},
 	dialogBoxCompact: {
-		marginTop: 6,
-		minHeight: 92,
-		paddingHorizontal: 9,
-		paddingVertical: 8,
+		marginTop: 5,
+		minHeight: 78,
+		paddingHorizontal: 8,
+		paddingVertical: 7,
 		borderLeftWidth: 5,
+	},
+	dialogBoxTight: {
+		minHeight: 66,
 	},
 	dialogAccent: {
 		position: 'absolute',
@@ -706,8 +740,11 @@ const styles = {
 		gap: 10,
 	},
 	responsePanelCompact: {
-		marginTop: 6,
-		gap: 5,
+		marginTop: 5,
+		gap: 4,
+	},
+	responsePanelTight: {
+		marginTop: 4,
 	},
 	responseHeader: {
 		color: palette.gold,
@@ -716,6 +753,9 @@ const styles = {
 	},
 	responseHeaderCompact: {
 		fontSize: 9,
+	},
+	responseHeaderTight: {
+		display: 'none',
 	},
 	responseMotion: {
 		width: '100%',
