@@ -136,10 +136,13 @@ function Conversation(props) {
 					response.onPress();
 				}}
 				outcomeLabel={outcomeLabel}
+				job={job}
 				power={power}
 				pressFeedback={pressFeedback}
 				responses={responses}
+				sanity={sanity}
 				speakerName={speakerName}
+				skill={skill}
 				width={width}
 				character={character}
 			/>
@@ -273,12 +276,15 @@ function MobileConversation({
 	dialogText,
 	height,
 	initials,
+	job,
 	onResponsePress,
 	outcomeLabel,
 	power,
 	pressFeedback,
 	responses,
+	sanity,
 	speakerName,
+	skill,
 	width,
 }) {
 	const viewportHeight = Math.max(height || 0, 620);
@@ -314,9 +320,11 @@ function MobileConversation({
 				) : null}
 			</View>
 
-			<View style={styles.mobilePowerBeacon}>
-				<Text style={styles.powerBeaconLabelCompact}>POWER</Text>
-				<Text style={styles.mobilePowerValue}>{power === null ? '--' : power}</Text>
+			<View style={styles.mobileStatRail}>
+				<MobileStat label='POWER' value={power} accent={palette.gold} />
+				<MobileStat label='SKILL' value={skill} />
+				<MobileStat label='SANITY' value={sanity} danger={sanity !== null && sanity < 10} />
+				<MobileStat label='ROLE' value={job || '--'} wide />
 			</View>
 
 			<View style={styles.mobileBioAction}>
@@ -355,6 +363,15 @@ function MobileConversation({
 					</View>
 				</ScrollView>
 			</View>
+		</View>
+	);
+}
+
+function MobileStat({ accent, danger, label, value, wide }) {
+	return (
+		<View style={[styles.mobileStatBlock, wide && styles.mobileStatBlockWide, danger && styles.mobileStatBlockDanger]}>
+			<Text style={[styles.mobileStatLabel, accent && { color: accent }]}>{label}</Text>
+			<Text style={styles.mobileStatValue}>{value === null || value === undefined ? '--' : value}</Text>
 		</View>
 	);
 }
@@ -513,24 +530,47 @@ const styles = {
 		fontSize: 12,
 		fontWeight: '900',
 	},
-	mobilePowerBeacon: {
+	mobileStatRail: {
 		position: 'absolute',
 		top: 36,
 		left: 8,
+		right: 44,
 		zIndex: 5,
 		elevation: 5,
-		width: 66,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		gap: 4,
+	},
+	mobileStatBlock: {
+		minWidth: 54,
+		maxWidth: 86,
 		borderWidth: 1,
-		borderColor: palette.gold,
-		backgroundColor: 'rgba(40, 19, 15, 0.78)',
+		borderColor: '#6E4435',
+		backgroundColor: 'rgba(18, 12, 11, 0.86)',
 		paddingVertical: 3,
 		paddingHorizontal: 5,
 	},
-	mobilePowerValue: {
-		color: palette.gold,
-		fontSize: 17,
-		lineHeight: 20,
+	mobileStatBlockWide: {
+		flex: 1,
+		minWidth: 80,
+		maxWidth: 132,
+	},
+	mobileStatBlockDanger: {
+		borderColor: palette.red,
+		backgroundColor: 'rgba(55, 8, 6, 0.9)',
+	},
+	mobileStatLabel: {
+		color: '#F3D9B6',
+		fontSize: 8,
+		lineHeight: 10,
 		fontWeight: '900',
+	},
+	mobileStatValue: {
+		color: palette.white,
+		fontSize: 14,
+		lineHeight: 17,
+		fontWeight: '900',
+		textTransform: 'uppercase',
 	},
 	mobileBioAction: {
 		position: 'absolute',
