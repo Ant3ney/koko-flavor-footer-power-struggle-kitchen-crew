@@ -239,8 +239,9 @@ const styles = {
 	},
 	kitchenPanelCompact: {
 		flex: 1,
+		height: '100%',
 		minHeight: 0,
-		gap: 6,
+		gap: 5,
 		padding: 7,
 		overflow: 'hidden',
 	},
@@ -287,7 +288,7 @@ const styles = {
 		fontWeight: '900',
 	},
 	titleCompact: {
-		fontSize: 18,
+		fontSize: 17,
 	},
 	stationBadge: {
 		color: ui.white,
@@ -303,10 +304,10 @@ const styles = {
 		display: 'none',
 	},
 	kitchenArtFrameCompact: {
-		flex: 1,
-		flexGrow: 1,
-		flexShrink: 1,
+		flexGrow: 0,
+		flexShrink: 0,
 		minHeight: 0,
+		aspectRatio: 1672 / 941,
 	},
 	kitchenArtFrame: {
 		width: '100%',
@@ -331,7 +332,7 @@ const styles = {
 	},
 	stationGridCompact: {
 		flexWrap: 'nowrap',
-		gap: 5,
+		gap: 4,
 		flexShrink: 0,
 	},
 	stationNode: {
@@ -347,9 +348,9 @@ const styles = {
 	},
 	stationNodeCompact: {
 		minWidth: 0,
-		minHeight: 38,
+		minHeight: 34,
 		gap: 3,
-		paddingVertical: 4,
+		paddingVertical: 3,
 	},
 	stationDot: {
 		width: 34,
@@ -357,9 +358,9 @@ const styles = {
 		borderRadius: 17,
 	},
 	stationDotCompact: {
-		width: 14,
-		height: 14,
-		borderRadius: 7,
+		width: 13,
+		height: 13,
+		borderRadius: 6.5,
 	},
 	stationName: {
 		color: ui.ink,
@@ -388,7 +389,7 @@ const styles = {
 		flexGrow: 1,
 		minWidth: 0,
 		paddingHorizontal: 4,
-		minHeight: 34,
+		minHeight: 32,
 	},
 };
 
