@@ -398,7 +398,7 @@ const styles = {
 		gap: 18,
 	},
 	stageCompact: {
-		flexWrap: 'nowrap',
+		flexWrap: 'wrap',
 		alignItems: 'stretch',
 		gap: 8,
 	},
@@ -414,10 +414,13 @@ const styles = {
 		boxShadow: '0 18px 50px rgba(0, 0, 0, 0.36)',
 	},
 	characterColumnCompact: {
-		width: 112,
-		maxWidth: 112,
+		width: '100%',
+		maxWidth: '100%',
 		flexGrow: 0,
 		flexShrink: 0,
+		flexDirection: 'row',
+		alignItems: 'stretch',
+		gap: 8,
 		padding: 8,
 	},
 	powerBeacon: {
@@ -429,6 +432,8 @@ const styles = {
 		overflow: 'hidden',
 	},
 	powerBeaconCompact: {
+		width: 88,
+		flexShrink: 0,
 		paddingVertical: 6,
 		paddingHorizontal: 8,
 	},
@@ -470,8 +475,9 @@ const styles = {
 		overflow: 'hidden',
 	},
 	avatarFrameCompact: {
-		height: 160,
-		marginVertical: 8,
+		flex: 1,
+		height: 118,
+		marginVertical: 0,
 	},
 	avatarBackplate: {
 		position: 'absolute',
@@ -499,7 +505,7 @@ const styles = {
 		width: 74,
 		height: 74,
 		borderRadius: 37,
-		marginBottom: 40,
+		marginBottom: 22,
 	},
 	avatarFallbackText: {
 		color: palette.white,
@@ -559,6 +565,7 @@ const styles = {
 		boxShadow: '0 18px 50px rgba(0, 0, 0, 0.42)',
 	},
 	dialogColumnCompact: {
+		width: '100%',
 		minWidth: 0,
 		padding: 10,
 		flexShrink: 1,
