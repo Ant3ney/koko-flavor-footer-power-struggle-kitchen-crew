@@ -16,6 +16,8 @@ type Update = {
 };
 
 type Player = 'howler' | 'expo';
+const loadedHowls: Record<string, any> = {};
+const loadedExpoAudio: Record<string, any> = {};
 
 export default class Sound {
 	constructor(name: string, settings?: Settings) {
@@ -211,22 +213,33 @@ export default class Sound {
 	howlerLoad(name: string, settings?: Settings) {
 		const soundFile = sounds[name];
 		if (this.howler) this.corePause();
+		if (loadedHowls[name]) {
+			this.howler = loadedHowls[name];
+			if (settings?.onLoad) settings.onLoad();
+			return;
+		}
 		this.howler = new Howl({
 			src: [soundFile],
+			preload: false,
 		});
-		if (settings?.onLoad)
-			this.howler.once('load', () => {
-				if (settings?.onLoad) settings.onLoad();
-			});
-		this.howler.load({
-			src: [soundFile],
+		this.howler.once('load', () => {
+			loadedHowls[name] = this.howler;
+			if (settings?.onLoad) settings.onLoad();
 		});
+		this.howler.load();
 	}
-	async expoLoad(name: string) {
+	async expoLoad(name: string, settings?: Settings) {
 		if (this.expoAudio) await this.expoAudio.pauseAsync();
+		if (loadedExpoAudio[name]) {
+			this.expoAudio = loadedExpoAudio[name];
+			if (settings?.onLoad) settings.onLoad();
+			return;
+		}
 		const soundFile = sounds[name];
 		const expoSound = await Audio.Sound.createAsync(soundFile);
 		this.expoAudio = expoSound.sound;
+		loadedExpoAudio[name] = expoSound.sound;
+		if (settings?.onLoad) settings.onLoad();
 	}
 	async coreFade(from: number, to: number, duration: number) {
 		await this[`${this.player}Fade`](from, to, duration);

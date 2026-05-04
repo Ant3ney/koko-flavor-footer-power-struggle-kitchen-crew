@@ -85,15 +85,50 @@ var defaultKickbackConversation = (dialogChanged, finish) => {
 				dialog: new Dialog(subJect01Obj, 'It looks like your going to become a very powerful employee.'),
 				responses: [
 					{
-						title: 'Next',
+						title: 'Take the compliment',
 						onPress: () => {
-							dialogChanged();
+							mStats.addPPower(15);
+							dialogChanged({ newConversationProperty: 'acceptCompliment', newConIndex: 0 });
+						},
+					},
+					{
+						title: 'Play it cool',
+						onPress: () => {
+							dialogChanged({ newConversationProperty: 'playItCool', newConIndex: 0 });
 						},
 					},
 				],
 			},
 			{
 				dialog: new Dialog(subJect01Obj, 'Anyway, goodbye.'),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		acceptCompliment: [
+			{
+				dialog: new Dialog(subJect01Obj, 'That confidence looks good on you. Keep building it.'),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		playItCool: [
+			{
+				dialog: new Dialog(subJect01Obj, 'Quiet confidence, huh? Fine. Just make sure the numbers keep backing it up.'),
 				responses: [
 					{
 						title: 'Next',
@@ -160,9 +195,16 @@ var powerTauntKickbackConversation = (dialogChanged, finish) => {
 				),
 				responses: [
 					{
-						title: 'Next',
+						title: 'Bite back',
 						onPress: () => {
-							dialogChanged();
+							mStats.addPPower(20);
+							dialogChanged({ newConversationProperty: 'biteBack', newConIndex: 0 });
+						},
+					},
+					{
+						title: 'Stay quiet',
+						onPress: () => {
+							dialogChanged({ newConversationProperty: 'stayQuiet', newConIndex: 0 });
 						},
 					},
 				],
@@ -171,6 +213,42 @@ var powerTauntKickbackConversation = (dialogChanged, finish) => {
 				dialog: new Dialog(
 					subjectObj,
 					'I just outworked you, outpowered you, and walked out of the shift above you. Get your power up before you stand next to me like an equal.',
+					h
+				),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		biteBack: [
+			{
+				dialog: new Dialog(
+					subjectObj,
+					'There it is. A little spark. Still not enough power, but at least you are not folding completely.',
+					a
+				),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		stayQuiet: [
+			{
+				dialog: new Dialog(
+					subjectObj,
+					'Nothing to say? Good. Maybe the gap is finally teaching you something.',
 					h
 				),
 				responses: [
@@ -247,6 +325,40 @@ var closeCallKickbackConversation = (dialogChanged, finish) => {
 				),
 				responses: [
 					{
+						title: 'Act brave',
+						onPress: () => {
+							mStats.addPPower(10);
+							dialogChanged({ newConversationProperty: 'actBrave', newConIndex: 0 });
+						},
+					},
+					{
+						title: 'Keep your head down',
+						onPress: () => {
+							dialogChanged({ newConversationProperty: 'headDown', newConIndex: 0 });
+						},
+					},
+				],
+			},
+		],
+		actBrave: [
+			{
+				dialog: new Dialog(subjectObj, 'That is what I was worried about. Do not let one close number turn into a big mouth.', a),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		headDown: [
+			{
+				dialog: new Dialog(subjectObj, 'Smart. Keep working before you start talking.', n),
+				responses: [
+					{
 						title: 'Next',
 						onPress: () => {
 							resetKickbackContexts();
@@ -317,6 +429,40 @@ var crewMurmurKickbackConversation = (dialogChanged, finish) => {
 				),
 				responses: [
 					{
+						title: 'Ask who said that',
+						onPress: () => {
+							dialogChanged({ newConversationProperty: 'askWho', newConIndex: 0 });
+						},
+					},
+					{
+						title: 'Ignore the whispers',
+						onPress: () => {
+							mStats.addPPower(5);
+							dialogChanged({ newConversationProperty: 'ignoreWhispers', newConIndex: 0 });
+						},
+					},
+				],
+			},
+		],
+		askWho: [
+			{
+				dialog: new Dialog(subjectObj, 'That is the problem. You do not get names. You just feel the room turning.', a),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		ignoreWhispers: [
+			{
+				dialog: new Dialog(subjectObj, 'Maybe that is the right move. Power does not always answer gossip out loud.', n),
+				responses: [
+					{
 						title: 'Next',
 						onPress: () => {
 							resetKickbackContexts();
@@ -381,6 +527,40 @@ var stationPraiseKickbackConversation = (dialogChanged, finish) => {
 					'Do not get comfortable though. Around here, one clean shift just makes everyone watch the next one harder.',
 					a
 				),
+				responses: [
+					{
+						title: 'Accept the warning',
+						onPress: () => {
+							mStats.addPPower(10);
+							dialogChanged({ newConversationProperty: 'acceptWarning', newConIndex: 0 });
+						},
+					},
+					{
+						title: 'Brush it off',
+						onPress: () => {
+							dialogChanged({ newConversationProperty: 'brushOffWarning', newConIndex: 0 });
+						},
+					},
+				],
+			},
+		],
+		acceptWarning: [
+			{
+				dialog: new Dialog(subjectObj, 'Good. Stay alert. The station only respects people who keep proving it.', h),
+				responses: [
+					{
+						title: 'Next',
+						onPress: () => {
+							resetKickbackContexts();
+							finish();
+						},
+					},
+				],
+			},
+		],
+		brushOffWarning: [
+			{
+				dialog: new Dialog(subjectObj, 'Brush it off if you want. The kitchen loves catching people who relax too early.', a),
 				responses: [
 					{
 						title: 'Next',

@@ -38,8 +38,14 @@ function PressStart(props) {
 
 	function updateLoadingText(soundLoadingContext) {
 		const loadingTextEle = document.getElementById('loading-text');
-		if (loadingTextEle)
-			loadingTextEle.innerHTML = `Loading asset ${soundLoadingContext.currentSound} out of ${soundLoadingContext.max}`;
+		if (!loadingTextEle) {
+			return;
+		}
+		if (soundLoadingContext.cached) {
+			loadingTextEle.innerHTML = 'Loading cached kitchen systems';
+			return;
+		}
+		loadingTextEle.innerHTML = `Loading asset ${soundLoadingContext.currentSound} out of ${soundLoadingContext.max}`;
 	}
 }
 

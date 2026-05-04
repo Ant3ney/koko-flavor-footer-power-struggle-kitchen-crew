@@ -313,8 +313,8 @@ const styles = {
 		boxSizing: 'border-box',
 	},
 	scrollContentCompact: {
-		paddingHorizontal: 8,
-		paddingVertical: 8,
+		paddingHorizontal: 6,
+		paddingVertical: 6,
 		justifyContent: 'flex-start',
 	},
 	pressureField: {
@@ -348,7 +348,7 @@ const styles = {
 	},
 	topRailCompact: {
 		gap: 6,
-		marginBottom: 8,
+		marginBottom: 6,
 	},
 	sceneTitleWrap: {
 		flex: 1,
@@ -360,7 +360,7 @@ const styles = {
 		fontWeight: '900',
 	},
 	sceneTitleCompact: {
-		fontSize: 16,
+		fontSize: 13,
 	},
 	statusPill: {
 		borderWidth: 1,
@@ -372,9 +372,9 @@ const styles = {
 		alignItems: 'flex-end',
 	},
 	statusPillCompact: {
-		minWidth: 82,
-		paddingHorizontal: 10,
-		paddingVertical: 6,
+		minWidth: 70,
+		paddingHorizontal: 8,
+		paddingVertical: 4,
 	},
 	statusPillDanger: {
 		borderColor: palette.red,
@@ -387,7 +387,7 @@ const styles = {
 		textTransform: 'uppercase',
 	},
 	statusPillValueCompact: {
-		fontSize: 12,
+		fontSize: 10,
 	},
 	stage: {
 		width: '100%',
@@ -400,7 +400,7 @@ const styles = {
 	stageCompact: {
 		flexWrap: 'wrap',
 		alignItems: 'stretch',
-		gap: 8,
+		gap: 6,
 	},
 	characterColumn: {
 		width: '100%',
@@ -420,8 +420,8 @@ const styles = {
 		flexShrink: 0,
 		flexDirection: 'row',
 		alignItems: 'stretch',
-		gap: 8,
-		padding: 8,
+		gap: 6,
+		padding: 6,
 	},
 	powerBeacon: {
 		borderWidth: 2,
@@ -432,10 +432,10 @@ const styles = {
 		overflow: 'hidden',
 	},
 	powerBeaconCompact: {
-		width: 88,
+		width: 74,
 		flexShrink: 0,
-		paddingVertical: 6,
-		paddingHorizontal: 8,
+		paddingVertical: 4,
+		paddingHorizontal: 6,
 	},
 	powerBeaconGlow: {
 		position: 'absolute',
@@ -461,8 +461,8 @@ const styles = {
 		lineHeight: 48,
 	},
 	powerBeaconValueCompact: {
-		fontSize: 23,
-		lineHeight: 28,
+		fontSize: 19,
+		lineHeight: 23,
 	},
 	avatarFrame: {
 		height: 220,
@@ -476,7 +476,7 @@ const styles = {
 	},
 	avatarFrameCompact: {
 		flex: 1,
-		height: 118,
+		height: 86,
 		marginVertical: 0,
 	},
 	avatarBackplate: {
@@ -502,10 +502,10 @@ const styles = {
 		marginBottom: 64,
 	},
 	avatarFallbackCompact: {
-		width: 74,
-		height: 74,
-		borderRadius: 37,
-		marginBottom: 22,
+		width: 58,
+		height: 58,
+		borderRadius: 29,
+		marginBottom: 14,
 	},
 	avatarFallbackText: {
 		color: palette.white,
@@ -528,7 +528,7 @@ const styles = {
 		marginTop: 12,
 	},
 	bioActionCompact: {
-		width: 30,
+		width: 28,
 		justifyContent: 'center',
 		alignSelf: 'stretch',
 		marginTop: 0,
@@ -570,7 +570,7 @@ const styles = {
 	dialogColumnCompact: {
 		width: '100%',
 		minWidth: 0,
-		padding: 10,
+		padding: 8,
 		flexShrink: 1,
 	},
 	speakerHeader: {
@@ -583,7 +583,7 @@ const styles = {
 		paddingBottom: 14,
 	},
 	speakerHeaderCompact: {
-		paddingBottom: 6,
+		paddingBottom: 5,
 	},
 	speakerCopy: {
 		flex: 1,
@@ -604,7 +604,7 @@ const styles = {
 		marginTop: 3,
 	},
 	speakerNameCompact: {
-		fontSize: 18,
+		fontSize: 16,
 		marginTop: 1,
 	},
 	signalStack: {
@@ -637,10 +637,10 @@ const styles = {
 		justifyContent: 'center',
 	},
 	dialogBoxCompact: {
-		marginTop: 8,
-		minHeight: 118,
-		paddingHorizontal: 10,
-		paddingVertical: 10,
+		marginTop: 6,
+		minHeight: 92,
+		paddingHorizontal: 9,
+		paddingVertical: 8,
 		borderLeftWidth: 5,
 	},
 	dialogAccent: {
@@ -658,16 +658,16 @@ const styles = {
 		fontWeight: '800',
 	},
 	dialogTextCompact: {
-		fontSize: 15,
-		lineHeight: 20,
+		fontSize: 14,
+		lineHeight: 18,
 	},
 	responsePanel: {
 		marginTop: 18,
 		gap: 10,
 	},
 	responsePanelCompact: {
-		marginTop: 8,
-		gap: 6,
+		marginTop: 6,
+		gap: 5,
 	},
 	responseHeader: {
 		color: palette.gold,
@@ -691,9 +691,9 @@ const styles = {
 		paddingVertical: 10,
 	},
 	responseButtonCompact: {
-		minHeight: 42,
-		paddingHorizontal: 8,
-		paddingVertical: 6,
+		minHeight: 38,
+		paddingHorizontal: 7,
+		paddingVertical: 5,
 	},
 	responseButtonPressed: {
 		backgroundColor: '#3C1D17',
