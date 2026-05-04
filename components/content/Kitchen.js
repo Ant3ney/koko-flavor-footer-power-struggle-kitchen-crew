@@ -100,7 +100,7 @@ class Kitchen extends PureComponent {
 							</Text>
 							{compact ? (
 								<ActionButton
-									title='Settings'
+									title='Menu'
 									compact
 									variant='ghost'
 									style={styles.settingsHeaderButton}

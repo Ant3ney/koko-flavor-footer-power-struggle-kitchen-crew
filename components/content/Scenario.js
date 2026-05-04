@@ -68,7 +68,7 @@ function Scenario(props) {
 					<Image
 						source={scenarioImage}
 						style={[styles.scenarioImage, compact && styles.scenarioImageCompact]}
-						resizeMode='cover'
+						resizeMode='contain'
 					/>
 					<CharacterRoster characters={characters} compact={compact} />
 					{chose ? <CharacterChanges changes={characterChanges} /> : null}
@@ -264,13 +264,12 @@ const styles = {
 	scenarioImage: {
 		width: '100%',
 		aspectRatio: 1465 / 1074,
-		maxHeight: 300,
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,
 		borderColor: '#FFDCA4',
 	},
 	scenarioImageCompact: {
-		maxHeight: 120,
+		width: '100%',
 	},
 	characterRoster: {
 		flexDirection: 'row',

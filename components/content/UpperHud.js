@@ -38,7 +38,7 @@ function UpperHud(props) {
 				{compact ? (
 					<>
 						<MiniStat label='Power' value={power} accent={ui.red} />
-						<MiniStat label='Eff' value={effectivness} accent={ui.orange} />
+						<MiniStat label='Station Effectiveness' value={effectivness} accent={ui.orange} />
 						<MiniStat label='Energy' value={energy} accent={ui.green} />
 						<MiniStat label='Busy' value={busyness} accent={ui.blue} />
 						<MiniStat label='Sanity' value={sanity} accent={sanity < 0 ? ui.red : ui.orange} />
@@ -46,7 +46,7 @@ function UpperHud(props) {
 				) : (
 					<>
 						<StatCard label='Power' value={`${power} / 10,000`} accent={ui.red} style={styles.powerCard} />
-						<StatCard label='Effectiveness' value={`${effectivness} / 50`} accent={ui.orange} />
+						<StatCard label='Station Effectiveness' value={`${effectivness} / 50`} accent={ui.orange} />
 						<StatCard label='Skill' value={`${mStats.getPlayer() ? mStats.getPSkill() : 0} / 20`} accent={ui.gold} />
 						<StatCard label='Energy' value={energy} accent={ui.green} />
 						<StatCard label='Busyness' value={busyness} accent={ui.blue} />
@@ -62,7 +62,9 @@ function MiniStat({ accent, label, value }) {
 	return (
 		<View style={styles.miniStat}>
 			<View style={[styles.miniStatAccent, { backgroundColor: accent }]} />
-			<Text style={styles.miniStatLabel}>{label}</Text>
+			<Text style={styles.miniStatLabel} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.35}>
+				{label}
+			</Text>
 			<Text style={styles.miniStatValue}>{value}</Text>
 		</View>
 	);
@@ -152,9 +154,11 @@ const styles = {
 	},
 	miniStatLabel: {
 		color: ui.muted,
-		fontSize: 8,
+		fontSize: 7,
+		lineHeight: 8,
 		fontWeight: '900',
 		textTransform: 'uppercase',
+		minHeight: 16,
 	},
 	miniStatValue: {
 		color: ui.ink,
