@@ -16,6 +16,8 @@ const avatarImages = {
 	hirokitron: require('../../assets/avatars/hirokitron.png'),
 	John: require('../../assets/avatars/John A.png'),
 	'John Alvas': require('../../assets/avatars/John A.png'),
+	'John The Man': require('../../assets/avatars/John_The_Manager.png'),
+	'John the Man': require('../../assets/avatars/John_The_Manager.png'),
 	'John The Manager': require('../../assets/avatars/John_The_Manager.png'),
 	John_The_Manager: require('../../assets/avatars/John_The_Manager.png'),
 	JohnTheManager: require('../../assets/avatars/John_The_Manager.png'),

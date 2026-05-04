@@ -123,6 +123,29 @@ function Conversation(props) {
 		}),
 	};
 
+	if (compact) {
+		return (
+			<MobileConversation
+				avatar={avatar}
+				dialogText={dialogText}
+				height={height}
+				initials={initials}
+				onResponsePress={response => {
+					animatePress(pressFeedback);
+					update();
+					response.onPress();
+				}}
+				outcomeLabel={outcomeLabel}
+				power={power}
+				pressFeedback={pressFeedback}
+				responses={responses}
+				speakerName={speakerName}
+				width={width}
+				character={character}
+			/>
+		);
+	}
+
 	return (
 		<View style={styles.screen}>
 			<View style={styles.pressureField} />
@@ -244,6 +267,94 @@ function Conversation(props) {
 	}
 }
 
+function MobileConversation({
+	avatar,
+	character,
+	dialogText,
+	height,
+	initials,
+	onResponsePress,
+	outcomeLabel,
+	power,
+	pressFeedback,
+	responses,
+	speakerName,
+	width,
+}) {
+	const viewportHeight = Math.max(height || 0, 620);
+	const limitedResponses = responses.length > 0 && responses.length <= 2;
+	const dialogMaxHeight = limitedResponses ? Math.min(246, Math.round(viewportHeight * 0.36)) : Math.round(viewportHeight * 0.5);
+
+	return (
+		<View style={[styles.mobileScreen, { minHeight: viewportHeight }]}>
+			<View style={styles.pressureField} />
+			<View style={styles.mobileAvatarCanvas}>
+				<View style={styles.mobileAvatarBackplate} />
+				{avatar ? (
+					<Image source={avatar} style={styles.mobileAvatarImage} resizeMode='contain' />
+				) : (
+					<View style={styles.mobileAvatarFallback}>
+						<Text style={[styles.mobileAvatarFallbackText, { fontSize: Math.max(68, Math.min(120, width * 0.24)) }]}>
+							{initials}
+						</Text>
+					</View>
+				)}
+			</View>
+
+			<View style={styles.mobileTopBar}>
+				<Text style={styles.mobileSceneTitle}>Kitchen Pressure Exchange</Text>
+				{outcomeLabel ? (
+					<View style={[styles.statusPill, styles.statusPillCompact, outcomeLabel === 'YOU LOSE' && styles.statusPillDanger]}>
+						<Text style={[styles.statusPillValue, styles.statusPillValueCompact]}>{outcomeLabel}</Text>
+					</View>
+				) : null}
+			</View>
+
+			<View style={styles.mobilePowerBeacon}>
+				<Text style={styles.powerBeaconLabelCompact}>POWER</Text>
+				<Text style={styles.mobilePowerValue}>{power === null ? '--' : power}</Text>
+			</View>
+
+			<View style={styles.mobileBioAction}>
+				<CharacterBioButton character={character} tone='dark' compact />
+			</View>
+
+			<View style={[styles.mobileDialogDock, { maxHeight: dialogMaxHeight }]}>
+				<View style={styles.mobileSpeakerHeader}>
+					<Text style={styles.mobileSpeakerKicker}>ACTIVE CHARACTER</Text>
+					<Text style={styles.mobileSpeakerName}>{speakerName}</Text>
+				</View>
+
+				<ScrollView style={styles.mobileDialogScroll} contentContainerStyle={styles.mobileDialogScrollContent}>
+					<View style={[styles.dialogBox, styles.mobileDialogBox]}>
+						<View style={styles.dialogAccent} />
+						<Text style={[styles.dialogText, styles.mobileDialogText]}>{dialogText}</Text>
+					</View>
+
+					<View style={styles.mobileResponsePanel}>
+						{responses.length ? (
+							responses.map((response, i) => (
+								<ResponseButton
+									key={i}
+									index={i}
+									title={response.title}
+									feedback={pressFeedback}
+									compact
+									onPress={() => onResponsePress(response)}
+								/>
+							))
+						) : (
+							<View style={styles.emptyResponse}>
+								<Text style={styles.emptyResponseText}>Awaiting response data</Text>
+							</View>
+						)}
+					</View>
+				</ScrollView>
+			</View>
+		</View>
+	);
+}
+
 function ResponseButton({ compact, feedback, index, onPress, title }) {
 	const [pressed, setPressed] = useState(false);
 
@@ -319,6 +430,161 @@ const styles = {
 		minHeight: '100%',
 		backgroundColor: palette.black,
 		overflow: 'hidden',
+	},
+	mobileScreen: {
+		flex: 1,
+		width: '100%',
+		backgroundColor: palette.black,
+		overflow: 'hidden',
+		position: 'relative',
+	},
+	mobileAvatarCanvas: {
+		position: 'absolute',
+		top: 28,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#170F0E',
+		overflow: 'hidden',
+	},
+	mobileAvatarBackplate: {
+		position: 'absolute',
+		width: '118%',
+		height: '72%',
+		bottom: '2%',
+		borderRadius: 999,
+		backgroundColor: palette.red,
+		opacity: 0.5,
+	},
+	mobileAvatarImage: {
+		position: 'absolute',
+		top: 32,
+		right: 0,
+		bottom: 18,
+		left: 0,
+		width: '100%',
+		height: '100%',
+		zIndex: 1,
+	},
+	mobileAvatarFallback: {
+		position: 'absolute',
+		top: 32,
+		right: 0,
+		bottom: 18,
+		left: 0,
+		width: '100%',
+		height: '100%',
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: palette.orange,
+		zIndex: 1,
+	},
+	mobileAvatarFallbackText: {
+		color: palette.white,
+		fontWeight: '900',
+	},
+	mobileTopBar: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		zIndex: 4,
+		elevation: 4,
+		minHeight: 28,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		gap: 8,
+		paddingHorizontal: 6,
+		backgroundColor: 'rgba(18, 18, 18, 0.86)',
+		borderBottomWidth: 1,
+		borderBottomColor: '#3C251F',
+	},
+	mobileSceneTitle: {
+		flex: 1,
+		minWidth: 0,
+		color: palette.white,
+		fontSize: 12,
+		fontWeight: '900',
+	},
+	mobilePowerBeacon: {
+		position: 'absolute',
+		top: 36,
+		left: 8,
+		zIndex: 5,
+		elevation: 5,
+		width: 66,
+		borderWidth: 1,
+		borderColor: palette.gold,
+		backgroundColor: 'rgba(40, 19, 15, 0.78)',
+		paddingVertical: 3,
+		paddingHorizontal: 5,
+	},
+	mobilePowerValue: {
+		color: palette.gold,
+		fontSize: 17,
+		lineHeight: 20,
+		fontWeight: '900',
+	},
+	mobileBioAction: {
+		position: 'absolute',
+		top: 36,
+		right: 8,
+		zIndex: 5,
+		elevation: 5,
+		width: 28,
+		alignItems: 'center',
+	},
+	mobileDialogDock: {
+		position: 'absolute',
+		left: 6,
+		right: 6,
+		bottom: 6,
+		zIndex: 6,
+		elevation: 6,
+		backgroundColor: 'rgba(23, 16, 15, 0.94)',
+		borderWidth: 2,
+		borderColor: '#3C251F',
+		padding: 5,
+		boxShadow: '0 -18px 42px rgba(0, 0, 0, 0.34)',
+	},
+	mobileSpeakerHeader: {
+		flexShrink: 0,
+		marginBottom: 4,
+	},
+	mobileSpeakerKicker: {
+		color: palette.orange,
+		fontSize: 8,
+		lineHeight: 10,
+		fontWeight: '900',
+	},
+	mobileSpeakerName: {
+		color: palette.white,
+		fontSize: 16,
+		lineHeight: 19,
+		fontWeight: '900',
+	},
+	mobileDialogScroll: {
+		flexShrink: 1,
+	},
+	mobileDialogScrollContent: {
+		gap: 4,
+	},
+	mobileDialogBox: {
+		marginTop: 0,
+		minHeight: 60,
+		paddingHorizontal: 8,
+		paddingVertical: 7,
+		borderLeftWidth: 5,
+	},
+	mobileDialogText: {
+		fontSize: 14,
+		lineHeight: 18,
+	},
+	mobileResponsePanel: {
+		gap: 4,
 	},
 	scroll: {
 		flex: 1,
