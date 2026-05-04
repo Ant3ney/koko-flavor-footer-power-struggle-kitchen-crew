@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { AppRegistry, AppState, Dimensions, Image, Text, View } from 'react-native';
+import { AppRegistry, AppState, Image, Text, View } from 'react-native';
 import { GameLoop } from 'react-native-game-engine';
 import { click } from '../../GameLogic/AudioSystem';
 import { ActionButton, BodyText, Eyebrow, Panel, ui } from '../uiKit';
@@ -73,9 +73,6 @@ class Kitchen extends PureComponent {
 
 	render() {
 		const compact = this.props.compact;
-		const viewportWidth = Dimensions.get('window').width;
-		const compactArtWidth = Math.max(260, viewportWidth - 34);
-		const compactArtHeight = Math.round(compactArtWidth * (941 / 1672));
 		return (
 			<View style={[styles.container, compact && styles.containerCompact]}>
 				{this.state.scenarioPresent ? <Scenario setScenerio={this.setScenerio} /> : null}
@@ -121,7 +118,6 @@ class Kitchen extends PureComponent {
 							styles.kitchenArtFrame,
 							!compact && styles.kitchenArtFrameWide,
 							compact && styles.kitchenArtFrameCompact,
-							compact && { height: compactArtHeight },
 						]}
 					>
 						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode='contain' />
@@ -240,21 +236,26 @@ const styles = {
 		boxSizing: 'border-box',
 	},
 	containerCompact: {
-		paddingHorizontal: 8,
-		paddingVertical: 4,
-		flex: 0,
-		flexGrow: 0,
-		flexShrink: 0,
+		paddingHorizontal: 0,
+		paddingTop: 0,
+		paddingBottom: 0,
+		flex: 1,
+		flexGrow: 1,
+		flexShrink: 1,
+		minHeight: 0,
 	},
 	kitchenPanel: {
 		minHeight: 420,
 		gap: 18,
 	},
 	kitchenPanelCompact: {
-		flex: 0,
+		flex: 1,
+		flexGrow: 1,
+		flexShrink: 1,
 		minHeight: 0,
-		gap: 5,
-		padding: 7,
+		width: '100%',
+		gap: 6,
+		padding: 0,
 		overflow: 'hidden',
 	},
 	kitchenHeader: {
@@ -268,6 +269,8 @@ const styles = {
 		flexWrap: 'nowrap',
 		gap: 5,
 		flexShrink: 0,
+		paddingHorizontal: 8,
+		paddingTop: 6,
 	},
 	headerTitleBlock: {
 		minWidth: 0,
@@ -300,7 +303,8 @@ const styles = {
 		fontWeight: '900',
 	},
 	titleCompact: {
-		fontSize: 17,
+		fontSize: 16,
+		lineHeight: 19,
 	},
 	stationBadge: {
 		color: ui.white,
@@ -316,9 +320,13 @@ const styles = {
 		display: 'none',
 	},
 	kitchenArtFrameCompact: {
+		alignSelf: 'stretch',
+		aspectRatio: 1672 / 941,
 		flexGrow: 0,
-		flexShrink: 0,
+		flexShrink: 1,
 		minHeight: 0,
+		borderLeftWidth: 0,
+		borderRightWidth: 0,
 	},
 	kitchenArtFrame: {
 		width: '100%',
@@ -345,6 +353,7 @@ const styles = {
 		flexWrap: 'nowrap',
 		gap: 4,
 		flexShrink: 0,
+		paddingHorizontal: 8,
 	},
 	stationNode: {
 		flex: 1,
@@ -359,7 +368,7 @@ const styles = {
 	},
 	stationNodeCompact: {
 		minWidth: 0,
-		minHeight: 34,
+		minHeight: 32,
 		gap: 3,
 		paddingVertical: 3,
 	},
@@ -394,13 +403,15 @@ const styles = {
 		flexWrap: 'wrap',
 		gap: 4,
 		flexShrink: 0,
+		paddingHorizontal: 8,
+		paddingBottom: 8,
 	},
 	compactAction: {
 		flexBasis: '48%',
 		flexGrow: 1,
 		minWidth: 0,
 		paddingHorizontal: 4,
-		minHeight: 32,
+		minHeight: 34,
 	},
 };
 

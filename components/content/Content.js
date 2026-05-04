@@ -13,7 +13,7 @@ function Content(props) {
 		<View style={styles.screen}>
 			<View style={styles.bgTop} />
 			<View style={styles.bgBottom} />
-			<View style={styles.content}>
+			<View style={[styles.content, compact && styles.contentCompact]}>
 				<UpperHud gameLogic={props.gameLogic} compact={compact} />
 				<Kitchen gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} compact={compact} />
 				{compact ? null : (
@@ -62,6 +62,10 @@ const styles = {
 	content: {
 		flex: 1,
 		zIndex: 1,
+	},
+	contentCompact: {
+		minHeight: 0,
+		overflow: 'hidden',
 	},
 	bgTop: {
 		position: 'absolute',
