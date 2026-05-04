@@ -193,9 +193,10 @@ const styles = {
 		width: '100%',
 		maxWidth: 1180,
 		alignSelf: 'center',
-		paddingHorizontal: 24,
+		paddingHorizontal: 12,
 		paddingVertical: 12,
 		flex: 1,
+		boxSizing: 'border-box',
 	},
 	kitchenPanel: {
 		minHeight: 420,
@@ -203,6 +204,7 @@ const styles = {
 	},
 	kitchenHeader: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		gap: 14,
@@ -220,6 +222,7 @@ const styles = {
 		fontSize: 13,
 		fontWeight: '900',
 		textTransform: 'uppercase',
+		maxWidth: '100%',
 	},
 	kitchenArtFrame: {
 		width: '100%',
@@ -243,7 +246,7 @@ const styles = {
 	},
 	stationNode: {
 		flex: 1,
-		minWidth: 160,
+		minWidth: 120,
 		minHeight: 118,
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,

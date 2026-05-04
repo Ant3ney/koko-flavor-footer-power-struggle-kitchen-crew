@@ -83,6 +83,7 @@ const styles = {
 	},
 	nextButton: {
 		marginTop: 16,
+		width: '100%',
 		maxWidth: 240,
 		alignSelf: 'flex-end',
 	},

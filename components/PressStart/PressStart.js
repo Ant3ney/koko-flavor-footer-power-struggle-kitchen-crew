@@ -45,7 +45,7 @@ function PressStart(props) {
 
 const styles = {
 	hero: {
-		minHeight: '88vh',
+		minHeight: '72vh',
 		alignItems: 'center',
 		justifyContent: 'center',
 		gap: 22,
@@ -68,6 +68,7 @@ const styles = {
 	},
 	copy: {
 		alignItems: 'center',
+		width: '100%',
 		maxWidth: 620,
 	},
 	subtitle: {

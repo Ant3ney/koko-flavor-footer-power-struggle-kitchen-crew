@@ -40,10 +40,12 @@ const styles = {
 	},
 	stats: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 12,
 	},
 	actions: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 12,
 	},
 };

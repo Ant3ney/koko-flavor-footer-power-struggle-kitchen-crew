@@ -26,13 +26,15 @@ const styles = {
 		width: '100%',
 		maxWidth: 1180,
 		alignSelf: 'center',
-		paddingHorizontal: 24,
+		paddingHorizontal: 12,
 		paddingBottom: 18,
 		paddingTop: 6,
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		gap: 12,
+		boxSizing: 'border-box',
 	},
 	status: {
 		color: ui.muted,
@@ -42,6 +44,7 @@ const styles = {
 	},
 	actions: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 8,
 	},
 };

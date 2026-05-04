@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import UpperHud from './UpperHud';
 import Kitchen from './Kitchen';
 import LowerHud from './LowerHud';
@@ -9,9 +9,11 @@ function Content(props) {
 		<View style={styles.screen}>
 			<View style={styles.bgTop} />
 			<View style={styles.bgBottom} />
-			<UpperHud gameLogic={props.gameLogic} />
-			<Kitchen gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} />
-			<LowerHud gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} />
+			<ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
+				<UpperHud gameLogic={props.gameLogic} />
+				<Kitchen gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} />
+				<LowerHud gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} />
+			</ScrollView>
 		</View>
 	);
 }
@@ -22,6 +24,13 @@ const styles = {
 		minHeight: '100%',
 		backgroundColor: '#FFF4DD',
 		overflow: 'hidden',
+	},
+	scroll: {
+		flex: 1,
+		zIndex: 1,
+	},
+	scrollContent: {
+		flexGrow: 1,
 	},
 	bgTop: {
 		position: 'absolute',

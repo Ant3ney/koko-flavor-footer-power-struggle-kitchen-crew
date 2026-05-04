@@ -69,7 +69,7 @@ const styles = {
 		backgroundColor: 'rgba(36, 18, 12, 0.30)',
 		alignItems: 'center',
 		justifyContent: 'center',
-		padding: 24,
+		padding: 12,
 	},
 	modal: {
 		width: '100%',
@@ -80,6 +80,7 @@ const styles = {
 	},
 	header: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		gap: 12,
@@ -98,6 +99,7 @@ const styles = {
 	},
 	tabs: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 8,
 	},
 };

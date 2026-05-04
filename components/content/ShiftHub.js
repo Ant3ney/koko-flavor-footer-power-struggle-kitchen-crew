@@ -197,6 +197,7 @@ function capitalize(value) {
 const styles = {
 	statRow: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 12,
 		marginBottom: 18,
 	},
@@ -206,9 +207,9 @@ const styles = {
 		gap: 14,
 	},
 	dayCard: {
-		flexBasis: '48%',
+		flexBasis: 300,
 		flexGrow: 1,
-		minWidth: 300,
+		minWidth: 0,
 		gap: 16,
 	},
 	dayCardDisabled: {
@@ -216,8 +217,10 @@ const styles = {
 	},
 	dayHeader: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		gap: 10,
 	},
 	dayName: {
 		color: ui.ink,
@@ -258,11 +261,13 @@ const styles = {
 	},
 	shiftActions: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 8,
 	},
 	weekPanel: {
 		marginTop: 16,
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		gap: 16,
@@ -272,7 +277,8 @@ const styles = {
 		minWidth: 0,
 	},
 	weekActions: {
-		minWidth: 220,
+		minWidth: 0,
+		flexGrow: 1,
 		gap: 10,
 	},
 };

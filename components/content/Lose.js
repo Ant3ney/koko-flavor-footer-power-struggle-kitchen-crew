@@ -39,6 +39,7 @@ const styles = {
 	},
 	stats: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 12,
 	},
 };

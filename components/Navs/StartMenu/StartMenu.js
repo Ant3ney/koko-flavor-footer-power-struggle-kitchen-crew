@@ -69,10 +69,11 @@ const styles = {
 		gap: 18,
 	},
 	heroPanel: {
-		padding: 28,
+		padding: 20,
 	},
 	heroTop: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		gap: 22,
 	},
@@ -85,6 +86,7 @@ const styles = {
 	},
 	statRow: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 12,
 		marginTop: 22,
 	},

@@ -28,13 +28,9 @@ export function AppScreen({ children, scroll, style }) {
 			<View style={styles.sunWash} />
 			<View style={styles.orbTop} />
 			<View style={styles.orbBottom} />
-			{scroll ? (
-				<ScrollView contentContainerStyle={styles.scrollContent} style={styles.scroll}>
-					{content}
-				</ScrollView>
-			) : (
-				content
-			)}
+			<ScrollView contentContainerStyle={styles.scrollContent} style={styles.scroll}>
+				{content}
+			</ScrollView>
 		</View>
 	);
 }
@@ -128,14 +124,16 @@ const styles = {
 	},
 	scrollContent: {
 		minHeight: '100%',
+		flexGrow: 1,
 	},
 	screenInner: {
 		width: '100%',
 		maxWidth: 1180,
 		alignSelf: 'center',
-		paddingHorizontal: 24,
+		paddingHorizontal: 16,
 		paddingVertical: 28,
 		zIndex: 1,
+		boxSizing: 'border-box',
 	},
 	sunWash: {
 		position: 'absolute',
@@ -179,6 +177,8 @@ const styles = {
 		borderColor: '#FFD08A',
 		padding: 20,
 		boxShadow: '0 18px 50px rgba(91, 43, 25, 0.12)',
+		maxWidth: '100%',
+		boxSizing: 'border-box',
 	},
 	panelDark: {
 		backgroundColor: ui.ink,
@@ -186,6 +186,7 @@ const styles = {
 	},
 	header: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		gap: 18,
@@ -228,6 +229,8 @@ const styles = {
 		minHeight: 48,
 		alignItems: 'center',
 		justifyContent: 'center',
+		flexShrink: 1,
+		maxWidth: '100%',
 		backgroundColor: ui.orange,
 		borderWidth: 1,
 		borderColor: ui.orangeDeep,
@@ -268,6 +271,7 @@ const styles = {
 		fontWeight: '900',
 		textTransform: 'uppercase',
 		textAlign: 'center',
+		flexShrink: 1,
 	},
 	buttonTextSecondary: {
 		color: ui.ink,

@@ -55,16 +55,18 @@ const styles = {
 		backgroundColor: 'rgba(36, 18, 12, 0.34)',
 		alignItems: 'center',
 		justifyContent: 'center',
-		padding: 24,
+		padding: 12,
 	},
 	modal: {
 		width: '100%',
 		maxWidth: 760,
 		maxHeight: '86%',
 		borderColor: ui.orange,
+		boxSizing: 'border-box',
 	},
 	header: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		gap: 12,
@@ -72,11 +74,12 @@ const styles = {
 	},
 	title: {
 		color: ui.ink,
-		fontSize: 30,
+		fontSize: 26,
 		fontWeight: '900',
 	},
 	list: {
-		maxHeight: 560,
+		maxHeight: 500,
+		flexShrink: 1,
 	},
 };
 

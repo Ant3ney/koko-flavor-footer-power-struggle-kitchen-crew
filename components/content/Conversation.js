@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Image, Pressable, Text, View } from 'react-native';
+import { Animated, Easing, Image, Pressable, ScrollView, Text, View } from 'react-native';
 import gamelogic from '../../GameLogic/GameLogic';
 import { getAvatarImage } from './avatarImages';
 import CharacterBioButton from './CharacterBio';
@@ -116,88 +116,90 @@ function Conversation(props) {
 		<View style={styles.screen}>
 			<View style={styles.pressureField} />
 			<View style={styles.pressureHotspot} />
-			<View style={styles.topRail}>
-				<View>
-					<Text style={styles.sceneTitle}>Kitchen Pressure Exchange</Text>
-				</View>
-				{outcomeLabel ? (
-					<View style={[styles.statusPill, outcomeLabel === 'YOU LOSE' && styles.statusPillDanger]}>
-						<Text style={styles.statusPillValue}>{outcomeLabel}</Text>
+			<ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
+				<View style={styles.topRail}>
+					<View style={styles.sceneTitleWrap}>
+						<Text style={styles.sceneTitle}>Kitchen Pressure Exchange</Text>
 					</View>
-				) : null}
-			</View>
-
-			<Animated.View style={[styles.stage, panelMotion]}>
-				<View style={styles.characterColumn}>
-					<View style={styles.powerBeacon}>
-						<Animated.View style={[styles.powerBeaconGlow, pulseMotion]} />
-						<Text style={styles.powerBeaconLabel}>POWER</Text>
-						<Text style={styles.powerBeaconValue}>{power === null ? '--' : power}</Text>
-					</View>
-
-					<View style={styles.avatarFrame}>
-						<View style={styles.avatarBackplate} />
-						{avatar ? (
-							<Image source={avatar} style={styles.avatarImage} resizeMode='contain' />
-						) : (
-							<View style={styles.avatarFallback}>
-								<Text style={styles.avatarFallbackText}>{initials}</Text>
-							</View>
-						)}
-					</View>
-
-					<View style={styles.statStrip}>
-						<Stat label='SKILL' value={skill} />
-						<Stat label='SANITY' value={sanity} danger={sanity !== null && sanity < 10} />
-						<Stat label='ROLE' value={job || '--'} />
-					</View>
-					<View style={styles.bioAction}>
-						<CharacterBioButton character={character} tone='dark' />
-					</View>
-				</View>
-
-				<View style={styles.dialogColumn}>
-					<View style={styles.speakerHeader}>
-						<View>
-							<Text style={styles.speakerKicker}>ACTIVE CHARACTER</Text>
-							<Text style={styles.speakerName}>{speakerName}</Text>
+					{outcomeLabel ? (
+						<View style={[styles.statusPill, outcomeLabel === 'YOU LOSE' && styles.statusPillDanger]}>
+							<Text style={styles.statusPillValue}>{outcomeLabel}</Text>
 						</View>
-						<View style={styles.signalStack}>
-							<View style={styles.signalDot} />
-							<View style={styles.signalDotDim} />
-							<View style={styles.signalDotDim} />
+					) : null}
+				</View>
+
+				<Animated.View style={[styles.stage, panelMotion]}>
+					<View style={styles.characterColumn}>
+						<View style={styles.powerBeacon}>
+							<Animated.View style={[styles.powerBeaconGlow, pulseMotion]} />
+							<Text style={styles.powerBeaconLabel}>POWER</Text>
+							<Text style={styles.powerBeaconValue}>{power === null ? '--' : power}</Text>
+						</View>
+
+						<View style={styles.avatarFrame}>
+							<View style={styles.avatarBackplate} />
+							{avatar ? (
+								<Image source={avatar} style={styles.avatarImage} resizeMode='contain' />
+							) : (
+								<View style={styles.avatarFallback}>
+									<Text style={styles.avatarFallbackText}>{initials}</Text>
+								</View>
+							)}
+						</View>
+
+						<View style={styles.statStrip}>
+							<Stat label='SKILL' value={skill} />
+							<Stat label='SANITY' value={sanity} danger={sanity !== null && sanity < 10} />
+							<Stat label='ROLE' value={job || '--'} />
+						</View>
+						<View style={styles.bioAction}>
+							<CharacterBioButton character={character} tone='dark' />
 						</View>
 					</View>
 
-					<View style={styles.dialogBox}>
-						<View style={styles.dialogAccent} />
-						<Text style={styles.dialogText}>{dialogText}</Text>
-					</View>
-
-					<View style={styles.responsePanel}>
-						<Text style={styles.responseHeader}>DECISION QUEUE</Text>
-						{responses.length ? (
-							responses.map((response, i) => (
-								<ResponseButton
-									key={i}
-									index={i}
-									title={response.title}
-									feedback={pressFeedback}
-									onPress={() => {
-										animatePress(pressFeedback);
-										update();
-										response.onPress();
-									}}
-								/>
-							))
-						) : (
-							<View style={styles.emptyResponse}>
-								<Text style={styles.emptyResponseText}>Awaiting response data</Text>
+					<View style={styles.dialogColumn}>
+						<View style={styles.speakerHeader}>
+							<View style={styles.speakerCopy}>
+								<Text style={styles.speakerKicker}>ACTIVE CHARACTER</Text>
+								<Text style={styles.speakerName}>{speakerName}</Text>
 							</View>
-						)}
+							<View style={styles.signalStack}>
+								<View style={styles.signalDot} />
+								<View style={styles.signalDotDim} />
+								<View style={styles.signalDotDim} />
+							</View>
+						</View>
+
+						<View style={styles.dialogBox}>
+							<View style={styles.dialogAccent} />
+							<Text style={styles.dialogText}>{dialogText}</Text>
+						</View>
+
+						<View style={styles.responsePanel}>
+							<Text style={styles.responseHeader}>DECISION QUEUE</Text>
+							{responses.length ? (
+								responses.map((response, i) => (
+									<ResponseButton
+										key={i}
+										index={i}
+										title={response.title}
+										feedback={pressFeedback}
+										onPress={() => {
+											animatePress(pressFeedback);
+											update();
+											response.onPress();
+										}}
+									/>
+								))
+							) : (
+								<View style={styles.emptyResponse}>
+									<Text style={styles.emptyResponseText}>Awaiting response data</Text>
+								</View>
+							)}
+						</View>
 					</View>
-				</View>
-			</Animated.View>
+				</Animated.View>
+			</ScrollView>
 		</View>
 	);
 
@@ -282,9 +284,17 @@ const styles = {
 		minHeight: '100%',
 		backgroundColor: palette.black,
 		overflow: 'hidden',
+	},
+	scroll: {
+		flex: 1,
+		zIndex: 1,
+	},
+	scrollContent: {
+		flexGrow: 1,
 		paddingHorizontal: 24,
 		paddingVertical: 22,
 		justifyContent: 'space-between',
+		boxSizing: 'border-box',
 	},
 	pressureField: {
 		position: 'absolute',
@@ -309,10 +319,15 @@ const styles = {
 		maxWidth: 1180,
 		alignSelf: 'center',
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		gap: 12,
 		marginBottom: 18,
-		zIndex: 1,
+	},
+	sceneTitleWrap: {
+		flex: 1,
+		minWidth: 0,
 	},
 	sceneTitle: {
 		color: palette.white,
@@ -343,11 +358,13 @@ const styles = {
 		maxWidth: 1180,
 		alignSelf: 'center',
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 18,
-		zIndex: 1,
 	},
 	characterColumn: {
-		width: 330,
+		width: '100%',
+		maxWidth: 330,
+		flexGrow: 1,
 		backgroundColor: palette.panel,
 		borderWidth: 2,
 		borderColor: '#3C251F',
@@ -384,7 +401,7 @@ const styles = {
 		lineHeight: 48,
 	},
 	avatarFrame: {
-		height: 280,
+		height: 220,
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		marginVertical: 16,
@@ -422,6 +439,7 @@ const styles = {
 	},
 	statStrip: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 8,
 	},
 	bioAction: {
@@ -455,7 +473,7 @@ const styles = {
 	},
 	dialogColumn: {
 		flex: 1,
-		minWidth: 0,
+		minWidth: 280,
 		backgroundColor: '#17100F',
 		borderWidth: 2,
 		borderColor: '#3C251F',
@@ -464,11 +482,16 @@ const styles = {
 	},
 	speakerHeader: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		borderBottomWidth: 1,
 		borderBottomColor: '#3C251F',
 		paddingBottom: 14,
+	},
+	speakerCopy: {
+		flex: 1,
+		minWidth: 0,
 	},
 	speakerKicker: {
 		color: palette.orange,
@@ -477,7 +500,7 @@ const styles = {
 	},
 	speakerName: {
 		color: palette.white,
-		fontSize: 32,
+		fontSize: 28,
 		fontWeight: '900',
 		marginTop: 3,
 	},
@@ -517,8 +540,8 @@ const styles = {
 	},
 	dialogText: {
 		color: palette.black,
-		fontSize: 24,
-		lineHeight: 34,
+		fontSize: 21,
+		lineHeight: 30,
 		fontWeight: '800',
 	},
 	responsePanel: {

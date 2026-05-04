@@ -178,7 +178,7 @@ const styles = {
 		backgroundColor: 'rgba(36, 18, 12, 0.38)',
 		alignItems: 'center',
 		justifyContent: 'center',
-		padding: 24,
+		padding: 12,
 	},
 	modal: {
 		width: '100%',
@@ -189,13 +189,14 @@ const styles = {
 	},
 	header: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		gap: 12,
 	},
 	title: {
 		color: ui.ink,
-		fontSize: 30,
+		fontSize: 26,
 		fontWeight: '900',
 	},
 	timer: {
@@ -237,9 +238,11 @@ const styles = {
 	},
 	characterCard: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		gap: 10,
-		minWidth: 180,
+		minWidth: 0,
+		flexGrow: 1,
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,
 		borderColor: '#FFDCA4',
@@ -265,6 +268,7 @@ const styles = {
 		fontWeight: '900',
 	},
 	characterCopy: {
+		flex: 1,
 		minWidth: 0,
 	},
 	characterName: {

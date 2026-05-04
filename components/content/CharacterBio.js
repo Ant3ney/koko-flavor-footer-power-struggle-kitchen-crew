@@ -209,7 +209,7 @@ const styles = {
 		backgroundColor: 'rgba(36, 18, 12, 0.52)',
 		alignItems: 'center',
 		justifyContent: 'center',
-		padding: 24,
+		padding: 12,
 	},
 	modal: {
 		width: '100%',
@@ -223,6 +223,7 @@ const styles = {
 	},
 	header: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'flex-start',
 		justifyContent: 'space-between',
 		gap: 12,
@@ -231,6 +232,7 @@ const styles = {
 		flex: 1,
 		minWidth: 0,
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		alignItems: 'center',
 		gap: 12,
 	},
@@ -308,6 +310,7 @@ const styles = {
 	},
 	bioLine: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 		gap: 12,
 	},
@@ -318,6 +321,7 @@ const styles = {
 	},
 	bioValue: {
 		flex: 1,
+		minWidth: 140,
 		color: ui.brown,
 		fontSize: 13,
 		fontWeight: '800',

@@ -61,14 +61,17 @@ const styles = {
 		width: '100%',
 		maxWidth: 1180,
 		alignSelf: 'center',
-		paddingHorizontal: 24,
+		paddingHorizontal: 12,
 		paddingTop: 22,
 		paddingBottom: 12,
+		boxSizing: 'border-box',
 	},
 	hudHeader: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		gap: 10,
 		marginBottom: 10,
 	},
 	kicker: {
@@ -88,7 +91,8 @@ const styles = {
 		gap: 10,
 	},
 	powerCard: {
-		minWidth: 220,
+		minWidth: 0,
+		flexGrow: 1,
 	},
 };
 
