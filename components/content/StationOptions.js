@@ -1,17 +1,26 @@
 import React from 'react';
 import { View } from 'react-native';
+import { click } from '../../GameLogic/AudioSystem';
 import { ActionButton, BodyText, Eyebrow, Panel } from '../uiKit';
 
 function StationOptions(props) {
 	var mStats = props.gameLogic.manageStats;
+	const setStation = station => {
+		click();
+		mStats.setPStation(station);
+		if (props.onStationChange) {
+			props.onStationChange(station);
+		}
+		props.exit();
+	};
 	return (
 		<Panel style={styles.panel}>
 			<Eyebrow>Switch Station</Eyebrow>
 			<BodyText>Choose the node you want to own next.</BodyText>
 			<View style={styles.actions}>
-				<ActionButton title='Sauce' compact onPress={() => mStats.setPStation('sause')} />
-				<ActionButton title='Frier' compact onPress={() => mStats.setPStation('frier')} />
-				<ActionButton title='Rice' compact onPress={() => mStats.setPStation('rice')} />
+				<ActionButton title='Sauce' compact onPress={() => setStation('sause')} />
+				<ActionButton title='Fryer' compact onPress={() => setStation('frier')} />
+				<ActionButton title='Rice' compact onPress={() => setStation('rice')} />
 				<ActionButton title='Cancel' compact variant='secondary' onPress={() => props.exit()} />
 			</View>
 		</Panel>

@@ -4,6 +4,7 @@ import storyLogic from '../StoryLogic';
 import shiftHub from '../ShiftHub';
 import { saveUser } from '../SaveSystem';
 import { gameplayMusic } from '../AudioSystem';
+import { hasScenarioForStation } from '../PresetsAndTemplates/ScenarioTempletes';
 
 var pFrame = 0;
 var pFrameLong = 0;
@@ -123,7 +124,7 @@ let GameDriver = {
 		let result = {
 			reply: false,
 		};
-		if (Math.round(Math.random() * 10) <= 1) {
+		if (hasScenarioForStation(mStats.getPStation()) && Math.round(Math.random() * 10) <= 1) {
 			result.reply = true;
 			mStats.setScenarioPresent(true);
 		}

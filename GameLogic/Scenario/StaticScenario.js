@@ -5,6 +5,10 @@ var StaticScenario = {
     onTic: null,
     onTimeout: null,
     currentScenario: null,
+    involvedCharacters: [],
+    characterStatChanges: [],
+    image: null,
+    soundEffect: null,
 
     handleOnPress: () => {
         if(StaticScenario.onPress){

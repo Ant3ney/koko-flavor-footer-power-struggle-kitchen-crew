@@ -19,6 +19,7 @@ class Kitchen extends PureComponent {
 			upgradeMenu: false,
 			showStatMenu: false,
 			showStationOptions: false,
+			currentStation: props.gameLogic.manageStats.getPStation(),
 		};
 
 		this.gameDriver = props.gameLogic.GameDriver;
@@ -89,7 +90,7 @@ class Kitchen extends PureComponent {
 							<Eyebrow>Kitchen Map</Eyebrow>
 							<Text style={styles.title}>Decision Floor</Text>
 						</View>
-						<Text style={styles.stationBadge}>Station: {this.mStats.getPStation()}</Text>
+						<Text style={styles.stationBadge}>Station: {formatStationName(this.state.currentStation)}</Text>
 					</View>
 
 					<View style={styles.stationGrid}>
@@ -105,7 +106,11 @@ class Kitchen extends PureComponent {
 					</BodyText>
 
 					{this.state.showStationOptions ? (
-						<StationOptions gameLogic={this.props.gameLogic} exit={this.exitStationOptions} />
+						<StationOptions
+							gameLogic={this.props.gameLogic}
+							exit={this.exitStationOptions}
+							onStationChange={station => this.setState({ currentStation: station })}
+						/>
 					) : null}
 
 					<View style={styles.actions}>
@@ -136,6 +141,14 @@ class Kitchen extends PureComponent {
 								this.setState({ showStatMenu: true });
 							}}
 						/>
+						<ActionButton
+							title='Switch Station'
+							variant='secondary'
+							onPress={() => {
+								click();
+								this.setState({ showStationOptions: true });
+							}}
+						/>
 					</View>
 				</Panel>
 			</View>
@@ -148,6 +161,16 @@ class Kitchen extends PureComponent {
 	exitStationOptions = () => {
 		this.setState({ showStationOptions: false });
 	};
+}
+
+function formatStationName(station) {
+	if (station === 'sause') {
+		return 'Sauce';
+	}
+	if (station === 'frier') {
+		return 'Fryer';
+	}
+	return station || 'Unknown';
 }
 
 function StationNode({ title, tone }) {

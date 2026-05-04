@@ -3,6 +3,84 @@ import StaticScenario from '../Scenario/StaticScenario';
 import { click } from '../AudioSystem';
 
 const difficulty = 'dyslexic';
+export const STATIONS = {
+	SAUCE: 'sause',
+	FRYER: 'frier',
+	RICE: 'rice',
+};
+export const ALL_STATIONS = [STATIONS.SAUCE, STATIONS.FRYER, STATIONS.RICE];
+export const PLACEHOLDER_SCENARIO_IMAGE = require('../../assets/logo.png');
+export const PLACEHOLDER_SCENARIO_SOUND = 'click01';
+
+export function normalizeStation(station) {
+	if (station === 'sauce') {
+		return STATIONS.SAUCE;
+	}
+	if (station === 'fryer') {
+		return STATIONS.FRYER;
+	}
+	return station;
+}
+
+export function getScenarioStations(templateOrScenario) {
+	if (!templateOrScenario || !templateOrScenario.stations) {
+		return ALL_STATIONS;
+	}
+	return templateOrScenario.stations.map(normalizeStation);
+}
+
+export function isScenarioAvailableForStation(templateOrScenario, station) {
+	return getScenarioStations(templateOrScenario).indexOf(normalizeStation(station)) >= 0;
+}
+
+export function getAvailableScenarioTemplates(station) {
+	return scenariosTempletes.filter(template => isScenarioAvailableForStation(template, station));
+}
+
+export function hasScenarioForStation(station) {
+	return getAvailableScenarioTemplates(station).length > 0;
+}
+
+function addScenarioDefaults(scenario) {
+	return {
+		...scenario,
+		stations: getScenarioStations(scenario),
+		involvedCharacters: scenario.involvedCharacters || [],
+		image: scenario.image || PLACEHOLDER_SCENARIO_IMAGE,
+		soundEffect: scenario.soundEffect || PLACEHOLDER_SCENARIO_SOUND,
+	};
+}
+
+function managerCharacter(name, avatar) {
+	return {
+		name,
+		role: 'Manager',
+		avatar: avatar || 'John_The_Manager',
+	};
+}
+
+function getUniqueCharacters(characters) {
+	var seen = {};
+	return characters.filter(character => {
+		var key = getCharacterName(character);
+		if (!key || seen[key]) {
+			return false;
+		}
+		seen[key] = true;
+		return true;
+	});
+}
+
+function getCharacterName(character) {
+	if (!character) {
+		return null;
+	}
+	if (character.name && character.name.get) {
+		return character.name.get();
+	}
+	return character.name || null;
+}
+
 export function getMaxTimeMultiplyer() {
 	let multiplyer = 1;
 	switch (difficulty) {
@@ -29,7 +107,9 @@ var scenariosTempletes = [
 		var subject = subjectObj.name.getFirst();
 		var playerRespect = mStats.getPRespectability();
 
-		return {
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE],
+			involvedCharacters: [subjectObj],
 			prompt:
 				'You pour cury into four boals starting from right to left. You pour a large regular with vegtables, a medium lv4, a medium lv2 with mushrooms, and a small lv2. ' +
 				subject +
@@ -78,14 +158,16 @@ var scenariosTempletes = [
 				mStats.subtractPPower(40 - playerRespect);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		var subjectObj01 = mStats.getRandomCook(true);
 		var subjectObj02 = mStats.getRandomCookWhosNot(subjectObj01.name.get(), true);
 		var subject01 = subjectObj01.name.getFirst();
 		var subject02 = subjectObj02.name.getFirst();
-		return {
+		return addScenarioDefaults({
+			stations: [STATIONS.RICE],
+			involvedCharacters: getUniqueCharacters([...mStats.getShiftCharacters(), managerCharacter('Carlose')]),
 			prompt:
 				'You are out of rice! The rush has been going on for hours and the crew has barly been able to keep up. When ' +
 				subject01 +
@@ -175,11 +257,14 @@ var scenariosTempletes = [
 				mStats.addPEffectivness(-10);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
-		var subject = mStats.getRandomCook(true).name.getFirst();
-		return {
+		var subjectObj = mStats.getRandomCook(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: ALL_STATIONS,
+			involvedCharacters: [subjectObj, managerCharacter('Carlose')],
 			prompt:
 				'Its slow and ' +
 				subject +
@@ -218,14 +303,16 @@ var scenariosTempletes = [
 				mStats.addPEffectivness(-10);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		var subjectObj = mStats.getRandomServer(true);
 		var subjectObj02 = mStats.getRandomeCharacterWhosNot([subjectObj], true);
 		var subject = subjectObj.name.getFirst();
 		var subPro = mStats.getGenderPronounOfCharacter(subjectObj);
-		return {
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE, STATIONS.FRYER],
+			involvedCharacters: getUniqueCharacters([subjectObj, subjectObj02, ...mStats.getShiftCharacters()]),
 			prompt:
 				subject +
 				' comes in and hands you a long receipt and ' +
@@ -300,10 +387,12 @@ var scenariosTempletes = [
 				mStats.subtractPPower(50 - playerRespect);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
-		return {
+		return addScenarioDefaults({
+			stations: [STATIONS.FRYER],
+			involvedCharacters: [],
 			prompt: 'You are in the middle of a rush. You pull an order of squid out of the frier. You pour it too fast and one ring rools on the ground!',
 			buttons: [
 				{
@@ -341,12 +430,14 @@ var scenariosTempletes = [
 				mStats.addPEffectivness(-20);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		var subjectObj = mStats.getRandomCharacter(true);
 		var subject = subjectObj.name.getFirst();
-		return {
+		return addScenarioDefaults({
+			stations: ALL_STATIONS,
+			involvedCharacters: [subjectObj],
 			prompt: 'A Karen walks into the kitchen and begins yelling at you because of some issue. She asks for your name and to speak to the manager.',
 			buttons: [
 				{
@@ -388,7 +479,7 @@ var scenariosTempletes = [
 				mStats.addCSanity(subjectObj, -10);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		var subject01Obj = mStats.getRandomServer(true);
@@ -398,7 +489,9 @@ var scenariosTempletes = [
 		var playerRespectability = mStats.getPRespectability();
 		var subject01 = subject01Obj.name.getFirst();
 		var subject02 = subject02Obj.name.getFirst();
-		return {
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE],
+			involvedCharacters: [subject01Obj, subject02Obj, managerCharacter('Carlose')],
 			prompt: subject01 + ' tells you they want an extra chees topping when thats clearly against company policy',
 			buttons: [
 				{
@@ -443,6 +536,8 @@ var scenariosTempletes = [
 						//aply consiquence
 						StaticScenario.handleOnPress();
 					},
+				},
+				{
 					title: 'Make ' + subject02 + ' make the order',
 					onPress: () => {
 						click();
@@ -481,12 +576,14 @@ var scenariosTempletes = [
 				mStats.addCAnger(subject01Obj, 10);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		var subjectObj = mStats.getRandomCharacter(true);
 		var subject = subjectObj.name.getFirst();
-		return {
+		return addScenarioDefaults({
+			stations: ALL_STATIONS,
+			involvedCharacters: [subjectObj],
 			prompt: subject + ' invites you to go on a hike in the dark next week',
 			buttons: [
 				{
@@ -525,11 +622,13 @@ var scenariosTempletes = [
 				//aply consiquence
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		var playerRespectability = mStats.getPRespectability();
-		return {
+		return addScenarioDefaults({
+			stations: ALL_STATIONS,
+			involvedCharacters: [managerCharacter('Carlose')],
 			prompt: 'Carlose the manager sees your face and asks you to shave',
 			buttons: [
 				{
@@ -566,7 +665,7 @@ var scenariosTempletes = [
 				mStats.subtractPPower(20 - playerRespectability);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 	() => {
 		//In future make sure this senario is not called if player is on frier
@@ -575,7 +674,9 @@ var scenariosTempletes = [
 			subjectObj = mStats.getRandomCook();
 		}
 		var subject = subjectObj.name.getFirst();
-		return {
+		return addScenarioDefaults({
+			stations: [STATIONS.RICE],
+			involvedCharacters: [subjectObj],
 			prompt:
 				'You are suplying rice that is shaped in a uniform way around the plate for an ' +
 				subject +
@@ -620,8 +721,19 @@ var scenariosTempletes = [
 				mStats.subtractPEffectivness(20);
 				StaticScenario.handleOnTimeOut();
 			},
-		};
+		});
 	},
 ];
+
+scenariosTempletes[0].stations = [STATIONS.SAUCE];
+scenariosTempletes[1].stations = [STATIONS.RICE];
+scenariosTempletes[2].stations = ALL_STATIONS;
+scenariosTempletes[3].stations = [STATIONS.SAUCE, STATIONS.FRYER];
+scenariosTempletes[4].stations = [STATIONS.FRYER];
+scenariosTempletes[5].stations = ALL_STATIONS;
+scenariosTempletes[6].stations = [STATIONS.SAUCE];
+scenariosTempletes[7].stations = ALL_STATIONS;
+scenariosTempletes[8].stations = ALL_STATIONS;
+scenariosTempletes[9].stations = [STATIONS.RICE];
 
 export default scenariosTempletes;
