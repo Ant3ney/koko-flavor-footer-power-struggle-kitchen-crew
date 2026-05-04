@@ -283,12 +283,16 @@ function MobileConversation({
 }) {
 	const viewportHeight = Math.max(height || 0, 620);
 	const limitedResponses = responses.length > 0 && responses.length <= 2;
-	const dialogMaxHeight = limitedResponses ? Math.min(246, Math.round(viewportHeight * 0.36)) : Math.round(viewportHeight * 0.5);
+	const responseRows = Math.max(1, responses.length);
+	const dialogDockHeight = limitedResponses
+		? Math.min(Math.round(viewportHeight * 0.28), 136 + responseRows * 44)
+		: Math.round(viewportHeight * 0.44);
+	const avatarBottomInset = dialogDockHeight + 10;
 
 	return (
 		<View style={[styles.mobileScreen, { minHeight: viewportHeight }]}>
 			<View style={styles.pressureField} />
-			<View style={styles.mobileAvatarCanvas}>
+			<View style={[styles.mobileAvatarCanvas, { bottom: avatarBottomInset }]}>
 				<View style={styles.mobileAvatarBackplate} />
 				{avatar ? (
 					<Image source={avatar} style={styles.mobileAvatarImage} resizeMode='contain' />
@@ -319,7 +323,7 @@ function MobileConversation({
 				<CharacterBioButton character={character} tone='dark' compact />
 			</View>
 
-			<View style={[styles.mobileDialogDock, { maxHeight: dialogMaxHeight }]}>
+			<View style={[styles.mobileDialogDock, { height: dialogDockHeight }]}>
 				<View style={styles.mobileSpeakerHeader}>
 					<Text style={styles.mobileSpeakerKicker}>ACTIVE CHARACTER</Text>
 					<Text style={styles.mobileSpeakerName}>{speakerName}</Text>
