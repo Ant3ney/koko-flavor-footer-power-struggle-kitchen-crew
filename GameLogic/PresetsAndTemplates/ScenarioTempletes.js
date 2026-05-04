@@ -723,6 +723,706 @@ var scenariosTempletes = [
 			},
 		});
 	},
+	() => {
+		var subjectObj = mStats.getRandomCook(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: ALL_STATIONS,
+			involvedCharacters: [subjectObj],
+			prompt:
+				subject +
+				' asks you to grab more chicken cutlets from the fridge. Your own station is already backed up, and leaving now will slow your section down.',
+			buttons: [
+				{
+					title: 'Get the cutlets',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You get the cutlets, but your orders pile up and your station turns into a mess. The shift still appreciates that you helped, and ' +
+							subject +
+							' looks much stronger because of it.\n-30 station effectiveness\n+150 ' +
+							subject +
+							"'s power\n+250 power";
+
+						mStats.addPEffectivness(-30);
+						mStats.addCPower(subjectObj, 150);
+						mStats.addPPower(250);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Deny the cutlets',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You stay locked in and keep your own orders moving. Your station stays clean, but ' +
+							subject +
+							"'s station falls apart and the shift trusts " +
+							subject +
+							' less than before.\n+20 station effectiveness\n-100 ' +
+							subject +
+							"'s power";
+
+						mStats.addPEffectivness(20);
+						mStats.addCPower(subjectObj, -100);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'The crew is shocked that you just stand there while the kitchen needs an answer. For the rest of the shift, the manager lectures you and the crew mocks you.\n-300 power';
+
+				mStats.subtractPPower(300);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		return addScenarioDefaults({
+			stations: [STATIONS.FRYER],
+			involvedCharacters: getUniqueCharacters(mStats.getShiftCharacters()),
+			prompt:
+				'It is the middle of the rush, and you have lost track of how many orders need to go into the fryer.',
+			buttons: [
+				{
+					title: 'Throw in an overwhelming amount of everything',
+					onPress: () => {
+						click();
+						if (Math.random() < 0.5) {
+							StaticScenario.prompt =
+								'The rush keeps raging, and almost everything extra you dropped gets used with only a tiny amount left over. Your instincts look spot on, and the crew respects how steady you stayed. You use the leftovers for a much needed break meal.\n+20 station effectiveness\n+350 power\n+10 sanity\n+10 energy';
+
+							mStats.addPEffectivness(20);
+							mStats.addPPower(350);
+							mStats.addPSanity(10);
+							mStats.setPEnergy(mStats.getPEnergy() + 10);
+						} else {
+							StaticScenario.prompt =
+								'The rush dies right after you drop the food. Now there is a mountain of wasted food getting cold, and the crew starts questioning your sense for the job.\n-20 station effectiveness\n-50 power\n-10 sanity';
+
+							mStats.addPEffectivness(-20);
+							mStats.subtractPPower(50);
+							mStats.addPSanity(-10);
+						}
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Drop only a few extra items',
+					onPress: () => {
+						click();
+						if (Math.random() < 0.5) {
+							StaticScenario.prompt =
+								'The rush keeps going, and the few extra items are not enough to keep orders moving fast. Still, the crew respects that you stayed stable when everyone got caught off guard.\n-10 station effectiveness';
+
+							mStats.addPEffectivness(-10);
+						} else {
+							StaticScenario.prompt =
+								'The rush ends shortly after, and you dropped just enough food to get through it cleanly. The crew notices, but it was a small rush, so they are only mildly impressed.\n+5 station effectiveness\n+20 power';
+
+							mStats.addPEffectivness(5);
+							mStats.addPPower(20);
+						}
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'The rush keeps raging and you have nowhere near enough food cooking. Customers wait more than thirty minutes, and the whole crew is furious. They will remember this.\n-30 station effectiveness\n-100 power\n-15 sanity';
+
+				mStats.addPEffectivness(-30);
+				mStats.subtractPPower(100);
+				mStats.addPSanity(-15);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomServer(true);
+		var subject = subjectObj.name.getFirst();
+		var possessive = mStats.getGenderPossessiveCharacter(subjectObj);
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE],
+			involvedCharacters: [subjectObj],
+			prompt:
+				subject +
+				' asks if the Kima sauce you just poured has meatballs in it. You know this sauce does have meatballs.',
+			buttons: [
+				{
+					title: 'Tell the truth',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							subject +
+							' corrects the order and keeps doing good work on ' +
+							possessive +
+							' station.\n+20 ' +
+							subject +
+							"'s power";
+
+						mStats.addCPower(subjectObj, 20);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Say it has no meatballs',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							subject +
+							' brings a plate of Kima curry without meatballs to a customer who did not order it that way. The customer lashes out at ' +
+							subject +
+							', then ' +
+							subject +
+							' lashes out at you for the mistake. The crew judges both of you.\n-350 ' +
+							subject +
+							"'s power\n-100 power";
+
+						mStats.addCPower(subjectObj, -350);
+						mStats.subtractPPower(100);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					subject +
+					' has to guess without your answer. The uncertainty slows the order and makes both of you look unreliable.\n-40 ' +
+					subject +
+					"'s power\n-40 power";
+
+				mStats.addCPower(subjectObj, -40);
+				mStats.subtractPPower(40);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomServer(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE, STATIONS.RICE],
+			involvedCharacters: getUniqueCharacters([subjectObj, ...mStats.getShiftCharacters()]),
+			prompt:
+				'You notice that ' +
+				subject +
+				' is doing dishes today. If you burn your pots, it will slow down the dish pit and make the whole kitchen harder to run.',
+			buttons: [
+				{
+					title: 'Burn your pots',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'The dishes back up badly. Dirty dishes fill the dish area and spill onto vital counter space. Key kitchen tools stop cycling back in time, orders slow down, and the whole shift gets furious. They blame you for burning the pots, but most of the heat lands on ' +
+							subject +
+							' for falling behind.\n-30 power\n-300 ' +
+							subject +
+							"'s power";
+
+						mStats.subtractPPower(30);
+						mStats.addCPower(subjectObj, -300);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Take good care of your pots',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'Orders keep flowing smoothly, and ' +
+							subject +
+							' is able to wash fast enough to keep the kitchen supplied.\n+10 power for the whole shift';
+
+						mStats.getShiftCharacters().forEach(character => {
+							mStats.addCPower(character, 10);
+						});
+						mStats.addPPower(10);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'You hesitate and the pots get worse while dishes keep piling up. The shift reads it as careless indecision.\n-20 power\n-80 ' +
+					subject +
+					"'s power";
+
+				mStats.subtractPPower(20);
+				mStats.addCPower(subjectObj, -80);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomCook(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: ALL_STATIONS,
+			involvedCharacters: [subjectObj],
+			prompt:
+				subject +
+				' asks you to run to the walk-in for another case of shrimp. Your station is packed with open orders, and leaving now will put you behind.',
+			buttons: [
+				{
+					title: 'Get the shrimp',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You grab the shrimp, but your section gets buried while you are gone. The shift appreciates the help, and ' +
+							subject +
+							' looks prepared because of you.\n-25 station effectiveness\n+120 ' +
+							subject +
+							"'s power\n+180 power";
+
+						mStats.addPEffectivness(-25);
+						mStats.addCPower(subjectObj, 120);
+						mStats.addPPower(180);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Stay on your orders',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You protect your station and keep the orders moving, but ' +
+							subject +
+							' runs out of shrimp and starts falling apart. The crew trusts ' +
+							subject +
+							' less after watching it happen.\n+15 station effectiveness\n-90 ' +
+							subject +
+							"'s power";
+
+						mStats.addPEffectivness(15);
+						mStats.addCPower(subjectObj, -90);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'You freeze while the station and the shrimp problem both get worse. The crew reads it as panic under pressure.\n-180 power\n-15 station effectiveness';
+
+				mStats.subtractPPower(180);
+				mStats.addPEffectivness(-15);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomCook(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE, STATIONS.RICE],
+			involvedCharacters: [subjectObj],
+			prompt:
+				subject +
+				' asks you to refill the backup curry containers before the next wave of orders. You can do it, but your current plates will slow down.',
+			buttons: [
+				{
+					title: 'Refill the backups',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You refill the backups and save the kitchen from a bigger problem later, but your current orders get ugly. ' +
+							subject +
+							' and the shift notice that you covered the gap.\n-20 station effectiveness\n+100 ' +
+							subject +
+							"'s power\n+120 power";
+
+						mStats.addPEffectivness(-20);
+						mStats.addCPower(subjectObj, 100);
+						mStats.addPPower(120);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Tell ' + subject + ' to handle it',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You keep your own plates clean, but the backup curry runs low and ' +
+							subject +
+							' gets blamed for not staying ahead of it.\n+10 station effectiveness\n-80 ' +
+							subject +
+							"'s power";
+
+						mStats.addPEffectivness(10);
+						mStats.addCPower(subjectObj, -80);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'Nobody refills the backups in time. The kitchen hits the next wave unprepared and everyone looks at you like you missed an easy call.\n-120 power\n-20 station effectiveness';
+
+				mStats.subtractPPower(120);
+				mStats.addPEffectivness(-20);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		return addScenarioDefaults({
+			stations: [STATIONS.FRYER],
+			involvedCharacters: getUniqueCharacters(mStats.getShiftCharacters()),
+			prompt:
+				'The fryer screen is full of chicken orders, but you are not sure if this is the peak of the rush or the last wave.',
+			buttons: [
+				{
+					title: 'Drop a huge batch of chicken',
+					onPress: () => {
+						click();
+						if (Math.random() < 0.5) {
+							StaticScenario.prompt =
+								'The rush keeps climbing. The huge batch saves the kitchen, and the crew sees you read the pressure perfectly.\n+25 station effectiveness\n+300 power\n+8 sanity';
+
+							mStats.addPEffectivness(25);
+							mStats.addPPower(300);
+							mStats.addPSanity(8);
+						} else {
+							StaticScenario.prompt =
+								'The rush drops off right after the chicken goes in. You are left with too much food getting cold, and the crew doubts your instincts.\n-25 station effectiveness\n-80 power\n-8 sanity';
+
+							mStats.addPEffectivness(-25);
+							mStats.subtractPPower(80);
+							mStats.addPSanity(-8);
+						}
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Drop a careful batch',
+					onPress: () => {
+						click();
+						if (Math.random() < 0.5) {
+							StaticScenario.prompt =
+								'The rush keeps climbing and the careful batch is not enough. You stay composed, but the orders slow down.\n-15 station effectiveness\n+10 power';
+
+							mStats.addPEffectivness(-15);
+							mStats.addPPower(10);
+						} else {
+							StaticScenario.prompt =
+								'The rush fades and your careful batch is exactly enough. The fryer stays clean and nobody has to throw away food.\n+10 station effectiveness\n+35 power';
+
+							mStats.addPEffectivness(10);
+							mStats.addPPower(35);
+						}
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'You do not drop enough chicken in time. The line drags, tickets turn red, and the crew gets heated at you.\n-25 station effectiveness\n-90 power\n-10 sanity';
+
+				mStats.addPEffectivness(-25);
+				mStats.subtractPPower(90);
+				mStats.addPSanity(-10);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		return addScenarioDefaults({
+			stations: [STATIONS.FRYER],
+			involvedCharacters: getUniqueCharacters(mStats.getShiftCharacters()),
+			prompt:
+				'The tempura orders are coming in faster than you can count. You need to decide how much to drop before the next wave hits.',
+			buttons: [
+				{
+					title: 'Drop everything you can fit',
+					onPress: () => {
+						click();
+						if (Math.random() < 0.5) {
+							StaticScenario.prompt =
+								'The wave keeps going and almost every piece gets used. The crew sees you hold the fryer down like you expected it.\n+20 station effectiveness\n+260 power\n+5 energy';
+
+							mStats.addPEffectivness(20);
+							mStats.addPPower(260);
+							mStats.setPEnergy(mStats.getPEnergy() + 5);
+						} else {
+							StaticScenario.prompt =
+								'The wave ends too soon. Too much tempura sits under the heat lamp, and everyone can see the waste.\n-30 station effectiveness\n-60 power\n-6 sanity';
+
+							mStats.addPEffectivness(-30);
+							mStats.subtractPPower(60);
+							mStats.addPSanity(-6);
+						}
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Drop only a small cushion',
+					onPress: () => {
+						click();
+						if (Math.random() < 0.5) {
+							StaticScenario.prompt =
+								'The wave keeps coming and your small cushion disappears instantly. You avoid waste, but the station falls behind.\n-18 station effectiveness';
+
+							mStats.addPEffectivness(-18);
+						} else {
+							StaticScenario.prompt =
+								'The wave ends and your small cushion is just enough. It is not flashy, but it keeps the fryer clean.\n+8 station effectiveness\n+25 power';
+
+							mStats.addPEffectivness(8);
+							mStats.addPPower(25);
+						}
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'You wait too long and the tempura orders swamp the fryer. The delay spreads through the whole line.\n-28 station effectiveness\n-110 power\n-12 sanity';
+
+				mStats.addPEffectivness(-28);
+				mStats.subtractPPower(110);
+				mStats.addPSanity(-12);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomServer(true);
+		var subject = subjectObj.name.getFirst();
+		var possessive = mStats.getGenderPossessiveCharacter(subjectObj);
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE],
+			involvedCharacters: [subjectObj],
+			prompt:
+				subject +
+				' asks if the sauce you just poured is level 4. You know it is level 2, not level 4.',
+			buttons: [
+				{
+					title: 'Tell ' + subject + ' it is level 2',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							subject +
+							' catches the issue before it reaches the customer and keeps ' +
+							possessive +
+							' work clean.\n+25 ' +
+							subject +
+							"'s power\n+20 power";
+
+						mStats.addCPower(subjectObj, 25);
+						mStats.addPPower(20);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Say it is level 4',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							subject +
+							' serves the wrong spice level. The customer complains hard, and the mistake comes back on both of you.\n-250 ' +
+							subject +
+							"'s power\n-90 power";
+
+						mStats.addCPower(subjectObj, -250);
+						mStats.subtractPPower(90);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					subject +
+					' has to move without an answer. The order becomes a guessing game, and the crew sees the confusion.\n-60 ' +
+					subject +
+					"'s power\n-50 power";
+
+				mStats.addCPower(subjectObj, -60);
+				mStats.subtractPPower(50);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomServer(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE],
+			involvedCharacters: [subjectObj],
+			prompt:
+				subject +
+				' asks if the curry you just made is vegetarian. You know this batch has chicken stock in it.',
+			buttons: [
+				{
+					title: 'Tell the truth',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							subject +
+							' stops the order before it becomes a customer problem. The crew respects that the two of you caught it early.\n+30 ' +
+							subject +
+							"'s power\n+30 power";
+
+						mStats.addCPower(subjectObj, 30);
+						mStats.addPPower(30);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Say it is vegetarian',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							subject +
+							' brings out food that should never have gone to that customer. The customer gets furious, and the crew judges both you and ' +
+							subject +
+							'.\n-320 ' +
+							subject +
+							"'s power\n-120 power\n-10 sanity";
+
+						mStats.addCPower(subjectObj, -320);
+						mStats.subtractPPower(120);
+						mStats.addPSanity(-10);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'You do not answer fast enough. ' +
+					subject +
+					' delays the table, and the shift gets annoyed at the avoidable slowdown.\n-50 ' +
+					subject +
+					"'s power\n-50 power";
+
+				mStats.addCPower(subjectObj, -50);
+				mStats.subtractPPower(50);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomServer(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: [STATIONS.SAUCE, STATIONS.RICE],
+			involvedCharacters: getUniqueCharacters([subjectObj, ...mStats.getShiftCharacters()]),
+			prompt:
+				subject +
+				' is stuck on dishes while the pot rack is almost empty. If you scorch your next pot, the dish pit will fall badly behind.',
+			buttons: [
+				{
+					title: 'Let the pot scorch',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'The scorched pot takes forever to wash. The dish pit backs up, clean pans stop coming back, and the kitchen starts blaming ' +
+							subject +
+							' even though you caused the problem.\n-25 power\n-260 ' +
+							subject +
+							"'s power";
+
+						mStats.subtractPPower(25);
+						mStats.addCPower(subjectObj, -260);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Keep the pot clean',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You keep the pot clean enough to wash quickly. The rack keeps moving, and the whole shift gets a little smoother.\n+8 power for the whole shift';
+
+						mStats.getShiftCharacters().forEach(character => {
+							mStats.addCPower(character, 8);
+						});
+						mStats.addPPower(8);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'The pot burns while you hesitate. Nobody knows if it was carelessness or panic, but the dish pit pays for it.\n-20 power\n-90 ' +
+					subject +
+					"'s power";
+
+				mStats.subtractPPower(20);
+				mStats.addCPower(subjectObj, -90);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
+	() => {
+		var subjectObj = mStats.getRandomServer(true);
+		var subject = subjectObj.name.getFirst();
+		return addScenarioDefaults({
+			stations: [STATIONS.RICE],
+			involvedCharacters: getUniqueCharacters([subjectObj, ...mStats.getShiftCharacters()]),
+			prompt:
+				'You are washing a rice insert while ' +
+				subject +
+				' is on dishes. If you leave rice crust stuck to the bottom, it will slow the dish station down hard.',
+			buttons: [
+				{
+					title: 'Leave the crust',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'The rice crust turns into a dish pit nightmare. The insert takes too long to clean, counter space fills up, and the crew mostly blames ' +
+							subject +
+							' for the backup.\n-20 power\n-220 ' +
+							subject +
+							"'s power";
+
+						mStats.subtractPPower(20);
+						mStats.addCPower(subjectObj, -220);
+						StaticScenario.handleOnPress();
+					},
+				},
+				{
+					title: 'Scrape it properly',
+					onPress: () => {
+						click();
+						StaticScenario.prompt =
+							'You scrape the insert properly before it hits dish. ' +
+							subject +
+							' keeps dishes moving and the kitchen has what it needs.\n+10 power for the whole shift\n+5 station effectiveness';
+
+						mStats.getShiftCharacters().forEach(character => {
+							mStats.addCPower(character, 10);
+						});
+						mStats.addPPower(10);
+						mStats.addPEffectivness(5);
+						StaticScenario.handleOnPress();
+					},
+				},
+			],
+			maxTime: 10,
+			onTimeout: () => {
+				StaticScenario.prompt =
+					'You stand there too long and the insert dries out with rice still stuck to it. Dish gets backed up, and everyone gets irritated.\n-25 power\n-70 ' +
+					subject +
+					"'s power";
+
+				mStats.subtractPPower(25);
+				mStats.addCPower(subjectObj, -70);
+				StaticScenario.handleOnTimeOut();
+			},
+		});
+	},
 ];
 
 scenariosTempletes[0].stations = [STATIONS.SAUCE];
@@ -735,5 +1435,17 @@ scenariosTempletes[6].stations = [STATIONS.SAUCE];
 scenariosTempletes[7].stations = ALL_STATIONS;
 scenariosTempletes[8].stations = ALL_STATIONS;
 scenariosTempletes[9].stations = [STATIONS.RICE];
+scenariosTempletes[10].stations = ALL_STATIONS;
+scenariosTempletes[11].stations = [STATIONS.FRYER];
+scenariosTempletes[12].stations = [STATIONS.SAUCE];
+scenariosTempletes[13].stations = [STATIONS.SAUCE, STATIONS.RICE];
+scenariosTempletes[14].stations = ALL_STATIONS;
+scenariosTempletes[15].stations = [STATIONS.SAUCE, STATIONS.RICE];
+scenariosTempletes[16].stations = [STATIONS.FRYER];
+scenariosTempletes[17].stations = [STATIONS.FRYER];
+scenariosTempletes[18].stations = [STATIONS.SAUCE];
+scenariosTempletes[19].stations = [STATIONS.SAUCE];
+scenariosTempletes[20].stations = [STATIONS.SAUCE, STATIONS.RICE];
+scenariosTempletes[21].stations = [STATIONS.RICE];
 
 export default scenariosTempletes;
