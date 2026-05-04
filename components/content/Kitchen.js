@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { AppRegistry, AppState, Image, Text, View } from 'react-native';
+import { AppRegistry, AppState, Dimensions, Image, Text, View } from 'react-native';
 import { GameLoop } from 'react-native-game-engine';
 import { click } from '../../GameLogic/AudioSystem';
 import { ActionButton, BodyText, Eyebrow, Panel, ui } from '../uiKit';
@@ -73,6 +73,9 @@ class Kitchen extends PureComponent {
 
 	render() {
 		const compact = this.props.compact;
+		const viewportWidth = Dimensions.get('window').width;
+		const compactArtWidth = Math.max(260, viewportWidth - 34);
+		const compactArtHeight = Math.round(compactArtWidth * (941 / 1672));
 		return (
 			<View style={[styles.container, compact && styles.containerCompact]}>
 				{this.state.scenarioPresent ? <Scenario setScenerio={this.setScenerio} /> : null}
@@ -113,7 +116,14 @@ class Kitchen extends PureComponent {
 						</View>
 					</View>
 
-					<View style={[styles.kitchenArtFrame, !compact && styles.kitchenArtFrameWide, compact && styles.kitchenArtFrameCompact]}>
+					<View
+						style={[
+							styles.kitchenArtFrame,
+							!compact && styles.kitchenArtFrameWide,
+							compact && styles.kitchenArtFrameCompact,
+							compact && { height: compactArtHeight },
+						]}
+					>
 						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode='contain' />
 					</View>
 
@@ -309,7 +319,6 @@ const styles = {
 		flexGrow: 0,
 		flexShrink: 0,
 		minHeight: 0,
-		aspectRatio: 1672 / 941,
 	},
 	kitchenArtFrame: {
 		width: '100%',
