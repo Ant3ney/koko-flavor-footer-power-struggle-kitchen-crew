@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import ScenarioKit from '../../GameLogic/Scenario/Scenario';
 import { click } from '../../GameLogic/AudioSystem';
 import { ActionButton, BodyText, Eyebrow, Panel, ui } from '../uiKit';
@@ -16,6 +16,8 @@ function Scenario(props) {
 	const [characters, setCharacters] = useState([]);
 	const [characterChanges, setCharacterChanges] = useState([]);
 	const [scenarioImage, setScenarioImage] = useState(placeholderScenarioImage);
+	const { width, height } = useWindowDimensions();
+	const compact = width <= 680 || height <= 720;
 
 	if (!scenario) {
 		scenario = new ScenarioKit();
@@ -45,33 +47,42 @@ function Scenario(props) {
 	}, []);
 
 	return (
-		<View style={styles.overlay}>
-			<Panel style={styles.modal}>
-				<View style={styles.header}>
+		<View style={[styles.overlay, compact && styles.overlayCompact]}>
+			<Panel style={[styles.modal, compact && styles.modalCompact]}>
+				<View style={[styles.header, compact && styles.headerCompact]}>
 					<View>
 						<Eyebrow>Scenario Interrupt</Eyebrow>
-						<Text style={styles.title}>Decision Required</Text>
+						<Text style={[styles.title, compact && styles.titleCompact]}>Decision Required</Text>
 					</View>
-					<View style={styles.timer}>
+					<View style={[styles.timer, compact && styles.timerCompact]}>
 						<Text style={styles.timerLabel}>TIME</Text>
-						<Text style={styles.timerValue}>{timmer}</Text>
+						<Text style={[styles.timerValue, compact && styles.timerValueCompact]}>{timmer}</Text>
 					</View>
 				</View>
-				<ScrollView style={styles.contentScroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator>
-					<Image source={scenarioImage} style={styles.scenarioImage} resizeMode='contain' />
-					<CharacterRoster characters={characters} />
-					<BodyText style={styles.prompt}>{prompt}</BodyText>
+				<ScrollView
+					style={styles.contentScroll}
+					contentContainerStyle={[styles.content, compact && styles.contentCompact]}
+					showsVerticalScrollIndicator
+				>
+					<Image
+						source={scenarioImage}
+						style={[styles.scenarioImage, compact && styles.scenarioImageCompact]}
+						resizeMode='contain'
+					/>
+					<CharacterRoster characters={characters} compact={compact} />
+					<BodyText style={[styles.prompt, compact && styles.promptCompact]}>{prompt}</BodyText>
 					{chose ? <CharacterChanges changes={characterChanges} /> : null}
 				</ScrollView>
 				<View style={styles.actions}>
 					{!chose ? (
 						scenario.getButtons().map((button, i) => (
-							<ActionButton key={i} title={button.title} onPress={button.onPress} />
+							<ActionButton key={i} title={button.title} onPress={button.onPress} compact={compact} />
 						))
 					) : (
 						<ActionButton
 							title='Acknowledge'
 							variant='secondary'
+							compact={compact}
 							onPress={() => {
 								click();
 								scenario.quit();
@@ -86,19 +97,21 @@ function Scenario(props) {
 	);
 }
 
-function CharacterRoster({ characters }) {
+function CharacterRoster({ characters, compact }) {
 	if (!characters.length) {
 		return null;
 	}
 	return (
 		<View style={styles.characterRoster}>
 			{characters.map((character, i) => (
-				<View key={getCharacterName(character) + i} style={styles.characterCard}>
+				<View key={getCharacterName(character) + i} style={[styles.characterCard, compact && styles.characterCardCompact]}>
 					{getAvatarImage(character) ? (
-						<Image source={getAvatarImage(character)} style={styles.avatar} resizeMode='cover' />
+						<Image source={getAvatarImage(character)} style={[styles.avatar, compact && styles.avatarCompact]} resizeMode='cover' />
 					) : (
-						<View style={styles.avatarFallback}>
-							<Text style={styles.avatarFallbackText}>{getInitials(character)}</Text>
+						<View style={[styles.avatarFallback, compact && styles.avatarCompact]}>
+							<Text style={[styles.avatarFallbackText, compact && styles.avatarFallbackTextCompact]}>
+								{getInitials(character)}
+							</Text>
 						</View>
 					)}
 					<View style={styles.characterCopy}>
@@ -180,12 +193,20 @@ const styles = {
 		justifyContent: 'center',
 		padding: 12,
 	},
+	overlayCompact: {
+		padding: 8,
+	},
 	modal: {
 		width: '100%',
 		maxWidth: 760,
 		maxHeight: '92%',
 		gap: 12,
 		borderColor: ui.red,
+	},
+	modalCompact: {
+		maxHeight: '96%',
+		gap: 8,
+		padding: 12,
 	},
 	header: {
 		flexDirection: 'row',
@@ -194,10 +215,16 @@ const styles = {
 		alignItems: 'center',
 		gap: 12,
 	},
+	headerCompact: {
+		gap: 8,
+	},
 	title: {
 		color: ui.ink,
 		fontSize: 26,
 		fontWeight: '900',
+	},
+	titleCompact: {
+		fontSize: 20,
 	},
 	timer: {
 		minWidth: 92,
@@ -205,6 +232,11 @@ const styles = {
 		paddingHorizontal: 14,
 		paddingVertical: 10,
 		alignItems: 'center',
+	},
+	timerCompact: {
+		minWidth: 68,
+		paddingHorizontal: 10,
+		paddingVertical: 6,
 	},
 	timerLabel: {
 		color: '#FFDCA4',
@@ -216,12 +248,18 @@ const styles = {
 		fontSize: 24,
 		fontWeight: '900',
 	},
+	timerValueCompact: {
+		fontSize: 18,
+	},
 	contentScroll: {
 		flexShrink: 1,
 	},
 	content: {
 		gap: 12,
 		paddingRight: 4,
+	},
+	contentCompact: {
+		gap: 8,
 	},
 	scenarioImage: {
 		width: '100%',
@@ -230,6 +268,9 @@ const styles = {
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,
 		borderColor: '#FFDCA4',
+	},
+	scenarioImageCompact: {
+		maxHeight: 170,
 	},
 	characterRoster: {
 		flexDirection: 'row',
@@ -248,11 +289,20 @@ const styles = {
 		borderColor: '#FFDCA4',
 		padding: 8,
 	},
+	characterCardCompact: {
+		padding: 6,
+		gap: 7,
+	},
 	avatar: {
 		width: 44,
 		height: 44,
 		borderRadius: 22,
 		backgroundColor: '#FFDCA4',
+	},
+	avatarCompact: {
+		width: 34,
+		height: 34,
+		borderRadius: 17,
 	},
 	avatarFallback: {
 		width: 44,
@@ -266,6 +316,9 @@ const styles = {
 		color: ui.white,
 		fontSize: 14,
 		fontWeight: '900',
+	},
+	avatarFallbackTextCompact: {
+		fontSize: 11,
 	},
 	characterCopy: {
 		flex: 1,
@@ -286,6 +339,10 @@ const styles = {
 		fontSize: 19,
 		lineHeight: 28,
 		color: ui.ink,
+	},
+	promptCompact: {
+		fontSize: 16,
+		lineHeight: 22,
 	},
 	changePanel: {
 		backgroundColor: '#FFF4DD',

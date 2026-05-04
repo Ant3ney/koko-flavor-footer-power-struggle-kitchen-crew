@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 
 export const ui = {
 	cream: '#FFF4DD',
@@ -21,7 +21,9 @@ export const ui = {
 export const gameLogo = require('../assets/icon.webp');
 
 export function AppScreen({ children, scroll, style }) {
-	const content = <View style={[styles.screenInner, style]}>{children}</View>;
+	const { width, height } = useWindowDimensions();
+	const compact = width <= 680 || height <= 720;
+	const content = <View style={[styles.screenInner, compact && styles.screenInnerCompact, style]}>{children}</View>;
 
 	return (
 		<View style={styles.screen}>
@@ -44,7 +46,9 @@ export function BrandMark({ size = 86 }) {
 }
 
 export function Panel({ children, style, tone = 'light' }) {
-	return <View style={[styles.panel, tone === 'dark' && styles.panelDark, style]}>{children}</View>;
+	const { width, height } = useWindowDimensions();
+	const compact = width <= 680 || height <= 720;
+	return <View style={[styles.panel, compact && styles.panelCompact, tone === 'dark' && styles.panelDark, style]}>{children}</View>;
 }
 
 export function Eyebrow({ children, tone = 'orange' }) {
@@ -60,6 +64,9 @@ export function BodyText({ children, center, style }) {
 }
 
 export function ActionButton({ title, onPress, disabled, variant = 'primary', compact, style }) {
+	const { width, height } = useWindowDimensions();
+	const viewportCompact = width <= 680 || height <= 720;
+	const buttonCompact = compact || viewportCompact;
 	return (
 		<Pressable
 			disabled={disabled}
@@ -69,7 +76,7 @@ export function ActionButton({ title, onPress, disabled, variant = 'primary', co
 				variant === 'secondary' && styles.buttonSecondary,
 				variant === 'danger' && styles.buttonDanger,
 				variant === 'ghost' && styles.buttonGhost,
-				compact && styles.buttonCompact,
+				buttonCompact && styles.buttonCompact,
 				disabled && styles.buttonDisabled,
 				pressed && !disabled && styles.buttonPressed,
 				style,
@@ -78,6 +85,7 @@ export function ActionButton({ title, onPress, disabled, variant = 'primary', co
 			<Text
 				style={[
 					styles.buttonText,
+					buttonCompact && styles.buttonTextCompact,
 					variant === 'secondary' && styles.buttonTextSecondary,
 					variant === 'ghost' && styles.buttonTextGhost,
 					disabled && styles.buttonTextDisabled,
@@ -135,6 +143,10 @@ const styles = {
 		zIndex: 1,
 		boxSizing: 'border-box',
 	},
+	screenInnerCompact: {
+		paddingHorizontal: 10,
+		paddingVertical: 16,
+	},
 	sunWash: {
 		position: 'absolute',
 		top: 0,
@@ -179,6 +191,9 @@ const styles = {
 		boxShadow: '0 18px 50px rgba(91, 43, 25, 0.12)',
 		maxWidth: '100%',
 		boxSizing: 'border-box',
+	},
+	panelCompact: {
+		padding: 14,
 	},
 	panelDark: {
 		backgroundColor: ui.ink,
@@ -272,6 +287,9 @@ const styles = {
 		textTransform: 'uppercase',
 		textAlign: 'center',
 		flexShrink: 1,
+	},
+	buttonTextCompact: {
+		fontSize: 13,
 	},
 	buttonTextSecondary: {
 		color: ui.ink,

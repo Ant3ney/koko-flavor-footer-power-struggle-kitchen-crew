@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Animated, Easing, Image, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import gamelogic from '../../GameLogic/GameLogic';
 import { getAvatarImage } from './avatarImages';
 import CharacterBioButton from './CharacterBio';
@@ -21,9 +21,11 @@ const palette = {
 function Conversation(props) {
 	const [dialog, setDialog] = useState(null);
 	const [updater, updateTo] = useState(false);
+	const { width, height } = useWindowDimensions();
 	const entrance = useRef(new Animated.Value(0)).current;
 	const pulse = useRef(new Animated.Value(0)).current;
 	const pressFeedback = useRef(new Animated.Value(1)).current;
+	const compact = width <= 680 || height <= 720;
 
 	useEffect(() => {
 		conversation.awake({
@@ -116,67 +118,80 @@ function Conversation(props) {
 		<View style={styles.screen}>
 			<View style={styles.pressureField} />
 			<View style={styles.pressureHotspot} />
-			<ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
-				<View style={styles.topRail}>
+			<ScrollView
+				style={styles.scroll}
+				contentContainerStyle={[styles.scrollContent, compact && styles.scrollContentCompact]}
+			>
+				<View style={[styles.topRail, compact && styles.topRailCompact]}>
 					<View style={styles.sceneTitleWrap}>
-						<Text style={styles.sceneTitle}>Kitchen Pressure Exchange</Text>
+						<Text style={[styles.sceneTitle, compact && styles.sceneTitleCompact]}>Kitchen Pressure Exchange</Text>
 					</View>
 					{outcomeLabel ? (
-						<View style={[styles.statusPill, outcomeLabel === 'YOU LOSE' && styles.statusPillDanger]}>
-							<Text style={styles.statusPillValue}>{outcomeLabel}</Text>
+						<View
+							style={[
+								styles.statusPill,
+								outcomeLabel === 'YOU LOSE' && styles.statusPillDanger,
+								compact && styles.statusPillCompact,
+							]}
+						>
+							<Text style={[styles.statusPillValue, compact && styles.statusPillValueCompact]}>{outcomeLabel}</Text>
 						</View>
 					) : null}
 				</View>
 
-				<Animated.View style={[styles.stage, panelMotion]}>
-					<View style={styles.characterColumn}>
-						<View style={styles.powerBeacon}>
+				<Animated.View style={[styles.stage, compact && styles.stageCompact, panelMotion]}>
+					<View style={[styles.characterColumn, compact && styles.characterColumnCompact]}>
+						<View style={[styles.powerBeacon, compact && styles.powerBeaconCompact]}>
 							<Animated.View style={[styles.powerBeaconGlow, pulseMotion]} />
-							<Text style={styles.powerBeaconLabel}>POWER</Text>
-							<Text style={styles.powerBeaconValue}>{power === null ? '--' : power}</Text>
+							<Text style={[styles.powerBeaconLabel, compact && styles.powerBeaconLabelCompact]}>POWER</Text>
+							<Text style={[styles.powerBeaconValue, compact && styles.powerBeaconValueCompact]}>
+								{power === null ? '--' : power}
+							</Text>
 						</View>
 
-						<View style={styles.avatarFrame}>
+						<View style={[styles.avatarFrame, compact && styles.avatarFrameCompact]}>
 							<View style={styles.avatarBackplate} />
 							{avatar ? (
 								<Image source={avatar} style={styles.avatarImage} resizeMode='contain' />
 							) : (
-								<View style={styles.avatarFallback}>
-									<Text style={styles.avatarFallbackText}>{initials}</Text>
+								<View style={[styles.avatarFallback, compact && styles.avatarFallbackCompact]}>
+									<Text style={[styles.avatarFallbackText, compact && styles.avatarFallbackTextCompact]}>
+										{initials}
+									</Text>
 								</View>
 							)}
 						</View>
 
-						<View style={styles.statStrip}>
+						<View style={[styles.statStrip, compact && styles.statStripCompact]}>
 							<Stat label='SKILL' value={skill} />
 							<Stat label='SANITY' value={sanity} danger={sanity !== null && sanity < 10} />
 							<Stat label='ROLE' value={job || '--'} />
 						</View>
-						<View style={styles.bioAction}>
+						<View style={[styles.bioAction, compact && styles.bioActionCompact]}>
 							<CharacterBioButton character={character} tone='dark' />
 						</View>
 					</View>
 
-					<View style={styles.dialogColumn}>
-						<View style={styles.speakerHeader}>
+					<View style={[styles.dialogColumn, compact && styles.dialogColumnCompact]}>
+						<View style={[styles.speakerHeader, compact && styles.speakerHeaderCompact]}>
 							<View style={styles.speakerCopy}>
-								<Text style={styles.speakerKicker}>ACTIVE CHARACTER</Text>
-								<Text style={styles.speakerName}>{speakerName}</Text>
+								<Text style={[styles.speakerKicker, compact && styles.speakerKickerCompact]}>ACTIVE CHARACTER</Text>
+								<Text style={[styles.speakerName, compact && styles.speakerNameCompact]}>{speakerName}</Text>
 							</View>
-							<View style={styles.signalStack}>
+							<View style={[styles.signalStack, compact && styles.signalStackCompact]}>
 								<View style={styles.signalDot} />
 								<View style={styles.signalDotDim} />
 								<View style={styles.signalDotDim} />
 							</View>
 						</View>
 
-						<View style={styles.dialogBox}>
+						<View style={[styles.dialogBox, compact && styles.dialogBoxCompact]}>
 							<View style={styles.dialogAccent} />
-							<Text style={styles.dialogText}>{dialogText}</Text>
+							<Text style={[styles.dialogText, compact && styles.dialogTextCompact]}>{dialogText}</Text>
 						</View>
 
-						<View style={styles.responsePanel}>
-							<Text style={styles.responseHeader}>DECISION QUEUE</Text>
+						<View style={[styles.responsePanel, compact && styles.responsePanelCompact]}>
+							<Text style={[styles.responseHeader, compact && styles.responseHeaderCompact]}>DECISION QUEUE</Text>
 							{responses.length ? (
 								responses.map((response, i) => (
 									<ResponseButton
@@ -184,6 +199,7 @@ function Conversation(props) {
 										index={i}
 										title={response.title}
 										feedback={pressFeedback}
+										compact={compact}
 										onPress={() => {
 											animatePress(pressFeedback);
 											update();
@@ -209,7 +225,7 @@ function Conversation(props) {
 	}
 }
 
-function ResponseButton({ feedback, index, onPress, title }) {
+function ResponseButton({ compact, feedback, index, onPress, title }) {
 	const [pressed, setPressed] = useState(false);
 
 	return (
@@ -229,13 +245,13 @@ function ResponseButton({ feedback, index, onPress, title }) {
 				onPress={onPress}
 				onPressIn={() => setPressed(true)}
 				onPressOut={() => setPressed(false)}
-				style={[styles.responseButton, pressed && styles.responseButtonPressed]}
+				style={[styles.responseButton, compact && styles.responseButtonCompact, pressed && styles.responseButtonPressed]}
 			>
-				<View style={styles.responseIndex}>
-					<Text style={styles.responseIndexText}>{index + 1}</Text>
+				<View style={[styles.responseIndex, compact && styles.responseIndexCompact]}>
+					<Text style={[styles.responseIndexText, compact && styles.responseIndexTextCompact]}>{index + 1}</Text>
 				</View>
-				<Text style={styles.responseText}>{title}</Text>
-				<Text style={styles.responseArrow}>&gt;</Text>
+				<Text style={[styles.responseText, compact && styles.responseTextCompact]}>{title}</Text>
+				<Text style={[styles.responseArrow, compact && styles.responseArrowCompact]}>&gt;</Text>
 			</Pressable>
 		</Animated.View>
 	);
@@ -296,6 +312,11 @@ const styles = {
 		justifyContent: 'space-between',
 		boxSizing: 'border-box',
 	},
+	scrollContentCompact: {
+		paddingHorizontal: 8,
+		paddingVertical: 8,
+		justifyContent: 'flex-start',
+	},
 	pressureField: {
 		position: 'absolute',
 		top: 0,
@@ -325,6 +346,10 @@ const styles = {
 		gap: 12,
 		marginBottom: 18,
 	},
+	topRailCompact: {
+		gap: 6,
+		marginBottom: 8,
+	},
 	sceneTitleWrap: {
 		flex: 1,
 		minWidth: 0,
@@ -334,6 +359,9 @@ const styles = {
 		fontSize: 28,
 		fontWeight: '900',
 	},
+	sceneTitleCompact: {
+		fontSize: 16,
+	},
 	statusPill: {
 		borderWidth: 1,
 		borderColor: palette.orange,
@@ -342,6 +370,11 @@ const styles = {
 		paddingVertical: 10,
 		minWidth: 118,
 		alignItems: 'flex-end',
+	},
+	statusPillCompact: {
+		minWidth: 82,
+		paddingHorizontal: 10,
+		paddingVertical: 6,
 	},
 	statusPillDanger: {
 		borderColor: palette.red,
@@ -353,6 +386,9 @@ const styles = {
 		fontWeight: '900',
 		textTransform: 'uppercase',
 	},
+	statusPillValueCompact: {
+		fontSize: 12,
+	},
 	stage: {
 		width: '100%',
 		maxWidth: 1180,
@@ -360,6 +396,11 @@ const styles = {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 18,
+	},
+	stageCompact: {
+		flexWrap: 'nowrap',
+		alignItems: 'stretch',
+		gap: 8,
 	},
 	characterColumn: {
 		width: '100%',
@@ -372,6 +413,13 @@ const styles = {
 		justifyContent: 'space-between',
 		boxShadow: '0 18px 50px rgba(0, 0, 0, 0.36)',
 	},
+	characterColumnCompact: {
+		width: 112,
+		maxWidth: 112,
+		flexGrow: 0,
+		flexShrink: 0,
+		padding: 8,
+	},
 	powerBeacon: {
 		borderWidth: 2,
 		borderColor: palette.gold,
@@ -379,6 +427,10 @@ const styles = {
 		paddingVertical: 12,
 		paddingHorizontal: 14,
 		overflow: 'hidden',
+	},
+	powerBeaconCompact: {
+		paddingVertical: 6,
+		paddingHorizontal: 8,
 	},
 	powerBeaconGlow: {
 		position: 'absolute',
@@ -394,11 +446,18 @@ const styles = {
 		fontSize: 11,
 		fontWeight: '900',
 	},
+	powerBeaconLabelCompact: {
+		fontSize: 8,
+	},
 	powerBeaconValue: {
 		color: palette.gold,
 		fontSize: 42,
 		fontWeight: '900',
 		lineHeight: 48,
+	},
+	powerBeaconValueCompact: {
+		fontSize: 23,
+		lineHeight: 28,
 	},
 	avatarFrame: {
 		height: 220,
@@ -409,6 +468,10 @@ const styles = {
 		borderWidth: 1,
 		borderColor: '#483026',
 		overflow: 'hidden',
+	},
+	avatarFrameCompact: {
+		height: 160,
+		marginVertical: 8,
 	},
 	avatarBackplate: {
 		position: 'absolute',
@@ -432,19 +495,34 @@ const styles = {
 		backgroundColor: palette.orange,
 		marginBottom: 64,
 	},
+	avatarFallbackCompact: {
+		width: 74,
+		height: 74,
+		borderRadius: 37,
+		marginBottom: 40,
+	},
 	avatarFallbackText: {
 		color: palette.white,
 		fontSize: 42,
 		fontWeight: '900',
+	},
+	avatarFallbackTextCompact: {
+		fontSize: 24,
 	},
 	statStrip: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 8,
 	},
+	statStripCompact: {
+		display: 'none',
+	},
 	bioAction: {
 		alignItems: 'center',
 		marginTop: 12,
+	},
+	bioActionCompact: {
+		display: 'none',
 	},
 	statBlock: {
 		flex: 1,
@@ -480,6 +558,11 @@ const styles = {
 		padding: 20,
 		boxShadow: '0 18px 50px rgba(0, 0, 0, 0.42)',
 	},
+	dialogColumnCompact: {
+		minWidth: 0,
+		padding: 10,
+		flexShrink: 1,
+	},
 	speakerHeader: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
@@ -488,6 +571,9 @@ const styles = {
 		borderBottomWidth: 1,
 		borderBottomColor: '#3C251F',
 		paddingBottom: 14,
+	},
+	speakerHeaderCompact: {
+		paddingBottom: 6,
 	},
 	speakerCopy: {
 		flex: 1,
@@ -498,15 +584,25 @@ const styles = {
 		fontSize: 11,
 		fontWeight: '900',
 	},
+	speakerKickerCompact: {
+		fontSize: 8,
+	},
 	speakerName: {
 		color: palette.white,
 		fontSize: 28,
 		fontWeight: '900',
 		marginTop: 3,
 	},
+	speakerNameCompact: {
+		fontSize: 18,
+		marginTop: 1,
+	},
 	signalStack: {
 		flexDirection: 'row',
 		gap: 6,
+	},
+	signalStackCompact: {
+		display: 'none',
 	},
 	signalDot: {
 		width: 10,
@@ -530,6 +626,13 @@ const styles = {
 		paddingVertical: 20,
 		justifyContent: 'center',
 	},
+	dialogBoxCompact: {
+		marginTop: 8,
+		minHeight: 118,
+		paddingHorizontal: 10,
+		paddingVertical: 10,
+		borderLeftWidth: 5,
+	},
 	dialogAccent: {
 		position: 'absolute',
 		top: 0,
@@ -544,14 +647,25 @@ const styles = {
 		lineHeight: 30,
 		fontWeight: '800',
 	},
+	dialogTextCompact: {
+		fontSize: 15,
+		lineHeight: 20,
+	},
 	responsePanel: {
 		marginTop: 18,
 		gap: 10,
+	},
+	responsePanelCompact: {
+		marginTop: 8,
+		gap: 6,
 	},
 	responseHeader: {
 		color: palette.gold,
 		fontSize: 12,
 		fontWeight: '900',
+	},
+	responseHeaderCompact: {
+		fontSize: 9,
 	},
 	responseMotion: {
 		width: '100%',
@@ -566,6 +680,11 @@ const styles = {
 		paddingHorizontal: 14,
 		paddingVertical: 10,
 	},
+	responseButtonCompact: {
+		minHeight: 42,
+		paddingHorizontal: 8,
+		paddingVertical: 6,
+	},
 	responseButtonPressed: {
 		backgroundColor: '#3C1D17',
 		borderColor: palette.gold,
@@ -578,10 +697,18 @@ const styles = {
 		backgroundColor: palette.red,
 		marginRight: 12,
 	},
+	responseIndexCompact: {
+		width: 24,
+		height: 24,
+		marginRight: 7,
+	},
 	responseIndexText: {
 		color: palette.white,
 		fontSize: 15,
 		fontWeight: '900',
+	},
+	responseIndexTextCompact: {
+		fontSize: 12,
 	},
 	responseText: {
 		flex: 1,
@@ -590,11 +717,19 @@ const styles = {
 		lineHeight: 23,
 		fontWeight: '800',
 	},
+	responseTextCompact: {
+		fontSize: 13,
+		lineHeight: 17,
+	},
 	responseArrow: {
 		color: palette.gold,
 		fontSize: 28,
 		fontWeight: '900',
 		marginLeft: 12,
+	},
+	responseArrowCompact: {
+		fontSize: 18,
+		marginLeft: 6,
 	},
 	emptyResponse: {
 		minHeight: 58,
