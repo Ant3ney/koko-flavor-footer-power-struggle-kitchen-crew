@@ -232,14 +232,16 @@ const styles = {
 	containerCompact: {
 		paddingHorizontal: 8,
 		paddingVertical: 4,
+		flex: 0,
+		flexGrow: 0,
+		flexShrink: 0,
 	},
 	kitchenPanel: {
 		minHeight: 420,
 		gap: 18,
 	},
 	kitchenPanelCompact: {
-		flex: 1,
-		height: '100%',
+		flex: 0,
 		minHeight: 0,
 		gap: 5,
 		padding: 7,
