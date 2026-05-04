@@ -16,7 +16,9 @@ function Content(props) {
 			<View style={styles.content}>
 				<UpperHud gameLogic={props.gameLogic} compact={compact} />
 				<Kitchen gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} compact={compact} />
-				<LowerHud gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} compact={compact} />
+				{compact ? null : (
+					<LowerHud gameLogic={props.gameLogic} navigation={props.navigation} simpleNav={props.simpleNav} compact={compact} />
+				)}
 			</View>
 			<GrimeOverlay gameLogic={props.gameLogic} />
 		</View>

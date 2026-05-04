@@ -93,9 +93,24 @@ class Kitchen extends PureComponent {
 							<Eyebrow>Kitchen Map</Eyebrow>
 							<Text style={[styles.title, compact && styles.titleCompact]}>Decision Floor</Text>
 						</View>
-						<Text style={[styles.stationBadge, compact && styles.stationBadgeCompact]}>
-							Station: {formatStationName(this.state.currentStation)}
-						</Text>
+						<View style={[styles.headerActions, compact && styles.headerActionsCompact]}>
+							<Text style={[styles.stationBadge, compact && styles.stationBadgeCompact]}>
+								Station: {formatStationName(this.state.currentStation)}
+							</Text>
+							{compact ? (
+								<ActionButton
+									title='Settings'
+									compact
+									variant='ghost'
+									style={styles.settingsHeaderButton}
+									onPress={() => {
+										click();
+										this.props.gameLogic.GameDriver.leftGamePlay(true);
+										this.props.navigation.navigate('Settings');
+									}}
+								/>
+							) : null}
+						</View>
 					</View>
 
 					<View style={[styles.kitchenArtFrame, compact && styles.kitchenArtFrameCompact]}>
@@ -225,8 +240,8 @@ const styles = {
 	kitchenPanelCompact: {
 		flex: 1,
 		minHeight: 0,
-		gap: 8,
-		padding: 10,
+		gap: 7,
+		padding: 9,
 	},
 	kitchenHeader: {
 		flexDirection: 'row',
@@ -237,6 +252,22 @@ const styles = {
 	},
 	kitchenHeaderCompact: {
 		gap: 6,
+	},
+	headerActions: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'flex-end',
+		gap: 8,
+	},
+	headerActionsCompact: {
+		flex: 1,
+		minWidth: 0,
+		gap: 5,
+	},
+	settingsHeaderButton: {
+		minWidth: 0,
+		paddingHorizontal: 7,
 	},
 	title: {
 		color: ui.ink,
@@ -273,8 +304,7 @@ const styles = {
 	},
 	kitchenArtFrameCompact: {
 		flex: 1,
-		minHeight: 120,
-		maxHeight: 210,
+		minHeight: 180,
 	},
 	kitchenArt: {
 		width: '100%',
@@ -302,7 +332,7 @@ const styles = {
 	},
 	stationNodeCompact: {
 		minWidth: 0,
-		minHeight: 52,
+		minHeight: 48,
 		gap: 4,
 	},
 	stationDot: {
@@ -333,11 +363,12 @@ const styles = {
 		gap: 10,
 	},
 	actionsCompact: {
-		flexWrap: 'nowrap',
+		flexWrap: 'wrap',
 		gap: 5,
 	},
 	compactAction: {
-		flex: 1,
+		flexBasis: '48%',
+		flexGrow: 1,
 		minWidth: 0,
 		paddingHorizontal: 4,
 	},

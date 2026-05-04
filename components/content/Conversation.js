@@ -47,8 +47,10 @@ function Conversation(props) {
 	// In that mode the avatar should dominate the layout.
 	const avatarFrameHeight = aboveFoldMode
 		? compact
-			? Math.min(240, Math.max(150, Math.round(height * 0.32)))
+			? Math.min(Math.round(width * 1.05), Math.max(260, Math.round(height * 0.44)))
 			: Math.min(560, Math.max(340, Math.round(height * 0.52)))
+		: compact
+		? Math.min(Math.round(width * 0.82), Math.max(170, Math.round(height * 0.3)))
 		: null;
 	const avatar = getAvatarImage(character);
 	const power = character?.getPower ? character.getPower() : null;
@@ -432,9 +434,9 @@ const styles = {
 		maxWidth: '100%',
 		flexGrow: 0,
 		flexShrink: 0,
-		flexDirection: 'row',
-		alignItems: 'stretch',
-		gap: 6,
+		position: 'relative',
+		flexDirection: 'column',
+		gap: 0,
 		padding: 6,
 	},
 	powerBeacon: {
@@ -446,6 +448,11 @@ const styles = {
 		overflow: 'hidden',
 	},
 	powerBeaconCompact: {
+		position: 'absolute',
+		top: 12,
+		left: 12,
+		zIndex: 2,
+		elevation: 2,
 		width: 74,
 		flexShrink: 0,
 		paddingVertical: 4,
@@ -489,8 +496,9 @@ const styles = {
 		overflow: 'hidden',
 	},
 	avatarFrameCompact: {
-		flex: 1,
-		height: 86,
+		width: '100%',
+		flex: 0,
+		minHeight: 0,
 		marginVertical: 0,
 	},
 	avatarBackplate: {
@@ -542,9 +550,14 @@ const styles = {
 		marginTop: 12,
 	},
 	bioActionCompact: {
+		position: 'absolute',
+		top: 12,
+		right: 12,
+		zIndex: 2,
+		elevation: 2,
 		width: 28,
 		justifyContent: 'center',
-		alignSelf: 'stretch',
+		alignSelf: 'auto',
 		marginTop: 0,
 	},
 	statBlock: {
@@ -584,7 +597,7 @@ const styles = {
 	dialogColumnCompact: {
 		width: '100%',
 		minWidth: 0,
-		padding: 8,
+		padding: 7,
 		flexShrink: 1,
 	},
 	speakerHeader: {
