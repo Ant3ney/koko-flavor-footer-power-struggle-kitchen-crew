@@ -82,6 +82,7 @@ class Kitchen extends PureComponent {
 				) : null}
 
 				<GameLoop
+					style={styles.gameLoop}
 					onUpdate={() => {
 						this.gameDriver.update();
 					}}
@@ -243,6 +244,13 @@ const styles = {
 		flexGrow: 1,
 		flexShrink: 1,
 		minHeight: 0,
+	},
+	gameLoop: {
+		position: 'absolute',
+		width: 0,
+		height: 0,
+		overflow: 'hidden',
+		opacity: 0,
 	},
 	kitchenPanel: {
 		minHeight: 420,
