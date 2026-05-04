@@ -5,6 +5,7 @@ import { StatCard, ui } from '../uiKit';
 function UpperHud(props) {
 	var gameDriver = props.gameLogic.GameDriver;
 	var mStats = props.gameLogic.manageStats;
+	const compact = props.compact;
 
 	const [power, setPower] = useState(mStats.getPlayer() ? mStats.getPPower() : 0);
 	const [effectivness, setEffectivness] = useState(mStats.getPlayer() ? mStats.getPEffectivness() : 0);
@@ -28,19 +29,41 @@ function UpperHud(props) {
 	}, []);
 
 	return (
-		<View style={styles.hud}>
-			<View style={styles.hudHeader}>
+		<View style={[styles.hud, compact && styles.hudCompact]}>
+			<View style={[styles.hudHeader, compact && styles.hudHeaderCompact]}>
 				<Text style={styles.kicker}>Shift HUD</Text>
-				<Text style={styles.clock}>{formatTime(time)}</Text>
+				<Text style={[styles.clock, compact && styles.clockCompact]}>{formatTime(time)}</Text>
 			</View>
-			<View style={styles.stats}>
-				<StatCard label='Power' value={`${power} / 10,000`} accent={ui.red} style={styles.powerCard} />
-				<StatCard label='Effectiveness' value={`${effectivness} / 50`} accent={ui.orange} />
-				<StatCard label='Skill' value={`${mStats.getPlayer() ? mStats.getPSkill() : 0} / 20`} accent={ui.gold} />
-				<StatCard label='Energy' value={energy} accent={ui.green} />
-				<StatCard label='Busyness' value={busyness} accent={ui.blue} />
-				<StatCard label='Sanity' value={sanity} accent={sanity < 0 ? ui.red : ui.orange} />
+			<View style={[styles.stats, compact && styles.statsCompact]}>
+				{compact ? (
+					<>
+						<MiniStat label='Power' value={power} accent={ui.red} />
+						<MiniStat label='Eff' value={effectivness} accent={ui.orange} />
+						<MiniStat label='Energy' value={energy} accent={ui.green} />
+						<MiniStat label='Busy' value={busyness} accent={ui.blue} />
+						<MiniStat label='Sanity' value={sanity} accent={sanity < 0 ? ui.red : ui.orange} />
+					</>
+				) : (
+					<>
+						<StatCard label='Power' value={`${power} / 10,000`} accent={ui.red} style={styles.powerCard} />
+						<StatCard label='Effectiveness' value={`${effectivness} / 50`} accent={ui.orange} />
+						<StatCard label='Skill' value={`${mStats.getPlayer() ? mStats.getPSkill() : 0} / 20`} accent={ui.gold} />
+						<StatCard label='Energy' value={energy} accent={ui.green} />
+						<StatCard label='Busyness' value={busyness} accent={ui.blue} />
+						<StatCard label='Sanity' value={sanity} accent={sanity < 0 ? ui.red : ui.orange} />
+					</>
+				)}
 			</View>
+		</View>
+	);
+}
+
+function MiniStat({ accent, label, value }) {
+	return (
+		<View style={styles.miniStat}>
+			<View style={[styles.miniStatAccent, { backgroundColor: accent }]} />
+			<Text style={styles.miniStatLabel}>{label}</Text>
+			<Text style={styles.miniStatValue}>{value}</Text>
 		</View>
 	);
 }
@@ -66,6 +89,11 @@ const styles = {
 		paddingBottom: 12,
 		boxSizing: 'border-box',
 	},
+	hudCompact: {
+		paddingHorizontal: 8,
+		paddingTop: 8,
+		paddingBottom: 4,
+	},
 	hudHeader: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
@@ -73,6 +101,9 @@ const styles = {
 		alignItems: 'center',
 		gap: 10,
 		marginBottom: 10,
+	},
+	hudHeaderCompact: {
+		marginBottom: 4,
 	},
 	kicker: {
 		color: ui.orangeDeep,
@@ -85,14 +116,51 @@ const styles = {
 		fontSize: 24,
 		fontWeight: '900',
 	},
+	clockCompact: {
+		fontSize: 17,
+	},
 	stats: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 10,
 	},
+	statsCompact: {
+		flexWrap: 'nowrap',
+		gap: 5,
+	},
 	powerCard: {
 		minWidth: 0,
 		flexGrow: 1,
+	},
+	miniStat: {
+		flex: 1,
+		minWidth: 0,
+		minHeight: 44,
+		backgroundColor: ui.white,
+		borderWidth: 1,
+		borderColor: '#FFD08A',
+		paddingHorizontal: 5,
+		paddingVertical: 5,
+		overflow: 'hidden',
+	},
+	miniStatAccent: {
+		position: 'absolute',
+		top: 0,
+		right: 0,
+		width: 24,
+		height: 4,
+	},
+	miniStatLabel: {
+		color: ui.muted,
+		fontSize: 8,
+		fontWeight: '900',
+		textTransform: 'uppercase',
+	},
+	miniStatValue: {
+		color: ui.ink,
+		fontSize: 14,
+		fontWeight: '900',
+		marginTop: 4,
 	},
 };
 

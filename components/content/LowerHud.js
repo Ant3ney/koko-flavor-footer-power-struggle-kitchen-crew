@@ -3,9 +3,10 @@ import { Text, View } from 'react-native';
 import { ActionButton, ui } from '../uiKit';
 
 function LowerHud(props) {
+	const compact = props.compact;
 	return (
-		<View style={styles.footer}>
-			<Text style={styles.status}>System ready. Keep pressure moving.</Text>
+		<View style={[styles.footer, compact && styles.footerCompact]}>
+			{compact ? null : <Text style={styles.status}>System ready. Keep pressure moving.</Text>}
 			<View style={styles.actions}>
 				<ActionButton
 					title='Settings'
@@ -35,6 +36,12 @@ const styles = {
 		justifyContent: 'space-between',
 		gap: 12,
 		boxSizing: 'border-box',
+	},
+	footerCompact: {
+		paddingHorizontal: 8,
+		paddingBottom: 8,
+		paddingTop: 2,
+		justifyContent: 'flex-end',
 	},
 	status: {
 		color: ui.muted,

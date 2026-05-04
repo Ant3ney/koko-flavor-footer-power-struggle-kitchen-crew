@@ -72,8 +72,9 @@ class Kitchen extends PureComponent {
 	};
 
 	render() {
+		const compact = this.props.compact;
 		return (
-			<View style={styles.container}>
+			<View style={[styles.container, compact && styles.containerCompact]}>
 				{this.state.scenarioPresent ? <Scenario setScenerio={this.setScenerio} /> : null}
 				{this.state.upgradeMenu ? <Upgrade setUpgrade={this.setUpgrade} /> : null}
 				{this.state.showStatMenu ? (
@@ -86,30 +87,34 @@ class Kitchen extends PureComponent {
 					}}
 				/>
 
-				<Panel style={styles.kitchenPanel}>
-					<View style={styles.kitchenHeader}>
+				<Panel style={[styles.kitchenPanel, compact && styles.kitchenPanelCompact]}>
+					<View style={[styles.kitchenHeader, compact && styles.kitchenHeaderCompact]}>
 						<View>
 							<Eyebrow>Kitchen Map</Eyebrow>
-							<Text style={styles.title}>Decision Floor</Text>
+							<Text style={[styles.title, compact && styles.titleCompact]}>Decision Floor</Text>
 						</View>
-						<Text style={styles.stationBadge}>Station: {formatStationName(this.state.currentStation)}</Text>
+						<Text style={[styles.stationBadge, compact && styles.stationBadgeCompact]}>
+							Station: {formatStationName(this.state.currentStation)}
+						</Text>
 					</View>
 
-					<View style={styles.kitchenArtFrame}>
+					<View style={[styles.kitchenArtFrame, compact && styles.kitchenArtFrameCompact]}>
 						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode='contain' />
 					</View>
 
-					<View style={styles.stationGrid}>
-						<StationNode title='Sauce' tone={ui.red} />
-						<StationNode title='Frier' tone={ui.orange} />
-						<StationNode title='Rice' tone={ui.gold} />
-						<StationNode title='Pantry' tone={ui.blue} />
+					<View style={[styles.stationGrid, compact && styles.stationGridCompact]}>
+						<StationNode title='Sauce' tone={ui.red} compact={compact} />
+						<StationNode title='Frier' tone={ui.orange} compact={compact} />
+						<StationNode title='Rice' tone={ui.gold} compact={compact} />
+						<StationNode title='Pantry' tone={ui.blue} compact={compact} />
 					</View>
 
-					<BodyText style={styles.instructions}>
-						Hustle to raise effectiveness. Scenarios interrupt the floor when the pressure system demands a
-						decision. Power moves the story; sanity keeps the machine from eating the run.
-					</BodyText>
+					{compact ? null : (
+						<BodyText style={styles.instructions}>
+							Hustle to raise effectiveness. Scenarios interrupt the floor when the pressure system demands a
+							decision. Power moves the story; sanity keeps the machine from eating the run.
+						</BodyText>
+					)}
 
 					{this.state.showStationOptions ? (
 						<StationOptions
@@ -119,9 +124,11 @@ class Kitchen extends PureComponent {
 						/>
 					) : null}
 
-					<View style={styles.actions}>
+					<View style={[styles.actions, compact && styles.actionsCompact]}>
 						<ActionButton
 							title='Hustle'
+							compact={compact}
+							style={compact && styles.compactAction}
 							onPress={() => {
 								click();
 								if (this.mStats.getPEnergy() > 0) {
@@ -134,6 +141,8 @@ class Kitchen extends PureComponent {
 						<ActionButton
 							title='Next Hour'
 							variant='secondary'
+							compact={compact}
+							style={compact && styles.compactAction}
 							onPress={() => {
 								click();
 								this.mStats.incrementHour();
@@ -142,6 +151,8 @@ class Kitchen extends PureComponent {
 						<ActionButton
 							title='Shift Crew'
 							variant='secondary'
+							compact={compact}
+							style={compact && styles.compactAction}
 							onPress={() => {
 								click();
 								this.setState({ showStatMenu: true });
@@ -150,6 +161,8 @@ class Kitchen extends PureComponent {
 						<ActionButton
 							title='Switch Station'
 							variant='secondary'
+							compact={compact}
+							style={compact && styles.compactAction}
 							onPress={() => {
 								click();
 								this.setState({ showStationOptions: true });
@@ -179,11 +192,11 @@ function formatStationName(station) {
 	return station || 'Unknown';
 }
 
-function StationNode({ title, tone }) {
+function StationNode({ compact, title, tone }) {
 	return (
-		<View style={styles.stationNode}>
-			<View style={[styles.stationDot, { backgroundColor: tone }]} />
-			<Text style={styles.stationName}>{title}</Text>
+		<View style={[styles.stationNode, compact && styles.stationNodeCompact]}>
+			<View style={[styles.stationDot, compact && styles.stationDotCompact, { backgroundColor: tone }]} />
+			<Text style={[styles.stationName, compact && styles.stationNameCompact]}>{title}</Text>
 		</View>
 	);
 }
@@ -198,9 +211,19 @@ const styles = {
 		flex: 1,
 		boxSizing: 'border-box',
 	},
+	containerCompact: {
+		paddingHorizontal: 8,
+		paddingVertical: 4,
+	},
 	kitchenPanel: {
 		minHeight: 420,
 		gap: 18,
+	},
+	kitchenPanelCompact: {
+		flex: 1,
+		minHeight: 0,
+		gap: 8,
+		padding: 10,
 	},
 	kitchenHeader: {
 		flexDirection: 'row',
@@ -209,10 +232,16 @@ const styles = {
 		justifyContent: 'space-between',
 		gap: 14,
 	},
+	kitchenHeaderCompact: {
+		gap: 6,
+	},
 	title: {
 		color: ui.ink,
 		fontSize: 30,
 		fontWeight: '900',
+	},
+	titleCompact: {
+		fontSize: 21,
 	},
 	stationBadge: {
 		color: ui.white,
@@ -223,6 +252,11 @@ const styles = {
 		fontWeight: '900',
 		textTransform: 'uppercase',
 		maxWidth: '100%',
+	},
+	stationBadgeCompact: {
+		paddingHorizontal: 9,
+		paddingVertical: 6,
+		fontSize: 10,
 	},
 	kitchenArtFrame: {
 		width: '100%',
@@ -235,6 +269,11 @@ const styles = {
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	kitchenArtFrameCompact: {
+		flex: 1,
+		minHeight: 120,
+		maxHeight: 210,
+	},
 	kitchenArt: {
 		width: '100%',
 		height: '100%',
@@ -243,6 +282,10 @@ const styles = {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 12,
+	},
+	stationGridCompact: {
+		flexWrap: 'nowrap',
+		gap: 6,
 	},
 	stationNode: {
 		flex: 1,
@@ -255,16 +298,29 @@ const styles = {
 		justifyContent: 'center',
 		gap: 10,
 	},
+	stationNodeCompact: {
+		minWidth: 0,
+		minHeight: 52,
+		gap: 4,
+	},
 	stationDot: {
 		width: 34,
 		height: 34,
 		borderRadius: 17,
+	},
+	stationDotCompact: {
+		width: 18,
+		height: 18,
+		borderRadius: 9,
 	},
 	stationName: {
 		color: ui.ink,
 		fontSize: 18,
 		fontWeight: '900',
 		textTransform: 'uppercase',
+	},
+	stationNameCompact: {
+		fontSize: 10,
 	},
 	instructions: {
 		maxWidth: 780,
@@ -273,6 +329,15 @@ const styles = {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 10,
+	},
+	actionsCompact: {
+		flexWrap: 'nowrap',
+		gap: 5,
+	},
+	compactAction: {
+		flex: 1,
+		minWidth: 0,
+		paddingHorizontal: 4,
 	},
 };
 

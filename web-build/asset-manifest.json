@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.88a98e22.js",
+    "main.js": "/static/js/main.422ec769.js",
     "static/js/602.f059877e.js": "/static/js/602.f059877e.js",
     "static/media/nostalgicMorning.mp3": "/static/media/nostalgicMorning.21cf326208e513443fb5.mp3",
     "static/media/hardTimes.mp3": "/static/media/hardTimes.94eceaad419e0ccb655a.mp3",
@@ -237,11 +237,11 @@
     "favicon-16.png": "/favicon-16.png",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
-    "main.88a98e22.js.map": "/static/js/main.88a98e22.js.map",
+    "main.422ec769.js.map": "/static/js/main.422ec769.js.map",
     "602.f059877e.js.map": "/static/js/602.f059877e.js.map"
   },
   "entrypoints": [
     "static/js/602.f059877e.js",
-    "static/js/main.88a98e22.js"
+    "static/js/main.422ec769.js"
   ]
 }

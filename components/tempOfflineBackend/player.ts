@@ -11,7 +11,7 @@ const player = {
 	energy: 10,
 	sanity: 30,
 	happyness: 1,
-	cleanliness: 10,
+	cleanliness: 500,
 	respectability: 5,
 	anger: 0,
 	wealth: 4,

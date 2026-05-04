@@ -168,7 +168,7 @@ function Conversation(props) {
 							<Stat label='ROLE' value={job || '--'} />
 						</View>
 						<View style={[styles.bioAction, compact && styles.bioActionCompact]}>
-							<CharacterBioButton character={character} tone='dark' />
+							<CharacterBioButton character={character} tone='dark' compact={compact} />
 						</View>
 					</View>
 
@@ -528,7 +528,10 @@ const styles = {
 		marginTop: 12,
 	},
 	bioActionCompact: {
-		display: 'none',
+		width: 30,
+		justifyContent: 'center',
+		alignSelf: 'stretch',
+		marginTop: 0,
 	},
 	statBlock: {
 		flex: 1,
