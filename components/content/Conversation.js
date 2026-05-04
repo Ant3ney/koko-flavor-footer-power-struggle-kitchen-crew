@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Image, Pressable, Text, View } from 'react-native';
 import gamelogic from '../../GameLogic/GameLogic';
 import { getAvatarImage } from './avatarImages';
+import CharacterBioButton from './CharacterBio';
 
 let conversation = gamelogic.conversation;
 
@@ -149,6 +150,9 @@ function Conversation(props) {
 						<Stat label='SKILL' value={skill} />
 						<Stat label='SANITY' value={sanity} danger={sanity !== null && sanity < 10} />
 						<Stat label='ROLE' value={job || '--'} />
+					</View>
+					<View style={styles.bioAction}>
+						<CharacterBioButton character={character} tone='dark' />
 					</View>
 				</View>
 
@@ -415,6 +419,10 @@ const styles = {
 	statStrip: {
 		flexDirection: 'row',
 		gap: 8,
+	},
+	bioAction: {
+		alignItems: 'center',
+		marginTop: 12,
 	},
 	statBlock: {
 		flex: 1,

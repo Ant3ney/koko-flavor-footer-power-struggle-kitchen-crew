@@ -4,6 +4,7 @@ import ScenarioKit from '../../GameLogic/Scenario/Scenario';
 import { click } from '../../GameLogic/AudioSystem';
 import { ActionButton, BodyText, Eyebrow, Panel, ui } from '../uiKit';
 import { getAvatarImage } from './avatarImages';
+import CharacterBioButton from './CharacterBio';
 
 var scenario;
 const placeholderScenarioImage = require('../../assets/logo.png');
@@ -104,6 +105,7 @@ function CharacterRoster({ characters }) {
 						<Text style={styles.characterName}>{getCharacterName(character)}</Text>
 						<Text style={styles.characterRole}>{getCharacterRole(character)}</Text>
 					</View>
+					<CharacterBioButton character={character} compact />
 				</View>
 			))}
 		</View>

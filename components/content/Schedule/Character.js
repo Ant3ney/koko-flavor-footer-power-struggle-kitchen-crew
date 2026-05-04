@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { getAvatarImage } from '../avatarImages';
 import { ui } from '../../uiKit';
+import CharacterBioButton from '../CharacterBio';
 
 function Character(props) {
 	const avatar = getAvatarImage(props.characterInfo);
@@ -23,6 +24,7 @@ function Character(props) {
 				<Text style={styles.stat}>PWR {props.characterInfo.getPower()}</Text>
 				<Text style={styles.stat}>SAN {props.characterInfo.getSanity()}</Text>
 			</View>
+			<CharacterBioButton character={props.characterInfo} compact />
 		</View>
 	);
 }
