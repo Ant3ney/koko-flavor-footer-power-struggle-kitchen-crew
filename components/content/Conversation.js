@@ -42,6 +42,14 @@ function Conversation(props) {
 	const dialogText = dialog ? dialog.getDialog() : 'Message';
 	const speakerName = dialog ? dialog.getName() : 'Subject01';
 	const responses = dialog && dialog.getResponses && dialog.getResponses() ? dialog.getResponses() : [];
+	const aboveFoldMode = responses.length > 0 && responses.length <= 2;
+	// When there are only 1-2 responses we try to keep everything above the fold.
+	// In that mode the avatar should dominate the layout.
+	const avatarFrameHeight = aboveFoldMode
+		? compact
+			? Math.min(240, Math.max(150, Math.round(height * 0.32)))
+			: Math.min(560, Math.max(340, Math.round(height * 0.52)))
+		: null;
 	const avatar = getAvatarImage(character);
 	const power = character?.getPower ? character.getPower() : null;
 	const skill = character?.getSkill ? character.getSkill() : null;
@@ -149,7 +157,13 @@ function Conversation(props) {
 							</Text>
 						</View>
 
-						<View style={[styles.avatarFrame, compact && styles.avatarFrameCompact]}>
+						<View
+							style={[
+								styles.avatarFrame,
+								compact && styles.avatarFrameCompact,
+								avatarFrameHeight ? { height: avatarFrameHeight } : null,
+							]}
+						>
 							<View style={styles.avatarBackplate} />
 							{avatar ? (
 								<Image source={avatar} style={styles.avatarImage} resizeMode='contain' />

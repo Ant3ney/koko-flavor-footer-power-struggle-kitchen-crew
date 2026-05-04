@@ -209,6 +209,9 @@ const styles = {
 		paddingHorizontal: 12,
 		paddingVertical: 12,
 		flex: 1,
+		flexGrow: 1,
+		flexShrink: 1,
+		minHeight: 0,
 		boxSizing: 'border-box',
 	},
 	containerCompact: {
@@ -261,7 +264,6 @@ const styles = {
 	kitchenArtFrame: {
 		width: '100%',
 		aspectRatio: 1672 / 941,
-		maxHeight: 420,
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,
 		borderColor: '#FFDCA4',

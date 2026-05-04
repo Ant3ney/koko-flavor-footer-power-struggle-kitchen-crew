@@ -69,8 +69,8 @@ function Scenario(props) {
 						style={[styles.scenarioImage, compact && styles.scenarioImageCompact]}
 						resizeMode='contain'
 					/>
-					<CharacterRoster characters={characters} compact={compact} />
 					<BodyText style={[styles.prompt, compact && styles.promptCompact]}>{prompt}</BodyText>
+					<CharacterRoster characters={characters} compact={compact} />
 					{chose ? <CharacterChanges changes={characterChanges} /> : null}
 				</ScrollView>
 				<View style={styles.actions}>
