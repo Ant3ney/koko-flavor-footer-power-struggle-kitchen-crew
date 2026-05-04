@@ -65,12 +65,12 @@ function Scenario(props) {
 					showsVerticalScrollIndicator
 				>
 					<BodyText style={[styles.prompt, compact && styles.promptCompact]}>{prompt}</BodyText>
-					<CharacterRoster characters={characters} compact={compact} />
 					<Image
 						source={scenarioImage}
 						style={[styles.scenarioImage, compact && styles.scenarioImageCompact]}
-						resizeMode='contain'
+						resizeMode='cover'
 					/>
+					<CharacterRoster characters={characters} compact={compact} />
 					{chose ? <CharacterChanges changes={characterChanges} /> : null}
 				</ScrollView>
 				<View style={styles.actions}>
