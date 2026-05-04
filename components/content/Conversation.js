@@ -168,7 +168,11 @@ function Conversation(props) {
 						>
 							<View style={styles.avatarBackplate} />
 							{avatar ? (
-								<Image source={avatar} style={styles.avatarImage} resizeMode='contain' />
+								<Image
+									source={avatar}
+									style={[styles.avatarImage, compact && styles.avatarImageCompact]}
+									resizeMode='contain'
+								/>
 							) : (
 								<View style={[styles.avatarFallback, compact && styles.avatarFallbackCompact]}>
 									<Text style={[styles.avatarFallbackText, compact && styles.avatarFallbackTextCompact]}>
@@ -513,6 +517,14 @@ const styles = {
 	avatarImage: {
 		width: '100%',
 		height: '100%',
+		zIndex: 1,
+	},
+	avatarImageCompact: {
+		position: 'absolute',
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
 	},
 	avatarFallback: {
 		width: 138,
@@ -524,10 +536,11 @@ const styles = {
 		marginBottom: 64,
 	},
 	avatarFallbackCompact: {
-		width: 58,
-		height: 58,
-		borderRadius: 29,
-		marginBottom: 14,
+		width: '100%',
+		height: '100%',
+		borderRadius: 0,
+		marginBottom: 0,
+		zIndex: 1,
 	},
 	avatarFallbackText: {
 		color: palette.white,
@@ -535,7 +548,7 @@ const styles = {
 		fontWeight: '900',
 	},
 	avatarFallbackTextCompact: {
-		fontSize: 24,
+		fontSize: 56,
 	},
 	statStrip: {
 		flexDirection: 'row',

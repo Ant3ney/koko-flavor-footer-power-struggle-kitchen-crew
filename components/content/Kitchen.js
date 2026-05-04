@@ -114,7 +114,7 @@ class Kitchen extends PureComponent {
 					</View>
 
 					<View style={[styles.kitchenArtFrame, compact && styles.kitchenArtFrameCompact]}>
-						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode='contain' />
+						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode={compact ? 'cover' : 'contain'} />
 					</View>
 
 					<View style={[styles.stationGrid, compact && styles.stationGridCompact]}>
@@ -242,6 +242,7 @@ const styles = {
 		minHeight: 0,
 		gap: 7,
 		padding: 9,
+		overflow: 'hidden',
 	},
 	kitchenHeader: {
 		flexDirection: 'row',
@@ -304,7 +305,9 @@ const styles = {
 	},
 	kitchenArtFrameCompact: {
 		flex: 1,
-		minHeight: 180,
+		flexGrow: 1,
+		flexShrink: 1,
+		minHeight: 0,
 	},
 	kitchenArt: {
 		width: '100%',
