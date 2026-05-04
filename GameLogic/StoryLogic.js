@@ -6,7 +6,12 @@ var chapterQue = [];
 
 var storyLogic = {
 	init: data => {
+		storyLogic.clearStoryState();
 		chapter = data.initialChapter;
+	},
+	clearStoryState: () => {
+		chapter = 0;
+		chapterQue = [];
 	},
 	getChapter: () => {
 		return chapter;

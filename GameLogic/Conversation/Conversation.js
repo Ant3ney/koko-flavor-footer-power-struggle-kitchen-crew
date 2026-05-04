@@ -2,7 +2,7 @@ import player from './conversationPlayer';
 import beginningTemplete from '../PresetsAndTemplates/ConversationEventTempletes/Begining';
 import storyLogic from '../StoryLogic';
 import storyTempletes from '../PresetsAndTemplates/StoryTempletes';
-import KickbackConversationTempletes from '../PresetsAndTemplates/KickbackConversationTempletes';
+import { getKickbackConversationTemplete } from '../PresetsAndTemplates/KickbackConversationTempletes';
 import { music, click } from '../AudioSystem';
 import mStats from '../ManageStats/ManageStats';
 import loseTemplete from '../PresetsAndTemplates/ConversationEventTempletes/Lose';
@@ -24,7 +24,7 @@ let conversation = {
 				//The normal case handles kickback conversations and the story conversations
 				storyLogic.fillChapterQueAndChapter();
 				let chaptersToPlay = storyLogic.getChapterQue();
-				conversation.array.push(KickbackConversationTempletes[0]);
+				conversation.array.push(getKickbackConversationTemplete());
 				for (let i = 0; i < chaptersToPlay.length; i++) {
 					let templateIndex = chaptersToPlay[i];
 					conversation.array.push(storyTempletes[templateIndex]);

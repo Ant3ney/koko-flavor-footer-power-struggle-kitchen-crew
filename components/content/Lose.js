@@ -4,7 +4,6 @@ import { ActionButton, AppScreen, BodyText, Panel, ScreenHeader, StatCard, ui } 
 
 function Lose(props) {
 	var mStats = props.gameLogic.manageStats;
-	var storyLogic = props.gameLogic.storyLogic;
 
 	return (
 		<AppScreen>
@@ -26,21 +25,7 @@ function Lose(props) {
 					title='Start Over'
 					variant='danger'
 					onPress={() => {
-						mStats.setAlreadyWon(false);
-						props.navigation.navigate('Loading Local');
-
-						fetch('https://coco-game-17308.herokuapp.com/testApi/resetData')
-							.then(response => response.json())
-							.then(data => {
-								props.gameLogic.GameDriver.awake(data);
-								props.gameLogic.staticConversation.procBegining(true);
-								if (storyLogic.checkForUnhandledStory()) {
-									console.log('Initing story');
-									storyLogic.fillChapterQueAndChapter();
-								}
-
-								props.navigation.navigate('Begin Conversation');
-							});
+						mStats.resetData(props.gameLogic.GameDriver, props.navigation);
 					}}
 				/>
 			</Panel>

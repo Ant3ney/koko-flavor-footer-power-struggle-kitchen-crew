@@ -46,6 +46,9 @@ const avatarImages = {
 
 export function getAvatarImage(character) {
 	const avatarKey = character?.getAvatar ? character.getAvatar() : character?.avatar;
+	if (avatarKey === 'Unknown') {
+		return null;
+	}
 	const firstName = character?.name?.getFirst ? character.name.getFirst() : character?.person?.name?.firstName;
 	const fullName = character?.name?.get ? character.name.get() : null;
 

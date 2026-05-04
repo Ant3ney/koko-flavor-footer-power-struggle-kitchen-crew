@@ -259,6 +259,10 @@ function animatePress(value) {
 }
 
 function getInitials(character, speakerName) {
+	const avatarKey = character?.getAvatar ? character.getAvatar() : character?.avatar;
+	if (avatarKey === 'Unknown') {
+		return '?';
+	}
 	const first = character?.name?.getFirst ? character.name.getFirst() : speakerName;
 	const last = character?.name?.getLast ? character.name.getLast() : '';
 	const firstInitial = first ? first.slice(0, 1) : '?';

@@ -11,13 +11,22 @@ const localStorage = {
 		const object = JSON.parse(rawStorage);
 		return object ? object : null;
 	},
-	set: async (key: string, value: object | string) => {
+	set: async (key: string, value: object | string | null) => {
 		if (!AsyncStorage?.setItem) return;
+		if (value === null) {
+			await localStorage.remove(key);
+			return;
+		}
 		//@ts-ignore
 		let valueBuffer: string = typeof value === 'string' ? value : JSON.stringify(value);
 		await AsyncStorage.setItem(key, valueBuffer);
 		const test = await AsyncStorage.getItem(key);
 		console.log('just saved:', test);
+	},
+	remove: async (key: string) => {
+		if (!AsyncStorage?.removeItem) return;
+		await AsyncStorage.removeItem(key);
+		console.log('removed local storage key:', key);
 	},
 };
 

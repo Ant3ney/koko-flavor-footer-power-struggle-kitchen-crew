@@ -473,7 +473,7 @@ function SetStats() {
 		this.alreadyWon = false;
 		this.setStatsListener();
 
-		localStorage.set('user', null);
+		localStorage.remove('user');
 
 		const resetUser = fetchResetUserData();
 		console.log('reseting user with', resetUser);

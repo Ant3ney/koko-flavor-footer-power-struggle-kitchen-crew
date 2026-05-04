@@ -1554,6 +1554,7 @@ var storyTempletes = [
 		var johnTheMan = new characters();
 		johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		johnTheMan.setAvatar('John_The_Manager');
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		let sleepyhead = new characters();
@@ -2076,6 +2077,7 @@ var storyTempletes = [
 		var johnTheMan = new characters();
 		johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		johnTheMan.setAvatar('John_The_Manager');
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		var croud = new characters();
@@ -3540,6 +3542,7 @@ var storyTempletes = [
 		var johnTheMan = new characters();
 		johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		johnTheMan.setAvatar('John_The_Manager');
 		var tiffany = new characters();
 		tiffany.characterInit({ name: {}, gender: 'f', personality: 'reserved' }, {});
 		mStats.setCharacterName(tiffany, { first: 'Tiffany', last: 'Yap' });
@@ -3805,6 +3808,7 @@ var storyTempletes = [
 		var johnTheMan = new characters();
 		johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'challenging' }, {});
 		mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+		johnTheMan.setAvatar('John_The_Manager');
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		let hirokitron = new characters();

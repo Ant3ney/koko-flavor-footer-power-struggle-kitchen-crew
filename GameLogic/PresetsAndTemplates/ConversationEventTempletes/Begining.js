@@ -9,7 +9,8 @@ var beginingTemplete = (dialogChanged, exit) => {
 	var johnTheMan = new characters();
 	johnTheMan.characterInit({ name: {}, gender: 'm', personality: 'Challenging' }, {});
 	var narrator = new characters();
-	mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Manager' });
+	mStats.setCharacterName(johnTheMan, { first: 'John', last: 'The Man' });
+	johnTheMan.setAvatar('Unknown');
 	mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 	var johnAlvas = mStats.getCharacterWithName('John Alvas');
 	const a = { emotion: 'Angry' };

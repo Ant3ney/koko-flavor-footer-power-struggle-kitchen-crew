@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import mStats from '../../GameLogic/ManageStats/ManageStats';
-import storyLogic from '../../GameLogic/StoryLogic';
 import { ActionButton, AppScreen, BodyText, Panel, ScreenHeader, StatCard, ui } from '../uiKit';
 
 function Win(props) {
@@ -25,22 +24,7 @@ function Win(props) {
 						title='Start Over'
 						variant='secondary'
 						onPress={() => {
-							mStats.setAlreadyWon(false);
-							props.navigation.navigate('Loading Local');
-
-							fetch('https://coco-game-17308.herokuapp.com/testApi/resetData')
-								.then(response => response.json())
-								.then(data => {
-									props.gameLogic.GameDriver.awake(data);
-
-									if (storyLogic.checkForUnhandledStory()) {
-										console.log('Initing story');
-										storyLogic.fillChapterQueAndChapter();
-										console.log('storyLogic.chapterQue.lengrth + ' + storyLogic.getChapterQue().length);
-									}
-
-									props.navigation.navigate('Begin Conversation');
-								});
+							mStats.resetData(props.gameLogic.GameDriver, props.navigation);
 						}}
 					/>
 					<ActionButton title='Keep Playing' onPress={() => props.navigation.navigate('Next Shift Select')} />

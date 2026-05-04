@@ -52,6 +52,9 @@ var ManageStats = {
 		ManageStats.characterSchedule = ManageStats.createScheduleWithShiftStructure(data.shiftStructure);
 
 		ManageStats.scenarioPresent = false;
+		ManageStats.inForground = true;
+		ManageStats.currentDay = data.currentDay || 'monday';
+		ManageStats.alreadyWon = false;
 	},
 
 	//Plays on start of game loop

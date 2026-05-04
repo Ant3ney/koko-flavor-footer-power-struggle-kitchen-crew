@@ -20,6 +20,12 @@ let GameDriver = {
 	awake: data => {
 		//This function is to be called after async data has been fetched
 		//Game Driver is the back bone of GameLogic so it should bee the awake hook for gameLogic
+		GameDriver.collectGarbage();
+		levelEnded = false;
+		leftGameplay = false;
+		pFrame = 0;
+		pFrameLong = 0;
+		continusFrame = 0;
 		mStats.awake(data, GameDriver);
 		storyLogic.init(data);
 		shiftHub.init(data);
