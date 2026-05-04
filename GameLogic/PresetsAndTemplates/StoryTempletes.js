@@ -754,7 +754,7 @@ var storyTempletes = [
 		var raniel = mStats.getCharacterWithName('Raniel San Diego');
 		var taka = mStats.getCharacterWithName('Taka Okuno');
 		var david = mStats.getCharacterWithName('David H');
-		var carlose = mStats.getCharacterWithName('CarloseTest Unfinished');
+		var carlose = mStats.getCharacterWithName('Carlose C') || mStats.getCharacterWithName('CarloseTest Unfinished');
 		var narrator = new characters();
 		mStats.setCharacterName(narrator, { first: 'narrator', last: '' });
 		var mark = mStats.getCharacterWithName('Mark Noda');
@@ -2725,6 +2725,7 @@ var storyTempletes = [
 		let hirokitron = new characters();
 		hirokitron.characterInit({ name: {}, gender: 'm', personality: 'organized' }, {});
 		mStats.setCharacterName(hirokitron, { first: 'Hirokitron', last: '' });
+		hirokitron.setAvatar('Hirokitron');
 
 		return {
 			conversation01: [
@@ -3809,13 +3810,14 @@ var storyTempletes = [
 		let hirokitron = new characters();
 		hirokitron.characterInit({ name: {}, gender: 'm', personality: 'organized' }, {});
 		mStats.setCharacterName(hirokitron, { first: 'Hirokitron', last: '' });
+		hirokitron.setAvatar('Hirokitron');
 		var raniel = mStats.getCharacterWithName('Raniel San Diego');
 		var vicky = mStats.getCharacterWithName('Vicky Dang');
 		var christian = mStats.getCharacterWithName('Christian Chewbacca');
 		var newEmploye = new characters();
 		newEmploye.characterInit({ name: {}, gender: 'm', personality: 'confident' }, {});
 		mStats.setCharacterName(newEmploye, { first: 'New Employe', last: 'Quin' });
-		var carlose = mStats.getCharacterWithName('CarloseTest Unfinished');
+		var carlose = mStats.getCharacterWithName('Carlose C') || mStats.getCharacterWithName('CarloseTest Unfinished');
 		var johnAlvas = mStats.getCharacterWithName('John Alvas');
 		var brad = mStats.getCharacterWithName('Brad Yanagi');
 		return {
@@ -4618,7 +4620,7 @@ var storyTempletes = [
 				{
 					dialog: new Dialog(
 						hirokitron,
-						'Ah hahaha! After this, your peers will consider you so instant, they will send you to a company mandated institution.',
+						'Ah hahaha! After this, your peers will consider you so insane, they will send you to a company mandated institution.',
 						h
 					),
 					responses: [

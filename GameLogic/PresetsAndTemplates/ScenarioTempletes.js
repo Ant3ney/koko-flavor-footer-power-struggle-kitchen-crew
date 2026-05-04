@@ -9,8 +9,8 @@ export const STATIONS = {
 	RICE: 'rice',
 };
 export const ALL_STATIONS = [STATIONS.SAUCE, STATIONS.FRYER, STATIONS.RICE];
-export const PLACEHOLDER_SCENARIO_IMAGE = require('../../assets/logo.png');
-export const PLACEHOLDER_SCENARIO_SOUND = 'click01';
+export const PLACEHOLDER_SCENARIO_IMAGE = require('../../assets/scenarios/scenarios_placeholder.png');
+export const PLACEHOLDER_SCENARIO_SOUND = 'scenarioStinger';
 
 export function normalizeStation(station) {
 	if (station === 'sauce') {

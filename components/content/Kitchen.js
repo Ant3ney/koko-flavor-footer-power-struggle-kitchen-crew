@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { AppRegistry, AppState, Text, View } from 'react-native';
+import { AppRegistry, AppState, Image, Text, View } from 'react-native';
 import { GameLoop } from 'react-native-game-engine';
 import { click } from '../../GameLogic/AudioSystem';
 import { ActionButton, BodyText, Eyebrow, Panel, ui } from '../uiKit';
@@ -7,6 +7,8 @@ import Scenario from './Scenario';
 import StatScreen from '../../components/content/Schedule/Screen';
 import StationOptions from './StationOptions';
 import Upgrade from './Upgrade';
+
+const kitchenArt = require('../../assets/kitchen_art.png');
 
 class Kitchen extends PureComponent {
 	constructor(props) {
@@ -91,6 +93,10 @@ class Kitchen extends PureComponent {
 							<Text style={styles.title}>Decision Floor</Text>
 						</View>
 						<Text style={styles.stationBadge}>Station: {formatStationName(this.state.currentStation)}</Text>
+					</View>
+
+					<View style={styles.kitchenArtFrame}>
+						<Image source={kitchenArt} style={styles.kitchenArt} resizeMode='contain' />
 					</View>
 
 					<View style={styles.stationGrid}>
@@ -214,6 +220,21 @@ const styles = {
 		fontSize: 13,
 		fontWeight: '900',
 		textTransform: 'uppercase',
+	},
+	kitchenArtFrame: {
+		width: '100%',
+		aspectRatio: 1672 / 941,
+		maxHeight: 420,
+		backgroundColor: '#FFF4DD',
+		borderWidth: 1,
+		borderColor: '#FFDCA4',
+		overflow: 'hidden',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	kitchenArt: {
+		width: '100%',
+		height: '100%',
 	},
 	stationGrid: {
 		flexDirection: 'row',

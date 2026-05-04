@@ -1,16 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import { click } from '../../GameLogic/AudioSystem';
-import { ActionButton, AppScreen, BodyText, BrandMark, Eyebrow, Panel, Title } from '../uiKit';
+import { ActionButton, AppScreen, BodyText, Panel, Title } from '../uiKit';
 import loadAllAudio from './loadAllAudio';
+
+const homeLogo = require('../../assets/logo.png');
 
 function PressStart(props) {
 	return (
 		<AppScreen>
 			<View style={styles.hero}>
-				<BrandMark size={132} />
+				<View style={styles.logoFrame}>
+					<Image source={homeLogo} style={styles.logo} resizeMode='contain' />
+				</View>
 				<View style={styles.copy}>
-					<Eyebrow>UI-First Kitchen Pressure Sim</Eyebrow>
 					<Title center size={46}>
 						Flavor Fodder
 					</Title>
@@ -45,7 +48,23 @@ const styles = {
 		minHeight: '88vh',
 		alignItems: 'center',
 		justifyContent: 'center',
-		gap: 26,
+		gap: 22,
+	},
+	logoFrame: {
+		width: '100%',
+		maxWidth: 720,
+		aspectRatio: 16 / 9,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#FFFCF6',
+		borderWidth: 4,
+		borderColor: '#FFD88E',
+		boxShadow: '0 22px 55px rgba(91, 43, 25, 0.20)',
+		overflow: 'hidden',
+	},
+	logo: {
+		width: '100%',
+		height: '100%',
 	},
 	copy: {
 		alignItems: 'center',

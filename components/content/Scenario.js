@@ -7,7 +7,7 @@ import { getAvatarImage } from './avatarImages';
 import CharacterBioButton from './CharacterBio';
 
 var scenario;
-const placeholderScenarioImage = require('../../assets/logo.png');
+const placeholderScenarioImage = require('../../assets/scenarios/scenarios_placeholder.png');
 
 function Scenario(props) {
 	const [prompt, setPrompt] = useState('Not set');
@@ -58,7 +58,7 @@ function Scenario(props) {
 					</View>
 				</View>
 				<ScrollView style={styles.contentScroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator>
-					<Image source={scenarioImage} style={styles.scenarioImage} resizeMode='cover' />
+					<Image source={scenarioImage} style={styles.scenarioImage} resizeMode='contain' />
 					<CharacterRoster characters={characters} />
 					<BodyText style={styles.prompt}>{prompt}</BodyText>
 					{chose ? <CharacterChanges changes={characterChanges} /> : null}
@@ -224,7 +224,8 @@ const styles = {
 	},
 	scenarioImage: {
 		width: '100%',
-		height: 120,
+		aspectRatio: 1465 / 1074,
+		maxHeight: 300,
 		backgroundColor: '#FFF4DD',
 		borderWidth: 1,
 		borderColor: '#FFDCA4',
